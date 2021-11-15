@@ -1,0 +1,890 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://iessochoalmj201617.github.io/apunteselastic/05puestaenproduccion.html">
+      
+      <link rel="icon" href="images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>5.- Puesta en producción - Bases de datos orientadas a búsquedas ElasticSearch</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#puesta-en-produccion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-header__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de datos orientadas a búsquedas ElasticSearch
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5.- Puesta en producción
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-nav__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    Bases de datos orientadas a búsquedas ElasticSearch
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01introduccion.html" class="md-nav__link">
+        1.- Introducción a Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02crud.html" class="md-nav__link">
+        2.- CRUD con Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03analizadores.html" class="md-nav__link">
+        3.- Analizadores
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04querydsl.html" class="md-nav__link">
+        4.- Busquedas: Query DSL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5.- Puesta en producción
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="05puestaenproduccion.html" class="md-nav__link md-nav__link--active">
+        5.- Puesta en producción
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-creacion-de-query-dsl-y-los-retos-que-nos-plantea" class="md-nav__link">
+    Ejemplo de creación de query DSL y los retos que nos plantea
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo de creación de query DSL y los retos que nos plantea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusión
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plantillas-de-busqueda" class="md-nav__link">
+    Plantillas de búsqueda
+  </a>
+  
+    <nav class="md-nav" aria-label="Plantillas de búsqueda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creamos-la-plantilla" class="md-nav__link">
+    Creamos la plantilla
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lanzamos-la-plantilla-contra-el-indice" class="md-nav__link">
+    Lanzamos la plantilla contra el índice
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-propuesto-en-el-curso-de-iniciacion-de-elasticsearch" class="md-nav__link">
+    Ejemplo propuesto en el curso de iniciación de Elasticsearch
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo propuesto en el curso de iniciación de Elasticsearch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modificacion-de-la-configuracion-de-elasticsearch" class="md-nav__link">
+    Modificación de la configuración de Elasticsearch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creamos-el-indice-blogs-importacion-de-blogscsv" class="md-nav__link">
+    Creamos el índice blogs: Importación de blogs.csv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mejoras-de-codigo" class="md-nav__link">
+    Mejoras de código
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-6" class="md-nav__link">
+    Ejercicio 6
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="puesta-en-produccion">Puesta en producción<a class="headerlink" href="#puesta-en-produccion" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Sentencias de ejemplo</p>
+<p>Descarga el <a href="05consultas_puesta_en_produccion.txt">Fichero con los ejemplos</a> y cópialo en el panel de comandos de Kibana de la herramienta <code>Dev Tools</code></p>
+</div>
+<h2 id="ejemplo-de-creacion-de-query-dsl-y-los-retos-que-nos-plantea">Ejemplo de creación de query DSL y los retos que nos plantea<a class="headerlink" href="#ejemplo-de-creacion-de-query-dsl-y-los-retos-que-nos-plantea" title="Permanent link">&para;</a></h2>
+<p>Vamos a estudiar un posible caso de uso simplificado en la que se nos pide que creemos una query para ElasticSearch para una tienda en la que el objetivo es mostrar el mejor resultado al usuario de su búsqueda. Abre el fichero 05-consultas.txt”</p>
+<ol>
+<li>Crear los cinco productos de la tienda</li>
+<li>
+<p>Imaginamos que el usuario el usuario realiza la búsqueda</p>
+<p><em>“tenis de uso diario”</em></p>
+<p><strong>Nota</strong>: El sentido de tenis aquí es de zapatilla que es utilizado en algunas regiones </p>
+</li>
+<li>
+<p>La primera consulta que probamos es
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span>  <span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da/_search</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>      <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>        <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>          <span class="nt">&quot;descripción&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span>
+<span class="linenos" data-linenos="6 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Recuerda</p>
+<p>Recordaros que por defecto, las palabras que aparecen es como un or lógico de aparición de cada una de ellas y que Elastic ordena según relevancia de aparición, como “uso” aparece mucho en el documento 2, lo muestra el primero. Por otro lado, el documento 4 que es nuestro objetivo aparece el último</p>
+</div>
+<p><img alt="alt_text" src="images/05/image11.png" /></p>
+<ul>
+<li>Vamos a intentar mejorar pidiendo que busque aquellos documento con todas las palabras mediante el operador <code>and</code>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>        <span class="err">GET</span>  <span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da/_search</span>
+<span class="linenos" data-linenos=" 2 "></span>        <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>          <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>            <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>              <span class="nt">&quot;descripción&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>                <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>                <span class="nt">&quot;operator&quot;</span><span class="p">:</span> <span class="s2">&quot;and&quot;</span>
+<span class="linenos" data-linenos=" 8 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="p">}</span>
+</code></pre></div>
+Vemos que solamente nos devuelve uno que es un armario. Es demasiado restrictivo</li>
+</ul>
+<p><img alt="alt_text" src="images/05/image7.png" /></p>
+<ul>
+<li>
+<p>Vamos a probar a indicarle que utilice un <code>or</code>, pero, que al menos aparezcan 2 palabras. 
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span>  <span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;descripción&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&quot;operator&quot;</span><span class="p">:</span> <span class="s2">&quot;or&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;minimum_should_match&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="linenos" data-linenos=" 9 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+Vemos que seguimos igual y si probamos con 3 ni siquiera aparece el resultado deseado. </p>
+</li>
+<li>
+<p>Es necesario alterar el <strong>score</strong> de la búsqueda para afinar el resultado y que muestre arriba los resultados de interés al usuario. Para ello, añadiremos el operador <code>should</code> sobre el campo  <em>“nombre”</em> para que  si alguna de las palabra aparece, le suba el score al documento, aunque no sea obligatorio.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>    <span class="err">GET</span>  <span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da/_search</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>      <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>          <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>              <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>                <span class="nt">&quot;descripción&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>          <span class="p">],</span>
+<span class="linenos" data-linenos="12 "></span>          <span class="nt">&quot;should&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="13 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>              <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span>                <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span>
+<span class="linenos" data-linenos="16 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span>          <span class="p">]</span>
+<span class="linenos" data-linenos="19 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>    <span class="p">}</span>
+</code></pre></div>
+Vemos que ahora sí que aparece el documento deseado arriba, pero también nos aparece la <em>pintura</em>. Vamos intentar mejorar añadiendo restricciones y modificando el <strong>score</strong> mediante el parámetro <code>boost</code> que permite dar peso a ciertas condiciones</p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/05/image5.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>    <span class="err">GET</span>  <span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da/_search</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>      <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>          <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>              <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>                <span class="nt">&quot;descripción&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>          <span class="p">],</span>
+<span class="linenos" data-linenos="12 "></span>          <span class="nt">&quot;should&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="13 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>              <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span>                <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span>                  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="17 "></span>                  <span class="nt">&quot;boost&quot;</span><span class="p">:</span> <span class="mi">4</span>
+<span class="linenos" data-linenos="18 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos="21 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="22 "></span>              <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="23 "></span>                <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span>                  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="25 "></span>                  <span class="nt">&quot;boost&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="linenos" data-linenos="26 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="27 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos="29 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="30 "></span>              <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="31 "></span>                <span class="nt">&quot;descripción&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="32 "></span>                  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;tenis de uso diario&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="33 "></span>                  <span class="nt">&quot;boost&quot;</span><span class="p">:</span> <span class="mi">4</span>
+<span class="linenos" data-linenos="34 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="35 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="36 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="37 "></span>          <span class="p">]</span>
+<span class="linenos" data-linenos="38 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="39 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="40 "></span>    <span class="p">}</span>
+</code></pre></div>
+<h3 id="conclusion">Conclusión<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Conclusión</p>
+<p>Vemos que es un proceso complejo en el que es necesario la optimización y la mejora constante observando siempre si el funcionamiento es el correcto. No hemos metido en el proceso los analizadores y sus mejoras de idiomas, así como la posibilidad de trabajar con sinónimos, pero nos podemos hacer una idea de la necesidad de un estudio detallado de las necesidades del proyecto y realizar diversas pruebas de tipo A/B para mejorar la búsqueda</p>
+</div>
+<h2 id="plantillas-de-busqueda">Plantillas de búsqueda<a class="headerlink" href="#plantillas-de-busqueda" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html</a></p>
+<p>Una vez tenemos la consulta que necesitamos, tenemos Elasticsearch dentro de nuestro backend, al equipo  desarrollador web no debemos entregarle la api de la consulta para que realice las  llamadas a ElasticSearch, lo que hacemos es crear una plantilla parametrizada con una interface de entrada que utilizará y que al equipo de desarrollo de Elasticsearch le permita ir depurando la consulta sin que afecte al proyecto web. </p>
+<p>Una plantilla de búsqueda es una búsqueda almacenada que se puede ejecutar con diferentes variables. Para el ejemplo anterior del índice de la <strong>“tienda”</strong>, para simplificar el código, utilizaremos una de las primeras soluciones:</p>
+<h3 id="creamos-la-plantilla">Creamos la plantilla<a class="headerlink" href="#creamos-la-plantilla" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">PUT</span> <span class="err">_scrip</span><span class="kc">ts</span><span class="err">/busqueda_</span><span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;script&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;mustache&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>       <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>      <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span>          <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span>            <span class="nt">&quot;descripción&quot;</span><span class="p">:</span> <span class="s2">&quot;{{parametro}}&quot;</span>
+<span class="linenos" data-linenos="12 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>      <span class="p">],</span>
+<span class="linenos" data-linenos="15 "></span>      <span class="nt">&quot;should&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span>          <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span>            <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;{{parametro}}&quot;</span>
+<span class="linenos" data-linenos="19 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>      <span class="p">]</span>
+<span class="linenos" data-linenos="22 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="24 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="25 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span><span class="p">}</span>
+</code></pre></div>
+Podemos testear la plantilla viendo la consulta que genera
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span> <span class="err">_re</span><span class="kc">n</span><span class="err">der/</span><span class="kc">te</span><span class="err">mpla</span><span class="kc">te</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;busqueda_tienda&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span> 
+<span class="linenos" data-linenos="5 "></span>    <span class="nt">&quot;parametro&quot;</span><span class="p">:</span><span class="s2">&quot;tenis de mesa&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span> 
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="lanzamos-la-plantilla-contra-el-indice">Lanzamos la plantilla contra el índice<a class="headerlink" href="#lanzamos-la-plantilla-contra-el-indice" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da/_search/</span><span class="kc">te</span><span class="err">mpla</span><span class="kc">te</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span> <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;busqueda_tienda&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;parametro&quot;</span><span class="p">:</span><span class="s2">&quot;tenis de mesa&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="ejemplo-propuesto-en-el-curso-de-iniciacion-de-elasticsearch">Ejemplo propuesto en el curso de iniciación de Elasticsearch<a class="headerlink" href="#ejemplo-propuesto-en-el-curso-de-iniciacion-de-elasticsearch" title="Permanent link">&para;</a></h2>
+<p>Una de las conferencias de la web de Elasticsearch propone un ejemplo muy interesante de un buscador sobre el blog de consultas de la propia web. </p>
+<p><a href="https://www.youtube.com/watch?v=IOuGbkVBdo0&amp;list=PL_mJOmq4zsHaWvXgiNj9-OsDhjBSfIitW">https://www.youtube.com/watch?v=IOuGbkVBdo0&amp;list=PL_mJOmq4zsHaWvXgiNj9-OsDhjBSfIitW</a></p>
+<p>La idea es crear una plantilla de búsqueda que será utilizada por una página web sin que esta sepa el contenido y complejidad de la consulta.</p>
+<p>En un proyecto real, el servidor Elasticsearch permanecerá oculto detrás del servidor de aplicaciones web.</p>
+<p>Por simplificación, vamos a utilizar una página html  local que mediante tecnología AJAX consultará directamente mediante una petición REST a Elasticsearch.</p>
+<p><img alt="alt_text" src="images/05/image8.png" /></p>
+<p>Por simplificación, vamos a utilizar una página html  local que mediante tecnología AJAX consultará directamente mediante una petición REST a Elasticsearch.</p>
+<p><img alt="alt_text" src="images/05/image10.png" /></p>
+<h3 id="modificacion-de-la-configuracion-de-elasticsearch">Modificación de la configuración de Elasticsearch<a class="headerlink" href="#modificacion-de-la-configuracion-de-elasticsearch" title="Permanent link">&para;</a></h3>
+<p>Los navegadores están protegidos ante las peticiones AJAX a diferentes dominios al que pertenece la página. Vamos a tener que realizar una modificación en la configuración de Elasticsearch para que funcione en Chrome, pero no siempre funcionará en Firefox. Para más información</p>
+<p><a href="https://developer.mozilla.org/es/docs/Web/HTTP/CORS">https://developer.mozilla.org/es/docs/Web/HTTP/CORS</a></p>
+<ul>
+<li>Cierra/Para el servidor Elasticsearch</li>
+<li>Edita el fichero de configuración de la instalación de Elasticsearch (Un buen editor es <a href="https://code.visualstudio.com/download">Visual Studio code</a>):</li>
+</ul>
+<p><code>config/elasticsearch.yml</code></p>
+<ul>
+<li>Añade  al final las líneas(cuidado con añadir espacios o tabulaciones indebidas, los ficheros yml son muy sensibles)
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nt">http.cors.enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos" data-linenos="2 "></span><span class="nt">http.cors.allow-origin</span><span class="p">:</span> <span class="s">&#39;*&#39;</span>
+<span class="linenos" data-linenos="3 "></span><span class="nt">http.cors.allow-methods</span><span class="p">:</span> <span class="s">&quot;OPTIONS,</span><span class="nv"> </span><span class="s">HEAD,</span><span class="nv"> </span><span class="s">GET,</span><span class="nv"> </span><span class="s">POST,</span><span class="nv"> </span><span class="s">PUT,</span><span class="nv"> </span><span class="s">DELETE&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="nt">http.cors.allow-credentials</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos" data-linenos="5 "></span><span class="nt">http.cors.allow-headers</span><span class="p">:</span> <span class="s">&quot;X-Requested-With,</span><span class="nv"> </span><span class="s">Content-Type,</span><span class="nv"> </span><span class="s">Content-Length,accept,</span><span class="nv"> </span><span class="s">authorization&quot;</span>
+</code></pre></div></li>
+</ul>
+<p><img alt="alt_text" src="images/05/image3.png" /></p>
+<ul>
+<li>Inicia Elasticsearch</li>
+<li>Inicia Kibana</li>
+</ul>
+<h3 id="creamos-el-indice-blogs-importacion-de-blogscsv">Creamos el índice blogs: Importación de blogs.csv<a class="headerlink" href="#creamos-el-indice-blogs-importacion-de-blogscsv" title="Permanent link">&para;</a></h3>
+<p>Como hicimos con el <code>productos.csv</code>, vamos a importar una lista de artículos del blogs.csv de la web de Elasticsearch desde kibana</p>
+<p><a href="05blogs.csv">Fichero blogs.csv</a></p>
+<p><img alt="alt_text" src="images/05/image9.png" /></p>
+<ul>
+<li>Nombra el índice como <code>blogs</code>. Pulsa importar.</li>
+</ul>
+<p><img alt="alt_text" src="images/05/image1.png" /></p>
+<ul>
+<li>
+<p>Comprueba desde Dev tools de kibana que se ha creado
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">blogs/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;match_all&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Creamos la primera versión de la plantilla de búsqueda
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>    <span class="err">PUT</span> <span class="err">_scrip</span><span class="kc">ts</span><span class="err">/busqueda_blogs</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>      <span class="nt">&quot;script&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;mustache&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>          <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>            <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>              <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;{{terminos}}&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>Probamos que funciona
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">blogs/_search/</span><span class="kc">te</span><span class="err">mpla</span><span class="kc">te</span>
+<span class="linenos" data-linenos="2 "></span>        <span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;busqueda_blogs&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>          <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>            <span class="nt">&quot;terminos&quot;</span><span class="p">:</span> <span class="s2">&quot;Logstash&quot;</span>
+<span class="linenos" data-linenos="6 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>        <span class="p">}</span>
+</code></pre></div>
+Si editamos la página web <code>busqueda.html</code>, vemos en el código cómo se realiza la solicitud de búsqueda</li>
+</ul>
+<p><img alt="alt_text" src="images/05/image2.png" /></p>
+<p>Cuando recibe de respuesta, añadimos la respuestas encontradas a la página web</p>
+<p><img alt="alt_text" src="images/05/image4.png" /></p>
+<p>Si abrimos la página con Chrome, vemos como realiza las búsquedas sobre Elasticsearch</p>
+<p><img alt="alt_text" src="images/05/image13.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Mejora de la plantilla</p>
+<p>Como ingenieros de datos podemos ir haciendo mejoras sobre la búsqueda sin que afecte al desarrollo de la web.</p>
+</div>
+<h3 id="mejoras-de-codigo">Mejoras de código<a class="headerlink" href="#mejoras-de-codigo" title="Permanent link">&para;</a></h3>
+<p>Prueba las mejoras que aparecen en el código:</p>
+<ul>
+<li>Marcado de texto añadiendo  etiqueta html <code>&lt;mark&gt;</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">PUT</span> <span class="err">_scrip</span><span class="kc">ts</span><span class="err">/busqueda_blogs</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;script&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;mustache&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>      <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>          <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span>              <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span>                <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;{{terminos}}&quot;</span>
+<span class="linenos" data-linenos="12 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>          <span class="p">],</span>
+<span class="linenos" data-linenos="15 "></span>          <span class="nt">&quot;should&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="16 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span>              <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span>                <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span>                  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;{{terminos}}&quot;</span>
+<span class="linenos" data-linenos="20 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span>          <span class="p">]</span>
+<span class="linenos" data-linenos="24 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="25 "></span>      <span class="p">},</span>
+<span class="linenos" data-linenos="26 "></span>      <span class="nt">&quot;highlight&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span>        <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="28 "></span>          <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="29 "></span>            <span class="nt">&quot;pre_tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="30 "></span>              <span class="s2">&quot;&lt;mark&gt;&quot;</span>
+<span class="linenos" data-linenos="31 "></span>            <span class="p">],</span>
+<span class="linenos" data-linenos="32 "></span>            <span class="nt">&quot;post_tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="33 "></span>              <span class="s2">&quot;&lt;/mark&gt;&quot;</span>
+<span class="linenos" data-linenos="34 "></span>            <span class="p">],</span>
+<span class="linenos" data-linenos="35 "></span>            <span class="nt">&quot;require_field_match&quot;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="linenos" data-linenos="36 "></span>          <span class="p">},</span>
+<span class="linenos" data-linenos="37 "></span>          <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="38 "></span>            <span class="nt">&quot;pre_tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="39 "></span>              <span class="s2">&quot;&lt;mark&gt;&quot;</span>
+<span class="linenos" data-linenos="40 "></span>            <span class="p">],</span>
+<span class="linenos" data-linenos="41 "></span>            <span class="nt">&quot;post_tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="42 "></span>              <span class="s2">&quot;&lt;/mark&gt;&quot;</span>
+<span class="linenos" data-linenos="43 "></span>            <span class="p">],</span>
+<span class="linenos" data-linenos="44 "></span>            <span class="nt">&quot;require_field_match&quot;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="linenos" data-linenos="45 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="46 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="47 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="48 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="49 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="50 "></span><span class="p">}</span>
+</code></pre></div>
+<p><img alt="alt_text" src="images/05/image6.png" /></p>
+<ul>
+<li>Mejora de la búsqueda añadiendo condiciones</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span> <span class="nt">&quot;should&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 2 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>              <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>                <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>                  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;{{terminos}}&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 6 "></span>                  <span class="nt">&quot;boost&quot;</span><span class="p">:</span> <span class="mi">4</span>
+<span class="linenos" data-linenos=" 7 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos="10 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span>              <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span>                <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span>                  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;{{terminos}}&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="14 "></span>                  <span class="nt">&quot;boost&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="linenos" data-linenos="15 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos="18 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span>              <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="20 "></span>                <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span>                  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;{{terminos}}&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="22 "></span>                  <span class="nt">&quot;boost&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="linenos" data-linenos="23 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="24 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="25 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span>          <span class="p">]</span>
+<span class="linenos" data-linenos="27 "></span>        <span class="p">}</span>
+</code></pre></div>
+<h3 id="ejercicio-6">Ejercicio 6<a class="headerlink" href="#ejercicio-6" title="Permanent link">&para;</a></h3>
+<p>Captura de pantalla en la que realizas una búsqueda en la web del blog sobre  el termino <code>kibana</code></p>
+<h4 id="ejercicio-opcional-1">Ejercicio opcional 1<a class="headerlink" href="#ejercicio-opcional-1" title="Permanent link">&para;</a></h4>
+<p>Crea una plantilla para realizar búsquedas sobre el índice “productos” y modifica la página para utilizar dicha plantilla. </p>
+<p>Describe todo el proceso</p>
+<h4 id="ejercicio-opcional-2">Ejercicio opcional 2<a class="headerlink" href="#ejercicio-opcional-2" title="Permanent link">&para;</a></h4>
+<p>Descarga de Kaggle el siguiente dataset de todas las ciudades de mundo</p>
+<p><a href="https://www.kaggle.com/max-mind/world-cities-database">https://www.kaggle.com/max-mind/world-cities-database</a></p>
+<p>Importa el dataset con Kibana y averigua:</p>
+<ul>
+<li>El número total de poblaciones por país</li>
+<li>Los nombres  de población más repetidos del mundo</li>
+</ul>
+<div class="admonition warnig">
+<p class="admonition-title">kibana</p>
+<p>Kibana por defecto solamente te deja importar ficheros hasta 100MB, para aumentar el tamaño de importación tienes que configurarlo en:</p>
+</div>
+<p><img alt="alt_text" src="images/05/image12.png" /></p>
+<p>Describe todo el proceso</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="04querydsl.html" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 4.- Busquedas: Query DSL" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              4.- Busquedas: Query DSL
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            2021-2022 Jose Antonio López - Licencia CC BY-NC-SA
+          </div>
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+      <a href="mailto:<ja.lopez@edu.gva.es>" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.557.557 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["header.autohide", "toc.integrate"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

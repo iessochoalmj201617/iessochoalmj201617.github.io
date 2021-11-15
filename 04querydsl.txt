@@ -1,0 +1,509 @@
+
+#Vemos si ha sido correcta la importación
+GET productos/_mapping
+#Consulta de todos los productos
+GET productos/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+#si tienes problemas, borra el indice
+#DELETE productos
+
+# Range query
+GET /productos/_search
+{
+ "query": {
+    "range": {
+        "precio": {
+        "gte": 10,
+         "lte": 20
+
+    }
+  }
+ }
+}
+
+#paginación
+GET /productos/_search
+{
+  
+ "from": 10,
+ "size": 30,
+ "query": {
+    "range": {
+        "precio": {
+        "gte": 10,
+         "lte": 20
+
+    }
+  }
+ }
+}
+
+#Term search. Texto exacto
+GET /productos/_search
+{
+  "query": {
+    "term": {
+      "empresa.raw": "BONAIRE"
+    }
+  }
+}
+
+#Term search  con error
+GET /productos/_search
+{
+  "query": {
+    "term": {
+      "empresa.raw": "Bonaire"
+    }
+  }
+}
+##FULL TEXT QUERIES
+
+#Full text queries
+GET /productos/_search
+{
+  "query": {
+    "match": {
+      "empresa": "Bonaire"
+    }
+  }
+}
+
+#consulta más compleja. es un OR
+GET /productos/_search
+{
+  "from": 1,
+ "size": 30,
+  "query": {
+    "match": {
+      "nombre": "Esmalte Jolie "
+    }
+  }
+}
+
+#forzar 'and'
+GET /productos/_search
+{
+  "from": 1,
+ "size": 30,
+  "query": {
+    "match": {
+      "nombre": {
+        "query":"Esmalte Jolie ",
+        "operator":"and"
+      }
+    }
+  }
+}
+
+#Analisis de consultas. Repaso
+GET productos/_analyze
+{
+  "text": ["limpiador de  muebles"],
+  "analyzer": "mianalizador"
+  , "explain": true
+}
+#errores ortograficos
+GET /productos/_search
+{
+    "query": {
+        "match": {
+            "nombre": {
+                "query": "vebidas"
+                
+
+            }
+        }
+    }
+}
+
+#Fuzziness
+GET /productos/_search
+{
+    "query": {
+        "match": {
+            "nombre": {
+                "query": "vebidas",
+                "fuzziness": "AUTO"
+
+            }
+        }
+    }
+}
+
+#Frase completa
+GET /productos/_search
+{
+    "query": {
+        "match_phrase": {
+            "nombre": {
+                "query": "mata cucarachas aerosol"
+                
+                }
+        }
+    }
+}
+#con un salto de palabras
+GET /productos/_search
+{
+    "query": {
+        "match_phrase": {
+            "nombre": {
+                "query": "mata  aerosol",
+                "slop": 1                
+                }
+        }
+    }
+}
+#Busquedas en varios campos
+GET /productos/_search
+{
+    "query": {
+       "multi_match": {
+           "query": "zapatos limpia",
+           "fields": ["nombre","categoria"]
+       }
+    }
+}
+#Le damos mayor peso a 'categoria'
+GET /productos/_search
+{
+    "query": {
+       "multi_match": {
+           "query": "zapatos limpia",
+           "fields": ["nombre","categoria^3"]
+       }
+    }
+}
+
+#Bool Query
+GET productos/_search
+{
+    "query": {
+        "bool": {
+            "must": [
+               { "match": {"nombre": "betún"}}
+           ],
+            "must_not": [
+            {"match":{"empresa":"bufalo"}}
+             ]
+        }
+    }
+}
+#Podemos añadir condiciones, por ejemplo que el precio sea menos de 2
+GET productos/_search
+{
+    "query": {
+        "bool": {
+            "must": [
+               { "match": {"nombre": "betun"}},
+               { "range": {"precio": {"lte": 2}}}
+
+           ],
+            "must_not": [
+            {"match":{"empresa":"bufalo"}}
+             ]
+        }
+    }
+}
+#should
+GET productos/_search
+{
+    "query": {
+        "bool": {
+            "should":  [
+               { "match_phrase": {"nombre": "red bull"}},
+               { "match": {"nombre": "monster"}}
+
+           ]
+        }
+    }
+}
+#Boosting
+#damos preferencia a monster
+GET productos/_search
+{
+    "query": {
+        "bool": {
+            "should":  [
+               { "match_phrase": {"nombre": "red bull"}},
+               { "match": {"nombre":{"query": "monster","boost":20}}}
+
+           ]
+        }
+    }
+}
+#damos preferencia  a NOEL
+
+GET productos/_search?size=100
+{
+  "query": {
+    "bool": {
+      "must": [
+       
+        {
+          "match": {
+            "nombre": "chorizo salchichon"
+          }
+        }
+      ],
+      "should": [
+        {
+          "term": {
+            "empresa.raw": "NOEL"
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+#Agregaciones
+GET productos/_search
+{
+   "size": 0,
+   
+    "aggs": {
+        "PorEmpresa":{
+            "terms": {
+                "field": "empresa.raw"
+            }
+        }
+    }
+}
+GET productos/_search
+{
+   "size": 0,
+   
+    "aggs": {
+        "PorEmpresa":{
+            "terms": {
+                "field": "empresa.raw",
+                "size": 30
+            }
+        }
+
+    }
+}
+
+GET productos/_search
+{  
+    "query": {
+        "match": {"tipo":"gaseosas"}
+    },
+    "aggs": {
+        "PorEmpresa":{
+            "terms": {
+                "field": "empresa.raw"
+            }
+        }
+    }
+}
+
+GET productos/_search
+{
+   "size": 0,
+    "query": {
+        "match": {"tipo":"gaseosas"}
+    },
+    "aggs": {
+        "PorEmpresa":{
+            "terms": {
+                "field": "empresa.raw"
+            }
+        }
+    }
+}
+
+GET productos/_search
+{
+   "size": 0,
+    "query": {
+        "match": {"tipo":"gaseosas"}
+    },
+    "aggs": {
+        "Maximo":{
+           "max":{"field":"precio"}
+        },
+        "Minimo":{
+           "min":{"field":"precio"}
+        }
+    }
+}
+
+GET productos/_search?size=0
+{
+  "aggs": {
+    "TotasEmpresa": {
+      "cardinality": {
+        "field": "empresa.raw"
+      }
+    }
+  }
+}
+
+
+GET productos/_search
+{
+   "size": 0,
+    "query": {
+        "match": {"tipo":"gaseosas"}
+    },
+    "aggs": {
+        "Estadisticas":{
+           "stats":{"field":"precio"}
+        }
+    }
+}
+#Nube de terminos
+GET productos/_search
+{
+   "size": 0,
+   
+    "aggs": {
+        "Nube de terminos":{
+            "terms": {
+                "field": "nombre"
+            }
+        }
+    }
+}
+
+#Histogram aggregation
+
+POST /productos/_search?size=0
+{
+  "aggs": {
+    "Precios": {
+      "histogram": {
+        "field": "precio",
+        "interval": 3
+      }
+    }
+  }
+}
+
+#Agregaciones anidadas:
+GET productos/_search?size=0
+{
+    "aggs": {
+        "PorEmpresa":{
+            "terms": {
+                "field": "empresa.raw"
+            },
+            "aggs":{
+                "PorTipo":{
+                    "terms":{
+                        "field":"tipo.raw"
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+ET productos/_search?size=0
+{
+    "aggs": {
+        "PorEmpresa":{
+            "terms": {
+                "field": "empresa.raw"
+            },
+            "aggs":{
+                "PorTipo":{
+                    "terms":{"field":"tipo.raw"},
+                    "aggs": {
+                        "Maximo":{"max":{"field":"precio"}},
+                        "Minimo":{"min":{"field":"precio"}}
+                    }
+                }
+            }
+        }
+
+    }
+    }
+}
+#Agregaciones combinadas
+GET productos/_search?size=0
+{
+  "query": {
+    "match": {
+      "nombre": "chocolate"
+    }
+  },
+  "aggs": {
+    "PorEmpresa": {
+      "terms": {
+        "field": "empresa.raw",
+        "size": 10
+      }
+    },
+    "Estadisticas":{
+      "stats": {
+        "field": "precio"
+      }
+    },
+    "PorPrecio":{
+      "filters": {
+        "filters": {
+          "baratos": {
+            "range": {
+              "precio": {
+                "lt": 2
+              }
+            }
+          },
+          "medio": {
+            "range": {
+              "precio": {
+                "gte": 2,
+                "lte": 5
+              }
+            }
+          },
+          "caros":{
+            "range": {
+              "precio": {
+                "gt": 5
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#SQL
+POST _sql
+{
+  "query": """
+  SELECT * FROM "productos" WHERE "empresa"='CALIFORNIA' 
+  """
+  
+}
+#cambiar el formato de respuesta
+
+POST _sql?format=txt
+{
+  "query": """
+  SELECT * FROM "productos" WHERE "empresa"='CALIFORNIA'
+  """
+  
+}
+#Transforma SQL a DSL
+POST _sql/translate
+{
+  "query": """
+  SELECT "nombre" FROM "productos" WHERE "empresa"='CALIFORNIA'
+  """
+  
+}
+
+

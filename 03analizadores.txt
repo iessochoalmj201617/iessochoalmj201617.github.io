@@ -1,0 +1,311 @@
+
+#ANALIZADOR
+#Filtro de caracteres
+GET /_analyze
+{
+  "tokenizer": "keyword",
+  "char_filter": [
+    {
+      "type": "mapping",
+      "mappings": [
+       ":) => _contento_",
+       ":( => _triste_"
+      ]
+    }
+  ],
+  "text": "Hola ayer bien :), pero hoy mal :("
+}
+
+#Tokenizador minusculas
+POST _analyze
+{
+  "tokenizer": "lowercase",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+}
+
+#Analizadores predefinidos
+#Standard Analyzer
+POST _analyze
+{
+  "analyzer": "standard",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+}
+
+#Creamos un indice con analizador personalizado
+#con stopwords español 
+PUT mi-indice
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "mi_analizador_es": {
+          "type": "standard",
+          "max_token_length": 5,
+          "stopwords": "_spanish_"
+        }
+      }
+    }
+  }
+}
+
+#Probamos el analizador
+POST  mi-indice/_analyze
+{
+  "analyzer": "mi_analizador_es",
+  "text": "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo...."
+}
+
+#Analizador en español
+#Añadimos un documento
+POST /noticias/_doc
+{
+  "titulo": "ejemplo...Los maños están de celebración el día de Pilar"
+}
+#Busqueda con acento
+GET /noticias/_search
+{
+  "query": {
+    "match": {
+      "titulo": "celebración"
+    }
+  }
+}
+#Busqueda sin acento
+GET /noticias/_search
+{
+  "query": {
+    "match": {
+      "titulo": "celebracion"
+    }
+  }
+}
+#Eliminamos el índice
+DELETE noticias
+
+#Creamos el indice con analizador para español
+PUT /noticias
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "spanish_stop": {
+          "type":       "stop",
+          "stopwords":  "_spanish_" 
+        },
+        "spanish_keywords": {
+          "type":       "keyword_marker",
+          "keywords":   ["ejemplo"] 
+        },
+        "spanish_stemmer": {
+          "type":       "stemmer",
+          "language":   "spanish"
+        }
+      },
+      "analyzer": {
+        "mianalizador": {
+          "tokenizer":  "standard",
+          "filter": [
+            "lowercase",
+            "spanish_stop",
+            "spanish_keywords",
+            "spanish_stemmer",
+            "asciifolding"
+          ]
+        }
+      }
+    }
+  }
+  , "mappings": {
+    "properties": {
+       "titulo": {
+          "type": "text",
+          "analyzer": "mianalizador",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        }
+    }
+  }
+}
+
+#Añadimos documento
+POST /noticias/_doc/
+{
+  "titulo": "ejemplo...Los maños están de celebración el día de Pilar"
+}
+
+#Probamos el analizador
+POST  noticias/_analyze
+{
+  "analyzer": "mianalizador", 
+  "text": "ejemplo...Los maños están de celebración el día de Pilar",
+   "explain": true
+}
+
+#realizamos la consulta de nuevo sin acento
+GET /noticias/_search
+{
+  "query": {
+    "match": {
+      "titulo": "celebracion"
+    }
+  }
+}
+
+#Plantillas de indices
+
+#Creamos el compones con el analizador en español
+PUT _component_template/plantilla_analizador_es
+{
+  "template": {
+    "settings": {
+    "analysis": {
+      "filter": {
+        "spanish_stop": {
+          "type":       "stop",
+          "stopwords":  "_spanish_" 
+        },
+        "spanish_keywords": {
+          "type":       "keyword_marker",
+          "keywords":   ["ejemplo"] 
+        },
+        "spanish_stemmer": {
+          "type":       "stemmer",
+          "language":   "spanish"
+        }
+      },
+      "analyzer": {
+        "mianalizador": {
+          "tokenizer":  "standard",
+          "filter": [
+            "lowercase",
+            "spanish_stop",
+            "spanish_keywords",
+            "spanish_stemmer",
+            "asciifolding"
+          ]
+        }
+      }
+    }
+  }
+    
+  }
+}
+#creamos la plantilla para indices noticias-*
+PUT _index_template/noticias-template
+{
+  "index_patterns": ["noticias-*"],
+  "template":{
+    "mappings":{
+      "properties": {
+       "titulo": {
+          "type": "text",
+          "analyzer": "mianalizador"
+        }
+    }
+    }
+  },
+  "priority":500,
+  "version": 1,
+  "composed_of": ["plantilla_analizador_es"]
+}
+#creamos un indice
+POST /noticias-2021/_doc/
+{
+  "titulo": "Se acabó la pandemia….celebro mi cumpleaños el sabado"
+}
+#analisis detallado
+POST  noticias-2021/_analyze
+{
+  "analyzer": "mianalizador",
+  "text": "mi cumpleaños es el Martes",
+   "explain": true
+}
+#Podemos ver que la estructura es la de la plantilla
+GET /noticias-2021/_mapping
+
+#Busqueda para autocompletado
+
+#Borramos las plantillas e índices
+DELETE /noticias*
+DELETE /_index_template/noticias*
+DELETE _component_template/plantilla*
+#Volvemos a crear la plantilla con edge_ngram
+PUT _component_template/plantilla_analizador_es
+{
+  "template": {
+    "settings": {
+    "analysis": {
+      "filter": {
+        "spanish_stop": {
+          "type":       "stop",
+          "stopwords":  "_spanish_" 
+        },
+        "spanish_keywords": {
+          "type":       "keyword_marker",
+          "keywords":   ["ejemplo"] 
+        },
+        "spanish_stemmer": {
+          "type":       "stemmer",
+          "language":   "light_spanish"
+        },
+        "custom_edge_ngram": {
+          "type": "edge_ngram",
+           "min_gram": 2,
+            "max_gram": 10
+            }
+      },
+      "analyzer": {
+        "mianalizador": {
+          "tokenizer":  "standard",
+          "filter": [
+            "lowercase",
+            "spanish_stop",
+            "spanish_keywords",
+            "spanish_stemmer",
+            "asciifolding",
+             "custom_edge_ngram"
+          ]
+        }
+      }
+    }
+  }
+    
+  }
+}
+#Volvemos a crear la plantilla para noticias
+PUT _index_template/noticias-template
+{
+  "index_patterns": ["noticias-*"],
+  "template":{
+    "mappings":{
+      "properties": {
+       "titulo": {
+          "type": "text",
+          "analyzer": "mianalizador"
+        }
+    }
+    }
+  },
+  "priority":500,
+  "version": 1,
+  "composed_of": ["plantilla_analizador_es"]
+}
+
+
+#Creamos un documento
+POST /noticias-01/_doc/
+{
+  "titulo": "El gran libro de elasticseach"
+}
+
+#Podemos probar cómo analiza un texto
+POST noticias-01/_analyze
+{
+  "analyzer": "mianalizador",
+  "text": "El gran libro de elasticseach",
+   "explain": true
+}

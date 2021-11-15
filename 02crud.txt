@@ -1,0 +1,242 @@
+# T01-Información básica sobre el servidor
+GET /
+#Nos muestra todos los indices
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+#Api amigable si json
+GET /_cat
+
+#Ejemplo: Listado de índices
+GET /_cat/indices/?v
+#T02-CRUD
+#Creamos un indice y un documento
+PUT /miempresa/_doc/1
+{
+  "nombre":"Pepe",
+  "apellido":"Pomez",
+  "edad":"25",
+  "sobremi":"Me gusta nadar y la montaña y la musica rock",
+  "intereses":["deporte","musica"]
+}
+
+#Otro documento. Indicamos su id '2'
+PUT /miempresa/_doc/2
+{
+  "nombre":"Maria",
+  "apellido":"Perez",
+  "edad":"35",
+  "sobremi":"Me gusta el baloncesto, la montaña y la musica",
+  "intereses":["deporte","lectura"]
+}
+
+PUT /miempresa/_doc/3
+{
+  "nombre":"Fer",
+  "apellido":"Perez",
+  "edad":"28",
+  "sobremi":"Me encanta las tardes jugando al ajedrez y pescar los sabados",
+  "intereses":["ajedrez","pesca"]
+}
+
+#Es id lo genera el sistema
+POST /miempresa/_doc/
+{
+  "nombre":"Carmen",
+  "apellido":"Garcia",
+  "edad":"38",
+  "sobremi":"Voy al a bailar y amo viajar, sobre todo a sitios montañosos",
+  "intereses":["deporte","viajar"]
+}
+
+#Busqueda básica
+GET /miempresa/_search
+
+#Búsqueda con parámetros
+GET /miempresa/_search?q=apellido:Perez
+
+
+#Búsqueda por id
+GET /miempresa/_doc/2
+
+#Búsqueda por id. Error
+GET /miempresa/_doc/7
+
+#Query DSL
+GET /miempresa/_search
+{
+  "query": {
+    "match": {
+      "apellido": "Perez"
+    }
+  }
+}
+#Mayores de 30
+GET /miempresa/_search
+{
+  "query": {
+    "bool":{
+      "must":{
+        "range":{
+          "edad":{"gt":30}
+          
+        }
+      }
+    }
+  }
+}
+
+#les gusta la montaña o nadar
+GET /miempresa/_search
+{
+  "query": {
+    "match": {
+      "sobremi": "montaña nadar"
+    }
+  }
+}
+
+#Por frase completa
+GET /miempresa/_search
+{
+  "query": {
+    "match_phrase": {
+      "sobremi": "me gusta"
+    }
+  }
+}
+#Agregaciones
+GET /miempresa/_search?size=0
+{
+  "aggs": {
+    "all_intereses": {
+      "terms": {
+        "field": "intereses.keyword" 
+      }
+    }
+  }
+}
+#Traer parte de los campos
+GET /miempresa/_search
+{
+    "query": {
+        "match_all": {}
+    },
+    "_source": ["nombre"]
+}
+#Ordenar por campo de texto: Error
+GET /miempresa/_search
+{
+    "query": {"match_all": {}
+    },
+    "sort": [
+        {"nombre": "asc"}]
+    
+}
+
+#Tipos de datos de nuestro indice
+GET miempresa/_mapping
+
+#Ordenar por campo: keyword
+GET /miempresa/_search
+{
+    "query": {"match_all": {}
+    },
+    "sort": [
+        {"nombre.keyword": "asc"}]
+    
+}
+
+#Actualizamos documento
+PUT /miempresa/_doc/3
+{
+  "nombre":"Fer",
+  "apellido":"Perez",
+  "edad":"29",
+  "sobremi":"Me gusta descansar",
+  "intereses":["ajedrez","pesca","canicas"]
+}
+
+#Actualización parcial
+POST /miempresa/_update/2
+{
+  "doc":{
+  "edad":"45"
+  }
+}
+#Actualizar documento que no existe: Error
+POST /miempresa/_update/8
+{
+  "doc": { 
+  "nombre":"Pili",
+  "apellido":"Bas",
+  "edad":"27",
+  "sobremi":"Me gusta estar con la familia",
+  "intereses":["patinar","pintar"]
+  }
+}
+#Actualizar y si no existe lo crea
+POST /miempresa/_update/8
+{
+  "doc": { 
+  "nombre":"Pili",
+  "apellido":"Bas",
+  "edad":"27",
+  "sobremi":"Me gusta estar con la familia",
+  "intereses":["patinar","pintar"]
+  },
+  "doc_as_upsert":true
+}
+
+#Borrar documento
+DELETE /miempresa/_doc/2
+
+#Estructura del indice
+GET /miempresa/_mapping
+
+#Borramos el indice
+DELETE /miempresa
+
+#Creamos el índice catalogo
+PUT /catalogo
+
+#Definimos el modelo
+PUT /catalogo/_mapping
+{
+ "properties" : {
+ "cod" : {"type" : "keyword"},
+ "alta" : {"type" : "date"},
+ "nombre" : {"type" : "text"},
+ "descripcion" : {"type" : "text"},
+ "cantidad" : {"type" : "integer"},
+ "precio" : {"type" : "double"}
+}
+}
+#Consultamos el mapping del indice
+GET /catalogo/_mapping
+
+#Añadimos documentos
+PUT /catalogo/_doc/1
+{
+  "cod": "COD01",
+  "alta": "2021-09-02",
+  "nombre": "PC IBM",
+  "descripcion": "Portatil IBM última generación con 32GB y 1T i7",
+  "cantidad": 8,
+  "precio": 400
+}
+
+GET /catalogo/_doc/1
+
+#Añadimos nuevo campo
+PUT /catalogo/_mapping
+{
+  "properties": {
+    "descatalogado": {
+      "type": "boolean"
+    }
+  }
+}

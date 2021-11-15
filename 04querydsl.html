@@ -1,0 +1,1357 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://iessochoalmj201617.github.io/apunteselastic/04querydsl.html">
+      
+      <link rel="icon" href="images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>4.- Busquedas: Query DSL - Bases de datos orientadas a búsquedas ElasticSearch</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#busquedas-complejas-con-query-dsl" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-header__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de datos orientadas a búsquedas ElasticSearch
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.- Busquedas: Query DSL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-nav__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    Bases de datos orientadas a búsquedas ElasticSearch
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01introduccion.html" class="md-nav__link">
+        1.- Introducción a Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02crud.html" class="md-nav__link">
+        2.- CRUD con Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03analizadores.html" class="md-nav__link">
+        3.- Analizadores
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          4.- Busquedas: Query DSL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="04querydsl.html" class="md-nav__link md-nav__link--active">
+        4.- Busquedas: Query DSL
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#importacion-del-indice-productos" class="md-nav__link">
+    Importación del índice “Productos”
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-dsl" class="md-nav__link">
+    Query DSL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#term-queries-busqueda-de-texto-estructurado" class="md-nav__link">
+    Term Queries: Búsqueda de texto estructurado.
+  </a>
+  
+    <nav class="md-nav" aria-label="Term Queries: Búsqueda de texto estructurado.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#range-query" class="md-nav__link">
+    Range query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paginacion" class="md-nav__link">
+    Paginación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exists-query" class="md-nav__link">
+    Exists query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#term-query" class="md-nav__link">
+    Term query
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-text-queries-busquedas-con-texto-analizado" class="md-nav__link">
+    Full text queries: Búsquedas con texto analizado
+  </a>
+  
+    <nav class="md-nav" aria-label="Full text queries: Búsquedas con texto analizado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#match-query" class="md-nav__link">
+    Match query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-la-busqueda" class="md-nav__link">
+    Análisis de la búsqueda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fuzziness" class="md-nav__link">
+    Fuzziness
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#march-phrase" class="md-nav__link">
+    March-phrase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi_match" class="md-nav__link">
+    Multi_match
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-query" class="md-nav__link">
+    Boolean Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    Filter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geo-queries" class="md-nav__link">
+    Geo queries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agregaciones" class="md-nav__link">
+    Agregaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="Agregaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cardinalidad" class="md-nav__link">
+    Cardinalidad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estadisticas" class="md-nav__link">
+    Estadísticas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nube-de-terminos" class="md-nav__link">
+    Nube de términos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histogram-aggregation" class="md-nav__link">
+    Histogram aggregation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agregaciones-anidadas" class="md-nav__link">
+    Agregaciones anidadas:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agregaciones-combinadas" class="md-nav__link">
+    Agregaciones combinadas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch-sql" class="md-nav__link">
+    Elasticsearch SQL
+  </a>
+  
+    <nav class="md-nav" aria-label="Elasticsearch SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformar-sentencia-sql-a-lenguaje-query-dsl-de-elasticsearch" class="md-nav__link">
+    Transformar sentencia SQL a lenguaje query DSL de Elasticsearch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicio-5-query-dsl" class="md-nav__link">
+    Ejercicio 5: Query DSL
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05puestaenproduccion.html" class="md-nav__link">
+        5.- Puesta en producción
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="busquedas-complejas-con-query-dsl">Búsquedas complejas con Query DSL<a class="headerlink" href="#busquedas-complejas-con-query-dsl" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Sentencias de ejemplo</p>
+<p>Descarga el <a href="04querydsl.txt">Fichero con los ejemplos</a> y cópialo en el panel de comandos de Kibana de la herramienta <code>Dev Tools</code></p>
+</div>
+<p>Vamos a aprender a realizar búsqueda más complejas para ver el potencial de Elasticsearch</p>
+<h2 id="importacion-del-indice-productos">Importación del índice “Productos”<a class="headerlink" href="#importacion-del-indice-productos" title="Permanent link">&para;</a></h2>
+<p>Vamos a realizar la importación del  fichero <a href="productos.csv">productos.csv</a> en el índice productos. </p>
+<ul>
+<li>Vamos a la pantalla de inicio de Kibana y seleccionamos “Add your data”</li>
+</ul>
+<p><img alt="alt_text" src="images/04/image1.png" /></p>
+<ul>
+<li>Selecciona el fichero  <code>productos.csv</code></li>
+</ul>
+<p><img alt="alt_text" src="images/04/image14.png" /></p>
+<ul>
+<li>Asegurate que tenemos seleccionado que la primera fila son títulos</li>
+</ul>
+<p><img alt="alt_text" src="images/04/image9.png" /></p>
+<p>Pulsa el botón inferior de “Import” y “Advanced”</p>
+<p>Desmarcamos <code>index pattern</code> y ponemos nombre al indice:<em><code>productos</code></em></p>
+<p>Sustituye los valores siguientes en cada una de las casillas:</p>
+<p><img alt="alt_text" src="images/04/image13.png" /></p>
+<p>Abre el archivo <a href="04importar_productos.txt">04importar_productos.txt</a> y sustituye el contenido de:</p>
+<ul>
+<li>Index settings</li>
+<li>Mapping</li>
+<li>Ingest pipeline</li>
+</ul>
+<p>Pulsa importar</p>
+<p>Si todo ha ido bien, podemos desde <em>Dev Tools</em> ver si ha creado el índice
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_mappi</span><span class="kc">n</span><span class="err">g</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="nt">&quot;match_all&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Si tenemos algún fallo podemos borrar el índice y volver a intentarlo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>DELETE productos
+</code></pre></div></p>
+<h2 id="query-dsl">Query DSL<a class="headerlink" href="#query-dsl" title="Permanent link">&para;</a></h2>
+<h2 id="term-queries-busqueda-de-texto-estructurado">Term Queries: Búsqueda de texto estructurado.<a class="headerlink" href="#term-queries-busqueda-de-texto-estructurado" title="Permanent link">&para;</a></h2>
+<p>Si nos fijamos en el mapa del índice, vemos que los campos de texto pueden ser de tipo <code>text</code> o <code>keyword</code>.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>GET productos/_mapping
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image2.png" /></p>
+<ul>
+<li><em>Tipo keyword</em>: El sistema no los analizará, tanto para la búsqueda como al indexar, nos servirán para realizar agregaciones, sumatorios, estadísticas….</li>
+<li><em>Tipo text</em>: El sistema los analizará como vimos anteriormente tanto al indexar como al buscar. Elasticsearch nos permite tener campos como ambos tipos.</li>
+</ul>
+<p>Vamos a ver como realizar búsquedas en los tipos keyword. Tenemos la documentación en</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/term-level-queries.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/term-level-queries.html</a></p>
+<p>Veamos algunos casos</p>
+<h3 id="range-query">Range query<a class="headerlink" href="#range-query" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html</a></p>
+<p>Nos permite encontrar documentos en un rango(numérico, fechas….)</p>
+<p>Veamos un ejemplo</p>
+<p>Productos que tienen el precio entre 10 y 20
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span> <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;range&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&quot;precio&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;gte&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>         <span class="nt">&quot;lte&quot;</span><span class="p">:</span> <span class="mi">20</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span> <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image16.png" /></p>
+<h3 id="paginacion">Paginación<a class="headerlink" href="#paginacion" title="Permanent link">&para;</a></h3>
+<p>Nos devuelve los 10 primeros de un total de 1401. Podemos indicar desde qué elemento y cuántos queremos que nos traiga:</p>
+<p>Por ejemplo, desde la posición 10 y 30 documentos.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span>   <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
+<span class="linenos" data-linenos=" 5 "></span>    <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> 
+<span class="linenos" data-linenos=" 6 "></span> <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="nt">&quot;range&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;precio&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="nt">&quot;gte&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span>         <span class="nt">&quot;lte&quot;</span><span class="p">:</span> <span class="mi">20</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span> <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="p">}</span>
+</code></pre></div>
+Es de mucha utilidad las búsquedas por rangos de fechas. Consultar la documentación para su uso</p>
+<h3 id="exists-query">Exists query<a class="headerlink" href="#exists-query" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html</a></p>
+<p>Como los documento de un índice no tienen que tener los mismo campos, podemos comprobar si  tenemos un determinado campo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;exists&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;description&quot;</span> <span class="p">}</span> <span class="p">}</span>
+</code></pre></div></p>
+<h3 id="term-query">Term query<a class="headerlink" href="#term-query" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html</a></p>
+<p>Nos permite buscar un término exacto en un campo keyword, como tenemos algunos campos con doble tipo(text/keyword), hay que utilizar el que identifica a keyword. Si vemos el mapping, el campo keyword para empresa sería 
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>empresa.raw
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image7.png" /></p>
+<p>Para realizar una búsqueda exacta, sería
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;empresa.raw&quot;</span><span class="p">:</span> <span class="s2">&quot;BONAIRE&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Nos da como resultado todos los productos de  la empresa "BONAIRE". </p>
+<p>Si probamos con la consulta
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;empresa.raw&quot;</span><span class="p">:</span> <span class="s2">&quot;Bonaire&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+no nos devuelve resultados, ya que en la búsqueda no se realiza ningún análisis.</p>
+<h2 id="full-text-queries-busquedas-con-texto-analizado">Full text queries: Búsquedas con texto analizado<a class="headerlink" href="#full-text-queries-busquedas-con-texto-analizado" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html</a></p>
+<p>En estas búsqueda, la cadena de consulta se procesa utilizando el mismo analizador que se aplicó al campo durante la indexación y es donde radica todo el potencial de Elasticsearch.</p>
+<h3 id="match-query">Match query<a class="headerlink" href="#match-query" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html</a></p>
+<p>Devuelve documentos que coincidan con un texto, un número, una fecha o un valor booleano proporcionados. El texto proporcionado se analiza antes de hacer coincidir.</p>
+<p>La consulta match es la consulta estándar para realizar una búsqueda de texto completo, incluidas las opciones para la coincidencia aproximada.</p>
+<p>Si probamos ahora a realizar la consulta anterior pero con match, vemos que el texto es analizado previamente(minúsculas..) para obtener el resultado
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;empresa&quot;</span><span class="p">:</span> <span class="s2">&quot;Bonaire&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Si hacemos una consulta más compleja con varias palabras
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span> <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>      <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Esmalte Jolie&quot;</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image15.png" /></p>
+<p>Vemos que tenemos respuestas de las palabras con apariciones de ambos y separados. Por lo que deducimos que por defecto utiliza un “or” en la búsqueda. Si queremos cambiarlo para que aparezcan todos los términos.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span> <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>      <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="s2">&quot;Esmalte Jolie &quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span>         <span class="nt">&quot;operator&quot;</span><span class="p">:</span><span class="s2">&quot;and&quot;</span> 
+<span class="linenos" data-linenos="10 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+</code></pre></div>
+También podemos ajustar para que  al menos aparezcan un número determinado de términos</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-minimum-should-match.html">"minimum_should_match": 2</a></p>
+<h3 id="analisis-de-la-busqueda">Análisis de la búsqueda<a class="headerlink" href="#analisis-de-la-busqueda" title="Permanent link">&para;</a></h3>
+<p>Es de mucha utilidad conocer cómo analiza la búsqueda
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_a</span><span class="kc">nal</span><span class="err">yze</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;limpiador de  muebles&quot;</span><span class="p">],</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;mianalizador&quot;</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="p">,</span> <span class="nt">&quot;explain&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="fuzziness">Fuzziness<a class="headerlink" href="#fuzziness" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html#query-dsl-match-query-fuzziness">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html#query-dsl-match-query-fuzziness</a></p>
+<p>En ocasiones, por ejemplo en la búsqueda en una web, en la que el usuario introduce el texto, es frecuente que se equivoque al introducir los datos:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>“vebidas” en vez de bebidas
+</code></pre></div>
+Podéis probar que no encuentra resultados con “vebidas”</p>
+<p>Mediante el parámetro Fuzziness, el sistema busca palabras cercanas
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>                <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;vebidas&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>                 <span class="nt">&quot;fuzziness&quot;</span><span class="p">:</span> <span class="s2">&quot;AUTO&quot;</span> 
+<span class="linenos" data-linenos=" 8 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="march-phrase">March-phrase<a class="headerlink" href="#march-phrase" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html#query-dsl-match-query-phrase">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html#query-dsl-match-query-phrase</a></p>
+<p>Si deseamos que coincida una frase completa
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>                <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;mata cucarachas aerosol&quot;</span>                
+<span class="linenos" data-linenos=" 7 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+Ponemos indicar que falte alguna de las palabras mediante
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>                <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;mata  aerosol&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>                 <span class="nt">&quot;slop&quot;</span><span class="p">:</span> <span class="mi">1</span>                
+<span class="linenos" data-linenos=" 8 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="multi_match">Multi_match<a class="headerlink" href="#multi_match" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html</a></p>
+<p>Podemos crear búsquedas en varios campos
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>       <span class="nt">&quot;multi_match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>           <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;zapatos limpia&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>           <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span><span class="s2">&quot;categoria&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="7 "></span>       <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div>
+y si necesitamos dar más peso a un campo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>       <span class="nt">&quot;multi_match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>           <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;zapatos limpia&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>           <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">,</span><span class="s2">&quot;categoria^3&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="7 "></span>       <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="boolean-query">Boolean Query<a class="headerlink" href="#boolean-query" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html</a></p>
+<p>Permite combinar diferentes queries. Tenemos las siguientes opciones:</p>
+<table>
+  <tr>
+   <td>must
+   </td>
+   <td>La query debe aparecer en documentos coincidentes y contribuirá a la puntuación. Es como un And
+   </td>
+  </tr>
+  <tr>
+   <td>filter
+   </td>
+   <td>La query debe aparecer en documentos coincidentes. Sin embargo, a diferencia de must, la puntuación se ignorará. 
+   </td>
+  </tr>
+  <tr>
+   <td>should
+   </td>
+   <td>La Query debería aparecer en el documento correspondiente. Es como un Or. Permite subir el score a las coincidencias de must
+   </td>
+  </tr>
+  <tr>
+   <td>must_not
+   </td>
+   <td>La cláusula (consulta) no debe aparecer en los documentos coincidentes. Las cláusulas se ejecutan en el <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html">contexto del filtro,</a> lo que significa que la puntuación se ignora y las cláusulas se consideran para el almacenamiento en caché. Como se ignora la puntuación 0, se devuelve una puntuación de para todos los documentos. Es como un Not
+   </td>
+  </tr>
+</table>
+
+<p>Vamos a buscar los productos de “betún” pero que no sean de la empresa "bufalo".
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span>               <span class="p">{</span> <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;betun&quot;</span><span class="p">}}</span>
+<span class="linenos" data-linenos=" 7 "></span>           <span class="p">],</span>
+<span class="linenos" data-linenos=" 8 "></span>            <span class="nt">&quot;must_not&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">{</span><span class="nt">&quot;match&quot;</span><span class="p">:{</span><span class="nt">&quot;empresa&quot;</span><span class="p">:</span><span class="s2">&quot;bufalo&quot;</span><span class="p">}}</span>
+<span class="linenos" data-linenos="10 "></span>             <span class="p">]</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+</code></pre></div>
+Podemos añadir condiciones, por ejemplo, que el precio sea menos de 2
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span>               <span class="p">{</span> <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;betun&quot;</span><span class="p">}},</span>
+<span class="linenos" data-linenos=" 7 "></span>               <span class="p">{</span> <span class="nt">&quot;range&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;precio&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;lte&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}}}</span>
+<span class="linenos" data-linenos=" 8 "></span>           <span class="p">],</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="nt">&quot;must_not&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="10 "></span>            <span class="p">{</span><span class="nt">&quot;match&quot;</span><span class="p">:{</span><span class="nt">&quot;empresa&quot;</span><span class="p">:</span><span class="s2">&quot;bufalo&quot;</span><span class="p">}}</span>
+<span class="linenos" data-linenos="11 "></span>             <span class="p">]</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="p">}</span>
+</code></pre></div>
+Si queremos indicar condiciones de tipo OR. Por ejemplo: “Red bull” o “monster”
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;should&quot;</span><span class="p">:</span>  <span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span>               <span class="p">{</span> <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;red bull&quot;</span><span class="p">}},</span>
+<span class="linenos" data-linenos=" 7 "></span>               <span class="p">{</span> <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;monster&quot;</span><span class="p">}}</span>
+<span class="linenos" data-linenos=" 8 "></span>           <span class="p">]</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
+Puede ser necesario dar más importancia a alguna de las condiciones, le podemos asignar un peso extra, por ejemplo, queremos dar más importancia a “monster” porque está patrocinado por lo que queremos que aparezca en primer lugar estos productos:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;should&quot;</span><span class="p">:</span>  <span class="p">[</span>
+<span class="linenos" data-linenos=" 6 "></span>               <span class="p">{</span> <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;red bull&quot;</span><span class="p">}},</span>
+<span class="linenos" data-linenos=" 7 "></span>               <span class="p">{</span> <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;nombre&quot;</span><span class="p">:{</span><span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;monster&quot;</span><span class="p">,</span><span class="nt">&quot;boost&quot;</span><span class="p">:</span><span class="mi">20</span><span class="p">}}}</span>
+<span class="linenos" data-linenos=" 8 "></span>           <span class="p">]</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="p">}</span> 
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
+La condición <code>should</code> tambien nos permite dar prioridad en el <code>_score</code> a una de las condiciones.</p>
+<p>La siguiente búsqueda, pedimos “chorizo o salchichón”, pero damos preferencia  a la empresa “NOEL”
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search?size=</span><span class="mi">100</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span>       
+<span class="linenos" data-linenos=" 6 "></span>        <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>          <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>            <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;chorizo salchichon&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>      <span class="p">],</span>
+<span class="linenos" data-linenos="12 "></span>      <span class="nt">&quot;should&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>          <span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span>            <span class="nt">&quot;empresa.raw&quot;</span><span class="p">:</span> <span class="s2">&quot;NOEL&quot;</span>
+<span class="linenos" data-linenos="16 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span>      <span class="p">]</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="filter">Filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
+<p>No vamos a ver <code>filter</code> pero nos permite filtrar documentos pero sin asignar puntuación, por lo que la búsqueda es más rápida</p>
+<h3 id="geo-queries">Geo queries<a class="headerlink" href="#geo-queries" title="Permanent link">&para;</a></h3>
+<p>Las búsquedas relacionadas con la geolocalización y distancia son muy interesantes para las búsquedas, sobre todo en las apps de móviles al estilo Wallapop o de tipo social.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-queries.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-queries.html</a></p>
+<h2 id="agregaciones">Agregaciones<a class="headerlink" href="#agregaciones" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html</a></p>
+<p><a href="https://medium.com/altoros/aggregations-en-elasticsearch-d2d70e9438ec">https://medium.com/altoros/aggregations-en-elasticsearch-d2d70e9438ec</a></p>
+<p>Las agregaciones se pueden comparar con el Group By de SQL, y es fundamental para la analítica de datos. Elasticsearch maneja con enorme potencial las búsquedas agregadas y como vemos en el artículo anterior, nos permitirá crear búsquedas categorizadas al estilo Amazon, ya que nos devuelve tanto los productos como las agregaciones en el mismo resultado.</p>
+<p><img alt="alt_text" src="images/04/image10.png" /></p>
+<p>Vamos a ver brevemente algunos ejemplos.</p>
+<p>El Total de productos por empresa. <em>Es necesario utilizar un campo keyword</em></p>
+<div class="admonition tip">
+<p class="admonition-title">sin documentos</p>
+<p>Si no queremos los documentos tenemos que indicarle <code>size=0</code></p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>   <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;PorEmpresa&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 7 "></span>            <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>                <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;empresa.raw&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+<p><img alt="alt_text" src="images/04/image6.png" /></p>
+<p>Se puede ver que es parecido a
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span> <span class="n">empresa</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">productosGROUP</span> <span class="k">BY</span> <span class="n">empresa</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+Por otro lado, nos devuelve los 10 primeros, si queremos más, se lo indicaremos con <code>size</code>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>   <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>   
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&quot;PorEmpresa&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 6 "></span>            <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>                <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;empresa.raw&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>                 <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">30</span> 
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+ver las empresas que venden gaseosas
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;tipo&quot;</span><span class="p">:</span><span class="s2">&quot;gaseosas&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;PorEmpresa&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span>                <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;empresa.raw&quot;</span>
+<span class="linenos" data-linenos="11 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="p">}</span>
+</code></pre></div>
+es como
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span> <span class="n">empresa</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">productos</span> <span class="k">WHERE</span> <span class="n">tipo</span><span class="o">=</span><span class="err">”</span><span class="n">gaseosa</span><span class="err">”</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">empresa</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+Vemos que nos devuelve la lista de documentos y al final la agregación</p>
+<p><img alt="alt_text" src="images/04/image4.png" /></p>
+<p>Si no queremos los documentos tenemos que indicarle <code>size=0</code>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>     <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;tipo&quot;</span><span class="p">:</span><span class="s2">&quot;gaseosas&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;PorEmpresa&quot;</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="err">…..</span>
+</code></pre></div></p>
+<p>Podemos ver el valor de venta máximo y mínimo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>   <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;tipo&quot;</span><span class="p">:</span><span class="s2">&quot;gaseosas&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;Maximo&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 9 "></span>           <span class="nt">&quot;max&quot;</span><span class="p">:{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;precio&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">},</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="nt">&quot;Minimo&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="12 "></span>           <span class="nt">&quot;min&quot;</span><span class="p">:{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;precio&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+</code></pre></div>
+Es parecido en SQL a
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span> <span class="k">max</span><span class="p">(</span><span class="n">precio</span><span class="p">),</span><span class="k">min</span><span class="p">(</span><span class="n">precio</span><span class="p">)</span>  <span class="k">FROM</span> <span class="n">productos</span> <span class="k">WHERE</span> <span class="n">tipo</span><span class="o">=</span><span class="err">”</span><span class="n">gaseosa</span><span class="err">”</span>
+</code></pre></div></p>
+<h3 id="cardinalidad">Cardinalidad<a class="headerlink" href="#cardinalidad" title="Permanent link">&para;</a></h3>
+<p>Si necesitamos saber el número total de empresas diferentes tenemos el operador <code>cardinality</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search?size=</span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;TotasEmpresa&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;cardinality&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;empresa.raw&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="estadisticas">Estadísticas<a class="headerlink" href="#estadisticas" title="Permanent link">&para;</a></h3>
+<p>Aunque tenemos un operador  que nos saca todas los datos estadísticos
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>   <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;tipo&quot;</span><span class="p">:</span><span class="s2">&quot;gaseosas&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;Estadisticas&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 9 "></span>           <span class="nt">&quot;stats&quot;</span><span class="p">:{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;precio&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image11.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">más estadísticas</p>
+<p>Si utilizamos <code>extended_stats</code> tenemos unos datos  estadísticos más completos. Podéis probarlo.</p>
+</div>
+<h3 id="nube-de-terminos">Nube de términos<a class="headerlink" href="#nube-de-terminos" title="Permanent link">&para;</a></h3>
+<p>Nos puede interesar para mostrar algún tipo de nube de aparición de  términos  de nuestra índice</p>
+<p><img alt="alt_text" src="images/04/image17.png" /></p>
+<p>Como hemos visto, no se puede realizar agregación de un campo analizado, 
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>   <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;Categoria&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 7 "></span>            <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>                <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;nombre&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+nos muestra un error Si nos fijamos en el detalle del error, nos recomienda definir el campo como</p>
+<p><img alt="alt_text" src="images/04/image3.png" /></p>
+<p>Esto tiene un gran coste para el índice, pero nos permitiría realizar el conteo de palabras.</p>
+<p>No lo vamos a hacer ya que tendríamos que reconstruir el índice pero si lo necesitárais, tendrías que cambiar el campo</p>
+<h3 id="histogram-aggregation">Histogram aggregation<a class="headerlink" href="#histogram-aggregation" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html</a></p>
+<p>Nos puede interesar realizar agregaciones por intervalos, por ejemplo, contar el número de productos por intervalos de precio de 3€
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">POST</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search?size=</span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;Precios&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;histogram&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;precio&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&quot;interval&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="linenos" data-linenos=" 8 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image5.png" /></p>
+<p>Podemos definir los intervalos nosotros los rangos de los intervalos. Podéis ver ejemplos en </p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html</a></p>
+<p>Muy interesantes son los intervalos por fechas</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-datehistogram-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-datehistogram-aggregation.html</a></p>
+<p>y las de geoposicionamiento y distancia por intervalos</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html</a></p>
+<h3 id="agregaciones-anidadas">Agregaciones anidadas:<a class="headerlink" href="#agregaciones-anidadas" title="Permanent link">&para;</a></h3>
+<p>Si necesitamos realizar una consulta al estilo SQL en el que queremos saber el total de productos por empresa y tipo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span> <span class="n">empresa</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">tipo</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>  <span class="k">FROM</span> <span class="n">productos</span> <span class="k">WHERE</span> <span class="n">tipo</span><span class="o">=</span><span class="err">”</span><span class="n">gaseosa</span><span class="err">”</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">empresa</span><span class="p">,</span> <span class="n">tipo</span> 
+</code></pre></div>
+Tenemos que anidar agregaciones:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search?size=</span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;PorEmpresa&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>                <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;empresa.raw&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos=" 8 "></span>            <span class="nt">&quot;aggs&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 9 "></span>               <span class="nt">&quot;PorTipo&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="10 "></span>                    <span class="nt">&quot;terms&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="11 "></span>                        <span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;tipo.raw&quot;</span>
+<span class="linenos" data-linenos="12 "></span>                    <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span>
+</code></pre></div>
+Si además queremos el precio máximo y mínimo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search?size=</span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&quot;PorEmpresa&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>                <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;empresa.raw&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos=" 8 "></span>            <span class="nt">&quot;aggs&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 9 "></span>                <span class="nt">&quot;PorTipo&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="10 "></span>                    <span class="nt">&quot;terms&quot;</span><span class="p">:{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;tipo.raw&quot;</span><span class="p">},</span>
+<span class="linenos" data-linenos="11 "></span>                    <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span>                        <span class="nt">&quot;Maximo&quot;</span><span class="p">:{</span><span class="nt">&quot;max&quot;</span><span class="p">:{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;precio&quot;</span><span class="p">}},</span>
+<span class="linenos" data-linenos="13 "></span>                        <span class="nt">&quot;Minimo&quot;</span><span class="p">:{</span><span class="nt">&quot;min&quot;</span><span class="p">:{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;precio&quot;</span><span class="p">}}</span>
+<span class="linenos" data-linenos="14 "></span>                    <span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span>                <span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image18.png" /></p>
+<h3 id="agregaciones-combinadas">Agregaciones combinadas<a class="headerlink" href="#agregaciones-combinadas" title="Permanent link">&para;</a></h3>
+<p>Podemos realizar varias peticiones de agregación en la misma consulta. Por ejemplo, si queremos  saber  los productos con “chocolate”:</p>
+<ul>
+<li>los totales por empresa</li>
+<li>las estadísticas</li>
+<li>saber el total por por rango de precios
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search?size=</span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;chocolate&quot;</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span>  <span class="p">},</span>
+<span class="linenos" data-linenos=" 8 "></span>  <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="nt">&quot;PorEmpresa&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span>      <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;empresa.raw&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="linenos" data-linenos="13 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos="15 "></span>    <span class="nt">&quot;Estadisticas&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="16 "></span>      <span class="nt">&quot;stats&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;precio&quot;</span>
+<span class="linenos" data-linenos="18 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos="20 "></span>    <span class="nt">&quot;PorPrecio&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="21 "></span>      <span class="nt">&quot;filters&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="22 "></span>        <span class="nt">&quot;filters&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="23 "></span>          <span class="nt">&quot;baratos&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span>            <span class="nt">&quot;range&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="25 "></span>              <span class="nt">&quot;precio&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span>                <span class="nt">&quot;lt&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="linenos" data-linenos="27 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span>          <span class="p">},</span>
+<span class="linenos" data-linenos="30 "></span>          <span class="nt">&quot;medio&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="31 "></span>            <span class="nt">&quot;range&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="32 "></span>              <span class="nt">&quot;precio&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="33 "></span>                <span class="nt">&quot;gte&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="linenos" data-linenos="34 "></span>                <span class="nt">&quot;lte&quot;</span><span class="p">:</span> <span class="mi">5</span>
+<span class="linenos" data-linenos="35 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="36 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="37 "></span>          <span class="p">},</span>
+<span class="linenos" data-linenos="38 "></span>          <span class="nt">&quot;caros&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="39 "></span>            <span class="nt">&quot;range&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="40 "></span>              <span class="nt">&quot;precio&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="41 "></span>                <span class="nt">&quot;gt&quot;</span><span class="p">:</span> <span class="mi">5</span>
+<span class="linenos" data-linenos="42 "></span>              <span class="p">}</span>
+<span class="linenos" data-linenos="43 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="44 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="45 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="46 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="47 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="48 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="49 "></span><span class="p">}</span>
+</code></pre></div>
+Los filtros en las agregaciones extremadamente potentes, nos permite definir potentes consultas agrupadas.</li>
+</ul>
+<h2 id="elasticsearch-sql">Elasticsearch SQL<a class="headerlink" href="#elasticsearch-sql" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-getting-started.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-getting-started.html</a></p>
+<p>Desde las últimas versiones de Elastic, podemos realizar consultas SQL
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">POST</span> <span class="n">_sql</span>
+<span class="linenos" data-linenos="2 "></span><span class="err">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="ss">&quot;query&quot;</span><span class="p">:</span> <span class="ss">&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="ss">  SELECT * FROM &quot;</span><span class="n">productos</span><span class="ss">&quot; WHERE &quot;</span><span class="n">empresa</span><span class="ss">&quot;=&#39;CALIFORNIA&#39; </span>
+<span class="linenos" data-linenos="5 "></span><span class="ss">  &quot;&quot;&quot;</span>  
+<span class="linenos" data-linenos="6 "></span><span class="err">}</span>
+</code></pre></div>
+Podemos cambiar el formato en el que se nos devuelven los datos, por ejemplo, en vez de <code>json</code> podemos obtener  texto en forma de tabla</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-format.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-rest-format.html</a>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">POST</span> <span class="n">_sql</span><span class="o">?</span><span class="n">format</span><span class="o">=</span><span class="n">txt</span>
+<span class="linenos" data-linenos="2 "></span><span class="err">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="ss">&quot;query&quot;</span><span class="p">:</span> <span class="ss">&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="ss">  SELECT * FROM &quot;</span><span class="n">productos</span><span class="ss">&quot; WHERE &quot;</span><span class="n">empresa</span><span class="ss">&quot;=&#39;CALIFORNIA&#39;</span>
+<span class="linenos" data-linenos="5 "></span><span class="ss">  &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="6 "></span>  <span class="err">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image12.png" /></p>
+<p>Podéis  consultar la ayuda oficial para más información.</p>
+<h3 id="transformar-sentencia-sql-a-lenguaje-query-dsl-de-elasticsearch">Transformar sentencia SQL a lenguaje query DSL de Elasticsearch<a class="headerlink" href="#transformar-sentencia-sql-a-lenguaje-query-dsl-de-elasticsearch" title="Permanent link">&para;</a></h3>
+<p>Elasticsearch lo que entiende es el lenguaje DSL, por lo que tiene que transformar la sentencia SQL. Podemos obtener el resultado de esa transformación para analizar si es lo que necesitamos o utilizarla como query definitiva que siempre será más eficaz.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">POST</span> <span class="n">_sql</span><span class="o">/</span><span class="k">translate</span>
+<span class="linenos" data-linenos="2 "></span><span class="err">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="ss">&quot;query&quot;</span><span class="p">:</span> <span class="ss">&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="ss">  SELECT &quot;</span><span class="n">nombre</span><span class="ss">&quot; FROM &quot;</span><span class="n">productos</span><span class="ss">&quot; WHERE &quot;</span><span class="n">empresa</span><span class="ss">&quot;=&#39;CALIFORNIA&#39;</span>
+<span class="linenos" data-linenos="5 "></span><span class="ss">  &quot;&quot;&quot;</span>  
+<span class="linenos" data-linenos="6 "></span><span class="err">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/04/image8.png" /></p>
+<h2 id="ejercicio-5-query-dsl">Ejercicio 5: Query DSL<a class="headerlink" href="#ejercicio-5-query-dsl" title="Permanent link">&para;</a></h2>
+<p>Entrega un fichero pdf con las sentencias siguientes</p>
+<ol>
+<li>Busca los productos que tengan un precio mayor de 20</li>
+<li>Busca los productos que tengan menor o igual precio que 20. Que te muestre 50 productos</li>
+<li>Busca los productos de la empresa "COLANTA". Utiliza el campo .raw y busqueda por "term"</li>
+<li>Realiza la misma búsqueda pero con "match". </li>
+<li>Qué diferencia tenemos entre una y otra búsqueda.</li>
+<li>Busca los productos donde aparezca "jamon" o "ahumado"</li>
+<li>Busca los productos que aparezcan tanto "jamon" como "ahumado". Recuerda el operador "and" de "match"</li>
+<li>Busca el texto "Los vinos de Navarra"</li>
+<li>Crea un sentencia que analice con "mianalizador"  el texto "Los vinos de Navarra" y observa el resultado
+10.Crea una sentencia para la frase :"los Binos de Nabarra"
+Observa el resultado. </li>
+<li>Ahora aplica <code>fuzziness</code> y observa el resultado
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>      <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="s2">&quot;los Binos de Nabarra&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&quot;fuzziness&quot;</span><span class="p">:</span> <span class="s2">&quot;AUTO&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+qué ha conseguido el analizador.</li>
+</ol>
+<p><strong>Boolean Queries</strong></p>
+<ol start="11">
+<li>Busca los vinos argentino o rioja: Puedes crear una sentencia "bool" donde obligas(must) a que sea "vino" y otra que sea "argentino rioja"</li>
+<li>Añade una condición para que el precio sea mayor de 20</li>
+<li>La misma que anteriormente pero queremos que aparezcan primero  los "rioja". Recuerda que mediante "should" le damos más _score  a la condición de  búsqueda.</li>
+</ol>
+<p><strong>Agregados</strong></p>
+<ol start="14">
+<li>Muestra mediante agregados las empresas que venden vino y junto al total de vinos que venden</li>
+<li>Saca las estadísticas de los precios de los productos donde aparece vino.
+Muestra las estadísticas de los precios de los vinos por empresa. Recuerda que tendrás que crear una agregación dentro de otra</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="03analizadores.html" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 3.- Analizadores" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              3.- Analizadores
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="05puestaenproduccion.html" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 5.- Puesta en producción" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              5.- Puesta en producción
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            2021-2022 Jose Antonio López - Licencia CC BY-NC-SA
+          </div>
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+      <a href="mailto:<ja.lopez@edu.gva.es>" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.557.557 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["header.autohide", "toc.integrate"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,870 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://iessochoalmj201617.github.io/apunteselastic/02crud.html">
+      
+      <link rel="icon" href="images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>2.- CRUD con Elasticsearch - Bases de datos orientadas a búsquedas ElasticSearch</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#crud-en-elasticsearch-y-analizadores" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-header__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de datos orientadas a búsquedas ElasticSearch
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.- CRUD con Elasticsearch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-nav__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    Bases de datos orientadas a búsquedas ElasticSearch
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01introduccion.html" class="md-nav__link">
+        1.- Introducción a Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2.- CRUD con Elasticsearch
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="02crud.html" class="md-nav__link md-nav__link--active">
+        2.- CRUD con Elasticsearch
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#crudcrear-leer-actualizar-y-borrar-basico-en-elasticsearch" class="md-nav__link">
+    CRUD(crear, leer, actualizar y borrar) básico en Elasticsearch
+  </a>
+  
+    <nav class="md-nav" aria-label="CRUD(crear, leer, actualizar y borrar) básico en Elasticsearch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-rest" class="md-nav__link">
+    API Rest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear" class="md-nav__link">
+    CREAR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2" class="md-nav__link">
+    Ejercicio 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-basica" class="md-nav__link">
+    Búsqueda básica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busquedas-simples-con-query-dsl" class="md-nav__link">
+    Búsquedas simples con Query DSL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3" class="md-nav__link">
+    Ejercicio 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificar-un-documento" class="md-nav__link">
+    Modificar un documento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-documento" class="md-nav__link">
+    Borrar documento
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-datos-y-mapping-de-los-campos" class="md-nav__link">
+    Tipos de datos y Mapping de los campos
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de datos y Mapping de los campos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapping-dinamico" class="md-nav__link">
+    Mapping dinámico
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-explicito" class="md-nav__link">
+    Mapping explícito
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03analizadores.html" class="md-nav__link">
+        3.- Analizadores
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04querydsl.html" class="md-nav__link">
+        4.- Busquedas: Query DSL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05puestaenproduccion.html" class="md-nav__link">
+        5.- Puesta en producción
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="crud-en-elasticsearch-y-analizadores">CRUD en Elasticsearch y Analizadores<a class="headerlink" href="#crud-en-elasticsearch-y-analizadores" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">consultas</p>
+<p>Descarga el <a href="02crud.txt">Fichero con los ejemplos</a> y cópialo en el panel de comandos de Kibana de la herramienta <code>Dev Tools</code></p>
+</div>
+<h2 id="crudcrear-leer-actualizar-y-borrar-basico-en-elasticsearch"><a href="https://es.wikipedia.org/wiki/CRUD">CRUD</a>(crear, leer, actualizar y borrar) básico en Elasticsearch<a class="headerlink" href="#crudcrear-leer-actualizar-y-borrar-basico-en-elasticsearch" title="Permanent link">&para;</a></h2>
+<h3 id="api-rest">API Rest<a class="headerlink" href="#api-rest" title="Permanent link">&para;</a></h3>
+<p>Elasticsearch comparte todas sus funcionalidades desde su <a href="https://codigonaranja.com/restful-web-service">API Rest</a>. Por lo que para operar con el sistema le mandaremos sentencias <a href="https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto">HTTP</a>:</p>
+<ul>
+<li>GET: Solicitar un recurso</li>
+<li>POST: Solicitar la creación de un recurso</li>
+<li>PUT: Actualización de un recurso</li>
+<li>DELETE: Borrar un recurso</li>
+</ul>
+<p>La API de Elastic es muy completa. Nosotros veremos algunos ejemplos. En la documentación oficial tenemos los detalles de toda la API</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html</a></p>
+<p>Podemos utilizar cualquier cliente REST para operar con Elasticsearch, por ejemplo CURL o Postman. Por ejemplo, podemos ver los índice que tenemos mediante consola y CURL
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">curl -XGET localhost:9200/_cat/indices</span>
+</code></pre></div></p>
+<div class="admonition tip">
+<p class="admonition-title">dev tools de kibana</p>
+<p>Nosotros utilizaremos kibana para realizar las consultas como hicimos en la instalación. Nos facilita la edición de consultas. Tienes todas las consultas de este tema en: <a href="02crud.txt">Fichero con los ejemplos</a>. Puedes copiar todas las sentencias en dev tools e ir ejecutando una a una a medida que avances o ir copiando una a una.</p>
+</div>
+<p><img alt="alt_text" src="images/02/image12.png" /></p>
+<h3 id="crear">CREAR<a class="headerlink" href="#crear" title="Permanent link">&para;</a></h3>
+<p>En elastic no es necesario definir la estructura de un índice(tipos de los campos y documentos), lo creará si no existe con la estructura del documento insertado detectando automáticamente los tipos. </p>
+<p>Vamos a probar un ejemplo. Insertamos un empleado en un índice que no existe llamado <code>empresa</code>   desde Kibana</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="err">PUT</span> <span class="err">/miempresa/_doc/</span><span class="mi">1</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>      <span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="s2">&quot;Pepe&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>      <span class="nt">&quot;apellido&quot;</span><span class="p">:</span><span class="s2">&quot;Pomez&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="s2">&quot;25&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>      <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span><span class="s2">&quot;Me gusta nadar y la montaña y la musica rock&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="7 "></span>      <span class="nt">&quot;intereses&quot;</span><span class="p">:[</span><span class="s2">&quot;deporte&quot;</span><span class="p">,</span><span class="s2">&quot;musica&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="p">}</span>
+</code></pre></div>
+Nos dará como resultado</p>
+<p><img alt="alt_text" src="images/02/image1.png" /></p>
+<p>Vamos a insertar dos más:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">PUT</span> <span class="err">/miempresa/_doc/</span><span class="mi">2</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="s2">&quot;Maria&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;apellido&quot;</span><span class="p">:</span><span class="s2">&quot;Perez&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="s2">&quot;35&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>  <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span><span class="s2">&quot;Me gusta el baloncesto, la montaña y a musica&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="nt">&quot;intereses&quot;</span><span class="p">:[</span><span class="s2">&quot;deporte&quot;</span><span class="p">,</span><span class="s2">&quot;lectura&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">PUT</span> <span class="err">/miempresa/_doc/</span><span class="mi">3</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="s2">&quot;Fer&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;apellido&quot;</span><span class="p">:</span><span class="s2">&quot;Perez&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="s2">&quot;28&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>  <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span><span class="s2">&quot;Me encanta las tardes jugando al ajedrez y pescar los sabados&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="nt">&quot;intereses&quot;</span><span class="p">:[</span><span class="s2">&quot;ajedrez&quot;</span><span class="p">,</span><span class="s2">&quot;pesca&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Vemos que para insertar un documento nuevo tenemos que indicar su id y utilizar el método PUT</p>
+<p>Si queremos que el id lo asigne automáticamente tendremos que utilizar POST
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span> <span class="err">/miempresa/_doc/</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="s2">&quot;Carmen&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;apellido&quot;</span><span class="p">:</span><span class="s2">&quot;Garcia&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="s2">&quot;38&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>  <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span><span class="s2">&quot;Voy al a bailar y amo viajar, sobre todo a sitios montañosos&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="nt">&quot;intereses&quot;</span><span class="p">:[</span><span class="s2">&quot;deporte&quot;</span><span class="p">,</span><span class="s2">&quot;viajar&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+tenemos como resultado que el <code>id</code> lo asigna el sistema</p>
+<p><img alt="alt_text" src="images/02/image2.png" /></p>
+<h3 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Ejercicios</p>
+<ul>
+<li>
+<p>Crea un documento con id 5 en el índice “miempresa” con tus datos personales. </p>
+</li>
+<li>
+<p>Crea un documento con datos inventados en el que el id lo genere el sistema.</p>
+<p>Indica las sentencias y captura de pantalla con el resultado devuelto.</p>
+</li>
+</ul>
+</div>
+<h3 id="busqueda-basica">Búsqueda básica<a class="headerlink" href="#busqueda-basica" title="Permanent link">&para;</a></h3>
+<p>El método GET nos permite realizar búsquedas en nuestro índice. Por ejemplo. Si queremos todos los empleados:</p>
+<p><code>GET /miempresa/_search</code></p>
+<p>vemos que nos devuelve un JSON con todos los documentos.</p>
+<p><img alt="alt_text" src="images/02/image3.png" /></p>
+<p>En la propia estructura del endpoint podemos ajustar la búsqueda mediante parámetros. Por ejemplo</p>
+<p><code>GET /miempresa/_search?q=apellido:Perez</code></p>
+<p>probarlo y veréis que el resultado obtenido es el esperado.</p>
+<p>También podemos buscar un documento desde su id</p>
+<p><code>GET /miempresa/_doc/2</code></p>
+<p>Si buscáramos un documento y no se encuentra, </p>
+<p><code>GET /miempresa/_doc/7</code></p>
+<p>podríamos consultas el error en el HEAD del mensaje HTTP(<code>Error 404</code>) o en los datos devueltos</p>
+<p><img alt="alt_text" src="images/02/image7.png" /></p>
+<h3 id="busquedas-simples-con-query-dsl">Búsquedas simples con Query DSL<a class="headerlink" href="#busquedas-simples-con-query-dsl" title="Permanent link">&para;</a></h3>
+<p>Pero este tipo de búsqueda  anterior está limitado. Tenemos un potente lenguaje de consulta llamado Query DSL</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html</a></p>
+<p>es bastante intuitivo, en la consulta le enviamos un JSON con el formato del lenguaje. Por ejemplo para la consulta anterior podemos hacer los siguiente</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;apellido&quot;</span><span class="p">:</span> <span class="s2">&quot;Perez&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Podemos buscar aquellos que son mayores de  30
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;bool&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;must&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;range&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos=" 7 "></span>          <span class="nt">&quot;edad&quot;</span><span class="p">:{</span><span class="nt">&quot;gt&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">}</span>          
+<span class="linenos" data-linenos=" 8 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+Vamos a realizar una consulta para ver a quienes les gusta la montaña y nadar
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span> <span class="s2">&quot;montaña nadar&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Vemos que tenemos un campo llamado “_score” con un valor numérico. Los resultados nos lo devuelve por defecto según un valor en el que las coincidencias son mayores.</p>
+<p><img alt="alt_text" src="images/02/image5.png" /></p>
+<p>También podemos consultar frases completas
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;match_phrase&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span> <span class="s2">&quot;me gusta&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span> 
+</code></pre></div>
+Podemos realizar consultas parecidas al GroupBy de SQL  mediante las agregaciones. Lo veremos en detalle más adelante.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search?size=</span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;all_intereses&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;intereses.keyword&quot;</span> 
+<span class="linenos" data-linenos=" 7 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/02/image4.png" /></p>
+<p>Si quisiéramos traer una parte de los campos del documento podemos indicarlo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>        <span class="nt">&quot;match_all&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="nt">&quot;_source&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+Podemos solicitar la consulta ordenada por algún campo</p>
+<div class="admonition warning">
+<p class="admonition-title">Busquedas ordenadas</p>
+<p>El campo por el que ordenes no puede ser de tipo “text”, nos daría un error. Estos campos son analizados. Para ordenar tiene que ser de tipo <code>keyword</code></p>
+</div>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;match_all&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;sort&quot;</span><span class="p">:</span> <span class="p">[</span> 
+<span class="linenos" data-linenos="6 "></span>          <span class="p">{</span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;asc&quot;</span><span class="p">}]</span> 
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<img alt="alt_text" src="images/02/image13.png" /></p>
+<p>Es necesario utilizar el campo de tipo keyword</p>
+<p>Podemos ver  los tipos de datos de nuestro índice mediante
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>GET miempresa/_mapping
+</code></pre></div>
+Vemos que crea dos tipo para los campo: Text y keyword</p>
+<p><img alt="alt_text" src="images/02/image11.png" /></p>
+<p>El tipo <code>text</code> se encuentra analizado y el <code>keyword</code> no lo está</p>
+<div class="admonition warning">
+<p class="admonition-title">Ordenar por keyword</p>
+<p>Tenemos que ordenar por el campo no tokenizado de tipo keyword</p>
+</div>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;match_all&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;sort&quot;</span><span class="p">:</span> <span class="p">[</span> 
+<span class="linenos" data-linenos="6 "></span>          <span class="p">{</span><span class="nt">&quot;nombre.keyword&quot;</span><span class="p">:</span> <span class="s2">&quot;asc&quot;</span><span class="p">}]</span> 
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Si no le indicamos campo de ordenación, devuelve por orden de <code>_score</code>. El score lo calcula según:</p>
+<p><img alt="alt_text" src="images/02/image10.png" /></p>
+<h3 id="ejercicio-3">Ejercicio 3<a class="headerlink" href="#ejercicio-3" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Ejercicio</p>
+<p>Crea sentencias para buscar los siguientes documentos
+<ol>
+<li>Busca los empleado llamados “Maria”</li>
+ <li> Busca los empleados menores de 30 años. <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html">El operador menor es “lt”</a></li>
+  <li>Busca los empleados que les guste el “ajedrez”</li>
+   <li>Busca todos los empleados ordenados por apellido. Recuerda utilizar <code>apellido.keyword</code></li>     <br />
+</ol>
+ Crea un documento pdf con las sentencias creadas y capturas de pantalla con los resultados</p>
+</div>
+<h3 id="modificar-un-documento">Modificar un documento<a class="headerlink" href="#modificar-un-documento" title="Permanent link">&para;</a></h3>
+<p>En elasticsearch los documentos son inmutables. Para actualizar, crea una versión del documento y cuando puede lo re-indexa y sustituye
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">PUT</span> <span class="err">/miempresa/_doc/</span><span class="mi">3</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="s2">&quot;Fer&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;apellido&quot;</span><span class="p">:</span><span class="s2">&quot;Perez&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="s2">&quot;29&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>  <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span><span class="s2">&quot;Me gusta descansar&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="nt">&quot;intereses&quot;</span><span class="p">:[</span><span class="s2">&quot;ajedrez&quot;</span><span class="p">,</span><span class="s2">&quot;pesca&quot;</span><span class="p">,</span><span class="s2">&quot;canicas&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/02/image3.png" /></p>
+<p>Podemos actualizar parcialmente el documento
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span> <span class="err">/miempresa/_upda</span><span class="kc">te</span><span class="err">/</span><span class="mi">2</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;doc&quot;</span><span class="p">:{</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="s2">&quot;45&quot;</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+Si intentamos actualizar un documento que no existe con POST nos devuelve un error. Podemos indicarle que si no existe nos cree el documento.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">POST</span> <span class="err">/miempresa/_upda</span><span class="kc">te</span><span class="err">/</span><span class="mi">8</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;doc&quot;</span><span class="p">:</span> <span class="p">{</span> 
+<span class="linenos" data-linenos=" 4 "></span>  <span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="s2">&quot;Pili&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>  <span class="nt">&quot;apellido&quot;</span><span class="p">:</span><span class="s2">&quot;Bas&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 6 "></span>  <span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="s2">&quot;27&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>  <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span><span class="s2">&quot;Me gusta estar con la familia&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>  <span class="nt">&quot;intereses&quot;</span><span class="p">:[</span><span class="s2">&quot;patinar&quot;</span><span class="p">,</span><span class="s2">&quot;pintar&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 9 "></span>  <span class="p">},</span>
+<span class="linenos" data-linenos="10 "></span>  <span class="nt">&quot;doc_as_upsert&quot;</span><span class="p">:</span><span class="kc">true</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
+También podemos actualizar un documento pasando un parámetro y crear complejos scripts de actualización. Para más información.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html</a></p>
+<h3 id="borrar-documento">Borrar documento<a class="headerlink" href="#borrar-documento" title="Permanent link">&para;</a></h3>
+<p>Podemos borrar un documento del índice mandando un DELETE e indicando el id del documento.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>DELETE /miempresa/_doc/2
+</code></pre></div></p>
+<h2 id="tipos-de-datos-y-mapping-de-los-campos">Tipos de datos y Mapping de los campos<a class="headerlink" href="#tipos-de-datos-y-mapping-de-los-campos" title="Permanent link">&para;</a></h2>
+<p>Si consideramos el índice como una base de datos en el mundo SQL, el mapeo es similar a la definición o esquema de la tabla. En elasticsearch tenemos muchos tipos de datos. Podemos consultarlos en su web:</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html</a></p>
+<p>Algunos de los tipos de ElasticSearch son:</p>
+<p><img alt="alt_text" src="images/02/image9.png" /></p>
+<h3 id="mapping-dinamico">Mapping dinámico<a class="headerlink" href="#mapping-dinamico" title="Permanent link">&para;</a></h3>
+<p>Anteriormente, cuando hemos creado los documentos no hemos definido tipos, pero si consultamos el esquema del índice, vemos que se han asignado tipos:</p>
+<p>para ver el esquema del índice</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>GET /miempresa/_mapping
+</code></pre></div>
+<p><img alt="alt_text" src="images/02/image8.png" /></p>
+<p>Incluso vemos que se ha asignado dos tipos a algunos campos</p>
+<p>Durante la fase de indexación del documento, Elasticsearch comprueba internamente si el tipo <code>_doc</code> existe, de lo contrario crea uno dinámicamente</p>
+<p>Podemos ver los tipos de campos que reconoce en:</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html</a></p>
+<p>Elasticsearch tiene una completa Api para la manipulación de índices</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html</a></p>
+<h3 id="mapping-explicito">Mapping explícito<a class="headerlink" href="#mapping-explicito" title="Permanent link">&para;</a></h3>
+<p>Podemos definir nosotros el mapping para acelerar la indexación, modificar datos, definir tokens…..</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/explicit-mapping.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/explicit-mapping.html</a></p>
+<p>Por ejemplo,  vamos a crear un índice nuevo para un catálogo de productos.</p>
+<p>Creamos el índice</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>PUT /catalogo
+</code></pre></div>
+Definimos la estructura</p>
+<p>Es importante tener claro que el tipo <code>keyword</code>  no es analizado(tokenizado…) para las búsquedas, como sí lo hace con los de tipo <code>text</code>.</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span> <span class="err">PUT</span> <span class="err">/ca</span><span class="kc">tal</span><span class="err">ogo/_mappi</span><span class="kc">n</span><span class="err">g</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>     <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>     <span class="nt">&quot;cod&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;keyword&quot;</span><span class="p">},</span>
+<span class="linenos" data-linenos=" 5 "></span>     <span class="nt">&quot;alta&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">},</span>
+<span class="linenos" data-linenos=" 6 "></span>     <span class="nt">&quot;nombre&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">},</span>
+<span class="linenos" data-linenos=" 7 "></span>     <span class="nt">&quot;descripcion&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">},</span>
+<span class="linenos" data-linenos=" 8 "></span>     <span class="nt">&quot;cantidad&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">},</span>
+<span class="linenos" data-linenos=" 9 "></span>     <span class="nt">&quot;precio&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;double&quot;</span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+</code></pre></div>
+Mostramos su estructura
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>GET /catalogo/_mapping
+</code></pre></div>
+Añadimos un producto
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">PUT</span> <span class="err">/ca</span><span class="kc">tal</span><span class="err">ogo/_doc/</span><span class="mi">1</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;cod&quot;</span><span class="p">:</span><span class="s2">&quot;COD01&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;alta&quot;</span><span class="p">:</span><span class="s2">&quot;2021-09-02&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="s2">&quot;PC IBM&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>  <span class="nt">&quot;descripcion&quot;</span><span class="p">:</span><span class="s2">&quot;Portatil IBM última generación con 32GB y 1T i7&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="nt">&quot;cantidad&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+<span class="linenos" data-linenos="8 "></span>  <span class="nt">&quot;precio&quot;</span><span class="p">:</span><span class="mf">400.0</span>
+<span class="linenos" data-linenos="9 "></span>  <span class="p">}</span>
+</code></pre></div>
+buscamos el documento
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>GET /catalogo/_doc/1
+</code></pre></div>
+Podemos añadir nuevos campos</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="err">PUT</span> <span class="err">/ca</span><span class="kc">tal</span><span class="err">ogo/_mappi</span><span class="kc">n</span><span class="err">g</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>     <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>       <span class="nt">&quot;descatalogado&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span><span class="p">}</span>       
+<span class="linenos" data-linenos="5 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+</code></pre></div>
+Dependiendo del tipo de datos, es posible dar directivas explícitas a Elasticsearch al procesar el campo para una mejor gestión. Las opciones más utilizadas son las sigues:</p>
+<ul>
+<li><span style="text-decoration:underline;">store </span>(por defecto falso): Esto marca el campo para ser almacenado en un índice separado para una rápida recuperación. El almacenamiento de un campo consume espacio en disco, pero reduce el cálculo si necesita extraerlo de un documento (es decir, en scripting y agregaciones). Los valores posibles para esta opción son falso y verdadero.</li>
+<li><span style="text-decoration:underline;">index</span>: Esto define si el campo debe indexarse o no. los valores posibles para este parámetro son verdadero y falso. Los campos de índice no son buscable (verdadero por defecto).</li>
+<li><span style="text-decoration:underline;">null_value</span>: esto define un valor predeterminado si el campo es nulo.</li>
+<li><span style="text-decoration:underline;">boost</span>: Esto se usa para cambiar la importancia de un campo (predeterminado 1.0). Boost funciona solo a nivel de término, por lo que se usa principalmente en términos, términos, y consultas de coincidencias.</li>
+<li>search_analyzer: Esto define un analizador que se utilizará durante la búsqueda. Si no está definido, se utiliza el analizador del objeto principal (por defecto, nulo).</li>
+<li>include_in_all: Esto marca el campo actual que se indexará en el especial _all (un campo que contiene el texto concatenado de todos los campos) (predeterminado cierto).</li>
+<li>term_vector:Otro parámetro importante, disponible solo para el mapeo de texto, es term_vector</li>
+</ul>
+<p>Por ejemplo, si no queremos que se indexe un campo</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="err">PUT</span> <span class="err">/ca</span><span class="kc">tal</span><span class="err">ogo/_mappi</span><span class="kc">n</span><span class="err">g</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>        <span class="nt">&quot;codorigen&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;keyword&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>          <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="linenos" data-linenos="7 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span>    <span class="p">}</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="01introduccion.html" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 1.- Introducción a Elasticsearch" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              1.- Introducción a Elasticsearch
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="03analizadores.html" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 3.- Analizadores" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              3.- Analizadores
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            2021-2022 Jose Antonio López - Licencia CC BY-NC-SA
+          </div>
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+      <a href="mailto:<ja.lopez@edu.gva.es>" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.557.557 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["header.autohide", "toc.integrate"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
