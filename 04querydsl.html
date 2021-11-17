@@ -358,11 +358,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-text-queries-busquedas-con-texto-analizado" class="md-nav__link">
-    Full text queries: Búsquedas con texto analizado
+  <a href="#full-text-queries-busquedas-para-texto-analizado" class="md-nav__link">
+    Full text queries: Búsquedas para texto analizado
   </a>
   
-    <nav class="md-nav" aria-label="Full text queries: Búsquedas con texto analizado">
+    <nav class="md-nav" aria-label="Full text queries: Búsquedas para texto analizado">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -553,7 +553,7 @@
 <h2 id="importacion-del-indice-productos">Importación del índice “Productos”<a class="headerlink" href="#importacion-del-indice-productos" title="Permanent link">&para;</a></h2>
 <p>Vamos a realizar la importación del  fichero <a href="productos.csv">productos.csv</a> en el índice productos. </p>
 <ul>
-<li>Vamos a la pantalla de inicio de Kibana y seleccionamos “Add your data”</li>
+<li>Vamos a la pantalla de inicio de Kibana y seleccionamos <strong>“Add your data”</strong></li>
 </ul>
 <p><img alt="alt_text" src="images/04/image1.png" /></p>
 <ul>
@@ -564,8 +564,8 @@
 <li>Asegurate que tenemos seleccionado que la primera fila son títulos</li>
 </ul>
 <p><img alt="alt_text" src="images/04/image9.png" /></p>
-<p>Pulsa el botón inferior de “Import” y “Advanced”</p>
-<p>Desmarcamos <code>index pattern</code> y ponemos nombre al indice:<em><code>productos</code></em></p>
+<p>Pulsa el botón inferior de <strong>“Import”</strong> y <strong>“Advanced”</strong></p>
+<p>Desmarcamos <code>index pattern</code> y ponemos nombre al índice:<em><code>productos</code></em></p>
 <p>Sustituye los valores siguientes en cada una de las casillas:</p>
 <p><img alt="alt_text" src="images/04/image13.png" /></p>
 <p>Abre el archivo <a href="04importar_productos.txt">04importar_productos.txt</a> y sustituye el contenido de:</p>
@@ -575,7 +575,7 @@
 <li>Ingest pipeline</li>
 </ul>
 <p>Pulsa importar</p>
-<p>Si todo ha ido bien, podemos desde <em>Dev Tools</em> ver si ha creado el índice
+<p>Si todo ha ido bien, podemos ver desde <strong>Dev Tools</strong>  si ha creado el índice
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_mappi</span><span class="kc">n</span><span class="err">g</span>
 <span class="linenos" data-linenos="2 "></span>
 <span class="linenos" data-linenos="3 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
@@ -620,7 +620,7 @@ Si tenemos algún fallo podemos borrar el índice y volver a intentarlo
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/04/image16.png" /></p>
 <h3 id="paginacion">Paginación<a class="headerlink" href="#paginacion" title="Permanent link">&para;</a></h3>
-<p>Nos devuelve los 10 primeros de un total de 1401. Podemos indicar desde qué elemento y cuántos queremos que nos traiga:</p>
+<p>La consulta anterior nos devuelve los 10 primeros de un total de 1401. Podemos indicar desde qué elemento y cuántos queremos que nos traiga:</p>
 <p>Por ejemplo, desde la posición 10 y 30 documentos.
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
@@ -636,8 +636,8 @@ Si tenemos algún fallo podemos borrar el índice y volver a intentarlo
 <span class="linenos" data-linenos="12 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="13 "></span> <span class="p">}</span>
 <span class="linenos" data-linenos="14 "></span><span class="p">}</span>
-</code></pre></div>
-Es de mucha utilidad las búsquedas por rangos de fechas. Consultar la documentación para su uso</p>
+</code></pre></div></p>
+<p>Es de mucha utilidad para las búsquedas paginadas en un sitio web.</p>
 <h3 id="exists-query">Exists query<a class="headerlink" href="#exists-query" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html</a></p>
 <p>Como los documento de un índice no tienen que tener los mismo campos, podemos comprobar si  tenemos un determinado campo
@@ -671,12 +671,12 @@ Nos da como resultado todos los productos de  la empresa "BONAIRE". </p>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
 no nos devuelve resultados, ya que en la búsqueda no se realiza ningún análisis.</p>
-<h2 id="full-text-queries-busquedas-con-texto-analizado">Full text queries: Búsquedas con texto analizado<a class="headerlink" href="#full-text-queries-busquedas-con-texto-analizado" title="Permanent link">&para;</a></h2>
+<h2 id="full-text-queries-busquedas-para-texto-analizado">Full text queries: Búsquedas para texto analizado<a class="headerlink" href="#full-text-queries-busquedas-para-texto-analizado" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html</a></p>
 <p>En estas búsqueda, la cadena de consulta se procesa utilizando el mismo analizador que se aplicó al campo durante la indexación y es donde radica todo el potencial de Elasticsearch.</p>
 <h3 id="match-query">Match query<a class="headerlink" href="#match-query" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html</a></p>
-<p>Devuelve documentos que coincidan con un texto, un número, una fecha o un valor booleano proporcionados. El texto proporcionado se analiza antes de hacer coincidir.</p>
+<p>Devuelve documentos que coincidan con un texto, un número, una fecha o un valor booleano proporcionados. El texto proporcionado se analiza antes.</p>
 <p>La consulta match es la consulta estándar para realizar una búsqueda de texto completo, incluidas las opciones para la coincidencia aproximada.</p>
 <p>Si probamos ahora a realizar la consulta anterior pero con match, vemos que el texto es analizado previamente(minúsculas..) para obtener el resultado
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
@@ -701,7 +701,7 @@ Si hacemos una consulta más compleja con varias palabras
 <span class="linenos" data-linenos="10 "></span><span class="p">}</span>
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/04/image15.png" /></p>
-<p>Vemos que tenemos respuestas de las palabras con apariciones de ambos y separados. Por lo que deducimos que por defecto utiliza un “or” en la búsqueda. Si queremos cambiarlo para que aparezcan todos los términos.
+<p>Vemos que tenemos respuestas de las palabras con apariciones de ambos y separados. <strong>Por lo que deducimos que por defecto utiliza un “or” en la búsqueda</strong>. Si queremos cambiarlo para que aparezcan todos los términos.
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;from&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -729,10 +729,9 @@ También podemos ajustar para que  al menos aparezcan un número determinado de 
 </code></pre></div></p>
 <h3 id="fuzziness">Fuzziness<a class="headerlink" href="#fuzziness" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html#query-dsl-match-query-fuzziness">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html#query-dsl-match-query-fuzziness</a></p>
-<p>En ocasiones, por ejemplo en la búsqueda en una web, en la que el usuario introduce el texto, es frecuente que se equivoque al introducir los datos:
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>“vebidas” en vez de bebidas
-</code></pre></div>
-Podéis probar que no encuentra resultados con “vebidas”</p>
+<p>En ocasiones, por ejemplo en la búsqueda en una web, en la que el usuario introduce el texto, es frecuente que se equivoque al introducir los datos:</p>
+<p><em>vebidas</em> en vez de <em>bebidas</em></p>
+<p>Podéis probar que no encuentra resultados con “vebidas”</p>
 <p>Mediante el parámetro Fuzziness, el sistema busca palabras cercanas
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
@@ -786,7 +785,7 @@ Ponemos indicar que falte alguna de las palabras mediante
 <span class="linenos" data-linenos="8 "></span>    <span class="p">}</span>
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
-y si necesitamos dar más peso a un campo
+y si necesitamos dar más peso a un campo, por ejemplo a <em>categoría</em>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -1022,7 +1021,7 @@ Es parecido en SQL a
 <span class="linenos" data-linenos="10 "></span><span class="p">}</span>
 </code></pre></div>
 <h3 id="estadisticas">Estadísticas<a class="headerlink" href="#estadisticas" title="Permanent link">&para;</a></h3>
-<p>Aunque tenemos un operador  que nos saca todas los datos estadísticos
+<p>Tenemos un operador  que nos saca todos los datos estadísticos
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span>   <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -1061,7 +1060,7 @@ Es parecido en SQL a
 nos muestra un error Si nos fijamos en el detalle del error, nos recomienda definir el campo como</p>
 <p><img alt="alt_text" src="images/04/image3.png" /></p>
 <p>Esto tiene un gran coste para el índice, pero nos permitiría realizar el conteo de palabras.</p>
-<p>No lo vamos a hacer ya que tendríamos que reconstruir el índice pero si lo necesitárais, tendrías que cambiar el campo</p>
+<p>No lo vamos a hacer ya que tendríamos que reconstruir el índice pero si lo necesitárais, tendrías que cambiar la propiedad del campo</p>
 <h3 id="histogram-aggregation">Histogram aggregation<a class="headerlink" href="#histogram-aggregation" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-histogram-aggregation.html</a></p>
 <p>Nos puede interesar realizar agregaciones por intervalos, por ejemplo, contar el número de productos por intervalos de precio de 3€
@@ -1078,12 +1077,15 @@ nos muestra un error Si nos fijamos en el detalle del error, nos recomienda defi
 <span class="linenos" data-linenos="11 "></span><span class="p">}</span>
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/04/image5.png" /></p>
-<p>Podemos definir los intervalos nosotros los rangos de los intervalos. Podéis ver ejemplos en </p>
+<div class="admonition caption">
+<p class="admonition-title">Más histogramas</p>
+<p>Podemos definir los intervalos nosotros. Podéis ver ejemplos en</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html</a></p>
 <p>Muy interesantes son los intervalos por fechas</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-datehistogram-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-datehistogram-aggregation.html</a></p>
 <p>y las de geoposicionamiento y distancia por intervalos</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html</a></p>
+</div>
 <h3 id="agregaciones-anidadas">Agregaciones anidadas:<a class="headerlink" href="#agregaciones-anidadas" title="Permanent link">&para;</a></h3>
 <p>Si necesitamos realizar una consulta al estilo SQL en el que queremos saber el total de productos por empresa y tipo
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span> <span class="n">empresa</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">tipo</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>  <span class="k">FROM</span> <span class="n">productos</span> <span class="k">WHERE</span> <span class="n">tipo</span><span class="o">=</span><span class="err">”</span><span class="n">gaseosa</span><span class="err">”</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">empresa</span><span class="p">,</span> <span class="n">tipo</span> 
@@ -1135,7 +1137,7 @@ Si además queremos el precio máximo y mínimo
 <ul>
 <li>los totales por empresa</li>
 <li>las estadísticas</li>
-<li>saber el total por por rango de precios
+<li>saber el total por  rango de precios
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">produc</span><span class="kc">t</span><span class="err">os/_search?size=</span><span class="mi">0</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -1185,13 +1187,12 @@ Si además queremos el precio máximo y mínimo
 <span class="linenos" data-linenos="47 "></span>    <span class="p">}</span>
 <span class="linenos" data-linenos="48 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="49 "></span><span class="p">}</span>
-</code></pre></div>
-Los filtros en las agregaciones extremadamente potentes, nos permite definir potentes consultas agrupadas.</li>
+</code></pre></div></li>
 </ul>
 <h2 id="elasticsearch-sql">Elasticsearch SQL<a class="headerlink" href="#elasticsearch-sql" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-getting-started.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-getting-started.html</a></p>
-<p>Desde las últimas versiones de Elastic, podemos realizar consultas SQL
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">POST</span> <span class="n">_sql</span>
+<p>Desde las últimas versiones de Elastic, podemos realizar consultas SQL. No está definido todo el estandar sql pero nos puede facilitar las consultas en Elasticsearch si no conocemos el lenguaje DSL del sistema</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">POST</span> <span class="n">_sql</span>
 <span class="linenos" data-linenos="2 "></span><span class="err">{</span>
 <span class="linenos" data-linenos="3 "></span>  <span class="ss">&quot;query&quot;</span><span class="p">:</span> <span class="ss">&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="4 "></span><span class="ss">  SELECT * FROM &quot;</span><span class="n">productos</span><span class="ss">&quot; WHERE &quot;</span><span class="n">empresa</span><span class="ss">&quot;=&#39;CALIFORNIA&#39; </span>
