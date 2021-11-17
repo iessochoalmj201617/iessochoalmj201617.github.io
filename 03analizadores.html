@@ -288,6 +288,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    Introducción
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#filtro-de-caracteres" class="md-nav__link">
     Filtro de caracteres
   </a>
@@ -313,12 +320,25 @@
     Analizadores integrados en Elasticsearch
   </a>
   
+    <nav class="md-nav" aria-label="Analizadores integrados en Elasticsearch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-analyzer" class="md-nav__link">
+    Standard Analyzer
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#analizador-en-espanol" class="md-nav__link">
     Analizador en español
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -406,11 +426,13 @@
 <p class="admonition-title">Sentencias de ejemplo</p>
 <p>Descarga el <a href="03analizadores.txt">Fichero con los ejemplos</a> y cópialo en el panel de comandos de Kibana de la herramienta <code>Dev Tools</code></p>
 </div>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>En el proceso de indexación sobre los campos de texto, el sistema realiza un análisis que viene determinado por el “Analizador” utilizado. Elasticsearch tiene una serie de analizadores que podemos utilizar y que podemos personalizar según nuestras necesidades. En el proceso de análisis se aplican varias herramientas:</p>
 <p><img alt="alt_text" src="images/03/image9.png" /></p>
 <p><img alt="alt_text" src="images/03/image12.png" /></p>
-<h3 id="filtro-de-caracteres">Filtro de caracteres<a class="headerlink" href="#filtro-de-caracteres" title="Permanent link">&para;</a></h3>
+<h2 id="filtro-de-caracteres">Filtro de caracteres<a class="headerlink" href="#filtro-de-caracteres" title="Permanent link">&para;</a></h2>
 <p>Permite sustituir caracteres en el texto original. Tenemos en  la referencia diferentes tipos</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-charfilters.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-charfilters.html</a></p>
 <p>Por ejemplo, podemos si queremos sustituir emoticonos por texto como sigue:</p>
 <p><code>:)</code> por <code>_contento_</code></p>
 <p><code>:(</code> por <code>_triste_</code></p>
@@ -432,10 +454,10 @@
 </code></pre></div>
 tenemos como resultado</p>
 <p><img alt="alt_text" src="images/03/image4.png" /></p>
-<h3 id="tokenizador">Tokenizador<a class="headerlink" href="#tokenizador" title="Permanent link">&para;</a></h3>
+<h2 id="tokenizador">Tokenizador<a class="headerlink" href="#tokenizador" title="Permanent link">&para;</a></h2>
 <p>Es el proceso en el que el analizador divide en palabras separadas. En la referencia tenemos como definir diferentes tokenizadores. </p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html</a></p>
-<p>Vamos a ver un ejemplo de la referencia en el que utiliza el tokenizador “lowercase” y vemos como divide y pone en minúsculas la frase enviada:
+<p>Vamos a ver un ejemplo de la referencia en el que utiliza el tokenizador <strong>“lowercase”</strong> y vemos como divide y pone en minúsculas la frase enviada:
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span> <span class="err">_a</span><span class="kc">nal</span><span class="err">yze</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="s2">&quot;lowercase&quot;</span><span class="p">,</span>
@@ -445,12 +467,19 @@ tenemos como resultado</p>
 El resultado</p>
 <p><img alt="alt_text" src="images/03/image11.png" />
 ...</p>
-<h3 id="filtros-de-token">Filtros de Token<a class="headerlink" href="#filtros-de-token" title="Permanent link">&para;</a></h3>
-<p>En este proceso, se pueden eliminar lo que llaman <a href="https://es.wikipedia.org/wiki/Palabra_vac%C3%ADa">stopwords</a> o palabras vacías: artículos, pronombres, preposiciones. En este proceso podemos reducir palabras a su base(por ejemplo “telefonía” a “telef”...), se pueden añadir sinónimos….En la referencia tenemos todos los tipos de filtros</p>
+<h2 id="filtros-de-token">Filtros de Token<a class="headerlink" href="#filtros-de-token" title="Permanent link">&para;</a></h2>
+<p>En este proceso, se puede por ejemplo:</p>
+<ul>
+<li>Eliminar lo que llaman <a href="https://es.wikipedia.org/wiki/Palabra_vac%C3%ADa">stopwords</a> o palabras vacías: artículos, pronombres, preposiciones. </li>
+<li>En este proceso podemos reducir palabras a su base(por ejemplo “telefonía” a “telef”...), </li>
+<li>Se pueden añadir sinónimos….</li>
+<li>....</li>
+</ul>
+<p>En la referencia tenemos todos los tipos de filtros</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html</a></p>
 <p>Por ejemplo, en un índice de títulos de películas, podríamos tener lo siguiente</p>
 <p><img alt="alt_text" src="images/03/image6.png" /></p>
-<h3 id="analizadores-integrados-en-elasticsearch">Analizadores integrados en Elasticsearch<a class="headerlink" href="#analizadores-integrados-en-elasticsearch" title="Permanent link">&para;</a></h3>
+<h2 id="analizadores-integrados-en-elasticsearch">Analizadores integrados en Elasticsearch<a class="headerlink" href="#analizadores-integrados-en-elasticsearch" title="Permanent link">&para;</a></h2>
 <p>Tenemos una serie de analizadores ya dispuestos para su uso en el sistema que podemos ver en:</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html</a></p>
 <p>Por ejemplo:</p>
@@ -461,7 +490,7 @@ El resultado</p>
 <li>….</li>
 </ul>
 <p>vamos a ver algunos ejemplos</p>
-<h4 id="standard-analyzer">Standard Analyzer<a class="headerlink" href="#standard-analyzer" title="Permanent link">&para;</a></h4>
+<h3 id="standard-analyzer">Standard Analyzer<a class="headerlink" href="#standard-analyzer" title="Permanent link">&para;</a></h3>
 <p>Es el analizador predeterminado en Elasticsearch. Si no es anulado por otro, todos los campos de tipo text se analizarán por este analizador. Podemos ver los detalles en</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html</a></p>
 <p>Podemos probarlo</p>
@@ -597,11 +626,11 @@ Si realizamos la consulta de nuevo sin acento
 Vemos que nos consigue el resultado. </p>
 <p><img alt="alt_text" src="images/03/image3.png" /></p>
 <div class="admonition tip">
-<p class="admonition-title">Probar el analizador</p>
+<p class="admonition-title">Análisis del analizador</p>
 <p>Podemos ver cómo  actúa el analizador para estudiar si creará el índice necesario para las búsquedas que nuestro proyecto requiere y podamos observar  que:
  <ul>
-<li>no creamos un analisis demasiado profundo con un coste de espacio y proceso no necesario para el proyecto</li>
-<li>que nos quedemos excasos para que la búsqueda sea eficaz</li>
+<li>no creamos un análisis demasiado profundo con un coste de espacio y proceso no necesario para el proyecto</li>
+<li>que nos quedemos escasos para que la búsqueda sea eficaz</li>
 </ul> </p>
 </div>
 <p>Vamos a probar nuestro analizador
@@ -613,7 +642,7 @@ Vemos que nos consigue el resultado. </p>
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/03/image10.png" /></p>
 <h2 id="plantillas-de-indices">Plantillas de índices<a class="headerlink" href="#plantillas-de-indices" title="Permanent link">&para;</a></h2>
-<p>En un entorno de producción, se suelen dividir los índices, por ejemplo, las noticias por años, o los logs por meses o días. Por ello, a la hora de definir los índices, se crean los que se llaman plantillas a partir de las que creamos los índices. Tenemos dos tipos desde la última versión:</p>
+<p>En un entorno de producción se suelen dividir los índices, por ejemplo, las noticias por años, o los logs por meses o días. Por ello, a la hora de definir los índices, se crean los que se llaman plantillas a partir de las que creamos los índices. Tenemos dos tipos desde la última versión:</p>
 <ul>
 <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.15/index-templates.htm">Index-template</a>: Define la estructura de un conjunto de índices. </li>
 <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.15/indices-component-template.html">Component template</a>:  Las plantillas de componentes son bloques de construcción para construir plantillas de índice </li>
@@ -800,7 +829,7 @@ En una web, por cada tecla pulsada por el usuario iríamos realizando búsquedas
 <h2 id="ejercicio-4">Ejercicio 4<a class="headerlink" href="#ejercicio-4" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Ejercicio Analizadores</p>
-<p>Prueba a analizar cuatro frases sobre el analizador que hemos ido creando y observa el resulta. Puedes si lo deseas consultar la documentación oficial y jugar y probar nuevas opciones en el analizador. Captura de pantalla de las sentencias enviadas resultados.</p>
+<p>Prueba a analizar cuatro frases sobre el analizador que hemos ido creando y observa el resulta. Puedes, si lo deseas, consultar la documentación oficial y jugar y probar nuevas opciones en el analizador. <strong>Captura de pantalla</strong> de las sentencias enviadas y los resultados.</p>
 </div>
 <h2 id="ejercicio-4_bopcional">Ejercicio 4_b(opcional)<a class="headerlink" href="#ejercicio-4_bopcional" title="Permanent link">&para;</a></h2>
 <div class="admonition question">

@@ -287,26 +287,32 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#crear" class="md-nav__link">
     CREAR
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#ejercicio-2" class="md-nav__link">
     Ejercicio 2
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#busqueda-basica" class="md-nav__link">
     Búsqueda básica
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Búsqueda básica">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#busquedas-simples-con-query-dsl" class="md-nav__link">
@@ -329,29 +335,29 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ejercicio-3" class="md-nav__link">
     Ejercicio 3
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#modificar-un-documento" class="md-nav__link">
     Modificar un documento
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#borrar-documento" class="md-nav__link">
     Borrar documento
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -468,7 +474,7 @@
 <p>Nosotros utilizaremos kibana para realizar las consultas como hicimos en la instalación. Nos facilita la edición de consultas. Tienes todas las consultas de este tema en: <a href="02crud.txt">Fichero con los ejemplos</a>. Puedes copiar todas las sentencias en dev tools e ir ejecutando una a una a medida que avances o ir copiando una a una.</p>
 </div>
 <p><img alt="alt_text" src="images/02/image12.png" /></p>
-<h3 id="crear">CREAR<a class="headerlink" href="#crear" title="Permanent link">&para;</a></h3>
+<h2 id="crear">CREAR<a class="headerlink" href="#crear" title="Permanent link">&para;</a></h2>
 <p>En elastic no es necesario definir la estructura de un índice(tipos de los campos y documentos), lo creará si no existe con la estructura del documento insertado detectando automáticamente los tipos. </p>
 <p>Vamos a probar un ejemplo. Insertamos un empleado en un índice que no existe llamado <code>empresa</code>   desde Kibana</p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="err">PUT</span> <span class="err">/miempresa/_doc/</span><span class="mi">1</span>
@@ -514,7 +520,7 @@ Vemos que para insertar un documento nuevo tenemos que indicar su id y utilizar 
 </code></pre></div>
 tenemos como resultado que el <code>id</code> lo asigna el sistema</p>
 <p><img alt="alt_text" src="images/02/image6.png" /></p>
-<h3 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h3>
+<h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Ejercicios</p>
 <ul>
@@ -527,7 +533,7 @@ tenemos como resultado que el <code>id</code> lo asigna el sistema</p>
 </li>
 </ul>
 </div>
-<h3 id="busqueda-basica">Búsqueda básica<a class="headerlink" href="#busqueda-basica" title="Permanent link">&para;</a></h3>
+<h2 id="busqueda-basica">Búsqueda básica<a class="headerlink" href="#busqueda-basica" title="Permanent link">&para;</a></h2>
 <p>El método GET nos permite realizar búsquedas en nuestro índice. Por ejemplo. Si queremos todos los empleados:</p>
 <p><code>GET /miempresa/_search</code></p>
 <p>vemos que nos devuelve un JSON con todos los documentos.</p>
@@ -662,7 +668,7 @@ Vemos que crea dos tipo para los campo: Text y keyword</p>
 <span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-<h3 id="ejercicio-3">Ejercicio 3<a class="headerlink" href="#ejercicio-3" title="Permanent link">&para;</a></h3>
+<h2 id="ejercicio-3">Ejercicio 3<a class="headerlink" href="#ejercicio-3" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Ejercicio</p>
 <p>Crea sentencias para buscar los siguientes documentos
@@ -674,7 +680,7 @@ Vemos que crea dos tipo para los campo: Text y keyword</p>
 </ol>
  Crea un documento pdf con las sentencias creadas y capturas de pantalla con los resultados</p>
 </div>
-<h3 id="modificar-un-documento">Modificar un documento<a class="headerlink" href="#modificar-un-documento" title="Permanent link">&para;</a></h3>
+<h2 id="modificar-un-documento">Modificar un documento<a class="headerlink" href="#modificar-un-documento" title="Permanent link">&para;</a></h2>
 <p>En elasticsearch los documentos son inmutables. Para actualizar, crea una versión del documento y cuando puede lo re-indexa y sustituye
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">PUT</span> <span class="err">/miempresa/_doc/</span><span class="mi">3</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
@@ -709,7 +715,7 @@ Si intentamos actualizar un documento que no existe con POST nos devuelve un err
 </code></pre></div>
 También podemos actualizar un documento pasando un parámetro y crear complejos scripts de actualización. Para más información.</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html</a></p>
-<h3 id="borrar-documento">Borrar documento<a class="headerlink" href="#borrar-documento" title="Permanent link">&para;</a></h3>
+<h2 id="borrar-documento">Borrar documento<a class="headerlink" href="#borrar-documento" title="Permanent link">&para;</a></h2>
 <p>Podemos borrar un documento del índice mandando un DELETE e indicando el id del documento.
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>DELETE /miempresa/_doc/2
 </code></pre></div></p>
