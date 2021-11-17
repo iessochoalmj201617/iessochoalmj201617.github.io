@@ -286,37 +286,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster" class="md-nav__link">
-    Clúster
+  <a href="#cluster-elasticsearch" class="md-nav__link">
+    Clúster Elasticsearch
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Clúster Elasticsearch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#nodo-node" class="md-nav__link">
     Nodo (Node)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#indice-index" class="md-nav__link">
     Índice (Index)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#documento-document" class="md-nav__link">
     Documento (Document)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#fragmento-shard" class="md-nav__link">
     Fragmento (Shard)
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -443,11 +449,15 @@
 
 <h2 id="conceptos-de-elasticsearch">Conceptos de ElasticSearch<a class="headerlink" href="#conceptos-de-elasticsearch" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Desarrollado en Java</li>
+<li>Desarrollado en Java. Por lo tanto, multiplataforma</li>
 <li>Open source</li>
 <li>Distribuido</li>
 <li>Escalable</li>
-<li>Permite las búsquedas en información masiva casi en tiempo real y aplicar algoritmos de relevancia</li>
+<li>Permite las búsquedas:<ul>
+<li>En información masiva casi en tiempo real</li>
+<li>Aplicar algoritmos de relevancia</li>
+</ul>
+</li>
 <li>
 <p>Basado en la librería <a href="https://es.wikipedia.org/wiki/Lucene">Apache Lucene</a></p>
 <ul>
@@ -456,10 +466,16 @@
 </ul>
 </li>
 </ul>
+<p>Elasticsearch tiene como base la librería Lucene pero nos proporciona una potente API de comunicación y una gran capacidad para el crecer.</p>
 <figure>
   <img src="images/01/image10.png" />  
 </figure>
+<p>Un indice invertido funciona como el indice de "por palabras" que suele estar al final de un libro, en el que nos permite saber en qué páginas aparece un palabra</p>
+<figure>
+  <img src="images/01/image22.png" />  
+</figure>
 
+<p>De esta forma, cuando Elasticsearch va a guardar un documento, analiza la información y lo añade al índice invertido como muestra la imagen</p>
 <figure>
   <img src="images/01/image6.png" />  
 </figure>
@@ -468,47 +484,52 @@
 <p>Ejemplos de proyectos apoyado con elasticsearch</p>
 <p><a href="https://verba.civio.es/">Base de datos de los telediarios</a></p>
 <p><a href="https://youtu.be/yGjGSVSKXEE">Explicación del anterior</a></p>
-<p><a href="https://www.welcometothejungle.com/es/companies/wallapop/tech">Wallapop</a></p>
+<p>Wallapop</p>
 <p><a href="https://www.elastic.co/es/customers/success-stories?usecase=enterprise-search">Casos de uso explicados en la web oficial</a></p>
 <h2 id="proceso-de-indexacion-de-un-documento">Proceso de indexación de un documento<a class="headerlink" href="#proceso-de-indexacion-de-un-documento" title="Permanent link">&para;</a></h2>
 <p>Cuando insertamos un documento, el sistema lo indexa realizando  el siguiente proceso</p>
 <ol>
-<li>Tokenización: Trocear el texto en sus palabras</li>
+<li><strong>Tokenización</strong>: Trocear el texto en sus palabras</li>
 </ol>
 <p><img alt="alt_text" src="images/01/image2.png" /></p>
 <ol start="2">
-<li>Análisis: Depende del análisis que se quiera realizar. Podemos eliminar palabras, buscar sinónimo, quitar plurales, acortar palabras, corrector ortográfico...</li>
+<li><strong>Análisis</strong>: Depende del análisis que se quiera realizar. Podemos eliminar palabras, buscar sinónimo, quitar plurales, acortar palabras, corrector ortográfico...</li>
 </ol>
 <p><img alt="alt_text" src="images/01/image21.png" /></p>
 <ol start="3">
-<li>Doc Values: Deshace el índice invertido para poder localizar el documento por término. La clasificación, las agregaciones y el acceso a los valores de campo en los scripts requieren un patrón de acceso a los datos diferente. En lugar de buscar el término y encontrar documentos, necesitamos poder buscar el documento y encontrar los términos que tiene en un campo.</li>
+<li><strong>Doc Values</strong>: Deshace el índice invertido para poder localizar el documento por término. La clasificación, las agregaciones y el acceso a los valores de campo en los scripts requieren un patrón de acceso a los datos diferente. En lugar de buscar el término y encontrar documentos, necesitamos poder buscar el documento y encontrar los términos que tiene en un campo.</li>
 </ol>
 <p><img alt="alt_text" src="images/01/image5.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">El proceso de análisis</p>
 <p>El proceso de análisis se realiza en dos procesos:</p>
+<ul>
+<li>Cuando se guarda el documento</li>
+<li>Cuando se realiza la búsqueda</li>
+</ul>
 <p><img alt="alt_text" src="images/01/image18.png" /></p>
 </div>
 <h2 id="ecosistema-elasticsearch-elastic-stack">Ecosistema Elasticsearch: Elastic Stack<a class="headerlink" href="#ecosistema-elasticsearch-elastic-stack" title="Permanent link">&para;</a></h2>
-<p>El ecosistema de Elastic Stack, está formado por diversos productos que se compenetran para diferentes casos de uso en el que ElasticSearch se encuentra en el centro</p>
+<p>El ecosistema de Elastic Stack, está formado por diversos productos que se compenetran para diferentes casos de uso en el que ElasticSearch se encuentra en el centro para el almacenamiento de la información necesaria.</p>
 <p><img alt="alt_text" src="images/01/image11.png" /></p>
 <p><img alt="alt_text" src="images/01/image15.png" /></p>
-<h2 id="cluster">Clúster<a class="headerlink" href="#cluster" title="Permanent link">&para;</a></h2>
+<h2 id="cluster-elasticsearch">Clúster Elasticsearch<a class="headerlink" href="#cluster-elasticsearch" title="Permanent link">&para;</a></h2>
 <p><img alt="alt_text" src="images/01/image7.png" /></p>
-<p>Al conjunto de nodos en ElasticSearch se le conoce como <strong>clúster</strong>, un clúster puede tener uno o más nodos. Un clúster tendrá un nombre único, y los nodos reconocerán el clúster al que pertenecen por este nombre. </p>
-<h2 id="nodo-node">Nodo (Node)<a class="headerlink" href="#nodo-node" title="Permanent link">&para;</a></h2>
+<p>Al conjunto de nodos en ElasticSearch se le conoce como <strong>clúster</strong>, un clúster puede tener uno o más nodos. Un clúster tendrá un nombre único, y los nodos reconocerán el clúster al que pertenecen por este nombre. Permite el crecimiento horizontal del sistema</p>
+<h3 id="nodo-node">Nodo (Node)<a class="headerlink" href="#nodo-node" title="Permanent link">&para;</a></h3>
 <p>Un nodo es un «servidor» de ElasticSearch, normalmente esto se traduce en una sola computadora. Cada nodo tendrá un nombre único e irrepetible en el clúster.</p>
-<h2 id="indice-index">Índice (Index)<a class="headerlink" href="#indice-index" title="Permanent link">&para;</a></h2>
+<h3 id="indice-index">Índice (Index)<a class="headerlink" href="#indice-index" title="Permanent link">&para;</a></h3>
 <p>En ElasticSearch las bases de datos se conocen como Índices. Contienen referencias a una colección de documentos que comparten ciertas características. Un índice también tiene un nombre único.</p>
 <p>Por ejemplo, se puede tener un índice «clientes» que referencia a una serie de documentos con datos personales de los clientes de una tienda, todos tendrán un nombre, una dirección, edad, etc.</p>
 <p>De la misma forma se puede tener, en el mismo clúster ElasticSearch otro índice «productos», que contendrá documentos describiendo cada uno de los productos que se venden en esa tienda.</p>
 <p>A estos índices se pueden hacer consultas, actualizaciones, borrado o agregado de datos usando el nombre correspondiente.</p>
-<h2 id="documento-document">Documento (Document)<a class="headerlink" href="#documento-document" title="Permanent link">&para;</a></h2>
+<h3 id="documento-document">Documento (Document)<a class="headerlink" href="#documento-document" title="Permanent link">&para;</a></h3>
 <p>La unidad básica de información de ElasticSearch es el Documento, y estos documentos son almacenados en formato <a href="https://es.wikipedia.org/wiki/JSON">JSON</a> lo que ofrece una flexibilidad y simplicidad para guardar cualquier tipo de datos.</p>
 <p>A la acción de «guardar datos» en la base de datos ElasticSearch se le conoce como «indexar datos» o «indexar documentos»</p>
-<h2 id="fragmento-shard">Fragmento (Shard)<a class="headerlink" href="#fragmento-shard" title="Permanent link">&para;</a></h2>
+<h3 id="fragmento-shard">Fragmento (Shard)<a class="headerlink" href="#fragmento-shard" title="Permanent link">&para;</a></h3>
 <p>Un índice puede contener mucha más información de la que es posible almacenar físicamente en una sola computadora o de la que sería eficiente procesar en una sola computadora. Para solucionar este problema, ElasticSearch puede subdividir los índices en fragmentos más pequeños llamados «shards».<a href="https://www.elastic.co/blog/cuantos-shards-debo-tener-en-mi-cluster-de-elasticsearch">¿Cuántos shards debo tener en mi cluster de Elasticsearch?</a><span style="text-decoration:underline;"> </span>Por defecto se crean 5 shard y 1 replica por shard por cada índice.</p>
 <h2 id="equivalencia-de-conceptos-con-base-de-datos-relacional">Equivalencia de conceptos con Base de Datos Relacional<a class="headerlink" href="#equivalencia-de-conceptos-con-base-de-datos-relacional" title="Permanent link">&para;</a></h2>
+<p>Podemos relacionar/equiparar  los siguientes conceptos de una base de datos relacional con los de Elasticsearch</p>
 <table>
   <tr>
    <td><b> BD Relacional</b>
@@ -542,9 +563,10 @@
   </tr>
 </table>
 
-<ul>
-<li>Un índice tendrá documentos del mismo tipo, pero no necesariamente de la misma estructura.</li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Un índice tendrá documentos del mismo tipo, pero no necesariamente de la misma estructura.</p>
+</div>
 <h2 id="instalacion-de-elasticsearch">Instalación de Elasticsearch<a class="headerlink" href="#instalacion-de-elasticsearch" title="Permanent link">&para;</a></h2>
 <p>Está desarrollado en Java, por lo que es necesario tener instalado Java en el sistema al menos en la versión 1.8. Es multiplataforma.</p>
 <p>No necesita instalación aunque tenemos disponible un instalador para los diferentes sistemas o por  instalación de docker.  Podéis elegir la instalación que deseéis. Vamos a ver cómo iniciarlo sobre Windows, aunque en Linux sería igual:</p>
@@ -567,13 +589,13 @@
 <ul>
 <li>Devuelve JSON</li>
 </ul>
-<p>Elasticsearch escucha por el puerto 9200. Lo único que necesitamos es un cliente Rest para comunicarse como puede ser:</p>
+<p>Elasticsearch escucha por el puerto 9200. Lo único que necesitamos es un cliente Rest, como pueden ser:</p>
 <ul>
 <li><a href="https://www.postman.com/product/rest-client/">postman </a></li>
 <li><a href="https://terminalcheatsheet.com/es/guides/curl-rest-api">curl</a></li>
 </ul>
 <p><img alt="alt_text" src="images/01/image20.png" /></p>
-<p>Vamos a probar si nos funciona mediante Curl. Abrimos la consola(en windows ejecutar-&gt;cmd) y ejecutamos el comando. </p>
+<p>Vamos a probar si nos funciona mediante <code>Curl</code>. Abrimos la consola(en windows ejecutar-&gt;cmd) y ejecutamos el comando. </p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Elasticsearch es muy educado y siempre nos contesta con alguna información. Siempre en <a href="https://es.wikipedia.org/wiki/JSON">JSON</a></p>
@@ -596,7 +618,7 @@
 <p>vamos al navegador y accedemos a</p>
 <p><code>localhost:5601</code></p>
 <p><img alt="alt_text" src="images/01/image14.png" /></p>
-<p>Vamos a la herramienta Devtools. Nos ayudará a crear sentencia Rest en nuestro elasticsearch</p>
+<p>Accedeos a  la herramienta <code>Devtools</code>. Nos permitirá crear sentencia Rest en nuestro elasticsearch</p>
 <p><img alt="alt_text" src="images/01/image4.png" /></p>
 <p>Podemos probarlo enviando una sentencia</p>
 <p><img alt="alt_text" src="images/01/image17.png" /></p>

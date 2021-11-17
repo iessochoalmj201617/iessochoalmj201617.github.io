@@ -149,7 +149,15 @@ GET /miempresa/_search
         {"nombre.keyword": "asc"}]
     
 }
-
+#Explicar el score
+GET /miempresa/_search?explain=true
+{
+  "query": {
+    "match": {
+      "sobremi": "montaña nadar"
+    }
+  }
+}
 #Actualizamos documento
 PUT /miempresa/_doc/3
 {

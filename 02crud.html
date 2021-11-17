@@ -316,6 +316,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#consulta-ordenada" class="md-nav__link">
+    Consulta ordenada
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#score-y-algoritmo-tfidf" class="md-nav__link">
+    Score y algoritmo TF/IDF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ejercicio-3" class="md-nav__link">
     Ejercicio 3
   </a>
@@ -435,10 +449,6 @@
                 
                 
                 <h1 id="crud-en-elasticsearch-y-analizadores">CRUD en Elasticsearch y Analizadores<a class="headerlink" href="#crud-en-elasticsearch-y-analizadores" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">consultas</p>
-<p>Descarga el <a href="02crud.txt">Fichero con los ejemplos</a> y cópialo en el panel de comandos de Kibana de la herramienta <code>Dev Tools</code></p>
-</div>
 <h2 id="crudcrear-leer-actualizar-y-borrar-basico-en-elasticsearch"><a href="https://es.wikipedia.org/wiki/CRUD">CRUD</a>(crear, leer, actualizar y borrar) básico en Elasticsearch<a class="headerlink" href="#crudcrear-leer-actualizar-y-borrar-basico-en-elasticsearch" title="Permanent link">&para;</a></h2>
 <h3 id="api-rest">API Rest<a class="headerlink" href="#api-rest" title="Permanent link">&para;</a></h3>
 <p>Elasticsearch comparte todas sus funcionalidades desde su <a href="https://codigonaranja.com/restful-web-service">API Rest</a>. Por lo que para operar con el sistema le mandaremos sentencias <a href="https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto">HTTP</a>:</p>
@@ -448,7 +458,7 @@
 <li>PUT: Actualización de un recurso</li>
 <li>DELETE: Borrar un recurso</li>
 </ul>
-<p>La API de Elastic es muy completa. Nosotros veremos algunos ejemplos. En la documentación oficial tenemos los detalles de toda la API</p>
+<p>La API de Elastic es muy completa. Nosotros veremos solamente algunos ejemplos. En la documentación oficial tenemos los detalles de toda la API</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html</a></p>
 <p>Podemos utilizar cualquier cliente REST para operar con Elasticsearch, por ejemplo CURL o Postman. Por ejemplo, podemos ver los índice que tenemos mediante consola y CURL
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">curl -XGET localhost:9200/_cat/indices</span>
@@ -503,7 +513,7 @@ Vemos que para insertar un documento nuevo tenemos que indicar su id y utilizar 
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
 tenemos como resultado que el <code>id</code> lo asigna el sistema</p>
-<p><img alt="alt_text" src="images/02/image2.png" /></p>
+<p><img alt="alt_text" src="images/02/image6.png" /></p>
 <h3 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h3>
 <div class="admonition question">
 <p class="admonition-title">Ejercicios</p>
@@ -521,13 +531,13 @@ tenemos como resultado que el <code>id</code> lo asigna el sistema</p>
 <p>El método GET nos permite realizar búsquedas en nuestro índice. Por ejemplo. Si queremos todos los empleados:</p>
 <p><code>GET /miempresa/_search</code></p>
 <p>vemos que nos devuelve un JSON con todos los documentos.</p>
-<p><img alt="alt_text" src="images/02/image3.png" /></p>
-<p>En la propia estructura del endpoint podemos ajustar la búsqueda mediante parámetros. Por ejemplo</p>
+<p><img alt="alt_text" src="images/02/image6.png" /></p>
+<p>En la propia estructura del <code>endpoint</code> podemos ajustar la búsqueda mediante parámetros. Por ejemplo</p>
 <p><code>GET /miempresa/_search?q=apellido:Perez</code></p>
 <p>probarlo y veréis que el resultado obtenido es el esperado.</p>
 <p>También podemos buscar un documento desde su id</p>
 <p><code>GET /miempresa/_doc/2</code></p>
-<p>Si buscáramos un documento y no se encuentra, </p>
+<p>Si buscáramos un documento y no se encuentra </p>
 <p><code>GET /miempresa/_doc/7</code></p>
 <p>podríamos consultas el error en el HEAD del mensaje HTTP(<code>Error 404</code>) o en los datos devueltos</p>
 <p><img alt="alt_text" src="images/02/image7.png" /></p>
@@ -558,7 +568,7 @@ Podemos buscar aquellos que son mayores de  30
 <span class="linenos" data-linenos="11 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="12 "></span><span class="p">}</span>
 </code></pre></div>
-Vamos a realizar una consulta para ver a quienes les gusta la montaña y nadar
+Vamos a realizar una consulta para ver a quienes les gusta la montaña y/o nadar
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -568,7 +578,7 @@ Vamos a realizar una consulta para ver a quienes les gusta la montaña y nadar
 <span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-Vemos que tenemos un campo llamado “_score” con un valor numérico. Los resultados nos lo devuelve por defecto según un valor en el que las coincidencias son mayores.</p>
+Vemos que tenemos un campo llamado <code>_score</code> con un valor numérico. Los resultados nos lo devuelve ordenados  por defecto según un valor en el que las coincidencias son mayores.</p>
 <p><img alt="alt_text" src="images/02/image5.png" /></p>
 <p>También podemos consultar frases completas
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
@@ -580,7 +590,7 @@ Vemos que tenemos un campo llamado “_score” con un valor numérico. Los resu
 <span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span> 
 </code></pre></div>
-Podemos realizar consultas parecidas al GroupBy de SQL  mediante las agregaciones. Lo veremos en detalle más adelante.
+Podemos realizar consultas parecidas al GroupBy de SQL  mediante las agregaciones. Lo veremos en detalle más adelante en el tema 4.
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search?size=</span><span class="mi">0</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -601,8 +611,9 @@ Podemos realizar consultas parecidas al GroupBy de SQL  mediante las agregacione
 <span class="linenos" data-linenos="5 "></span>    <span class="p">},</span>
 <span class="linenos" data-linenos="6 "></span>    <span class="nt">&quot;_source&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span>
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
-</code></pre></div>
-Podemos solicitar la consulta ordenada por algún campo</p>
+</code></pre></div></p>
+<h3 id="consulta-ordenada">Consulta ordenada<a class="headerlink" href="#consulta-ordenada" title="Permanent link">&para;</a></h3>
+<p>Podemos solicitar la consulta ordenada por algún campo</p>
 <div class="admonition warning">
 <p class="admonition-title">Busquedas ordenadas</p>
 <p>El campo por el que ordenes no puede ser de tipo “text”, nos daría un error. Estos campos son analizados. Para ordenar tiene que ser de tipo <code>keyword</code></p>
@@ -628,7 +639,7 @@ Vemos que crea dos tipo para los campo: Text y keyword</p>
 <p class="admonition-title">Ordenar por keyword</p>
 <p>Tenemos que ordenar por el campo no tokenizado de tipo keyword</p>
 </div>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span>    <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;match_all&quot;</span><span class="p">:</span> <span class="p">{}</span>
 <span class="linenos" data-linenos="4 "></span>    <span class="p">},</span>
@@ -637,8 +648,20 @@ Vemos que crea dos tipo para los campo: Text y keyword</p>
 <span class="linenos" data-linenos="7 "></span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-Si no le indicamos campo de ordenación, devuelve por orden de <code>_score</code>. El score lo calcula según:</p>
-<p><img alt="alt_text" src="images/02/image10.png" /></p>
+<h3 id="score-y-algoritmo-tfidf">Score y algoritmo TF/IDF<a class="headerlink" href="#score-y-algoritmo-tfidf" title="Permanent link">&para;</a></h3>
+<p>Si no le indicamos campo de ordenación, devuelve por orden de <code>_score</code>. El score lo calcula  utilizando un algoritmo que depende del tipo de query o búsqueda que realicemos.</p>
+<p>El algoritmo que utiliza elasticsearch por defecto para calcular el _score o la relevancia de los documentos es el</p>
+<p><a href="https://es.wikipedia.org/wiki/Tf-idf">TF/IDF</a>, term frequency/inverse document frequency</p>
+<p>que calcula cómo de similar es el contenido de un campo de texto con respeto al texto indicado en la query. Es complejo de entender pero podemos pedir en la consulta como obtiene el score para entender mejor el resultado</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search?explai</span><span class="kc">n</span><span class="err">=</span><span class="kc">true</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;sobremi&quot;</span><span class="p">:</span> <span class="s2">&quot;montaña nadar&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
 <h3 id="ejercicio-3">Ejercicio 3<a class="headerlink" href="#ejercicio-3" title="Permanent link">&para;</a></h3>
 <div class="admonition question">
 <p class="admonition-title">Ejercicio</p>
@@ -759,9 +782,9 @@ Dependiendo del tipo de datos, es posible dar directivas explícitas a Elasticse
 <li><span style="text-decoration:underline;">index</span>: Esto define si el campo debe indexarse o no. los valores posibles para este parámetro son verdadero y falso. Los campos de índice no son buscable (verdadero por defecto).</li>
 <li><span style="text-decoration:underline;">null_value</span>: esto define un valor predeterminado si el campo es nulo.</li>
 <li><span style="text-decoration:underline;">boost</span>: Esto se usa para cambiar la importancia de un campo (predeterminado 1.0). Boost funciona solo a nivel de término, por lo que se usa principalmente en términos, términos, y consultas de coincidencias.</li>
-<li>search_analyzer: Esto define un analizador que se utilizará durante la búsqueda. Si no está definido, se utiliza el analizador del objeto principal (por defecto, nulo).</li>
-<li>include_in_all: Esto marca el campo actual que se indexará en el especial _all (un campo que contiene el texto concatenado de todos los campos) (predeterminado cierto).</li>
-<li>term_vector:Otro parámetro importante, disponible solo para el mapeo de texto, es term_vector</li>
+<li><span style="text-decoration:underline;">search_analyzer</span>: Esto define un analizador que se utilizará durante la búsqueda. Si no está definido, se utiliza el analizador del objeto principal (por defecto, nulo).</li>
+<li><span style="text-decoration:underline;">include_in_all</span>: Esto marca el campo actual que se indexará en el especial _all (un campo que contiene el texto concatenado de todos los campos) (predeterminado cierto).</li>
+<li><span style="text-decoration:underline;">term_vector</span>:Otro parámetro importante, disponible solo para el mapeo de texto, es term_vector</li>
 </ul>
 <p>Por ejemplo, si no queremos que se indexe un campo</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="err">PUT</span> <span class="err">/ca</span><span class="kc">tal</span><span class="err">ogo/_mappi</span><span class="kc">n</span><span class="err">g</span>
