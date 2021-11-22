@@ -307,9 +307,192 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          6.- Gestión de alertas y logs con ElasticStack
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="06gestionlogs.html" class="md-nav__link md-nav__link--active">
         6.- Gestión de alertas y logs con ElasticStack
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    Introducción
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    Logs
+  </a>
+  
+    <nav class="md-nav" aria-label="Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#necesidad-del-control-de-logs" class="md-nav__link">
+    Necesidad del control de logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problematica-con-los-logs" class="md-nav__link">
+    Problemática con los logs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingesta-de-datos-mediante-beats" class="md-nav__link">
+    Ingesta de datos mediante Beats
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metricbeat-en-ubuntu" class="md-nav__link">
+    Metricbeat en Ubuntu
+  </a>
+  
+    <nav class="md-nav" aria-label="Metricbeat en Ubuntu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduccion_1" class="md-nav__link">
+    Introducción
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-elasticsearch-y-kibana" class="md-nav__link">
+    Configuración de Elasticsearch y Kibana:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-ubuntu-con-metricbeat" class="md-nav__link">
+    Configuración de Ubuntu con Metricbeat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-los-modulos-de-metricbeat" class="md-nav__link">
+    Configuración de los módulos de Metricbeat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio" class="md-nav__link">
+    Ejercicio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activar-nuevo-modulo-modulo-apache" class="md-nav__link">
+    Activar nuevo módulo: Módulo Apache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio_1" class="md-nav__link">
+    Ejercicio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-opcional" class="md-nav__link">
+    Ejercicio opcional
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filebeat-para-la-monitorizacion-de-logs-de-sistema" class="md-nav__link">
+    Filebeat para la monitorización de logs de  sistema
+  </a>
+  
+    <nav class="md-nav" aria-label="Filebeat para la monitorización de logs de  sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduccion_2" class="md-nav__link">
+    Introducción
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion" class="md-nav__link">
+    Instalación
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso-desde-kibana-al-registro-del-log-syslog" class="md-nav__link">
+    Acceso desde Kibana al registro del log syslog
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualizacion-desde-kibana-al-log-de-apache" class="md-nav__link">
+    Visualización desde Kibana al log de Apache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio_2" class="md-nav__link">
+    Ejercicio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -329,14 +512,14 @@
                 
                 
                 <h1 id="elasticstack-centro-del-analisis-y-gestion-de-logs">Elasticstack: Centro del análisis y gestión de logs<a class="headerlink" href="#elasticstack-centro-del-analisis-y-gestion-de-logs" title="Permanent link">&para;</a></h1>
-<h1 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>El sistema de información de una organización, puede estar compuesto por cientos de servidores, con sus sistemas operativos, cada uno con sus diferentes productos que cada uno de ellos genera miles de líneas de logs de la actividad que realizan. </p>
 <p>El análisis de logs, entra dentro de la categoría del big data por el volúmen de información de información generada y la gran variedad de estructuras de los datos. Por otro lado, la necesidad de la monitorización de los sistemas en tiempo real, hacen que Elasticsearch y su ecosistema Elasticstack, sea uno de los más utilizados en el mercado. Es capaz mediante sus beats(procesos ligeros en los servidores y sistemas), monitorizar todo tipo de logs, programas y redes de nuestro sistema.</p>
 <p><img alt="alt_text" src="images/06/image4.png" /></p>
 <h2 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
 <p>En informática, se usa el término <strong>registro</strong>, <strong><em>log</em></strong> o <strong>historial de <em>log</em></strong> para referirse a la grabación secuencial en un archivo o en una base de datos de todos los acontecimientos (eventos o acciones) que afectan a un proceso particular.</p>
 <p>Cada evento, se encuentra definido por:</p>
-<p>log = Timestamp(hora del evento) + datos del acontecimiento</p>
+<p><strong>log = Timestamp(hora del evento) + datos del acontecimiento</strong></p>
 <h3 id="necesidad-del-control-de-logs">Necesidad del control de logs<a class="headerlink" href="#necesidad-del-control-de-logs" title="Permanent link">&para;</a></h3>
 <p>Preservar los logs, puede ser necesario para:</p>
 <ol>
@@ -359,12 +542,11 @@
 <li>Inconsistencia de Fecha/Hora: Cada sistema puede generar el datos de tiempo con formatos diferentes, por lo que puede ser necesario una transformación para su lectura</li>
 <li>Datos desestructurados: Tenemos gran variedad de estructuras que requieren la transformación previa para su análisis.</li>
 </ul>
-<h1 id="ingesta-de-datos-mediante-beats">Ingesta de datos mediante Beats<a class="headerlink" href="#ingesta-de-datos-mediante-beats" title="Permanent link">&para;</a></h1>
-<h2 id="introduccion_1">Introducción<a class="headerlink" href="#introduccion_1" title="Permanent link">&para;</a></h2>
-<p>Vamos a realizar una práctica para ver cómo podemos instalar una serie de Beats para la recolección de datos de algunos sistemas. Estos beats, son procesos ligeros que vienen preparados para la recolección de datos de forma predeterminada de muchos sistemas y con una serie de plantillas que nos permiten con poco esfuerzo comenzar a monitorizar los datos desde Kibana. Si necesitamos ajustar y transformar los datos de logs más específicos como puede ser de programas java, tendremos que utilizar Logstash como <a href="https://es.wikipedia.org/wiki/Extract,_transform_and_load">ETL</a> para la extracción de la información.</p>
+<h2 id="ingesta-de-datos-mediante-beats">Ingesta de datos mediante Beats<a class="headerlink" href="#ingesta-de-datos-mediante-beats" title="Permanent link">&para;</a></h2>
+<p>Vamos a realizar una práctica para ver cómo podemos instalar una serie de Beats para la recolección de datos de algunos sistemas. Estos <strong>beats</strong>, son procesos ligeros que vienen preparados para la recolección de datos de forma predeterminada de muchos sistemas y con una serie de plantillas que nos permiten con poco esfuerzo comenzar a monitorizar los datos desde Kibana. Si necesitamos ajustar y transformar los datos de logs más específicos como puede ser de programas java, tendremos que utilizar Logstash como <a href="https://es.wikipedia.org/wiki/Extract,_transform_and_load">ETL</a> para la extracción de la información.</p>
 <p>Tenemos varios Beats oficiales y otros tantos desarrollados por la comunidad que permiten la extracción de información de los sistemas</p>
 <p><a href="https://www.elastic.co/es/downloads/beats/">https://www.elastic.co/es/downloads/beats/</a></p>
-<p>Tenemos diversos beats desarrollados por la comunidad</p>
+<p>Por otro lado, tenemos diversos beats desarrollados por la comunidad</p>
 <p><a href="https://www.elastic.co/guide/en/beats/devguide/current/community-beats.html">https://www.elastic.co/guide/en/beats/devguide/current/community-beats.html</a></p>
 <p>Los beats oficiales más importantes son:</p>
 <ul>
@@ -374,43 +556,46 @@
 <li><strong>Heartbeat </strong>Permite a los clientes saber si uno de los nodos/servicio está presente o ausente</li>
 </ul>
 <h2 id="metricbeat-en-ubuntu">Metricbeat en Ubuntu<a class="headerlink" href="#metricbeat-en-ubuntu" title="Permanent link">&para;</a></h2>
-<h3 id="introduccion_2">Introducción<a class="headerlink" href="#introduccion_2" title="Permanent link">&para;</a></h3>
+<h3 id="introduccion_1">Introducción<a class="headerlink" href="#introduccion_1" title="Permanent link">&para;</a></h3>
 <p>Vamos a probar sobre una máquina de ubuntu a monitorizar el sistema y a alguno de sus servicios, como puede ser Mysql y Apache</p>
 <p><img alt="alt_text" src="images/06/image21.png" /></p>
-<p>Probaremos de forma básica los beats</p>
+<p>Probaremos de forma básica los beats. Para lo que:</p>
 <ul>
-<li>importamos las plantillas de dashboard disponibles en el beat a Kibana para visualizar los datos capturados</li>
+<li>importaremos las plantillas de dashboard disponibles en el beat a Kibana para visualizar los datos capturados</li>
 <li>activaremos los módulos que nos permiten monitorizar la información de los servicios que nos interesen en ubuntu para que envíe la información a Elasticsearch</li>
-<li>visualizamos la información en kibana mediante los Dashboard creados por la plantillas.</li>
+<li>visualizaremos la información en kibana mediante los Dashboard creados por la plantillas.</li>
 </ul>
 <h3 id="configuracion-de-elasticsearch-y-kibana">Configuración de Elasticsearch y Kibana:<a class="headerlink" href="#configuracion-de-elasticsearch-y-kibana" title="Permanent link">&para;</a></h3>
 <p>Vamos a permitir que escuchen desde cualquier petición de la red para poder recibir datos de la máquina Ubuntu a monitorizar.</p>
 <ul>
 <li>Abre el fichero de configuración de Elasticsearch <code>elasticsearch/config/elasticsearch.yml</code></li>
-<li>Añade la líneas(cuidado con los espacios y tabuladores en los ficheros yaml)</li>
-</ul>
-<p>network.host: 0.0.0.0</p>
-<p>discovery.type: single-node</p>
-<ul>
-<li>Reinicia Elasticsearch.</li>
+<li>
+<p>Añade la líneas(cuidado con los espacios y tabuladores en los ficheros yaml)
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nt">network.host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+<span class="linenos" data-linenos="2 "></span><span class="nt">discovery.type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">single-node</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Reinicia Elasticsearch.</p>
+</li>
 <li>Comprueba que te contesta desde una petición al servicio que no sea localhost. Por ejemplo, si indicamos la ip donde se encuentra instalado Elasticsearch desde el navegador, debería contestarnos</li>
 </ul>
 <p><img alt="alt_text" src="images/06/image12.png" /></p>
 <ul>
 <li>Abre el fichero de configuración de Kibana: <code>kibana/config/kibana.yml</code></li>
-<li>Modifica o añade la línea </li>
-</ul>
-<p>server.host: "0.0.0.0"</p>
-<ul>
-<li>Reinicia Kibana</li>
+<li>
+<p>Modifica o añade la línea 
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nt">server.host</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Reinicia Kibana</p>
+</li>
 <li>Comprueba que puedes acceder a Kibana desde otra máquina. Por ejemplo, la máquina virtual</li>
 </ul>
 <p><img alt="alt_text" src="images/06/image17.png" /></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Nos aparecerán mensajes de advertencia de que no tenemos la seguridad activada. Los ignoramos.
-</code></pre></div>
-<h3 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Configuración de Ubuntu con Metricbeat
-</code></pre></div>
+<p>Nos aparecerán mensajes de advertencia de que no tenemos la seguridad activada. Los ignoramos.</p>
+<h3 id="configuracion-de-ubuntu-con-metricbeat">Configuración de Ubuntu con Metricbeat<a class="headerlink" href="#configuracion-de-ubuntu-con-metricbeat" title="Permanent link">&para;</a></h3>
 <p>Sobre una máquina de Ubuntu/Xubuntu:</p>
 <ul>
 <li>
@@ -419,13 +604,14 @@
 <p><a href="http://tu_ip:5601">http://tu_ip:5601</a></p>
 </li>
 <li>
-<p>Instalamos algunos servicios en ubuntu:</p>
+<p>Instalamos algunos servicios en Ubuntu:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">sudo apt install ssh</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="go">sudo apt install apache2</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="go">sudo apt install mysql-server</span>
+</code></pre></div></p>
 </li>
-</ul>
-<p>sudo apt install ssh</p>
-<p>sudo apt install apache2</p>
-<p>sudo apt install mysql-server</p>
-<ul>
 <li>
 <p>Descargar Metricbeat en Ubuntu y descomprimir</p>
 <p><a href="https://www.elastic.co/es/downloads/beats/metricbeat">https://www.elastic.co/es/downloads/beats/metricbeat</a></p>
@@ -433,12 +619,12 @@
 </ul>
 <p><img alt="alt_text" src="images/06/image14.png" /></p>
 <ul>
-<li>Abre el fichero de configuración  metricbeat.yml</li>
+<li>Abre el fichero de configuración  <code>metricbeat.yml</code></li>
 <li>Vamos a configurar Metricbeat para que envíe a Kibana las plantillas de los Dashboard. Cambia la configuración:</li>
 </ul>
 <p><img alt="alt_text" src="images/06/image18.png" /></p>
 <ul>
-<li>Le indicamos donde está Elasticsearch que será el consumidor de los datos</li>
+<li>Le indicamos donde está Elasticsearch, que será, el consumidor de los datos</li>
 </ul>
 <p><img alt="alt_text" src="images/06/image5.png" /></p>
 <h3 id="configuracion-de-los-modulos-de-metricbeat">Configuración de los módulos de Metricbeat<a class="headerlink" href="#configuracion-de-los-modulos-de-metricbeat" title="Permanent link">&para;</a></h3>
@@ -462,15 +648,17 @@
 <p><img alt="alt_text" src="images/06/image20.png" /></p>
 <ul>
 <li>
-<p>Vamos a realizar un test del fichero de configuración antes de iniciar el servicio para comprobar que todo es correcto</p>
-<p>./metricbeat test config -c metricbeat.yml</p>
+<p>Vamos a realizar un test del fichero de configuración antes de iniciar el servicio para comprobar que todo es correcto
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">./metricbeat test config -c metricbeat.yml</span>
+</code></pre></div></p>
 </li>
 <li>
-<p>Iniciamos el servicio</p>
-<p>./metricbeat -c metricbeat.yml</p>
+<p>Iniciamos el servicio
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go"> ./metricbeat -c metricbeat.yml</span>
+</code></pre></div></p>
 </li>
 <li>
-<p>Desde este momento se monitoriza el servidor. Vamos a ver los resultados en kibana desde el menú Observabitity y seleccionamos nuestro servidor</p>
+<p>Desde este momento se monitoriza el servidor. Vamos a ver los resultados en kibana desde el menú <strong>Observabitity</strong> y seleccionamos nuestro servidor</p>
 </li>
 </ul>
 <p><img alt="alt_text" src="images/06/image11.png" /></p>
@@ -479,45 +667,59 @@
 </ul>
 <p><img alt="alt_text" src="images/06/image9.png" /></p>
 <ul>
-<li>Si vamos al menú “dashboards”, vemos que nos ha importado una serie de plantillas preconfiguradas</li>
+<li>Si vamos al menú <strong>dashboards</strong>, vemos que nos ha importado una serie de plantillas preconfiguradas</li>
 </ul>
 <p><img alt="alt_text" src="images/06/image15.png" /></p>
 <ul>
 <li>Podemos probar los diferentes Dashboards del módulo system</li>
 </ul>
 <p><img alt="alt_text" src="images/06/image7.png" /></p>
-<h3 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Ejercicio
-</code></pre></div>
-<p>Captura de pantalla de los Dashboards</p>
-<h3 id="activar-otro-modulo-modulo-apache">Activar otro módulo: Módulo Apache<a class="headerlink" href="#activar-otro-modulo-modulo-apache" title="Permanent link">&para;</a></h3>
+<h3 id="ejercicio">Ejercicio<a class="headerlink" href="#ejercicio" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Ejercicio Metricbeat<p>Captura de pantalla de los Dashboards probados y entrega un fichero pdf</p>
+</p>
+</div>
+<h3 id="activar-nuevo-modulo-modulo-apache">Activar nuevo módulo: Módulo Apache<a class="headerlink" href="#activar-nuevo-modulo-modulo-apache" title="Permanent link">&para;</a></h3>
 <p>Vamos a monitorizar Apache. Para ello:</p>
 <ul>
 <li>Paramos metricbeat</li>
 <li>
-<p>Activamos el módulo de apache</p>
-<p>./metricbeat modules enable apache</p>
+<p>Activamos el módulo de apache
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">  ./metricbeat modules enable apache</span>
+</code></pre></div></p>
 </li>
 <li>
 <p>Comprobamos que está activo</p>
-<p>./metricbeat modules list</p>
 </li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">   ./metricbeat modules list</span>
+</code></pre></div>
 <p><img alt="alt_text" src="images/06/image10.png" /></p>
 <ul>
+<li>Iniciamos metricbeat y podemos ir al dashboard de Apache</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">   ./metricbeat -c metricbeat.yml</span>
+</code></pre></div>
+<p><img alt="alt_text" src="images/06/image6.png" /></p>
+<h3 id="ejercicio_1">Ejercicio<a class="headerlink" href="#ejercicio_1" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Ejercicio metricbeat Apache<p>Captura de pantalla con el dashboard de Apache</p>
+</p>
+</div>
+<h3 id="ejercicio-opcional">Ejercicio opcional<a class="headerlink" href="#ejercicio-opcional" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Ejercicio metricbeat opcional<ul>
 <li>
-<p>Iniciamos metricbeat y podemos ir al dashboard de Apache</p>
-<p>./metricbeat -c metricbeat.yml</p>
+<p>Activa el módulo de Mysql y visualiza el dashboard correspondiente</p>
+</li>
+<li>
+<p>Instala docker, y levanta dos docker en la máquina. Activa el módulo de docker de metricbeat y visualiza su dashboard</p>
 </li>
 </ul>
-<p><img alt="alt_text" src="images/06/image6.png" /></p>
-<h3 id="ejercicio">Ejercicio<a class="headerlink" href="#ejercicio" title="Permanent link">&para;</a></h3>
-<p>Captura de pantalla con el dashboard de Apache</p>
-<h3 id="ejercicio-opcional">Ejercicio opcional<a class="headerlink" href="#ejercicio-opcional" title="Permanent link">&para;</a></h3>
-<p>Activa el módulo de Mysql y visulaliza de dashboard correspondiente</p>
-<p>Instala docker, y levanta dos docker en la máquina. Activa el módulo de docker de metricbeat y visualiza su dashboard</p>
+</p>
+</div>
 <h2 id="filebeat-para-la-monitorizacion-de-logs-de-sistema">Filebeat para la monitorización de logs de  sistema<a class="headerlink" href="#filebeat-para-la-monitorizacion-de-logs-de-sistema" title="Permanent link">&para;</a></h2>
-<h3 id="introduccion_3">Introducción<a class="headerlink" href="#introduccion_3" title="Permanent link">&para;</a></h3>
+<h3 id="introduccion_2">Introducción<a class="headerlink" href="#introduccion_2" title="Permanent link">&para;</a></h3>
 <p>Es el más importante de los beats. Nos permite realizar la ingesta de los diferentes logs de los sistemas y enviarselos a Elasticsearch, o si es necesario su transformación, a  Logstash. Su documentación la tenemos en</p>
 <p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/index.html">https://www.elastic.co/guide/en/beats/filebeat/current/index.html</a></p>
 <p>Vamos a iniciarlo de forma simple utilizando los módulos del beat, pero podemos realizar la ingesta de cualquier fichero que queramos.</p>
@@ -533,40 +735,48 @@
 </ul>
 <p><img alt="alt_text" src="images/06/image1.png" /></p>
 <ul>
-<li>Descomprimir el fichero y editar el fichero de configuración filebeat.yml</li>
+<li>Descomprimir el fichero y editar el fichero de configuración <strong>filebeat.yml</strong></li>
 <li>Configuramos los mismos parámetros que en metricbeat</li>
 </ul>
 <p><img alt="alt_text" src="images/06/image18.png" /></p>
 <p><img alt="alt_text" src="images/06/image5.png" /></p>
 <ul>
 <li>
-<p>Podemos ver los módulos disponibles</p>
-<p>./filebeat modules list</p>
+<p>Podemos ver los módulos disponibles
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">   ./filebeat modules list</span>
+</code></pre></div></p>
 </li>
 <li>
-<p>Vamos a probar los módulos de system y apache</p>
-<p>./filebeat modules enable apache system</p>
+<p>Vamos a probar los módulos de system y apache
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">   ./filebeat modules enable apache system</span>
+</code></pre></div></p>
 </li>
 <li>
-<p>Comprobamos si la configuración es correcta</p>
-<p>./filebeat test config -c filebeat.yml</p>
+<p>Comprobamos si la configuración es correcta
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">    ./filebeat test config -c filebeat.yml</span>
+</code></pre></div></p>
 </li>
 <li>
-<p>Iniciamos filebeat</p>
-<p>./filebeat -c filebeat.yml</p>
+<p>Iniciamos filebeat
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">    ./filebeat -c filebeat.yml</span>
+</code></pre></div></p>
 </li>
 </ul>
 <h3 id="acceso-desde-kibana-al-registro-del-log-syslog">Acceso desde Kibana al registro del log syslog<a class="headerlink" href="#acceso-desde-kibana-al-registro-del-log-syslog" title="Permanent link">&para;</a></h3>
 <p>Vamos a realizar alguna accesos y tareas para luego monitorizarlo desde Kibana</p>
 <ul>
 <li>
-<p>Acceso vía ssh. Desde la máquina anfitrión accedemos mediante ssh</p>
-<p>ssh usuario@192.168.18.126 (la ip de ubuntu)</p>
+<p>Acceso vía ssh. Desde la máquina anfitrión accedemos mediante ssh
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">   ssh usuario@192.168.18.126 (la ip de ubuntu)</span>
+</code></pre></div></p>
 </li>
 <li>
-<p>Podemos hacer alguna tarea sudo</p>
-<p>sudo apt update</p>
-<p>sudo adduser pepe</p>
+<p>Podemos hacer alguna tarea sudo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="go">    sudo apt update</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="go">    sudo adduser pepe</span>
+</code></pre></div></p>
 </li>
 <li>
 <p>Vamos al Dashboard de Kibana donde nos tiene que haber importado las plantillas asociadas a Filebeat</p>
@@ -587,10 +797,15 @@
 </ul>
 <p><img alt="alt_text" src="images/06/image16.png" /></p>
 <p><img alt="alt_text" src="images/06/image3.png" /></p>
-<h3 id="ejercicio_1">Ejercicio<a class="headerlink" href="#ejercicio_1" title="Permanent link">&para;</a></h3>
-<p>Entrega las capturas de pantalla con los dashboard de Filebeat</p>
-<p>Ejercicio opcional</p>
+<h3 id="ejercicio_2">Ejercicio<a class="headerlink" href="#ejercicio_2" title="Permanent link">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Ejercicio Filebeat<p>Entrega las capturas de pantalla con los dashboard de Filebeat</p>
+</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Ejercicio opcional</p>
 <p>Activa el módulo de mysql y prueba crear una base de datos y realizar consultas sobre ella. Monitoriza mediante Kibana el log. Explica todo el proceso y captura de pantallas de resultados</p>
+</div>
                 
               
               
