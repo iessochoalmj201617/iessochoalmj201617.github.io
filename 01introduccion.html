@@ -429,6 +429,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06gestionlogs.html" class="md-nav__link">
+        6.- Gestión de alertas y logs con ElasticStack
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -513,9 +528,13 @@
 <p>El ecosistema de Elastic Stack, está formado por diversos productos que se compenetran para diferentes casos de uso en el que ElasticSearch se encuentra en el centro para el almacenamiento de la información necesaria.</p>
 <p><img alt="alt_text" src="images/01/image11.png" /></p>
 <p><img alt="alt_text" src="images/01/image15.png" /></p>
+<p><strong>Kibana</strong> actúa como interfaz gráfica para todo el sistema, donde se visualizan los datos y se realizan las agrupaciones necesarias.</p>
+<p><strong>Elasticsearch</strong> es el repositorio de datos transformados (sin ser una base de datos), cuyos índices son la principal base para la representación de datos</p>
+<p><strong>Logstash</strong> es donde se realiza la agrupación, filtrado y transformación de los datos.  Esto es importante porque es quien consumirá más recursos.</p>
+<p><strong>Beats</strong>. Es un pequeño agente que instalamos en los servidores y que nos permite el envío de datos recolectados en nuestro servidor a un procesador (Logstash) o directamente al repositorio (Elasticsearch.  Cabe destacar que existen distintos tipos de Beats, según nuestra necesidad: FileBeat (para el envío de logs/ficheros), WinLogBeat (envío de eventos en un servidor Windows), MetricBeat (envío de métricas), etc.</p>
 <h2 id="cluster-elasticsearch">Clúster Elasticsearch<a class="headerlink" href="#cluster-elasticsearch" title="Permanent link">&para;</a></h2>
-<p><img alt="alt_text" src="images/01/image7.png" /></p>
 <p>Al conjunto de nodos en ElasticSearch se le conoce como <strong>clúster</strong>, un clúster puede tener uno o más nodos. Un clúster tendrá un nombre único, y los nodos reconocerán el clúster al que pertenecen por este nombre. Permite el crecimiento horizontal del sistema</p>
+<p><img alt="alt_text" src="images/01/image7.png" /></p>
 <h3 id="nodo-node">Nodo (Node)<a class="headerlink" href="#nodo-node" title="Permanent link">&para;</a></h3>
 <p>Un nodo es un «servidor» de ElasticSearch, normalmente esto se traduce en una sola computadora. Cada nodo tendrá un nombre único e irrepetible en el clúster.</p>
 <h3 id="indice-index">Índice (Index)<a class="headerlink" href="#indice-index" title="Permanent link">&para;</a></h3>

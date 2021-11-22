@@ -1,0 +1,672 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://iessochoalmj201617.github.io/apunteselastic/06gestionlogs.html">
+      
+      <link rel="icon" href="images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>6.- Gestión de alertas y logs con ElasticStack - Bases de datos orientadas a búsquedas ElasticSearch</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#elasticstack-centro-del-analisis-y-gestion-de-logs" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-header__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de datos orientadas a búsquedas ElasticSearch
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6.- Gestión de alertas y logs con ElasticStack
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Bases de datos orientadas a búsquedas ElasticSearch" class="md-nav__button md-logo" aria-label="Bases de datos orientadas a búsquedas ElasticSearch" data-md-component="logo">
+      
+  <img src="images/logo.png" alt="logo">
+
+    </a>
+    Bases de datos orientadas a búsquedas ElasticSearch
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01introduccion.html" class="md-nav__link">
+        1.- Introducción a Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02crud.html" class="md-nav__link">
+        2.- CRUD con Elasticsearch
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03analizadores.html" class="md-nav__link">
+        3.- Analizadores
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04querydsl.html" class="md-nav__link">
+        4.- Busquedas: Query DSL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05puestaenproduccion.html" class="md-nav__link">
+        5.- Puesta en producción
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="06gestionlogs.html" class="md-nav__link md-nav__link--active">
+        6.- Gestión de alertas y logs con ElasticStack
+      </a>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="elasticstack-centro-del-analisis-y-gestion-de-logs">Elasticstack: Centro del análisis y gestión de logs<a class="headerlink" href="#elasticstack-centro-del-analisis-y-gestion-de-logs" title="Permanent link">&para;</a></h1>
+<h1 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h1>
+<p>El sistema de información de una organización, puede estar compuesto por cientos de servidores, con sus sistemas operativos, cada uno con sus diferentes productos que cada uno de ellos genera miles de líneas de logs de la actividad que realizan. </p>
+<p>El análisis de logs, entra dentro de la categoría del big data por el volúmen de información de información generada y la gran variedad de estructuras de los datos. Por otro lado, la necesidad de la monitorización de los sistemas en tiempo real, hacen que Elasticsearch y su ecosistema Elasticstack, sea uno de los más utilizados en el mercado. Es capaz mediante sus beats(procesos ligeros en los servidores y sistemas), monitorizar todo tipo de logs, programas y redes de nuestro sistema.</p>
+<p><img alt="alt_text" src="images/06/image4.png" /></p>
+<h2 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
+<p>En informática, se usa el término <strong>registro</strong>, <strong><em>log</em></strong> o <strong>historial de <em>log</em></strong> para referirse a la grabación secuencial en un archivo o en una base de datos de todos los acontecimientos (eventos o acciones) que afectan a un proceso particular.</p>
+<p>Cada evento, se encuentra definido por:</p>
+<p>log = Timestamp(hora del evento) + datos del acontecimiento</p>
+<h3 id="necesidad-del-control-de-logs">Necesidad del control de logs<a class="headerlink" href="#necesidad-del-control-de-logs" title="Permanent link">&para;</a></h3>
+<p>Preservar los logs, puede ser necesario para:</p>
+<ol>
+<li>Solución de problemas: cuando se informa de un error o problema, el primer lugar para buscar qué podría haber causado el problema son los registros. Por ejemplo, al mirar un</li>
+</ol>
+<p>seguimiento de la pila de excepciones en los registros, puede encontrar fácilmente la causa raíz del problema.</p>
+<ol start="2">
+<li>Para comprender el comportamiento del sistema/aplicación</li>
+<li>Auditoría: muchas organizaciones deben adherirse a algunos procedimientos de cumplimiento y están obligados a mantener los registros. Por ejemplo, actividad o transacción de inicio de sesión….</li>
+<li>Análisis predictivo: Algunos ejemplos de casos de uso de predictivo: cuando se sugieren películas o artículos para que los usuarios los compren, detectando fraude, optimización de campañas de marketing, etc.</li>
+</ol>
+<h3 id="problematica-con-los-logs">Problemática con los logs<a class="headerlink" href="#problematica-con-los-logs" title="Permanent link">&para;</a></h3>
+<p>Los problemas que nos encontramos con los logs son los siguientes:</p>
+<ul>
+<li>El formato es irregular entre unos y otros recursos que generan logs</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image8.png" /></p>
+<ul>
+<li>Los logs están descentralizados: Gran variedad de recursos generan logs  y es complicado controlarlos uno por uno.</li>
+<li>Inconsistencia de Fecha/Hora: Cada sistema puede generar el datos de tiempo con formatos diferentes, por lo que puede ser necesario una transformación para su lectura</li>
+<li>Datos desestructurados: Tenemos gran variedad de estructuras que requieren la transformación previa para su análisis.</li>
+</ul>
+<h1 id="ingesta-de-datos-mediante-beats">Ingesta de datos mediante Beats<a class="headerlink" href="#ingesta-de-datos-mediante-beats" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion_1">Introducción<a class="headerlink" href="#introduccion_1" title="Permanent link">&para;</a></h2>
+<p>Vamos a realizar una práctica para ver cómo podemos instalar una serie de Beats para la recolección de datos de algunos sistemas. Estos beats, son procesos ligeros que vienen preparados para la recolección de datos de forma predeterminada de muchos sistemas y con una serie de plantillas que nos permiten con poco esfuerzo comenzar a monitorizar los datos desde Kibana. Si necesitamos ajustar y transformar los datos de logs más específicos como puede ser de programas java, tendremos que utilizar Logstash como <a href="https://es.wikipedia.org/wiki/Extract,_transform_and_load">ETL</a> para la extracción de la información.</p>
+<p>Tenemos varios Beats oficiales y otros tantos desarrollados por la comunidad que permiten la extracción de información de los sistemas</p>
+<p><a href="https://www.elastic.co/es/downloads/beats/">https://www.elastic.co/es/downloads/beats/</a></p>
+<p>Tenemos diversos beats desarrollados por la comunidad</p>
+<p><a href="https://www.elastic.co/guide/en/beats/devguide/current/community-beats.html">https://www.elastic.co/guide/en/beats/devguide/current/community-beats.html</a></p>
+<p>Los beats oficiales más importantes son:</p>
+<ul>
+<li><strong>Metricbeat</strong> se utiliza para recopilar las métricas del sistema y las métricas de la aplicación y enviarlas al servidor de Elastic Stack </li>
+<li><strong>Filebeat </strong>monitorea los archivos de registro o las ubicaciones que usted especifica, recopila eventos de registro y los reenvía a Elasticsearch o Logstash</li>
+<li><strong>Packetbeat </strong>rastrea el tráfico de la red, decodifica protocolos...</li>
+<li><strong>Heartbeat </strong>Permite a los clientes saber si uno de los nodos/servicio está presente o ausente</li>
+</ul>
+<h2 id="metricbeat-en-ubuntu">Metricbeat en Ubuntu<a class="headerlink" href="#metricbeat-en-ubuntu" title="Permanent link">&para;</a></h2>
+<h3 id="introduccion_2">Introducción<a class="headerlink" href="#introduccion_2" title="Permanent link">&para;</a></h3>
+<p>Vamos a probar sobre una máquina de ubuntu a monitorizar el sistema y a alguno de sus servicios, como puede ser Mysql y Apache</p>
+<p><img alt="alt_text" src="images/06/image21.png" /></p>
+<p>Probaremos de forma básica los beats</p>
+<ul>
+<li>importamos las plantillas de dashboard disponibles en el beat a Kibana para visualizar los datos capturados</li>
+<li>activaremos los módulos que nos permiten monitorizar la información de los servicios que nos interesen en ubuntu para que envíe la información a Elasticsearch</li>
+<li>visualizamos la información en kibana mediante los Dashboard creados por la plantillas.</li>
+</ul>
+<h3 id="configuracion-de-elasticsearch-y-kibana">Configuración de Elasticsearch y Kibana:<a class="headerlink" href="#configuracion-de-elasticsearch-y-kibana" title="Permanent link">&para;</a></h3>
+<p>Vamos a permitir que escuchen desde cualquier petición de la red para poder recibir datos de la máquina Ubuntu a monitorizar.</p>
+<ul>
+<li>Abre el fichero de configuración de Elasticsearch <code>elasticsearch/config/elasticsearch.yml</code></li>
+<li>Añade la líneas(cuidado con los espacios y tabuladores en los ficheros yaml)</li>
+</ul>
+<p>network.host: 0.0.0.0</p>
+<p>discovery.type: single-node</p>
+<ul>
+<li>Reinicia Elasticsearch.</li>
+<li>Comprueba que te contesta desde una petición al servicio que no sea localhost. Por ejemplo, si indicamos la ip donde se encuentra instalado Elasticsearch desde el navegador, debería contestarnos</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image12.png" /></p>
+<ul>
+<li>Abre el fichero de configuración de Kibana: <code>kibana/config/kibana.yml</code></li>
+<li>Modifica o añade la línea </li>
+</ul>
+<p>server.host: "0.0.0.0"</p>
+<ul>
+<li>Reinicia Kibana</li>
+<li>Comprueba que puedes acceder a Kibana desde otra máquina. Por ejemplo, la máquina virtual</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image17.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Nos aparecerán mensajes de advertencia de que no tenemos la seguridad activada. Los ignoramos.
+</code></pre></div>
+<h3 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Configuración de Ubuntu con Metricbeat
+</code></pre></div>
+<p>Sobre una máquina de Ubuntu/Xubuntu:</p>
+<ul>
+<li>
+<p>Comprobar que se ve con la máquina donde tenemos Elastic y Kibana. Lo más sencillo es desde el navegador, acceder a la ip donde están los servidores(tu máquina anfitrión u otra máquina virtual)  a los puertos 9200 y 5601 </p>
+<p><a href="http://tuip:9200">http://tu_ip:9200</a></p>
+<p><a href="http://tu_ip:5601">http://tu_ip:5601</a></p>
+</li>
+<li>
+<p>Instalamos algunos servicios en ubuntu:</p>
+</li>
+</ul>
+<p>sudo apt install ssh</p>
+<p>sudo apt install apache2</p>
+<p>sudo apt install mysql-server</p>
+<ul>
+<li>
+<p>Descargar Metricbeat en Ubuntu y descomprimir</p>
+<p><a href="https://www.elastic.co/es/downloads/beats/metricbeat">https://www.elastic.co/es/downloads/beats/metricbeat</a></p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image14.png" /></p>
+<ul>
+<li>Abre el fichero de configuración  metricbeat.yml</li>
+<li>Vamos a configurar Metricbeat para que envíe a Kibana las plantillas de los Dashboard. Cambia la configuración:</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image18.png" /></p>
+<ul>
+<li>Le indicamos donde está Elasticsearch que será el consumidor de los datos</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image5.png" /></p>
+<h3 id="configuracion-de-los-modulos-de-metricbeat">Configuración de los módulos de Metricbeat<a class="headerlink" href="#configuracion-de-los-modulos-de-metricbeat" title="Permanent link">&para;</a></h3>
+<p>Los Beats tienen diferentes módulos que les da diferentes capacidades, la lista de módulos disponibles para Metricbeat la tenemos en:</p>
+<p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html">https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html</a></p>
+<p>Vemos que la lista es muy completa. Nosotros vamos a probar alguno.</p>
+<ul>
+<li>Es necesario que Elasticsearch y Kibana estén iniciados</li>
+<li>Los módulos disponibles los podemos ver mediante <code>./metricbeat modules list</code></li>
+</ul>
+<p><img alt="alt_text" src="images/06/image2.png" /></p>
+<ul>
+<li>
+<p>Vemos que tenemos por defecto activo “system”. Para configurarlo, editamos el fichero <code>metricbeat/modules.d/system.yml</code>. Podemos activar diferentes métricas en el módulo, En la documentación oficial podemos ver los detalles</p>
+<p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-system.html">https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-system.html</a></p>
+</li>
+<li>
+<p>Activamos alguna métrica extra y cambiaremos los tiempo de consulta para poder visualizar antes los datos</p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image20.png" /></p>
+<ul>
+<li>
+<p>Vamos a realizar un test del fichero de configuración antes de iniciar el servicio para comprobar que todo es correcto</p>
+<p>./metricbeat test config -c metricbeat.yml</p>
+</li>
+<li>
+<p>Iniciamos el servicio</p>
+<p>./metricbeat -c metricbeat.yml</p>
+</li>
+<li>
+<p>Desde este momento se monitoriza el servidor. Vamos a ver los resultados en kibana desde el menú Observabitity y seleccionamos nuestro servidor</p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image11.png" /></p>
+<ul>
+<li>Podemos ver diferentes métricas</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image9.png" /></p>
+<ul>
+<li>Si vamos al menú “dashboards”, vemos que nos ha importado una serie de plantillas preconfiguradas</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image15.png" /></p>
+<ul>
+<li>Podemos probar los diferentes Dashboards del módulo system</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image7.png" /></p>
+<h3 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Ejercicio
+</code></pre></div>
+<p>Captura de pantalla de los Dashboards</p>
+<h3 id="activar-otro-modulo-modulo-apache">Activar otro módulo: Módulo Apache<a class="headerlink" href="#activar-otro-modulo-modulo-apache" title="Permanent link">&para;</a></h3>
+<p>Vamos a monitorizar Apache. Para ello:</p>
+<ul>
+<li>Paramos metricbeat</li>
+<li>
+<p>Activamos el módulo de apache</p>
+<p>./metricbeat modules enable apache</p>
+</li>
+<li>
+<p>Comprobamos que está activo</p>
+<p>./metricbeat modules list</p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image10.png" /></p>
+<ul>
+<li>
+<p>Iniciamos metricbeat y podemos ir al dashboard de Apache</p>
+<p>./metricbeat -c metricbeat.yml</p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image6.png" /></p>
+<h3 id="ejercicio">Ejercicio<a class="headerlink" href="#ejercicio" title="Permanent link">&para;</a></h3>
+<p>Captura de pantalla con el dashboard de Apache</p>
+<h3 id="ejercicio-opcional">Ejercicio opcional<a class="headerlink" href="#ejercicio-opcional" title="Permanent link">&para;</a></h3>
+<p>Activa el módulo de Mysql y visulaliza de dashboard correspondiente</p>
+<p>Instala docker, y levanta dos docker en la máquina. Activa el módulo de docker de metricbeat y visualiza su dashboard</p>
+<h2 id="filebeat-para-la-monitorizacion-de-logs-de-sistema">Filebeat para la monitorización de logs de  sistema<a class="headerlink" href="#filebeat-para-la-monitorizacion-de-logs-de-sistema" title="Permanent link">&para;</a></h2>
+<h3 id="introduccion_3">Introducción<a class="headerlink" href="#introduccion_3" title="Permanent link">&para;</a></h3>
+<p>Es el más importante de los beats. Nos permite realizar la ingesta de los diferentes logs de los sistemas y enviarselos a Elasticsearch, o si es necesario su transformación, a  Logstash. Su documentación la tenemos en</p>
+<p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/index.html">https://www.elastic.co/guide/en/beats/filebeat/current/index.html</a></p>
+<p>Vamos a iniciarlo de forma simple utilizando los módulos del beat, pero podemos realizar la ingesta de cualquier fichero que queramos.</p>
+<h3 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Vamos a la página oficial</p>
+<p>https://www.elastic.co/es/downloads/beats/filebeat</p>
+</li>
+<li>
+<p>Seleccionar la versión para nuestro Ubuntu</p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image1.png" /></p>
+<ul>
+<li>Descomprimir el fichero y editar el fichero de configuración filebeat.yml</li>
+<li>Configuramos los mismos parámetros que en metricbeat</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image18.png" /></p>
+<p><img alt="alt_text" src="images/06/image5.png" /></p>
+<ul>
+<li>
+<p>Podemos ver los módulos disponibles</p>
+<p>./filebeat modules list</p>
+</li>
+<li>
+<p>Vamos a probar los módulos de system y apache</p>
+<p>./filebeat modules enable apache system</p>
+</li>
+<li>
+<p>Comprobamos si la configuración es correcta</p>
+<p>./filebeat test config -c filebeat.yml</p>
+</li>
+<li>
+<p>Iniciamos filebeat</p>
+<p>./filebeat -c filebeat.yml</p>
+</li>
+</ul>
+<h3 id="acceso-desde-kibana-al-registro-del-log-syslog">Acceso desde Kibana al registro del log syslog<a class="headerlink" href="#acceso-desde-kibana-al-registro-del-log-syslog" title="Permanent link">&para;</a></h3>
+<p>Vamos a realizar alguna accesos y tareas para luego monitorizarlo desde Kibana</p>
+<ul>
+<li>
+<p>Acceso vía ssh. Desde la máquina anfitrión accedemos mediante ssh</p>
+<p>ssh usuario@192.168.18.126 (la ip de ubuntu)</p>
+</li>
+<li>
+<p>Podemos hacer alguna tarea sudo</p>
+<p>sudo apt update</p>
+<p>sudo adduser pepe</p>
+</li>
+<li>
+<p>Vamos al Dashboard de Kibana donde nos tiene que haber importado las plantillas asociadas a Filebeat</p>
+</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image13.png" /></p>
+<ul>
+<li>Podemos probar diferentes dashboards</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image22.png" /></p>
+<h3 id="visualizacion-desde-kibana-al-log-de-apache">Visualización desde Kibana al log de Apache<a class="headerlink" href="#visualizacion-desde-kibana-al-log-de-apache" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Acceder desde distintos navegadores(firefox, chrome…) a nuestro servidor Apache instalado anteriormente.</li>
+</ul>
+<p><img alt="alt_text" src="images/06/image19.png" /></p>
+<ul>
+<li>Probamos si funciona </li>
+</ul>
+<p><img alt="alt_text" src="images/06/image16.png" /></p>
+<p><img alt="alt_text" src="images/06/image3.png" /></p>
+<h3 id="ejercicio_1">Ejercicio<a class="headerlink" href="#ejercicio_1" title="Permanent link">&para;</a></h3>
+<p>Entrega las capturas de pantalla con los dashboard de Filebeat</p>
+<p>Ejercicio opcional</p>
+<p>Activa el módulo de mysql y prueba crear una base de datos y realizar consultas sobre ella. Monitoriza mediante Kibana el log. Explica todo el proceso y captura de pantallas de resultados</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pie">
+      
+        
+        <a href="05puestaenproduccion.html" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 5.- Puesta en producción" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              5.- Puesta en producción
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            2021-2022 Jose Antonio López - Licencia CC BY-NC-SA
+          </div>
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+      <a href="mailto:<ja.lopez@edu.gva.es>" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.557.557 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["header.autohide", "toc.integrate"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
