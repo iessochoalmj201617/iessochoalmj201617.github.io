@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#crud-en-elasticsearch-y-analizadores" class="md-skip">
+        <a href="#crud-en-elasticsearch" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -322,6 +322,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#campo-_score-relevancia" class="md-nav__link">
+    Campo _score: Relevancia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#consulta-ordenada" class="md-nav__link">
     Consulta ordenada
   </a>
@@ -469,7 +476,7 @@
               
                 
                 
-                <h1 id="crud-en-elasticsearch-y-analizadores">CRUD en Elasticsearch y Analizadores<a class="headerlink" href="#crud-en-elasticsearch-y-analizadores" title="Permanent link">&para;</a></h1>
+                <h1 id="crud-en-elasticsearch">CRUD en Elasticsearch<a class="headerlink" href="#crud-en-elasticsearch" title="Permanent link">&para;</a></h1>
 <h2 id="crudcrear-leer-actualizar-y-borrar-basico-en-elasticsearch"><a href="https://es.wikipedia.org/wiki/CRUD">CRUD</a>(crear, leer, actualizar y borrar) básico en Elasticsearch<a class="headerlink" href="#crudcrear-leer-actualizar-y-borrar-basico-en-elasticsearch" title="Permanent link">&para;</a></h2>
 <h3 id="api-rest">API Rest<a class="headerlink" href="#api-rest" title="Permanent link">&para;</a></h3>
 <p>Elasticsearch comparte todas sus funcionalidades desde su <a href="https://codigonaranja.com/restful-web-service">API Rest</a>. Por lo que para operar con el sistema le mandaremos sentencias <a href="https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto">HTTP</a>:</p>
@@ -534,7 +541,7 @@ Vemos que para insertar un documento nuevo tenemos que indicar su id y utilizar 
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
 tenemos como resultado que el <code>id</code> lo asigna el sistema</p>
-<p><img alt="alt_text" src="images/02/image6.png" /></p>
+<p><img alt="alt_text" src="images/02/image2.png" /></p>
 <h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Ejercicios</p>
@@ -588,8 +595,9 @@ Podemos buscar aquellos que son mayores de  30
 <span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
 <span class="linenos" data-linenos="11 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="12 "></span><span class="p">}</span>
-</code></pre></div>
-Vamos a realizar una consulta para ver a quienes les gusta la montaña y/o nadar
+</code></pre></div></p>
+<h3 id="campo-_score-relevancia">Campo _score: Relevancia<a class="headerlink" href="#campo-_score-relevancia" title="Permanent link">&para;</a></h3>
+<p>Vamos a realizar una consulta para ver a quienes les gusta la montaña y/o nadar
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -634,7 +642,7 @@ Podemos realizar consultas parecidas al GroupBy de SQL  mediante las agregacione
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div></p>
 <h3 id="consulta-ordenada">Consulta ordenada<a class="headerlink" href="#consulta-ordenada" title="Permanent link">&para;</a></h3>
-<p>Podemos solicitar la consulta ordenada por algún campo</p>
+<p>Podemos solicitar la consulta ordenada por algún campo en vez de que ordene por _score o relevancia.</p>
 <div class="admonition warning">
 <p class="admonition-title">Busquedas ordenadas</p>
 <p>El campo por el que ordenes no puede ser de tipo “text”, nos daría un error. Estos campos son analizados. Para ordenar tiene que ser de tipo <code>keyword</code></p>
@@ -657,7 +665,7 @@ Vemos que crea dos tipo para los campo: Text y keyword</p>
 <p><img alt="alt_text" src="images/02/image11.png" /></p>
 <p>El tipo <code>text</code> se encuentra analizado y el <code>keyword</code> no lo está</p>
 <div class="admonition warning">
-<p class="admonition-title">Ordenar por keyword</p>
+<p class="admonition-title">Ordenar por nombre.keyword</p>
 <p>Tenemos que ordenar por el campo no tokenizado de tipo keyword</p>
 </div>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/miempresa/_search</span>
@@ -797,10 +805,10 @@ Podemos añadir nuevos campos</p>
 <span class="linenos" data-linenos="5 "></span>        <span class="p">}</span>
 <span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
 </code></pre></div>
-Dependiendo del tipo de datos, es posible dar directivas explícitas a Elasticsearch al procesar el campo para una mejor gestión. Las opciones más utilizadas son las sigues:</p>
+Dependiendo del tipo de datos, es posible dar directivas explícitas a Elasticsearch al procesar el campo para una mejor gestión. Las opciones más utilizadas son las siguientes:</p>
 <ul>
 <li><span style="text-decoration:underline;">store </span>(por defecto falso): Esto marca el campo para ser almacenado en un índice separado para una rápida recuperación. El almacenamiento de un campo consume espacio en disco, pero reduce el cálculo si necesita extraerlo de un documento (es decir, en scripting y agregaciones). Los valores posibles para esta opción son falso y verdadero.</li>
-<li><span style="text-decoration:underline;">index</span>: Esto define si el campo debe indexarse o no. los valores posibles para este parámetro son verdadero y falso. Los campos de índice no son buscable (verdadero por defecto).</li>
+<li><span style="text-decoration:underline;">index</span>: Esto define si el campo debe indexarse o no. Los valores posibles para este parámetro son verdadero y falso. Los campos de índice  son buscables (verdadero por defecto).</li>
 <li><span style="text-decoration:underline;">null_value</span>: esto define un valor predeterminado si el campo es nulo.</li>
 <li><span style="text-decoration:underline;">boost</span>: Esto se usa para cambiar la importancia de un campo (predeterminado 1.0). Boost funciona solo a nivel de término, por lo que se usa principalmente en términos, términos, y consultas de coincidencias.</li>
 <li><span style="text-decoration:underline;">search_analyzer</span>: Esto define un analizador que se utilizará durante la búsqueda. Si no está definido, se utiliza el analizador del objeto principal (por defecto, nulo).</li>
