@@ -559,7 +559,7 @@ Si buscamos directamente “celebración” con acento vemos que no tenemos ning
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/03/image1.png" /></p>
-<p>pero el problema está cuando el usuario que escribe la consulta, por ejemplo tiene problemas de ortografía y no sabe que celebración lleva acento o olvida la ñ
+<p>Pero el problema lo tenemos cuando el usuario que escribe la consulta, por ejemplo, tiene problemas de ortografía y no sabe que celebración lleva acento.
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias/_search</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -641,7 +641,7 @@ Si realizamos la consulta de nuevo sin acento
 Vemos que nos consigue el resultado. </p>
 <p><img alt="alt_text" src="images/03/image3.png" /></p>
 <div class="admonition tip">
-<p class="admonition-title">Análisis del analizador</p>
+<p class="admonition-title">El Analizador analizado...</p>
 <p>Podemos ver cómo  actúa el analizador para estudiar si creará el índice necesario para las búsquedas que nuestro proyecto requiere y podamos observar  que:
  <ul>
 <li>no creamos un análisis demasiado profundo con un coste de espacio y proceso no necesario para el proyecto</li>
@@ -664,7 +664,7 @@ Vemos que nos consigue el resultado. </p>
 </ul>
 <p>Vamos a ver un ejemplo, imaginemos que queremos guardar las noticias en un índice diferente cada año y además queremos tener el analizador en español disponible para otras plantillas.</p>
 <ul>
-<li>Creamos el componente con el analizador
+<li>Creamos el <strong>Componet template</strong> que contendrá el analizador
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>    <span class="err">PUT</span> <span class="err">_compo</span><span class="kc">nent</span><span class="err">_</span><span class="kc">te</span><span class="err">mpla</span><span class="kc">te</span><span class="err">/pla</span><span class="kc">nt</span><span class="err">illa_a</span><span class="kc">nal</span><span class="err">izador_es</span>
 <span class="linenos" data-linenos=" 2 "></span>    <span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span>      <span class="nt">&quot;template&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -702,7 +702,7 @@ Vemos que nos consigue el resultado. </p>
 <span class="linenos" data-linenos="35 "></span>      <span class="p">}</span>
 <span class="linenos" data-linenos="36 "></span>    <span class="p">}</span>
 </code></pre></div></li>
-<li>Creamos una plantilla para todos los índices que el nombre empiece por <code>noticias-</code> e indicamos que está compuesto por el anterior
+<li>Creamos una plantilla(<strong>index template</strong>) para todos los índices que el nombre empiece por <code>noticias-</code> e indicamos que está compuesto por el anterior
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>        <span class="err">PUT</span> <span class="err">_i</span><span class="kc">n</span><span class="err">dex_</span><span class="kc">te</span><span class="err">mpla</span><span class="kc">te</span><span class="err">/</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias</span><span class="mi">-</span><span class="kc">te</span><span class="err">mpla</span><span class="kc">te</span>
 <span class="linenos" data-linenos=" 2 "></span>        <span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span>          <span class="nt">&quot;index_patterns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;noticias-*&quot;</span><span class="p">],</span>
@@ -742,7 +742,7 @@ Vemos que nos consigue el resultado. </p>
 <h2 id="busqueda-de-autocompletado">Búsqueda de autocompletado<a class="headerlink" href="#busqueda-de-autocompletado" title="Permanent link">&para;</a></h2>
 <p>Imaginemos que queremos que en cuanto el usuario comience a escribir, comenzar a dar resultados al usuario de posibles coincidencias, es decir, como hace el buscador de Google. Para ello, si tenemos el token:</p>
 <p><code>elasticsearch</code> </p>
-<p>que nos descomponga también</p>
+<p>lo descomponemos en</p>
 <p><code>el, ela, , elas, elast, elasti, elastic, le, lea</code></p>
 <p>Vamos a ver un ejemplo, borraremos lo anterior
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>DELETE /noticias*
@@ -849,7 +849,7 @@ En una web, por cada tecla pulsada por el usuario iríamos realizando búsquedas
 <h2 id="ejercicio-4_bopcional">Ejercicio 4_b(opcional)<a class="headerlink" href="#ejercicio-4_bopcional" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Ejercicio opcional</p>
-<p>Crea una plantilla llamada <code>noticias-cat-template</code> que permita analizar noticias en catalán. Realizar varias pruebas de análisis de texto en catalán y entrega el codigo del filtro y capturas de pantalla de las pruebas realizadas</p>
+<p>Crea una plantilla llamada <code>noticias-cat-template</code> que permita analizar noticias en catalán. Realizar varias pruebas de análisis de texto en catalán y entrega el código del filtro y capturas de pantalla de las pruebas realizadas</p>
 </div>
                 
               
