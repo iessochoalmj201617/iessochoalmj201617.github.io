@@ -61,6 +61,30 @@ GET /productos/_search
     }
   }
 }
+#Sensible a May/Min
+GET /productos/_search
+{
+  "query": {
+    "term": {
+      "empresa.raw": {
+        "value": "Bonaire",
+        "case_insensitive":"true"
+      }
+      
+    }
+  }
+}
+#Wildcard
+GET /productos/_search
+{
+  "query": {
+    "wildcard": {
+      "empresa.raw": {
+        "value": "C*"
+      }
+    }
+  }
+}
 ##FULL TEXT QUERIES
 
 #Full text queries

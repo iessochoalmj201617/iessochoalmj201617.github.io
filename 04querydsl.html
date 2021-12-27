@@ -352,6 +352,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#otros-operadores-wildcard-fuzzy-regexp" class="md-nav__link">
+    Otros operadores: wildcard, fuzzy, regexp
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -610,7 +617,7 @@ Si tenemos algún fallo podemos borrar el índice y volver a intentarlo
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/04/image2.png" /></p>
 <ul>
-<li><em>Tipo keyword</em>: El sistema no los analizará, tanto para la búsqueda como al indexar, nos servirán para realizar agregaciones, sumatorios, estadísticas….</li>
+<li><em>Tipo keyword</em>: Tanto para la búsqueda como al indexar, el sistema no los analizará. Nos servirán para realizar agregaciones, sumatorios, estadísticas….</li>
 <li><em>Tipo text</em>: El sistema los analizará como vimos anteriormente tanto al indexar como al buscar. Elasticsearch nos permite tener campos como ambos tipos.</li>
 </ul>
 <p>Vamos a ver como realizar búsquedas en los tipos keyword. Tenemos la documentación en</p>
@@ -686,6 +693,38 @@ Nos da como resultado todos los productos de  la empresa "BONAIRE". </p>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
 no nos devuelve resultados, ya que en la búsqueda no se realiza ningún análisis.</p>
+<p>Si vemos la documentación, podemos indicarle que ignore mayúsculas /minúsculas </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;term&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;empresa.raw&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bonaire&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&quot;case_insensitive&quot;</span><span class="p">:</span><span class="s2">&quot;true&quot;</span>
+<span class="linenos" data-linenos=" 8 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="otros-operadores-wildcard-fuzzy-regexp">Otros operadores: wildcard, fuzzy, regexp<a class="headerlink" href="#otros-operadores-wildcard-fuzzy-regexp" title="Permanent link">&para;</a></h3>
+<p>En la documentación podemos ver algunos tipos de búsqueda más potentes sobre términos. </p>
+<p>Mediante <code>regexp</code>  podemos realizar búsquedas utilizando expresiones regulares</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html</a></p>
+<p>O mediante <code>wildcard</code> realizar búsquedas mediante los comodines "*" y "?" para crear patrones más simples. Por ejemplo, vamos a buscar los productos de la empresas que empiecen por "C"</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;wildcard&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;empresa.raw&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;C*&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+Otro operador de gran potencia es <code>fuzzy</code>, que realiza combinaciones de palabras de cercanía para solucionar errores ortográficos. Tiene un gran coste computacional.</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html</a></p>
 <h2 id="full-text-queries-busquedas-para-texto-analizado">Full text queries: Búsquedas para texto analizado<a class="headerlink" href="#full-text-queries-busquedas-para-texto-analizado" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html</a></p>
 <p>En estas búsqueda, la cadena de consulta se procesa utilizando el mismo analizador que se aplicó al campo durante la indexación y es donde radica todo el potencial de Elasticsearch.</p>
