@@ -812,8 +812,6 @@ Dependiendo del tipo de datos, es posible dar directivas explícitas a Elasticse
 <li><span style="text-decoration:underline;">null_value</span>: esto define un valor predeterminado si el campo es nulo.</li>
 <li><span style="text-decoration:underline;">boost</span>: Esto se usa para cambiar la importancia de un campo (predeterminado 1.0). Boost funciona solo a nivel de término, por lo que se usa principalmente en términos, términos, y consultas de coincidencias.</li>
 <li><span style="text-decoration:underline;">search_analyzer</span>: Esto define un analizador que se utilizará durante la búsqueda. Si no está definido, se utiliza el analizador del objeto principal (por defecto, nulo).</li>
-<li><span style="text-decoration:underline;">include_in_all</span>: Esto marca el campo actual que se indexará en el especial _all (un campo que contiene el texto concatenado de todos los campos) (predeterminado cierto).</li>
-<li><span style="text-decoration:underline;">term_vector</span>:Otro parámetro importante, disponible solo para el mapeo de texto, es term_vector</li>
 </ul>
 <p>Por ejemplo, si no queremos que se indexe un campo</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="err">PUT</span> <span class="err">/ca</span><span class="kc">tal</span><span class="err">ogo/_mappi</span><span class="kc">n</span><span class="err">g</span>
