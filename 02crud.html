@@ -810,7 +810,7 @@ Dependiendo del tipo de datos, es posible dar directivas explícitas a Elasticse
 <li><span style="text-decoration:underline;">store </span>(por defecto falso): Esto marca el campo para ser almacenado en un índice separado para una rápida recuperación. El almacenamiento de un campo consume espacio en disco, pero reduce el cálculo si necesita extraerlo de un documento (es decir, en scripting y agregaciones). Los valores posibles para esta opción son falso y verdadero.</li>
 <li><span style="text-decoration:underline;">index</span>: Esto define si el campo debe indexarse o no. Los valores posibles para este parámetro son verdadero y falso. Los campos de índice  son buscables (verdadero por defecto).</li>
 <li><span style="text-decoration:underline;">null_value</span>: esto define un valor predeterminado si el campo es nulo.</li>
-<li><span style="text-decoration:underline;">boost</span>: Esto se usa para cambiar la importancia de un campo (predeterminado 1.0). Boost funciona solo a nivel de término, por lo que se usa principalmente en términos, términos, y consultas de coincidencias.</li>
+<li><span style="text-decoration:underline;">boost</span>: Esto se usa para cambiar la importancia de un campo (predeterminado 1.0). Boost funciona solo a nivel de término, por lo que se usa principalmente en términos y consultas de coincidencias.</li>
 <li><span style="text-decoration:underline;">search_analyzer</span>: Esto define un analizador que se utilizará durante la búsqueda. Si no está definido, se utiliza el analizador del objeto principal (por defecto, nulo).</li>
 </ul>
 <p>Por ejemplo, si no queremos que se indexe un campo</p>
