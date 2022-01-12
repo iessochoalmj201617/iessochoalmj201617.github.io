@@ -18,7 +18,7 @@ PUT /miempresa/_doc/1
 {
   "nombre":"Pepe",
   "apellido":"Pomez",
-  "edad":"25",
+  "edad":25,
   "sobremi":"Me gusta nadar y la montaña y la musica rock",
   "intereses":["deporte","musica"]
 }
@@ -28,7 +28,7 @@ PUT /miempresa/_doc/2
 {
   "nombre":"Maria",
   "apellido":"Perez",
-  "edad":"35",
+  "edad":35,
   "sobremi":"Me gusta el baloncesto, la montaña y la musica",
   "intereses":["deporte","lectura"]
 }
@@ -37,7 +37,7 @@ PUT /miempresa/_doc/3
 {
   "nombre":"Fer",
   "apellido":"Perez",
-  "edad":"28",
+  "edad":28,
   "sobremi":"Me encanta las tardes jugando al ajedrez y pescar los sabados",
   "intereses":["ajedrez","pesca"]
 }
@@ -47,7 +47,7 @@ POST /miempresa/_doc/
 {
   "nombre":"Carmen",
   "apellido":"Garcia",
-  "edad":"38",
+  "edad":38,
   "sobremi":"Voy al a bailar y amo viajar, sobre todo a sitios montañosos",
   "intereses":["deporte","viajar"]
 }
@@ -163,7 +163,7 @@ PUT /miempresa/_doc/3
 {
   "nombre":"Fer",
   "apellido":"Perez",
-  "edad":"29",
+  "edad":29,
   "sobremi":"Me gusta descansar",
   "intereses":["ajedrez","pesca","canicas"]
 }
@@ -172,7 +172,7 @@ PUT /miempresa/_doc/3
 POST /miempresa/_update/2
 {
   "doc":{
-  "edad":"45"
+  "edad":45
   }
 }
 #Actualizar documento que no existe: Error
@@ -181,7 +181,7 @@ POST /miempresa/_update/8
   "doc": { 
   "nombre":"Pili",
   "apellido":"Bas",
-  "edad":"27",
+  "edad":27,
   "sobremi":"Me gusta estar con la familia",
   "intereses":["patinar","pintar"]
   }
@@ -192,7 +192,7 @@ POST /miempresa/_update/8
   "doc": { 
   "nombre":"Pili",
   "apellido":"Bas",
-  "edad":"27",
+  "edad":27,
   "sobremi":"Me gusta estar con la familia",
   "intereses":["patinar","pintar"]
   },
