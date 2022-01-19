@@ -644,16 +644,17 @@ Vemos que nos consigue el resultado. </p>
 <p class="admonition-title">El Analizador analizado...</p>
 <p>Podemos ver cómo  actúa el analizador para estudiar si creará el índice necesario para las búsquedas que nuestro proyecto requiere y podamos observar  que:
  <ul>
-<li>no creamos un análisis demasiado profundo con un coste de espacio y proceso no necesario para el proyecto</li>
-<li>que nos quedemos escasos para que la búsqueda sea eficaz</li>
+<li>El  análisis no es demasiado profundo con un coste de espacio y proceso no necesario para el proyecto</li>
+<li>El análisis es demasiado escaso para que la búsqueda sea eficaz</li>
 </ul> </p>
 </div>
 <p>Vamos a probar nuestro analizador
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span>  <span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias/_a</span><span class="kc">nal</span><span class="err">yze</span>
 <span class="linenos" data-linenos="2 "></span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;mianalizador&quot;</span><span class="p">,</span> 
-<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;ejemplo...Los maños están de celebración el día de Pilar&quot;</span>
-<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;ejemplo...Los maños están de celebración el día de Pilar&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>   <span class="nt">&quot;explain&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/03/image10.png" /></p>
 <h2 id="plantillas-de-indices">Plantillas de índices<a class="headerlink" href="#plantillas-de-indices" title="Permanent link">&para;</a></h2>

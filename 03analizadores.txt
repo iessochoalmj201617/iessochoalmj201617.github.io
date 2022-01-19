@@ -137,13 +137,6 @@ POST /noticias/_doc/
   "titulo": "ejemplo...Los maños están de celebración el día de Pilar"
 }
 
-#Probamos el analizador
-POST  noticias/_analyze
-{
-  "analyzer": "mianalizador", 
-  "text": "ejemplo...Los maños están de celebración el día de Pilar",
-   "explain": true
-}
 
 #realizamos la consulta de nuevo sin acento
 GET /noticias/_search
@@ -154,7 +147,13 @@ GET /noticias/_search
     }
   }
 }
-
+#Probamos el analizador
+POST  noticias/_analyze
+{
+  "analyzer": "mianalizador", 
+  "text": "ejemplo...Los maños están de celebración el día de Pilar",
+   "explain": true
+}
 #Plantillas de indices
 
 #Creamos el compones con el analizador en español
