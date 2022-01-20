@@ -40,7 +40,6 @@ PUT mi-indice
       "analyzer": {
         "mi_analizador_es": {
           "type": "standard",
-          "max_token_length": 5,
           "stopwords": "_spanish_"
         }
       }
@@ -98,7 +97,7 @@ PUT /noticias
         },
         "spanish_stemmer": {
           "type":       "stemmer",
-          "language":   "spanish"
+          "language":   "light_spanish"
         }
       },
       "analyzer": {
@@ -154,6 +153,85 @@ POST  noticias/_analyze
   "text": "ejemplo...Los maños están de celebración el día de Pilar",
    "explain": true
 }
+#Eliminamos el índice
+DELETE noticias
+#Creamos el indice con analizador para español pero cambiando el stemmer
+PUT /noticias
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "spanish_stop": {
+          "type":       "stop",
+          "stopwords":  "_spanish_" 
+        },
+        "spanish_keywords": {
+          "type":       "keyword_marker",
+          "keywords":   ["ejemplo"] 
+        },
+        "spanish_stemmer": {
+          "type":       "stemmer",
+          "language":   "spanish"
+        }
+      },
+      "analyzer": {
+        "mianalizador": {
+          "tokenizer":  "standard",
+          "filter": [
+            "lowercase",
+            "spanish_stop",
+            "spanish_keywords", "spanish_stemmer",
+            "asciifolding"
+            
+          ]
+        }
+      }
+    }
+  }
+  , "mappings": {
+    "properties": {
+       "titulo": {
+          "type": "text",
+          "analyzer": "mianalizador",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        }
+    }
+  }
+}
+#Añadimos documento
+POST /noticias/_doc/
+{
+  "titulo": "ejemplo...Los maños están de celebración el día de Pilar"
+}
+#Busqueda sin resultados
+GET /noticias/_search
+{
+  "query": {
+    "match": {
+      "titulo": "celebracion"
+    }
+  }
+}
+#analizamos
+POST  noticias/_analyze
+{
+  "analyzer": "mianalizador", 
+  "text": "ejemplo...Los maños están de celebración el día de Pilar",
+   "explain": true
+}
+#analizamos celebracion sin acento
+POST  noticias/_analyze
+{
+  "analyzer": "mianalizador", 
+  "text": "celebracion",
+   "explain": true
+}
+
 #Plantillas de indices
 
 #Creamos el compones con el analizador en español
@@ -173,7 +251,7 @@ PUT _component_template/plantilla_analizador_es
         },
         "spanish_stemmer": {
           "type":       "stemmer",
-          "language":   "spanish"
+          "language":   "light_spanish"
         }
       },
       "analyzer": {

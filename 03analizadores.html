@@ -337,6 +337,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#analizador-analizado" class="md-nav__link">
+    Analizador analizado...
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -526,13 +533,12 @@ nos devuelve el texto tokenizado</p>
 <span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
 <span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;mi_analizador_es&quot;</span><span class="p">:</span> <span class="p">{</span>
 <span class="linenos" data-linenos=" 7 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 8 "></span>          <span class="nt">&quot;max_token_length&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 9 "></span>          <span class="nt">&quot;stopwords&quot;</span><span class="p">:</span> <span class="s2">&quot;_spanish_&quot;</span>
-<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span>      <span class="p">}</span>
-<span class="linenos" data-linenos="12 "></span>    <span class="p">}</span>
-<span class="linenos" data-linenos="13 "></span>  <span class="p">}</span>
-<span class="linenos" data-linenos="14 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>          <span class="nt">&quot;stopwords&quot;</span><span class="p">:</span> <span class="s2">&quot;_spanish_&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
 </code></pre></div>
 Analizamos un texto
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span>  <span class="err">mi</span><span class="mi">-</span><span class="err">i</span><span class="kc">n</span><span class="err">dice/_a</span><span class="kc">nal</span><span class="err">yze</span>
@@ -640,12 +646,18 @@ Si realizamos la consulta de nuevo sin acento
 </code></pre></div>
 Vemos que nos consigue el resultado. </p>
 <p><img alt="alt_text" src="images/03/image3.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Error en el fichero.txt ...</p>
+<p>En el fichero con las sentencias había un error en el stemmer. Tenía definido "spanish" en vez de "light_spanish" y el resultado era muy diferente. Esto nos puede servir para comprender mejor en siguiente punto.</p>
+</div>
+<h3 id="analizador-analizado">Analizador analizado...<a class="headerlink" href="#analizador-analizado" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">El Analizador analizado...</p>
 <p>Podemos ver cómo  actúa el analizador para estudiar si creará el índice necesario para las búsquedas que nuestro proyecto requiere y podamos observar  que:
  <ul>
 <li>El  análisis no es demasiado profundo con un coste de espacio y proceso no necesario para el proyecto</li>
 <li>El análisis es demasiado escaso para que la búsqueda sea eficaz</li>
+<li>Que realmente encuentra la información</li>
 </ul> </p>
 </div>
 <p>Vamos a probar nuestro analizador
@@ -657,6 +669,96 @@ Vemos que nos consigue el resultado. </p>
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div></p>
 <p><img alt="alt_text" src="images/03/image10.png" /></p>
+<p>El resultado del último filtro es el resultado de los tokens del índice. </p>
+<p><img alt="alt_text" src="images/03/image13.png" /></p>
+<p>Como he indicado en el punto anterior, había un error en los apuntes y no devolvía el resultado esperado. Vamos a analizarlo. Para ello, vamos a eliminar el índice y vamos a analizar el error anterior.</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">DELETE</span> <span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias</span>
+</code></pre></div>
+Creamos de nuevo el índice pero cambiamos el stemmer "ligth_spanish" por "spanish"</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">PUT</span> <span class="err">/</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;analysis&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;spanish_stop&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span>       <span class="s2">&quot;stop&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>          <span class="nt">&quot;stopwords&quot;</span><span class="p">:</span>  <span class="s2">&quot;_spanish_&quot;</span> 
+<span class="linenos" data-linenos=" 9 "></span>        <span class="p">},</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="nt">&quot;spanish_keywords&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span>       <span class="s2">&quot;keyword_marker&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="12 "></span>          <span class="nt">&quot;keywords&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="s2">&quot;ejemplo&quot;</span><span class="p">]</span> 
+<span class="linenos" data-linenos="13 "></span>        <span class="p">},</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="nt">&quot;spanish_stemmer&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span>       <span class="s2">&quot;stemmer&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span>          <span class="nt">&quot;language&quot;</span><span class="p">:</span>   <span class="s2">&quot;spanish&quot;</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span>      <span class="p">},</span>
+<span class="linenos" data-linenos="19 "></span>      <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="20 "></span>        <span class="nt">&quot;mianalizador&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span>          <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span>  <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="22 "></span>          <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="23 "></span>            <span class="s2">&quot;lowercase&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="24 "></span>            <span class="s2">&quot;spanish_stop&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="25 "></span>            <span class="s2">&quot;spanish_keywords&quot;</span><span class="p">,</span> <span class="s2">&quot;spanish_stemmer&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="26 "></span>            <span class="s2">&quot;asciifolding&quot;</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span>          <span class="p">]</span>
+<span class="linenos" data-linenos="29 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="30 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="31 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="33 "></span>  <span class="p">,</span> <span class="nt">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="34 "></span>    <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="35 "></span>       <span class="nt">&quot;titulo&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="36 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="37 "></span>          <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;mianalizador&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="38 "></span>          <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="39 "></span>            <span class="nt">&quot;keyword&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="40 "></span>              <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;keyword&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="41 "></span>              <span class="nt">&quot;ignore_above&quot;</span><span class="p">:</span> <span class="mi">256</span>
+<span class="linenos" data-linenos="42 "></span>            <span class="p">}</span>
+<span class="linenos" data-linenos="43 "></span>          <span class="p">}</span>
+<span class="linenos" data-linenos="44 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="45 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="46 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="47 "></span><span class="p">}</span>
+</code></pre></div>
+Añadimos el documento anterior
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span> <span class="err">/</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias/_doc/</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;titulo&quot;</span><span class="p">:</span> <span class="s2">&quot;ejemplo...Los maños están de celebración el día de Pilar&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+</code></pre></div>
+realizamos la consulta de nuevo sin acento y vemos que no hay resultados
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias/_search</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>      <span class="nt">&quot;titulo&quot;</span><span class="p">:</span> <span class="s2">&quot;celebracion&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+Vemos que no hay resultados.
+Si realizamos el análisis de la anterior frase</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span>  <span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias/_a</span><span class="kc">nal</span><span class="err">yze</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;mianalizador&quot;</span><span class="p">,</span> 
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;ejemplo...Los maños están de celebración el día de Pilar&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>   <span class="nt">&quot;explain&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+Vemos el resultado del token <code>celebración</code></p>
+<p><img alt="alt_text" src="images/03/image14.png" /></p>
+<p>Si analizamos la palabra <code>celebracion</code> sin acento, vemos que el resultamos es diferente, por lo que no es capaz de encontrarlo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span>  <span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">icias/_a</span><span class="kc">nal</span><span class="err">yze</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;mianalizador&quot;</span><span class="p">,</span> 
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;celebracion&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>   <span class="nt">&quot;explain&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<img alt="alt_text" src="images/03/image15.png" /></p>
 <h2 id="plantillas-de-indices">Plantillas de índices<a class="headerlink" href="#plantillas-de-indices" title="Permanent link">&para;</a></h2>
 <p>En un entorno de producción se suelen dividir los índices, por ejemplo, las noticias por años, o los logs por meses o días. Por ello, a la hora de definir los índices, se crean los que se llaman plantillas a partir de las que creamos los índices. Tenemos dos tipos desde la última versión:</p>
 <ul>
