@@ -386,3 +386,61 @@ POST noticias-01/_analyze
   "text": "El gran libro de elasticseach",
    "explain": true
 }
+
+#Varios Analizadores
+PUT my-index-000001
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "autocomplete_filter": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 20
+        }
+      },
+      "analyzer": {
+        "autocomplete": { 
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "autocomplete_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "text": {
+        "type": "text",
+        "analyzer": "autocomplete", 
+        "search_analyzer": "standard" 
+      }
+    }
+  }
+}
+#creamos un documento
+PUT my-index-000001/_doc/1
+{
+  "text": "El gran libro de elasticsearch" 
+}
+#Busqueda
+GET my-index-000001/_search
+{
+  "query": {
+    "match": {
+      "text": {
+        "query": "lib"
+      }
+    }
+  }
+}
+#analiza
+POST my-index-000001/_analyze
+{
+  "analyzer": "standard",
+  "text": "lib",
+   "explain": true
+}

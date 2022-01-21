@@ -364,6 +364,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#uso-de-varios-analizadores" class="md-nav__link">
+    Uso de varios analizadores
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ejercicio-4" class="md-nav__link">
     Ejercicio 4
   </a>
@@ -944,6 +951,82 @@ En una web, por cada tecla pulsada por el usuario iríamos realizando búsquedas
 <p class="admonition-title">Atentos</p>
 <p>Todo  tiene un coste  y tendremos  un índice de mayor tamaño.</p>
 </div>
+<h2 id="uso-de-varios-analizadores">Uso de varios analizadores<a class="headerlink" href="#uso-de-varios-analizadores" title="Permanent link">&para;</a></h2>
+<p>Podemos analizar un campo con varios analizadores y poder utilizar el campo analizado más conveniente para nuestro propósito. Por otro lado, podemos utilizar analizadores diferentes para la indexación y para la búsqueda.</p>
+<p>Vamos a probar el ejemplo de la documentación oficial
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html</a></p>
+<p>El ejemplo, crea un analizador para el campo <code>text</code> llamado <code>autocomplete</code>que realiza los que hemos visto anteriormente(busqueda de autocompletado), que nos permitiría mostrar al usuario opciones de búsqueda a medida que va escribiendo(al estido google). Pero ya sabemos que la búsqueda también se analiza y no tiene demasiado sentido trocear el texto que buscamos, por lo que para la búsqueda sobre ese campo, utilizará el analizador <code>standard</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">PUT</span> <span class="err">my</span><span class="mi">-</span><span class="err">i</span><span class="kc">n</span><span class="err">dex</span><span class="mi">-000001</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;analysis&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;autocomplete_filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;edge_ngram&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>          <span class="nt">&quot;min_gram&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span>          <span class="nt">&quot;max_gram&quot;</span><span class="p">:</span> <span class="mi">20</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>      <span class="p">},</span>
+<span class="linenos" data-linenos="12 "></span>      <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="nt">&quot;autocomplete&quot;</span><span class="p">:</span> <span class="p">{</span> 
+<span class="linenos" data-linenos="14 "></span>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="15 "></span>          <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span>          <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="17 "></span>            <span class="s2">&quot;lowercase&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="18 "></span>            <span class="s2">&quot;autocomplete_filter&quot;</span>
+<span class="linenos" data-linenos="19 "></span>          <span class="p">]</span>
+<span class="linenos" data-linenos="20 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span>  <span class="p">},</span>
+<span class="linenos" data-linenos="24 "></span>  <span class="nt">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="25 "></span>    <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span>      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="28 "></span>        <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;autocomplete&quot;</span><span class="p">,</span> 
+<span class="linenos" data-linenos="29 "></span>        <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span> 
+<span class="linenos" data-linenos="30 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="31 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="33 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Creamos un documento</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">PUT</span> <span class="err">my</span><span class="mi">-</span><span class="err">i</span><span class="kc">n</span><span class="err">dex</span><span class="mi">-000001</span><span class="err">/_doc/</span><span class="mi">1</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;El gran libro de elasticsearch&quot;</span> 
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+</code></pre></div>
+Vamos a analizar el resultado del indice
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">POST</span> <span class="err">my</span><span class="mi">-</span><span class="err">i</span><span class="kc">n</span><span class="err">dex</span><span class="mi">-000001</span><span class="err">/_a</span><span class="kc">nal</span><span class="err">yze</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;autocomplete&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;El gran libro de elasticseach&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>   <span class="nt">&quot;explain&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+Vemos como trocea las palabras y obtiene varios tokens. </p>
+<p><img alt="alt_text" src="images/03/image16.png" /></p>
+<p>Si realizamos una búsqueda, utilizará el analizador <code>standard</code> y no trocea la palabra
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">GET</span> <span class="err">my</span><span class="mi">-</span><span class="err">i</span><span class="kc">n</span><span class="err">dex</span><span class="mi">-000001</span><span class="err">/_search</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;lib&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">Probamos</span> <span class="err">el</span> <span class="err">a</span><span class="kc">nal</span><span class="err">izador</span> <span class="err">s</span><span class="kc">tan</span><span class="err">dard</span>
+<span class="linenos" data-linenos="2 "></span><span class="err">POST</span> <span class="err">my</span><span class="mi">-</span><span class="err">i</span><span class="kc">n</span><span class="err">dex</span><span class="mi">-000001</span><span class="err">/_a</span><span class="kc">nal</span><span class="err">yze</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>  <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;lib&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>   <span class="nt">&quot;explain&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p><img alt="alt_text" src="images/03/image17.png" /></p>
 <h2 id="ejercicio-4">Ejercicio 4<a class="headerlink" href="#ejercicio-4" title="Permanent link">&para;</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Ejercicio Analizadores</p>
