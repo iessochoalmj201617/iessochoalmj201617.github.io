@@ -707,6 +707,10 @@ no nos devuelve resultados, ya que en la búsqueda no se realiza ningún anális
 <span class="linenos" data-linenos="11 "></span>  <span class="p">}</span>
 <span class="linenos" data-linenos="12 "></span><span class="p">}</span>
 </code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Filtros en campos keyword</p>
+<p>Puede ser interesante, aunque no se realiza análisis en la búsqueda de los campos keyword, podemos pasarle filtros (no tokenizadores) para convertir a minúsculas, quitar caracteres especiales... para que  las búsquedas sean más eficientes. Podemos ver un ejemplo en la documentación oficial <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/normalizer.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/normalizer.html</a></p>
+</div>
 <h3 id="otros-operadores-wildcard-fuzzy-regexp">Otros operadores: wildcard, fuzzy, regexp<a class="headerlink" href="#otros-operadores-wildcard-fuzzy-regexp" title="Permanent link">&para;</a></h3>
 <p>En la documentación podemos ver algunos tipos de búsqueda más potentes sobre términos. </p>
 <p>Mediante <code>regexp</code>  podemos realizar búsquedas utilizando expresiones regulares</p>
@@ -725,6 +729,10 @@ no nos devuelve resultados, ya que en la búsqueda no se realiza ningún anális
 </code></pre></div>
 Otro operador de gran potencia es <code>fuzzy</code>, que realiza combinaciones de palabras de cercanía para solucionar errores ortográficos. Tiene un gran coste computacional.</p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Todo tiene un coste...</p>
+<p>Este tipo de búsquedas(wildcard, fuzzy, regexp) requiere muchos cálculos y comprobaciones, por lo que tendrá una ralentización en el resultado</p>
+</div>
 <h2 id="full-text-queries-busquedas-para-texto-analizado">Full text queries: Búsquedas para texto analizado<a class="headerlink" href="#full-text-queries-busquedas-para-texto-analizado" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/full-text-queries.html</a></p>
 <p>En estas búsqueda, la cadena de consulta se procesa utilizando el mismo analizador que se aplicó al campo durante la indexación y es donde radica todo el potencial de Elasticsearch.</p>
@@ -780,7 +788,19 @@ También podemos ajustar para que  al menos aparezcan un número determinado de 
 <span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;mianalizador&quot;</span>
 <span class="linenos" data-linenos="5 "></span>  <span class="p">,</span> <span class="nt">&quot;explain&quot;</span><span class="p">:</span> <span class="kc">true</span>
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
+También es interesante conocer que  texto le llega en una query.
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET</span> <span class="err">/produc</span><span class="kc">t</span><span class="err">os/_valida</span><span class="kc">te</span><span class="err">/query/?rewri</span><span class="kc">te</span><span class="err">&amp;explai</span><span class="kc">n</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span>      <span class="nt">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Esmalte Jolie &quot;</span>
+<span class="linenos" data-linenos="7 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span>  <span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div>
+<img alt="alt_text" src="images/04/image19.png" /></p>
 <h3 id="fuzziness">Fuzziness<a class="headerlink" href="#fuzziness" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html#query-dsl-match-query-fuzziness">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html#query-dsl-match-query-fuzziness</a></p>
 <p>En ocasiones, por ejemplo en la búsqueda en una web, en la que el usuario introduce el texto, es frecuente que se equivoque al introducir los datos:</p>
@@ -849,7 +869,9 @@ y si necesitamos dar más peso a un campo, por ejemplo a <em>categoría</em>
 <span class="linenos" data-linenos="7 "></span>       <span class="p">}</span>
 <span class="linenos" data-linenos="8 "></span>    <span class="p">}</span>
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
+Observar que el resultado muestra productos que no tiene que ver con zapatos. Esto es debido a que el analizador es demasiado estricto. La solución es crear otros analizadores menos estrictos y añadir campos asociados al campo <em>nombre</em> con estos analizadores.</p>
+<p><img alt="alt_text" src="images/04/image20.png" /></p>
 <h3 id="boolean-query">Boolean Query<a class="headerlink" href="#boolean-query" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html</a></p>
 <p>Permite combinar diferentes queries. Tenemos las siguientes opciones:</p>

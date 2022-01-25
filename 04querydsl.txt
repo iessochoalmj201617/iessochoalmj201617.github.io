@@ -131,6 +131,18 @@ GET productos/_analyze
   "analyzer": "mianalizador"
   , "explain": true
 }
+
+#Qué le llega al buscador Lucene
+GET /productos/_validate/query/?rewrite&explain
+{
+ 
+  "query": {
+    "match": {
+      "nombre": "Esmalte Jolie "
+    }
+  }
+}
+
 #errores ortograficos
 GET /productos/_search
 {
@@ -147,6 +159,19 @@ GET /productos/_search
 
 #Fuzziness
 GET /productos/_search
+{
+    "query": {
+        "match": {
+            "nombre": {
+                "query": "vebidas",
+                "fuzziness": "AUTO"
+
+            }
+        }
+    }
+}
+#Qué busca?
+GET /productos/_validate/query/?rewrite&explain
 {
     "query": {
         "match": {
@@ -210,7 +235,7 @@ GET productos/_search
     "query": {
         "bool": {
             "must": [
-               { "match": {"nombre": "betún"}}
+               { "match": {"nombre": "betun"}}
            ],
             "must_not": [
             {"match":{"empresa":"bufalo"}}
