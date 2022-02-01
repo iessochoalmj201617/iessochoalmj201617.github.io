@@ -513,8 +513,8 @@
                 
                 <h1 id="elasticstack-centro-del-analisis-y-gestion-de-logs">Elasticstack: Centro del análisis y gestión de logs<a class="headerlink" href="#elasticstack-centro-del-analisis-y-gestion-de-logs" title="Permanent link">&para;</a></h1>
 <h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
-<p>El sistema de información de una organización, puede estar compuesto por cientos de servidores, con sus sistemas operativos, cada uno con sus diferentes productos que cada uno de ellos genera miles de líneas de logs de la actividad que realizan. </p>
-<p>El análisis de logs, entra dentro de la categoría del big data por el volúmen de información de información generada y la gran variedad de estructuras de los datos. Por otro lado, la necesidad de la monitorización de los sistemas en tiempo real, hacen que Elasticsearch y su ecosistema Elasticstack, sea uno de los más utilizados en el mercado. Es capaz mediante sus beats(procesos ligeros en los servidores y sistemas), monitorizar todo tipo de logs, programas y redes de nuestro sistema.</p>
+<p>El sistema de información de una organización puede estar compuesto por cientos de servidores, con sus sistemas operativos, cada uno con sus diferentes productos que cada uno de ellos genera miles de líneas de logs de la actividad que realizan. </p>
+<p>El análisis de logs, entra dentro de la categoría del big data por el volúmen de información  generada y la gran variedad de estructuras de los datos. Por otro lado, la necesidad de la monitorización de los sistemas en tiempo real, hacen que Elasticsearch y su ecosistema Elasticstack, sea uno de los más utilizados en el mercado. Es capaz mediante sus beats(procesos ligeros en los servidores y sistemas), monitorizar todo tipo de logs, programas y redes de nuestro sistema que junto a Logstash con el que podemos filtrar y transformar la información que nos llega y Kibana como centro de control que permite crear dashboard visuales de todo el sistema.</p>
 <p><img alt="alt_text" src="images/06/image4.png" /></p>
 <h2 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
 <p>En informática, se usa el término <strong>registro</strong>, <strong><em>log</em></strong> o <strong>historial de <em>log</em></strong> para referirse a la grabación secuencial en un archivo o en una base de datos de todos los acontecimientos (eventos o acciones) que afectan a un proceso particular.</p>
@@ -524,10 +524,7 @@
 <h3 id="necesidad-del-control-de-logs">Necesidad del control de logs<a class="headerlink" href="#necesidad-del-control-de-logs" title="Permanent link">&para;</a></h3>
 <p>Preservar los logs, puede ser necesario para:</p>
 <ol>
-<li>Solución de problemas: cuando se informa de un error o problema, el primer lugar para buscar qué podría haber causado el problema son los registros. Por ejemplo, al mirar un</li>
-</ol>
-<p>seguimiento de la pila de excepciones en los registros, puede encontrar fácilmente la causa raíz del problema.</p>
-<ol start="2">
+<li>Solución de problemas: cuando se informa de un error o problema. Por ejemplo, al mirar un seguimiento de la pila de excepciones en los registros, puede encontrar fácilmente la causa raíz del problema.</li>
 <li>Para comprender el comportamiento del sistema/aplicación</li>
 <li>Auditoría: muchas organizaciones deben adherirse a algunos procedimientos de cumplimiento y están obligados a mantener los registros. Por ejemplo, actividad o transacción de inicio de sesión….</li>
 <li>Análisis predictivo: Algunos ejemplos de casos de uso de predictivo: cuando se sugieren películas o artículos para que los usuarios los compren, detectando fraude, optimización de campañas de marketing, etc.</li>
@@ -544,7 +541,8 @@
 <li>Datos desestructurados: Tenemos gran variedad de estructuras que requieren la transformación previa para su análisis.</li>
 </ul>
 <h2 id="ingesta-de-datos-mediante-beats">Ingesta de datos mediante Beats<a class="headerlink" href="#ingesta-de-datos-mediante-beats" title="Permanent link">&para;</a></h2>
-<p>Vamos a realizar una práctica para ver cómo podemos instalar una serie de Beats para la recolección de datos de algunos sistemas. Estos <strong>beats</strong>, son procesos ligeros que vienen preparados para la recolección de datos de forma predeterminada de muchos sistemas y con una serie de plantillas que nos permiten con poco esfuerzo comenzar a monitorizar los datos desde Kibana. Si necesitamos ajustar y transformar los datos de logs más específicos como puede ser de programas java, tendremos que utilizar Logstash como <a href="https://es.wikipedia.org/wiki/Extract,_transform_and_load">ETL</a> para la extracción de la información.</p>
+<p>Vamos a realizar una práctica para ver cómo podemos instalar una serie de Beats para la recolección de datos de algunos sistemas. Estos <strong>beats</strong>, son procesos ligeros que vienen preparados para la recolección de datos de forma predeterminada de muchos sistemas y con una serie de plantillas que nos permiten con poco esfuerzo comenzar a monitorizar los datos desde Kibana. </p>
+<p>Si necesitamos ajustar y transformar los datos de logs más específicos como puede ser de programas java, tendremos que utilizar Logstash como <a href="https://es.wikipedia.org/wiki/Extract,_transform_and_load">ETL</a> para la extracción de la información.</p>
 <p>Tenemos varios Beats oficiales y otros tantos desarrollados por la comunidad que permiten la extracción de información de los sistemas</p>
 <p><a href="https://www.elastic.co/es/downloads/beats/">https://www.elastic.co/es/downloads/beats/</a></p>
 <p>Por otro lado, tenemos diversos beats desarrollados por la comunidad</p>
@@ -558,7 +556,7 @@
 </ul>
 <h2 id="metricbeat-en-ubuntu">Metricbeat en Ubuntu<a class="headerlink" href="#metricbeat-en-ubuntu" title="Permanent link">&para;</a></h2>
 <h3 id="introduccion_1">Introducción<a class="headerlink" href="#introduccion_1" title="Permanent link">&para;</a></h3>
-<p>Vamos a probar sobre una máquina de ubuntu a monitorizar el sistema y a alguno de sus servicios, como puede ser Mysql y Apache</p>
+<p>Vamos a probar sobre una máquina de ubuntu a monitorizar el sistema y  alguno de sus servicios, como puede ser Mysql y Apache</p>
 <p><img alt="alt_text" src="images/06/image21.png" /></p>
 <p>Probaremos de forma básica los beats. Para lo que:</p>
 <ul>
@@ -639,7 +637,7 @@
 <p><img alt="alt_text" src="images/06/image2.png" /></p>
 <ul>
 <li>
-<p>Vemos que tenemos por defecto activo “system”. Para configurarlo, editamos el fichero <code>metricbeat/modules.d/system.yml</code>. Podemos activar diferentes métricas en el módulo, En la documentación oficial podemos ver los detalles</p>
+<p>Vemos que tenemos por defecto activo “system”. Para configurarlo, editamos el fichero <code>metricbeat/modules.d/system.yml</code>. Podemos activar diferentes métricas en el módulo. En la documentación oficial podemos ver los detalles</p>
 <p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-system.html">https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-system.html</a></p>
 </li>
 <li>
