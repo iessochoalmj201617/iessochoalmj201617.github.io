@@ -387,6 +387,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#descarga-la-web-de-ejemplo" class="md-nav__link">
+    Descarga la web de ejemplo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mejoras-de-codigo" class="md-nav__link">
     Mejoras de código
   </a>
@@ -447,13 +454,13 @@
 <p>Descarga el <a href="05consultas_puesta_en_produccion.txt">Fichero con los ejemplos</a> y cópialo en el panel de comandos de Kibana de la herramienta <code>Dev Tools</code></p>
 </div>
 <h2 id="ejemplo-de-creacion-de-query-dsl-y-los-retos-que-nos-plantea">Ejemplo de creación de query DSL y los retos que nos plantea<a class="headerlink" href="#ejemplo-de-creacion-de-query-dsl-y-los-retos-que-nos-plantea" title="Permanent link">&para;</a></h2>
-<p>Vamos a estudiar un posible caso de uso simplificado en la que se nos pide que creemos una query para ElasticSearch para una tienda en la que el objetivo es mostrar el mejor resultado al usuario de su búsqueda. Abre el fichero 05-consultas.txt”</p>
+<p>Vamos a estudiar un posible caso de uso simplificado en la que se nos pide que creemos una query para ElasticSearch para una tienda en la que el objetivo es mostrar el mejor resultado al usuario de su búsqueda. Abre el fichero <strong>05-consultas.txt</strong></p>
 <ol>
 <li>Crear los cinco productos de la tienda</li>
 <li>
-<p>Imaginamos que el usuario el usuario realiza la búsqueda</p>
+<p>Imagina  que el usuario el usuario realiza la siguiente búsqueda</p>
 <p><em>“tenis de uso diario”</em></p>
-<p><strong>Nota</strong>: El sentido de tenis aquí es de zapatilla que es utilizado en algunas regiones </p>
+<p><strong>Nota</strong>: El sentido de <strong>tenis</strong> aquí es el de zapatilla que es utilizado en algunas regiones </p>
 </li>
 <li>
 <p>La primera consulta que probamos es
@@ -584,8 +591,9 @@ Vemos que ahora sí que aparece el documento deseado arriba, pero también nos a
 </div>
 <h2 id="plantillas-de-busqueda">Plantillas de búsqueda<a class="headerlink" href="#plantillas-de-busqueda" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html</a></p>
-<p>Una vez tenemos la consulta que necesitamos, tenemos Elasticsearch dentro de nuestro backend, al equipo  desarrollador web no debemos entregarle la api de la consulta para que realice las  llamadas a ElasticSearch, lo que hacemos es crear una plantilla parametrizada con una interface de entrada que utilizará y que al equipo de desarrollo de Elasticsearch le permita ir depurando la consulta sin que afecte al proyecto web. </p>
+<p>Una vez tenemos la consulta que necesitamos,  al equipo  desarrollador web no debemos entregarle la api de la consulta para que realice las  llamadas a ElasticSearch, lo que hacemos es crear una plantilla parametrizada con una interface de entrada que utilizará y que al equipo de desarrollo de Elasticsearch le permitará ir depurando la consulta sin que afecte al proyecto web. </p>
 <p>Una plantilla de búsqueda es una búsqueda almacenada que se puede ejecutar con diferentes variables. Para el ejemplo anterior del índice de la <strong>“tienda”</strong>, para simplificar el código, utilizaremos una de las primeras soluciones:</p>
+<p><img alt="alt_text" src="images/05/image14.png" /></p>
 <h3 id="creamos-la-plantilla">Creamos la plantilla<a class="headerlink" href="#creamos-la-plantilla" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">PUT</span> <span class="err">_scrip</span><span class="kc">ts</span><span class="err">/busqueda_</span><span class="kc">t</span><span class="err">ie</span><span class="kc">n</span><span class="err">da</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="p">{</span>
@@ -635,7 +643,6 @@ Podemos testear la plantilla viendo la consulta que genera
 <p><a href="https://www.youtube.com/watch?v=IOuGbkVBdo0&amp;list=PL_mJOmq4zsHaWvXgiNj9-OsDhjBSfIitW">https://www.youtube.com/watch?v=IOuGbkVBdo0&amp;list=PL_mJOmq4zsHaWvXgiNj9-OsDhjBSfIitW</a></p>
 <p>La idea es crear una plantilla de búsqueda que será utilizada por una página web sin que esta sepa el contenido y complejidad de la consulta.</p>
 <p>En un proyecto real, el servidor Elasticsearch permanecerá oculto detrás del servidor de aplicaciones web.</p>
-<p>Por simplificación, vamos a utilizar una página html  local que mediante tecnología AJAX consultará directamente mediante una petición REST a Elasticsearch.</p>
 <p><img alt="alt_text" src="images/05/image8.png" /></p>
 <p>Por simplificación, vamos a utilizar una página html  local que mediante tecnología AJAX consultará directamente mediante una petición REST a Elasticsearch.</p>
 <p><img alt="alt_text" src="images/05/image10.png" /></p>
@@ -706,15 +713,19 @@ Podemos testear la plantilla viendo la consulta que genera
 <span class="linenos" data-linenos="6 "></span>          <span class="p">}</span>
 <span class="linenos" data-linenos="7 "></span>        <span class="p">}</span>
 </code></pre></div></li>
+</ul>
+<h3 id="descarga-la-web-de-ejemplo">Descarga la web de ejemplo<a class="headerlink" href="#descarga-la-web-de-ejemplo" title="Permanent link">&para;</a></h3>
+<ul>
 <li>
 <p>Descarga la página web: <a href="05webelastic.zip">web_elastic.zip</a></p>
 </li>
+<li></li>
 <li>
 <p>Si editamos la página web <code>busqueda.html</code>, vemos en el código cómo se realiza la solicitud de búsqueda</p>
 </li>
 </ul>
 <p><img alt="alt_text" src="images/05/image2.png" /></p>
-<p>Cuando recibe de respuesta, añadimos la respuestas encontradas a la página web</p>
+<p>Cuando recibe de respuesta, añadimos las respuestas encontradas a la página web</p>
 <p><img alt="alt_text" src="images/05/image4.png" /></p>
 <p>Si abrimos la página con Chrome, vemos como realiza las búsquedas sobre Elasticsearch</p>
 <p><img alt="alt_text" src="images/05/image13.png" /></p>
