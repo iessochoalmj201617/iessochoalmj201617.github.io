@@ -506,18 +506,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#reglas-para-el-nombrado-de-variables" class="md-nav__link">
+  <a href="#identificador-de-variable-o-nombre-reglas-para-el-nombrado-de-variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Reglas para el nombrado de variables
+      Identificador de variable o nombre. Reglas para el nombrado de variables
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#keywords" class="md-nav__link">
+  <a href="#keywords-o-palabras-reservadas" class="md-nav__link">
     <span class="md-ellipsis">
-      Keywords
+      Keywords o Palabras reservadas
     </span>
   </a>
   
@@ -556,6 +556,30 @@
       Scope - Ámbito
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camelcase-nombrado-de-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      CamelCase: Nombrado de variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CamelCase: Nombrado de variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3101,16 +3125,19 @@
 
 
 <h1 id="variables">💾 Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h1>
-<p style='text-align: justify;'>Las variables en Java es una forma de almacenar información en nuestro ordenador. Definimos variables asignándoles un nombre. De igual manera se puede acceder a la información que guardar las variable, simplemente accediendo por el nombre que le hemos dado.
-Es el ordenador el que se encarga de averiguar dónde se almacena internamente en la memoria RAM del ordenador.
-Como su nombre indica "variable", se puede modificar el contenido que ésta almacena, es decir, es variable. Lo único que tenemos que hacer es decirle al PC qué tipo de información queremos guardar en nuestra variable y darle un nombre.
-Existe diferentes tipos de información que podemos utilizar para definir nuestras variables. Se les conoce como <strong>tipos de datos</strong> o data types.
-Los tipos de datos son palabras reservas <strong>keywords</strong> en Java, es decir, no podemos utilizarlas fuera del contexto de tipo de datos.
-
-Para definir una variable, necesitamos especificar el tipo de datos, luego darle un nombre a nuestra variable, y opcionalmente, podemos agregar una expresión para inicializar la variable con un valor.
-</p>
-
-<h2 id="reglas-para-el-nombrado-de-variables">Reglas para el nombrado de variables<a class="headerlink" href="#reglas-para-el-nombrado-de-variables" title="Permanent link">&para;</a></h2>
+<p>Las variables en Java es una forma de almacenar información en nuestro ordenador. Definimos variables asignándoles un nombre. De igual manera se puede acceder a la información que guardar las variable, simplemente accediendo por el nombre que le hemos dado.
+Es el ordenador el que se encarga de averiguar dónde se almacena internamente en la memoria RAM del ordenador.</p>
+<p><img alt="Variable" src="../../img/ud1/variable1.png" /></p>
+<p>Como su nombre indica "variable", se puede modificar el contenido que ésta almacena. Tenemos que  decirle qué tipo de información queremos guardar en nuestra variable y darle un nombre.</p>
+<p><img alt="Variable" src="../../img/ud1/variable2.png" /></p>
+<p>Existe diferentes tipos de información que podemos utilizar para definir nuestras variables. Se les conoce como <strong>tipos de datos</strong> o <strong>data types</strong>.</p>
+<p>Para definir una variable necesitamos:</p>
+<ul>
+<li><strong>Tipo</strong>: especificar el tipo de datos(entero, real, letra, texto, booleano...)</li>
+<li><strong>Identificador de variable</strong>: un nombre a nuestra variable </li>
+<li><strong>Iniciar variable</strong>: opcionalmente, podemos agregar una expresión para inicializar la variable con un valor.</li>
+</ul>
+<h2 id="identificador-de-variable-o-nombre-reglas-para-el-nombrado-de-variables">Identificador de variable o nombre. Reglas para el nombrado de variables<a class="headerlink" href="#identificador-de-variable-o-nombre-reglas-para-el-nombrado-de-variables" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>Tiene que comenzar con una letra o '_', nunca con números.</p>
@@ -3129,13 +3156,14 @@ Para definir una variable, necesitamos especificar el tipo de datos, luego darle
 </li>
 </ul>
 <p><img alt="Java" src="../../img/variable.png" /></p>
-<p>Definimos nuestra primera variable en el programa de la siguiente forma:
-<img alt="Java" src="../../img/myfirstint.png" /></p>
+<p>Definimos nuestra primera variable en el programa de la siguiente forma:</p>
+<p><img alt="Java" src="../../img/myfirstint.png" /></p>
 <p>La línea que acabamos de escribir se conoce como <strong>sentencia de declaración</strong>.</p>
-<h2 id="keywords">Keywords<a class="headerlink" href="#keywords" title="Permanent link">&para;</a></h2>
+<h2 id="keywords-o-palabras-reservadas">Keywords o Palabras reservadas<a class="headerlink" href="#keywords-o-palabras-reservadas" title="Permanent link">&para;</a></h2>
 <p>Son palabras reservadas del lenguaje. Es decir, son palabras que tienen un significado especial en Java y no puedes usarlas fuera de ese contexto.
 Ejemplos: public, class, void, static, etc.
 Existen 61 <a href="https://en.wikipedia.org/wiki/List_of_Java_keywords">keywords</a> en Java.</p>
+<p><img alt="Variable" src="../../img/ud1/variable3.png" /></p>
 <h2 id="vida-de-las-variables">Vida de las variables<a class="headerlink" href="#vida-de-las-variables" title="Permanent link">&para;</a></h2>
 <p>Las variables son memorias reservadas para almacenar valores en RAM. Estas posiciones de memoria se liberan tan pronto como termina la vida de la variable. Según la vida de las variables, hay tres tipos de Variables.</p>
 <p><strong>1. Variables locales</strong>: La vida permanece dentro de un bloque donde se ha declarado.</p>
@@ -3185,6 +3213,25 @@ Existen 61 <a href="https://en.wikipedia.org/wiki/List_of_Java_keywords">keyword
 <li><code>y</code> está dentro del alcance entre su declaración en la línea 4 y la llave que la encierra en la línea 6.</li>
 <li>Las variables de bucle están dentro del alcance entre sus bucles <code>for</code> { }. Entonces, <code>i</code> está dentro del alcance entre las líneas 3 - 6.
 Nota: Dos variables con el mismo nombre no pueden existir dentro del mismo ámbito (scope).</li>
+</ul>
+<h2 id="camelcase-nombrado-de-variables">CamelCase: Nombrado de variables<a class="headerlink" href="#camelcase-nombrado-de-variables" title="Permanent link">&para;</a></h2>
+<p><a href="https://es.wikipedia.org/wiki/Camel_case">CamelCase</a></p>
+<p>La nomenclatura camelCase es un estilo de escritura utilizado principalmente en programación para nombrar variables, funciones, métodos o propiedades. En este formato, las palabras se escriben juntas sin espacios, pero cada palabra (excepto la primera) comienza con una letra mayúscula, lo que facilita la lectura del nombre.</p>
+<p><img alt="Variable" src="../../img/ud1/variable4.png" /></p>
+<p>Por convención, en Java se utiliza el nombrado de variables al estilo Camelcase</p>
+<p>Características de CamelCase:</p>
+<ol>
+<li>Primera letra en minúscula: La primera palabra siempre comienza con una letra minúscula.</li>
+<li>Primera letra de las palabras subsecuentes en mayúscula: Todas las palabras siguientes empiezan con una letra mayúscula.</li>
+<li>No se usan espacios, guiones o subrayados: Las palabras se unen sin separadores.</li>
+</ol>
+<h3 id="ejemplos">Ejemplos<a class="headerlink" href="#ejemplos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>nombreCompleto</li>
+<li>contadorDeClicks</li>
+<li>cantidadTotalDeItems</li>
+<li>esActivo</li>
+<li>notaMediaTercerTrimestre</li>
 </ul>
 
 
