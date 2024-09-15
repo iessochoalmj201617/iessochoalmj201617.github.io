@@ -702,6 +702,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Conversión de tipos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversion-implicita-casting-implicito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversión implícita (Casting implícito)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-explicita-casting-explicito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversión explícita (Casting explícito)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-sucede-internamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué sucede internamente?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3180,48 +3213,6 @@
 <h2 id="primitivos">Primitivos<a class="headerlink" href="#primitivos" title="Permanent link">&para;</a></h2>
 <p>Los primitivos son los más básicos y fundamentales, vienen integrados en Java. Especifican el tipo de valor almacenado en una variable y el tamaño de la memoria. Hay 8 tipos primitivos de datos integrados en el lenguaje Java. Estos incluyen: int, byte, short, long, float, double, boolean y char.
 <img alt="Java" src="../../img/ud1/datosprimitivos.png" /></p>
-<table>
-<thead>
-<tr>
-<th>Primitive data type</th>
-<th>Wrapper class</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>byte</td>
-<td>Byte</td>
-</tr>
-<tr>
-<td>short</td>
-<td>Short</td>
-</tr>
-<tr>
-<td>int</td>
-<td>Integer</td>
-</tr>
-<tr>
-<td>long</td>
-<td>Long</td>
-</tr>
-<tr>
-<td>float</td>
-<td>Float</td>
-</tr>
-<tr>
-<td>double</td>
-<td>Double</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>Boolean</td>
-</tr>
-<tr>
-<td>char</td>
-<td>Character</td>
-</tr>
-</tbody>
-</table>
 <h3 id="byte">byte<a class="headerlink" href="#byte" title="Permanent link">&para;</a></h3>
 <p>Como su propio nombre denota, emplea un solo byte (8 bits) de almacenamiento. Esto permite almacenar valores en el rango [-128, 127]. Raramente se usa. Ocupa menos memoria y puede ser más rápido accedido.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">byte</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
@@ -3264,32 +3255,98 @@
 </code></pre></div>
 <hr />
 <h2 id="wrapper-classes-clases-contenedores">Wrapper classes (clases contenedores)<a class="headerlink" href="#wrapper-classes-clases-contenedores" title="Permanent link">&para;</a></h2>
-<p>Las clases contenedoras proporcionan una forma de utilizar tipos de datos primitivos como objetos. En Java, tenemos una Wrapper class para cada uno de los 8 tipos de datos primitivos. Gracias a esto, podemos realizar operaciones en un dato primitivo como por ejemplo en un int:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">minimoValorInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span>
+<p>Las clases contenedoras proporcionan una forma de utilizar tipos de datos primitivos como objetos. 
+En Java, tenemos una Wrapper class para cada uno de los 8 tipos de datos primitivos. </p>
+<table>
+<thead>
+<tr>
+<th>Primitive data type</th>
+<th>Wrapper class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+</tbody>
+</table>
+<p>Las clases contenedoras tienen gran número de métodos que nos ayudarán en nuestros programas:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//minimo valor de un entero</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">minimoValorInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="c1">//transforma el string al tipo correspondiente</span>
+<span class="linenos" data-linenos="4 "></span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="o">=</span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="s">&quot;12&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">float</span><span class="w"> </span><span class="n">nota</span><span class="o">=</span><span class="n">Float</span><span class="p">.</span><span class="na">parseFloat</span><span class="p">(</span><span class="s">&quot;5.5&quot;</span><span class="p">);</span>
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Consulta la Api de Java</p>
+<p>Busca  la clase <em>Integer</em> y comienza a habituarte a la documentación técnica viendo sus métodos y propiedades</p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html</a></p>
+</div>
 <h2 id="conversion-de-tipos">Conversión de tipos<a class="headerlink" href="#conversion-de-tipos" title="Permanent link">&para;</a></h2>
 <p>La conversión de tipos en Java se refiere al proceso de cambiar el tipo de datos de una variable o expresión a otro tipo compatible. Esto es útil cuando necesitas realizar operaciones con variables de diferentes tipos o cuando deseas asignar el valor de una variable a otra de un tipo diferente.</p>
+<p><img alt="Java" src="../../img/ud1/variable6.png" /></p>
 <p>Java ofrece dos tipos principales de conversión de tipos:</p>
-<ol>
-<li>Conversión implícita (Casting implícito):
-   - Ocurre automáticamente cuando no hay pérdida de datos y no se requiere intervención del programador.
-   - Sucede cuando estás convirtiendo un tipo de dato "más pequeño" en un tipo "más grande"</li>
-</ol>
+<h3 id="conversion-implicita-casting-implicito"><strong>Conversión implícita (Casting implícito)</strong><a class="headerlink" href="#conversion-implicita-casting-implicito" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ocurre automáticamente cuando no hay pérdida de datos y no se requiere intervención del programador.</li>
+<li>Sucede cuando estás convirtiendo un tipo de dato "más pequeño" en un tipo "más grande"</li>
+</ul>
 <p>Por ejemplo, convertir un int a double:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">entero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entero</span><span class="p">;</span><span class="w"> </span><span class="c1">// Conversión implícita</span>
 </code></pre></div>
-<ol start="2">
-<li>Conversión explícita (Casting explícito):
-   - Requiere una intervención explícita del programador y se utiliza cuando hay una posible pérdida de datos o cuando deseas forzar una conversión de tipos.
-   - Puedes realizar una conversión explícita colocando el tipo de destino entre paréntesis antes de la variable o expresión que deseas convertir.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">42.75</span><span class="p">;</span>
+<h3 id="conversion-explicita-casting-explicito"><strong>Conversión explícita (Casting explícito)</strong><a class="headerlink" href="#conversion-explicita-casting-explicito" title="Permanent link">&para;</a></h3>
+<ul>
+<li>El casting explícito es necesario cuando intentas convertir un tipo más grande a un tipo más pequeño, o cuando estás trabajando con tipos que no son directamente compatibles. En estos casos, debes decirle explícitamente a Java que realice la conversión. El casting explícito puede resultar en pérdida de datos si no se tiene cuidado.</li>
+<li>Puedes realizar una conversión explícita colocando el tipo de destino entre paréntesis antes de la variable o expresión que deseas convertir.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.75</span><span class="p">;</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">entero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">decimal</span><span class="p">;</span><span class="w"> </span><span class="c1">// Conversión explícita</span>
 </code></pre></div>
-<p>Es importante tener en cuenta que en las conversiones explícitas, puede haber pérdida de información si el valor original no se puede representar completamente en el nuevo tipo. Por ejemplo, al convertir un double a un int, se trunca la parte decimal y se pierde la información fraccional.</p>
+Aquí se está forzando la conversión de un double a un int. El resultado es que el valor 9.75 se convierte en 9, perdiendo la parte decimal.</p>
 <p>También es crucial asegurarse de que las conversiones sean seguras y no generen excepciones en tiempo de ejecución.</p>
-<hr />
+<h3 id="que-sucede-internamente">¿Qué sucede internamente?<a class="headerlink" href="#que-sucede-internamente" title="Permanent link">&para;</a></h3>
+<p><strong>Truncado decimal</strong>: Cuando se convierte un número decimal a un entero, Java simplemente elimina la parte decimal sin redondear. Solo queda la parte entera del número.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">float</span><span class="w"> </span><span class="n">valorDecimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.35f</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valorEntero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">valorDecimal</span><span class="p">;</span><span class="w"> </span><span class="c1">//trunca la parte decimal</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">valorEntero</span><span class="p">);</span><span class="c1">//imprime 9</span>
+</code></pre></div>
+<p><strong>Desbordamiento de bits</strong>: Si el valor de un tipo más grande no cabe en el tipo más pequeño, Java utiliza solo los bits que puede manejar el tipo más pequeño, y el resto se descarta, lo que puede cambiar completamente el valor final. Esto sucede porque los tipos numéricos en Java están representados en binario y se utilizan los bits que encajan en el tamaño del nuevo tipo. </p>
+<p>Esto puede llevar a errores inesperados</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valorEntero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">130</span><span class="p">;</span><span class="w"> </span><span class="c1">// En binario(32bits): 0000 0000 0000 0000 0000 0000 1000 0010</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">byte</span><span class="w"> </span><span class="n">valorByte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="n">valorEntero</span><span class="p">;</span><span class="w"> </span><span class="c1">// Solo caben 8 bits en un byte</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">valorByte</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime -126</span>
+</code></pre></div>
+<p>La representación en binario de 130 es 1000 0010. Un byte solo puede almacenar 8 bits, por lo que Java toma los últimos 8 bits, que corresponden a 1000 0010, lo cual equivale a -126 en la representación de complemento a dos.</p>
 
 
 
