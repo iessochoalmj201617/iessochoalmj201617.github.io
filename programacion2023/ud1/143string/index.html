@@ -737,6 +737,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#secuencia-de-escape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secuencia de escape
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3281,6 +3290,31 @@ Por ejemplo:</p>
 <li>No se puede comparar un String usando operadores relacionales.</li>
 <li>Si se puede comparar un char usando operadores relacionales: 'a' &lt; 'b', 'X' == 'X', ...</li>
 </ul>
+<h2 id="secuencia-de-escape">Secuencia de escape<a class="headerlink" href="#secuencia-de-escape" title="Permanent link">&para;</a></h2>
+<p>Un carácter precedido por una barra invertida () es una secuencia de escape y tiene un significado especial para el compilador. La siguiente tabla muestra las secuencias de escape de Java:</p>
+<p><img alt="Java" src="../../img/scapedsequences.png" /></p>
+<p>Nos permiten representar tabulaciones, saltos de línea, el propio caracter <code>\</code> o <code>"</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos="2 "></span><span class="cm">Java</span>
+<span class="linenos" data-linenos="3 "></span><span class="cm">Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="cm">Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos="5 "></span><span class="cm">  */</span><span class="w">        </span>
+<span class="linenos" data-linenos="6 "></span><span class="n">String</span><span class="w"> </span><span class="n">miTexto</span><span class="o">=</span><span class="s">&quot;Java\nEs un lenguaje \&quot;Increíble\&quot;\nTengo que trabajar duro para aprenderlo&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">miTexto</span><span class="p">);</span>
+</code></pre></div>
+<p>Las versiones actuales de Java, nos permiten definir texto sin necesidad de los caracteres scape utilizando <code>"""</code>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">Java</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm">  */</span><span class="w">        </span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">String</span><span class="w"> </span><span class="n">miTexto</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="s">        Java</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="s">        Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="s">        Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos="10 "></span><span class="s">        &quot;&quot;&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">miTexto</span><span class="p">);</span>
+</code></pre></div></p>
 
 
 

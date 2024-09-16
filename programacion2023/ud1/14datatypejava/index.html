@@ -673,6 +673,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#secuencia-de-escape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secuencia de escape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#boolean" class="md-nav__link">
     <span class="md-ellipsis">
       boolean
@@ -3211,8 +3220,21 @@
 <p>Se pueden clasificar en primitivos y objetos.
 <img alt="Java" src="../../img/primitives.png" /></p>
 <h2 id="primitivos">Primitivos<a class="headerlink" href="#primitivos" title="Permanent link">&para;</a></h2>
-<p>Los primitivos son los más básicos y fundamentales, vienen integrados en Java. Especifican el tipo de valor almacenado en una variable y el tamaño de la memoria. Hay 8 tipos primitivos de datos integrados en el lenguaje Java. Estos incluyen: int, byte, short, long, float, double, boolean y char.
-<img alt="Java" src="../../img/ud1/datosprimitivos.png" /></p>
+<p>Los primitivos son los más básicos y fundamentales, vienen integrados en Java. Especifican el tipo de valor almacenado en una variable y el tamaño de la memoria. Hay 8 tipos primitivos de datos integrados en el lenguaje Java. Estos incluyen: int, byte, short, long, float, double, boolean y char.</p>
+<p><img alt="Java" src="../../img/ud1/datosprimitivos.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Notación científica</p>
+<ul>
+<li>La notación científica es una forma compacta de expresar números grandes o pequeños.
+Está escrita en la forma N×10^e donde <code>N</code> es la mantisa y <code>e</code> el exponente</li>
+<li>Los números grandes tienen exponentes positivos, y los pequeños, exponentes negativos.</li>
+</ul>
+<p><img alt="Java" src="../../img/ud1/primitivos2.png" /></p>
+<p>en Java se representan de la siguiente forma</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">double</span><span class="w"> </span><span class="n">numeroGrande</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.23e5</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1.23 x 10^5 = 123000.0</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">double</span><span class="w"> </span><span class="n">numeroPequeno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.56e-4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 4.56 x 10^-4 = 0.000456</span>
+</code></pre></div>
+</div>
 <h3 id="byte">byte<a class="headerlink" href="#byte" title="Permanent link">&para;</a></h3>
 <p>Como su propio nombre denota, emplea un solo byte (8 bits) de almacenamiento. Esto permite almacenar valores en el rango [-128, 127]. Raramente se usa. Ocupa menos memoria y puede ser más rápido accedido.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">byte</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
@@ -3240,14 +3262,51 @@
 <p>Es un número de precisión doble y ocupa 64 bits. <strong>Es el flotante predeterminado en Java.</strong> Se recomienda su uso. Muchas librerías internas de Java, relacionadas con operaciones matemáticas, usan double.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5d</span><span class="p">;</span><span class="w"> </span><span class="c1">//también válida</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="c1">//en notación científica</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">numeroGrande</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.23e5</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1.23 x 10^5 = 123000.0</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">numeroPequeno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.56e-4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 4.56 x 10^-4 = 0.000456</span>
 </code></pre></div>
 <h3 id="char">char<a class="headerlink" href="#char" title="Permanent link">&para;</a></h3>
 <p>Se utiliza para almacenar caracteres (letras, números, signos, etc.) individuales. Ocupa 2 bytes en memoria (16 bits). Permite almacenar caracteres Unicode. Unicode es un estándar de codificación internacional que nos permite representar diferentes idiomas; y la forma en que funciona es usando una combinación de los dos bytes que un char ocupa en la memoria, que puede representar hasta 65535 diferentes tipos de caracteres. <a href="https://unicode-table.com/en/">Unicode table.</a></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;P&#39;</span><span class="p">;</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\u00A2&#39;</span><span class="p">;</span><span class="c1">//print unicode character</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;P&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">char</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\u00A2&#39;</span><span class="p">;</span><span class="c1">//print unicode character</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="kt">char</span><span class="w"> </span><span class="n">sonrie</span><span class="o">=</span><span class="sc">&#39;\u263A&#39;</span><span class="p">;</span><span class="c1">//emoticono sonriente ☺</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Emoji: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sonrie</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="c1">//combinación Unicode</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">String</span><span class="w"> </span><span class="n">emojiModerno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;\uD83D\uDE0A&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// 😊</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Emoji moderno: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emojiModerno</span><span class="p">);</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">el par de sustitutos (surrogate pair) Unicode</p>
+<p>Java utiliza la codificación UTF-16, por lo que algunos caracteres como los emojis modernos necesitan dos caracteres Unicode (surrogate pairs) para representarse.</p>
+<p>\uD83D\uDE0A es el par de sustitutos (surrogate pair) que representan el código Unicode U+1F60A (😊)</p>
+</div>
+<h3 id="secuencia-de-escape">Secuencia de escape<a class="headerlink" href="#secuencia-de-escape" title="Permanent link">&para;</a></h3>
 <p>Un carácter precedido por una barra invertida () es una secuencia de escape y tiene un significado especial para el compilador. La siguiente tabla muestra las secuencias de escape de Java:</p>
 <p><img alt="Java" src="../../img/scapedsequences.png" /></p>
+<p>Nos permiten representar tabulaciones, saltos de línea, el propio caracter <code>\</code> o <code>"</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos="2 "></span><span class="cm">Java</span>
+<span class="linenos" data-linenos="3 "></span><span class="cm">Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="cm">Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos="5 "></span><span class="cm">  */</span><span class="w">        </span>
+<span class="linenos" data-linenos="6 "></span><span class="n">String</span><span class="w"> </span><span class="n">miTexto</span><span class="o">=</span><span class="s">&quot;Java\nEs un lenguaje \&quot;Increíble\&quot;\nTengo que trabajar duro para aprenderlo&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">miTexto</span><span class="p">);</span>
+</code></pre></div>
+<p>Las versiones actuales de Java, nos permiten definir texto sin necesidad de los caracteres scape utilizando <code>"""</code>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">Java</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm">  */</span><span class="w">        </span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">String</span><span class="w"> </span><span class="n">miTexto</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="s">        Java</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="s">        Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="s">        Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos="10 "></span><span class="s">        &quot;&quot;&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">miTexto</span><span class="p">);</span>
+</code></pre></div></p>
 <h3 id="boolean">boolean<a class="headerlink" href="#boolean" title="Permanent link">&para;</a></h3>
 <p>solo permite almacenar dos posibles valores que son <em>true</em> o <em>false</em>. Tiene la finalidad de facilitar el trabajo con valores "verdadero/falso" (booleanos), resultantes por regla general de evaluar expresiones.</p>
 <p>Este tipo de datos representa un bit de información, pero su "tamaño" no es algo que esté definido con precisión.</p>
