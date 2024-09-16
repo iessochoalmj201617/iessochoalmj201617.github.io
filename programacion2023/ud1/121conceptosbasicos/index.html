@@ -418,6 +418,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#jdk-vs-jre" class="md-nav__link">
+    <span class="md-ellipsis">
+      JDK vs JRE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#versiones-java" class="md-nav__link">
     <span class="md-ellipsis">
       Versiones Java
@@ -3093,10 +3102,17 @@ También existen otros términos muy famosos relacionados con Java como JRE y JD
 <h2 id="jre">JRE<a class="headerlink" href="#jre" title="Permanent link">&para;</a></h2>
 <p><strong>Java Runtime Environment</strong>. La máquina virtual de Java está incluida en el JRE. Se utiliza para ejecutar aplicaciones Java en el SO, por tanto si queremos desplegar una aplicación en Java, necesitamos tener instalado previamente el JRE para esa máquina y plataforma.</p>
 <h2 id="jdk">JDK<a class="headerlink" href="#jdk" title="Permanent link">&para;</a></h2>
-<p><strong>Java Development Kit</strong>. Es más pesado que el JRE, contiene todas las herramientas para programar y compilar las clases Java en bytecode, por tanto cuando desarrollamos clases Java necesitamos el JDK. Además incluy el JRE.</p>
+<p><strong>Java Development Kit</strong>. Es más pesado que el JRE, contiene todas las herramientas para programar y compilar las clases Java en bytecode, por tanto cuando desarrollamos clases Java necesitamos el JDK. El JDK incluye el JRE.</p>
+<p><img alt="IntelliJ" src="../../img/ud1/jdk_jre.png" /></p>
+<h2 id="jdk-vs-jre">JDK vs JRE<a class="headerlink" href="#jdk-vs-jre" title="Permanent link">&para;</a></h2>
+<p>El JDK contiene las herramientas que permiten al programador compilar programas escritos en lenguaje Java y transformarlo en bytecodes de la máquina virtual de Java(JVM). Incluye también el JRE que permiten ejecutar un programa Java.</p>
+<p>Para ejecutar en una máquina con un sistema operativo en concreto, necesitamos tener instalado el JRE para ese sistema operativo</p>
+<p><img alt="IntelliJ" src="../../img/ud1/jdk_jre2.png" /></p>
 <h2 id="versiones-java">Versiones Java<a class="headerlink" href="#versiones-java" title="Permanent link">&para;</a></h2>
-<p>La última versión de Java se conoce como LTS Release (Long Term Support), y es JAVA 17 LTS.
-Nosotros para el propósito de este curso usaremos Java 17.</p>
+<p>Aparece una versión de Java cada 6 meses, pero solamente las versiones LTS Release (Long Term Support) tienen un largo soporte en el tiempo. Cada versión tiene nuevas funcionalidades, pero si no vamos a probar nuevas funcionalidades, para nuestros proyectos debemos utilizar versiones LTS.</p>
+<p><img alt="IntelliJ" src="../../img/ud1/versiones.png" /></p>
+<p>La última versión de Java LTS Release (Long Term Support),  es JAVA 21 LTS.
+Nosotros para el propósito de este curso usaremos Java 17 aunque no hay problema en utilizar la 21 para nuestro propósito.</p>
 <h2 id="por-que-java">¿Por qué Java?<a class="headerlink" href="#por-que-java" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Nació en 1995 y todavía sigue siendo uno de los lenguajes más usados a nivel mundial.</li>
@@ -3104,9 +3120,11 @@ Nosotros para el propósito de este curso usaremos Java 17.</p>
 <li>Desde que nació han salido muchas releases de gran importancia, el lenguaje sigue evolucionando con nuevas funcionalidades.</li>
 <li>Tiene un comunidad muy grande de código abierto, documentación y tutoriales. Es usado por muchas compañías de software, por tanto, se ofertan muchos empleos de desarrolladores Java.</li>
 </ul>
-<h1 id="amplia-conocimientos">Amplía conocimientos<a class="headerlink" href="#amplia-conocimientos" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Amplía conocimientos</p>
 <p>El siguiente artículo, nos explica el proceso de compilación de un programa Java. Vamos a echarle un vistazo</p>
 <p><a href="https://cardstdani.medium.com/proceso-de-ejecuci%C3%B3n-en-java-3a8c96e557f7">Proceso de ejecución en Java</a></p>
+</div>
 
 
 

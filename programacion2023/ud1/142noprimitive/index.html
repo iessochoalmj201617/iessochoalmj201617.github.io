@@ -612,35 +612,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#string-cadena-de-caracteres" class="md-nav__link">
+  <a href="#valor-null" class="md-nav__link">
     <span class="md-ellipsis">
-      String - Cadena de caracteres
+      Valor null
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="String - Cadena de caracteres">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#asignacion-de-memoria-de-objetos-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      Asignación de memoria de objetos String
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#java-string-class-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      Java String Class Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3098,36 +3074,12 @@
 
 
 <h1 id="no-primitivos-u-objetos">💾 No primitivos u objetos<a class="headerlink" href="#no-primitivos-u-objetos" title="Permanent link">&para;</a></h1>
-<p>En Java, los tipos de datos no primitivos son los tipos de datos de referencia o los tipos de datos creados por el usuario. Todos los tipos de datos no primitivos se implementan utilizando conceptos de objeto. Cada variable del tipo de datos no primitivo es un objeto. Los tipos de datos no primitivos pueden utilizar métodos adicionales para realizar determinadas operaciones. El valor predeterminado de la variable de tipo de datos no primitivos es nulo.</p>
-<h2 id="string-cadena-de-caracteres">String - Cadena de caracteres<a class="headerlink" href="#string-cadena-de-caracteres" title="Permanent link">&para;</a></h2>
-<p>String es una clase integrada en el lenguaje Java ampliamente utilizada y definido en el paquete java.lang. Representa cadenas de caracteres y se utilizan para almacenar varios atributos como nombre de usuario, contraseña, etc. Los String son <strong>inmutables</strong>; es decir, no se pueden modificar una vez creados. Siempre que se modifica un objeto String, en realidad se crea uno nuevo String.</p>
-<p>Existen varias formas para crear un String:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Severo Ochoa&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">texto2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">&quot;Severo Ochoa&quot;</span><span class="p">);</span>
-</code></pre></div>
-<h3 id="asignacion-de-memoria-de-objetos-string">Asignación de memoria de objetos String<a class="headerlink" href="#asignacion-de-memoria-de-objetos-string" title="Permanent link">&para;</a></h3>
-<p>La memoria se divide en dos partes, el String Pool y la memoria Heap.</p>
-<p><img alt="Java" src="../../img/stringpool.png" /></p>
-<p>Veamos como funcionaría para la imagen anterior.</p>
-<ol>
-<li>
-<p>Siempre que creamos un String con comillas dobles, se almacenan en String Pool. String Pool almacena el único valor en él. Es por eso que, String s1 = "blogs" se almacenan como el primer valor en el String Pool.</p>
-</li>
-<li>
-<p>Siempre que creamos un objeto usando la palabra clave <em>new</em>, se almacena en la memoria Heap pero fuera del String Pool. Aquí se puede almacenar valores duplicados ya que pertenece a diferentes objetos. Entonces, para la declaración String s2 = new String(“blogs”), aunque el valor de s1 y s2 es el mismo, s2 se almacenará fuera del String Pool.</p>
-</li>
-<li>
-<p>Cuando creamos otro String usando comillas dobles, primero verifica todos los valores en el String Pool y si coincide con alguno se asigna la misma ubicación asignada a otro objeto de referencia. Por lo tanto, String s3 = ”blogs” no agregará una nueva entrada en el String Pool.</p>
-</li>
-<li>
-<p>Pero si creamos otro objeto con un valor existente usando la palabra clave <em>new</em>. Asignará nueva memoria al nuevo objeto en el Heap. Por lo tanto, a String s4 = new String ("blogs") se le asignará nueva memoria.</p>
-</li>
-<li>
-<p>Ahora, si manipulamos el valor en s1 usando s1 = ”New“ + s1, no actualizará la entrada o referencia existente de s1. Este proceso creará una nueva entrada en el String Pool con el valor "New blogs" y la referencia de memoria cambiaría para el objeto s1.</p>
-</li>
-</ol>
-<h3 id="java-string-class-methods">Java String Class Methods<a class="headerlink" href="#java-string-class-methods" title="Permanent link">&para;</a></h3>
-<p>La clase <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">java.lang.String</a> proporciona muchos métodos útiles para realizar operaciones en la secuencia de valores char.</p>
+<p>En Java, los tipos de datos no primitivos son los tipos de datos de referencia. </p>
+<p>Los datos primitivos, la variable y el datos se almacenan en la memoria en la pila(stack), sin embargo, los datos no primitivos, la variable de un tipo no primitivo o es null(ausencia de valor) o apunta al dato en la parte de la memoria Heap(montón)</p>
+<p><img alt="Java" src="../../img/ud1/noprimitivos.png" /></p>
+<p>Todos los tipos de datos no primitivos se implementan utilizando conceptos de objeto. Cada variable del tipo de datos no primitivo es un objeto. Los tipos de datos no primitivos pueden utilizar métodos adicionales para realizar determinadas operaciones. El valor predeterminado de la variable de tipo de datos no primitivos es nulo(null).</p>
+<h2 id="valor-null">Valor null<a class="headerlink" href="#valor-null" title="Permanent link">&para;</a></h2>
+<p>En Java, null es un valor especial que representa la ausencia de un valor o la no inicialización de un objeto. Es un literal que se puede asignar a una variable de tipo referencia (como clases y arrays) para indicar que esa variable no apunta a ningún objeto en la memoria</p>
 <h2 id="date">Date<a class="headerlink" href="#date" title="Permanent link">&para;</a></h2>
 <p>En sus inicios se crearon las clases <strong><em>java.util.Date</em></strong> y <strong><em>java.sql.Date</em></strong> para almacenar y manejar fechas.
 Pero ambas clases son defectuosas en diseño e implementación.

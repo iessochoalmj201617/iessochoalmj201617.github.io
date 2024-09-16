@@ -3347,6 +3347,27 @@ Aquí se está forzando la conversión de un double a un int. El resultado es qu
 <span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">valorByte</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime -126</span>
 </code></pre></div>
 <p>La representación en binario de 130 es 1000 0010. Un byte solo puede almacenar 8 bits, por lo que Java toma los últimos 8 bits, que corresponden a 1000 0010, lo cual equivale a -126 en la representación de complemento a dos.</p>
+<div class="admonition note">
+<p class="admonition-title">Complemento a 2</p>
+<p>El complemento a 2 es un sistema de representación de números enteros en binario que permite manejar tanto números positivos como negativos de manera eficiente en los sistemas digitales</p>
+<p><strong>¿Cómo funciona el complemento a 2?</strong></p>
+<p>En el sistema de complemento a 2:</p>
+<p>Números positivos: Se representan de la misma manera que en binario normal.
+Números negativos: Se obtienen tomando el complemento a 2 del número positivo correspondiente. Esto implica invertir todos los bits (complemento a 1) y luego sumarle 1 al resultado.</p>
+<p><strong>Ejemplo para -126</strong></p>
+<ul>
+<li>Escribe el número positivo equivalente (126) en binario usando 8 bits.</li>
+</ul>
+<p>0111 1110</p>
+<ul>
+<li>Invierte los bits (complemento a 1).</li>
+</ul>
+<p>1000 0001</p>
+<ul>
+<li>Suma 1 al resultado para obtener el complemento a 2.</li>
+</ul>
+<p>1000 0001 + 1 = 1000 0010</p>
+</div>
 
 
 
