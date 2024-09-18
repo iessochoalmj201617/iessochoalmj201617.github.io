@@ -621,15 +621,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#date" class="md-nav__link">
-    <span class="md-ellipsis">
-      Date
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#enum-en-java" class="md-nav__link">
     <span class="md-ellipsis">
       Enum en Java
@@ -3077,37 +3068,17 @@
 <p>En Java, los tipos de datos no primitivos son los tipos de datos de referencia. </p>
 <p>Los datos primitivos, la variable y el datos se almacenan en la memoria en la pila(stack), sin embargo, los datos no primitivos, la variable de un tipo no primitivo o es null(ausencia de valor) o apunta al dato en la parte de la memoria Heap(montón)</p>
 <p><img alt="Java" src="../../img/ud1/noprimitivos.png" /></p>
-<p>Todos los tipos de datos no primitivos se implementan utilizando conceptos de objeto. Cada variable del tipo de datos no primitivo es un objeto. Los tipos de datos no primitivos pueden utilizar métodos adicionales para realizar determinadas operaciones. El valor predeterminado de la variable de tipo de datos no primitivos es nulo(null).</p>
+<p>Todos los tipos de datos <strong>no primitivos</strong> se implementan utilizando conceptos de <strong>objeto</strong>. Cada variable del tipo de datos no primitivo es un objeto. </p>
+<p>Los tipos de datos no primitivos pueden utilizar métodos adicionales para realizar determinadas operaciones. </p>
+<p>El valor predeterminado de la variable de tipo de datos no primitivos es nulo(null).</p>
+<p>Es importante comprender que los tipos no primitivos guardan la dirección a la posición de memoria donde se encuentra el objeto</p>
 <h2 id="valor-null">Valor null<a class="headerlink" href="#valor-null" title="Permanent link">&para;</a></h2>
 <p>En Java, null es un valor especial que representa la ausencia de un valor o la no inicialización de un objeto. Es un literal que se puede asignar a una variable de tipo referencia (como clases y arrays) para indicar que esa variable no apunta a ningún objeto en la memoria</p>
-<h2 id="date">Date<a class="headerlink" href="#date" title="Permanent link">&para;</a></h2>
-<p>En sus inicios se crearon las clases <strong><em>java.util.Date</em></strong> y <strong><em>java.sql.Date</em></strong> para almacenar y manejar fechas.
-Pero ambas clases son defectuosas en diseño e implementación.
-Por ejemplo, las clases existentes (como <em>java.util.Date</em> y <em>SimpleDateFormatter</em>) no son thread-safe, lo que genera posibles problemas de concurrencia para los usuarios.</p>
-<p>Por tanto, desde Java 8 y posteriores se ha desarrollado una nueva <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/package-summary.html">API <em>java.time</em></a> que resuelve los problemas que presentaban las librerías anteriores.</p>
-<p><img alt="Java" src="../../img/javatime.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">More information</p>
-<p><a href="https://www.oracle.com/technical-resources/articles/java/jf14-date-time.html">Why do we need a new date and time library?</a></p>
-</div>
-<p>Ejemplo de código para mostara la fecha y la hora:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">  </span><span class="c1">//mostrar fecha</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">  </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">ld</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ld</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="c1">//mostrar hora</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="n">LocalTime</span><span class="w"> </span><span class="n">lt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalTime</span><span class="p">.</span><span class="na">now</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lt</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="c1">//mostrar fecha y hora</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="n">LocalDateTime</span><span class="w"> </span><span class="n">ldt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">();</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ldt</span><span class="p">);</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="w">  </span><span class="c1">//formatear la fecha con un formato dado</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="n">DateTimeFormatter</span><span class="w"> </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateTimeFormatter</span><span class="p">.</span><span class="na">ofPattern</span><span class="p">(</span><span class="s">&quot;dd-MM-yyyy HH:mm:ss&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">formatted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">formatter</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">ldt</span><span class="p">);</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">formatted</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//la variable s1 apunta a un objeto, pero la variable s2 no apunta a ningún contenido</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">s1</span><span class="o">=</span><span class="s">&quot;Hola mundo&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">String</span><span class="w"> </span><span class="n">s2</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
 </code></pre></div>
+<p><img alt="Java" src="../../img/ud1/noprimitivos3.png" /></p>
 <h2 id="enum-en-java">Enum en Java<a class="headerlink" href="#enum-en-java" title="Permanent link">&para;</a></h2>
 <p>El tipo enumerado es un tipo de datos especial que permite que una variable sea un conjunto de constantes predefinidas. Sirven para definir grupos de constantes como valores posibles de una variable. La variable debe ser igual a uno de los valores que se han predefinido para ella.</p>
 <p>Debido a que son constantes, los nombres de los campos del tipo <strong>enum</strong> deberían estar en letras mayúsculas.</p>

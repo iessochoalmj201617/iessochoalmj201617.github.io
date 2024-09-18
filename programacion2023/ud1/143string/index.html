@@ -681,6 +681,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="El operador concatenación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concatenacion-con-otros-tipos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concatenación con otros tipos de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operador-suma-vs-operador-concatenacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operador suma vs Operador concatenación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3217,6 +3241,30 @@ Por ejemplo, si tenemos dos String b y c:</p>
 </code></pre></div>
 <p>Crea un nuevo String que se incluye en el String Pool:</p>
 <p><img alt="String" src="../../img/stringconcat2.png" /></p>
+<h3 id="concatenacion-con-otros-tipos-de-datos">Concatenación con otros tipos de datos<a class="headerlink" href="#concatenacion-con-otros-tipos-de-datos" title="Permanent link">&para;</a></h3>
+<p>Cuando concatenas una cadena con otros tipos de datos, Java convierte automáticamente los tipos no cadena a su representación de cadena.</p>
+<p>Cuando concatenas un número con una cadena, Java convierte el número a una cadena de caracteres y luego lo une a la cadena original.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">double</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.5</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;El resultado es: &quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="n">String</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; y &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">decimal</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//imprime  &quot;El resultado es: 10 y 5.5&quot;</span>
+</code></pre></div>
+<p><img alt="String" src="../../img/ud1/string5.png" /></p>
+<h3 id="operador-suma-vs-operador-concatenacion">Operador suma vs Operador concatenación<a class="headerlink" href="#operador-suma-vs-operador-concatenacion" title="Permanent link">&para;</a></h3>
+<p>En Java, cuando se mezcla la suma con la concatenación (operador +), el comportamiento depende del orden de las operaciones. El operador + puede funcionar tanto como un operador de suma para números como un operador de concatenación para cadenas.</p>
+<p>El compilador, si no hay paréntesis, <strong>opera de izquierda a derecha</strong>, y el resultado puede variar de nuestras intenciones. Si se encuentra con un String, los elementos de la derecha los transforma a String, pero si los números están a la izquierda, realiza primero las operaciones de suma</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Muestra &quot;suma = 23&quot;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Suma = &quot;</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">//Muestra &quot;suma = 5&quot;. Primero opera el contenido entre paréntesis</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Suma = &quot;</span><span class="o">+</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="p">));</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//Muestra &quot;5 es la suma&quot;</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="s">&quot; es la suma&quot;</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="indices">Índices<a class="headerlink" href="#indices" title="Permanent link">&para;</a></h2>
 <p>Cada uno de los caracteres que forman un String son del tipo primitivo <strong>char</strong>.
 Los caracteres de un string están numerados internamente con índices empezando desde el cero:</p>
