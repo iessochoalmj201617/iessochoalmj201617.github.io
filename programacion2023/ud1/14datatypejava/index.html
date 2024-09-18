@@ -746,6 +746,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#overflow-y-underflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overflow y Underflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overflow y Underflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#underflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Underflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3427,6 +3460,39 @@ Números negativos: Se obtienen tomando el complemento a 2 del número positivo 
 </ul>
 <p>1000 0001 + 1 = 1000 0010</p>
 </div>
+<h2 id="overflow-y-underflow">Overflow y Underflow<a class="headerlink" href="#overflow-y-underflow" title="Permanent link">&para;</a></h2>
+<h3 id="overflow">Overflow<a class="headerlink" href="#overflow" title="Permanent link">&para;</a></h3>
+<p>En Java, un <strong>overflow</strong> en un tipo de dato ocurre cuando un valor excede el rango máximo o mínimo que puede almacenar una variable de ese tipo. En el caso de un int en Java, que utiliza 32 bits, su rango es de:</p>
+<p>Valor mínimo: = -2,147,483,648</p>
+<p>Valor máximo:= 2,147,483,647</p>
+<p>Cuando se produce un overflow, el valor "rebota" y se convierte en el valor mínimo o máximo del tipo de dato, dependiendo de si el valor supera el rango superior o inferior.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valorMaximo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2,147,483,647</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor máximo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">valorMaximo</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Provocamos el overflow</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">overflow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valorMaximo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor después del overflow: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">overflow</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//imprime &quot;Valor después del overflow: -2147483648&quot;</span>
+</code></pre></div>
+<p>Pero los resultados pueden ser inesperados aparentemente aleatorio. Si multiplicamos dos números muy grandes y guardamos en un int</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1_000_000</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor original: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">valor</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Multiplicamos por un valor grande para provocar overflow</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">valor</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Resultado después del overflow: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//imprime &quot;Resultado después del overflow: -727379968&quot;</span>
+</code></pre></div>
+<h3 id="underflow">Underflow<a class="headerlink" href="#underflow" title="Permanent link">&para;</a></h3>
+<p>El <strong>underflow</strong> en Java ocurre cuando un valor es más bajo que el valor mínimo que un tipo de dato puede representar. Al igual que el overflow, el underflow causa que el valor "rebote", pero en este caso desde el valor mínimo hacia el valor máximo del rango permitido.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">valorMinimo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span><span class="w"> </span><span class="c1">// -2,147,483,648</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor mínimo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">valorMinimo</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Provocamos el underflow</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">underflow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valorMinimo</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor después del underflow: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">underflow</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//imprime &quot;Valor después del underflow: 2147483647&quot;</span>
+</code></pre></div>
 
 
 
