@@ -696,9 +696,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wrapper-classes-clases-contenedores" class="md-nav__link">
+  <a href="#wrapper-classes-clases-contenedores-o-envolventes" class="md-nav__link">
     <span class="md-ellipsis">
-      Wrapper classes (clases contenedores)
+      Wrapper classes (clases contenedores o envolventes)
     </span>
   </a>
   
@@ -3341,12 +3341,19 @@ Está escrita en la forma N×10^e donde <code>N</code> es la mantisa y <code>e</
 <span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">miTexto</span><span class="p">);</span>
 </code></pre></div></p>
 <h3 id="boolean">boolean<a class="headerlink" href="#boolean" title="Permanent link">&para;</a></h3>
-<p>solo permite almacenar dos posibles valores que son <em>true</em> o <em>false</em>. Tiene la finalidad de facilitar el trabajo con valores "verdadero/falso" (booleanos), resultantes por regla general de evaluar expresiones.</p>
-<p>Este tipo de datos representa un bit de información, pero su "tamaño" no es algo que esté definido con precisión.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isAlive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<p>En Java, el tipo de dato <em>boolean</em> es un tipo primitivo que puede almacenar uno de dos valores: <em>true o false</em>. Este tipo de dato es utilizado principalmente en decisiones de control de flujo</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esVerdadero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esFalso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor de esVerdadero: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">esVerdadero</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor de esFalso: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">esFalso</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos="7 "></span><span class="cm">Valor de esVerdadero: true</span>
+<span class="linenos" data-linenos="8 "></span><span class="cm">Valor de esFalso: false</span>
+<span class="linenos" data-linenos="9 "></span><span class="cm">*/</span>
 </code></pre></div>
 <hr />
-<h2 id="wrapper-classes-clases-contenedores">Wrapper classes (clases contenedores)<a class="headerlink" href="#wrapper-classes-clases-contenedores" title="Permanent link">&para;</a></h2>
+<h2 id="wrapper-classes-clases-contenedores-o-envolventes">Wrapper classes (clases contenedores o envolventes)<a class="headerlink" href="#wrapper-classes-clases-contenedores-o-envolventes" title="Permanent link">&para;</a></h2>
 <p>Las clases contenedoras proporcionan una forma de utilizar tipos de datos primitivos como objetos. 
 En Java, tenemos una Wrapper class para cada uno de los 8 tipos de datos primitivos. </p>
 <table>
