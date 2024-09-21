@@ -765,11 +765,35 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#operador-ternario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operador ternario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#precedencia-de-operadores" class="md-nav__link">
     <span class="md-ellipsis">
       Precedencia de operadores
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Precedencia de operadores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-parentesis-para-alterar-la-prioridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso de paréntesis para alterar la prioridad:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3285,6 +3309,11 @@ Podríamos complicar más la expresión utilizando <strong>operadores</strong> c
 </tr>
 </tbody>
 </table>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">        </span><span class="c1">// 15</span>
+<span class="linenos" data-linenos="3 "></span><span class="kt">int</span><span class="w"> </span><span class="n">division</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">    </span><span class="c1">// 2</span>
+<span class="linenos" data-linenos="4 "></span><span class="kt">int</span><span class="w"> </span><span class="n">modulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">      </span><span class="c1">// 0</span>
+</code></pre></div>
 <h2 id="operadores-unarios">Operadores unarios<a class="headerlink" href="#operadores-unarios" title="Permanent link">&para;</a></h2>
 <p>Los operadores unarios solo necesitan un operando. Se usan para incrementar, disminuir o negar un valor.</p>
 <table>
@@ -3313,7 +3342,7 @@ Podríamos complicar más la expresión utilizando <strong>operadores</strong> c
 </tr>
 </tbody>
 </table>
-<p>Existen dos versiones de estos operadores:</p>
+<p>Existen <strong>dos versiones</strong> de estos operadores:</p>
 <ul>
 <li>Pre-incremento y pre-decremento. El valor se aumenta/disminuye primero y luego se calcula el resultado.</li>
 </ul>
@@ -3329,50 +3358,54 @@ Podríamos complicar más la expresión utilizando <strong>operadores</strong> c
 </code></pre></div>
 <p><img alt="Java" src="../../img/postincrement.png" /></p>
 <h2 id="operadores-relacionales">Operadores relacionales<a class="headerlink" href="#operadores-relacionales" title="Permanent link">&para;</a></h2>
-<p>Estos operadores se utilizan para verificar relaciones como igualdad, mayor que, menor que. Devuelven el resultado booleano después de la comparación.</p>
+<p>Estos operadores se utilizan para verificar relaciones como igualdad, mayor que, menor que. Devuelven el resultado booleano(true o false) después de la comparación.</p>
 <table>
 <thead>
 <tr>
-<th>Símbolo</th>
-<th>Operación</th>
-<th>Descripción</th>
+<th><strong>Operador</strong></th>
+<th><strong>Descripción</strong></th>
+<th><strong>Ejemplo</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>==</td>
+<td><code>==</code></td>
 <td>Igual a</td>
-<td>Devuelve verdadero si el valor de la izquierda del símbolo es igual al de la derecha.</td>
+<td><code>a == b</code></td>
 </tr>
 <tr>
-<td>!=</td>
-<td>Distinto a</td>
-<td>Devuelve verdadero si el valor de la izquierda es distinto al de la derecha.</td>
+<td><code>!=</code></td>
+<td>No igual a</td>
+<td><code>a != b</code></td>
 </tr>
 <tr>
-<td>&lt;</td>
-<td>Menor que</td>
-<td>Devuelve verdadero si el valor de la izquierda es menor que el de la derecha.</td>
-</tr>
-<tr>
-<td>&lt;=</td>
-<td>Menor o igual que</td>
-<td>Devuelve verdadero si el valor de la izquierda es menor o igual que el de la derecha.</td>
-</tr>
-<tr>
-<td>&gt;</td>
+<td><code>&gt;</code></td>
 <td>Mayor que</td>
-<td>Devuelve verdadero si el valor de la izquierda es mayor que el de la derecha.</td>
+<td><code>a &gt; b</code></td>
 </tr>
 <tr>
-<td>&gt;=</td>
+<td><code>&lt;</code></td>
+<td>Menor que</td>
+<td><code>a &lt; b</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
 <td>Mayor o igual que</td>
-<td>Devuelve verdadero si el valor de la izquierda es mayor o igual al de la derecha.</td>
+<td><code>a &gt;= b</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>Menor o igual que</td>
+<td><code>a &lt;= b</code></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;a == b :&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">));</span><span class="c1">//Devuelve falso, porque a no es igual a b</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esIgual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">      </span><span class="c1">// false</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esMayor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">       </span><span class="c1">// true</span>
+<span class="linenos" data-linenos="6 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esMenorOIgual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// false</span>
 </code></pre></div>
 <h2 id="operadores-logicos">Operadores lógicos<a class="headerlink" href="#operadores-logicos" title="Permanent link">&para;</a></h2>
 <p>Estos operadores se utilizan para realizar operaciones lógicas <strong>AND</strong> y <strong>OR</strong>. Se usa ampliamente en sentencias if-then o bucles para verificar condiciones, establecer un punto de salida de un bucle o la toma de  decisiones.
@@ -3475,8 +3508,60 @@ Los operadores condicionales son:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// a = a % 5;</span>
 </code></pre></div>
+<h2 id="operador-ternario">Operador ternario<a class="headerlink" href="#operador-ternario" title="Permanent link">&para;</a></h2>
+<p>El operador ternario es un operador condicional que evalúa una expresión y devuelve un valor basado en si la condición es verdadera o falsa.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Operador</strong></th>
+<th><strong>Descripción</strong></th>
+<th><strong>Ejemplo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>?:</code></td>
+<td>Operador ternario (condicional)</td>
+<td><code>condición ? valor1 : valor2</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">  </span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">// max=10 ya que a&gt;b=true</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">String</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Par&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Impar&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// Si el número es divisible por 2, es par</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1">//resultado=&quot;Par&quot;</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="o">=</span><span class="mi">8</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">String</span><span class="w"> </span><span class="n">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">edad</span><span class="o">&gt;=</span><span class="mi">18</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Es mayor de edad&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Es menor de edad&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1">//mensaje=&quot;Es menor de edad&quot;</span>
+</code></pre></div>
 <h2 id="precedencia-de-operadores">Precedencia de operadores<a class="headerlink" href="#precedencia-de-operadores" title="Permanent link">&para;</a></h2>
-<p>El orden de precedencia, es decir, como Java decide la prioridad al evaluar los operadores en una expresión, se puede ver en <a href="http://www.cs.bilkent.edu.tr/~guvenir/courses/CS101/op_precedence.html">Java Operator Precedence Table</a></p>
+<p>La prioridad de operadores en Java define el orden en que las operaciones son evaluadas cuando hay múltiples operadores en una expresión. Algunos operadores tienen mayor prioridad que otros, lo que significa que se evaluarán antes a menos que el orden sea alterado explícitamente mediante el uso de paréntesis.</p>
+<p>Reglas generales:</p>
+<ul>
+<li>Los operadores con mayor prioridad se evalúan antes que los de menor prioridad.</li>
+<li>Los operadores con la misma prioridad se evalúan de acuerdo a su asociatividad, que puede ser de izquierda a derecha o de derecha a izquierda.</li>
+</ul>
+<p>Las prioridades en Java son:</p>
+<p><img alt="Java" src="../../img/ud1/prioridades2.png" /></p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1">//16</span>
+</code></pre></div>
+Explicación:</p>
+<ol>
+<li>El operador * (multiplicación) tiene mayor prioridad que + (suma).</li>
+<li>Por lo tanto, la multiplicación 3 * 2 se evalúa primero, dando 6.</li>
+<li>Luego se evalúa la suma: 10 + 6, que da 16.</li>
+</ol>
+<h3 id="uso-de-parentesis-para-alterar-la-prioridad">Uso de paréntesis para alterar la prioridad:<a class="headerlink" href="#uso-de-parentesis-para-alterar-la-prioridad" title="Permanent link">&para;</a></h3>
+<p>Si deseas cambiar el orden de evaluación, puedes utilizar paréntesis:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1">//26</span>
+</code></pre></div>
+<p>Entender la prioridad de operadores es crucial para evitar errores sutiles y mejorar la legibilidad del código. Aunque Java sigue un conjunto de reglas predefinidas, es recomendable usar paréntesis para aclarar la intención en expresiones complejas. Esto facilita tanto el entendimiento del código como su mantenimiento.</p>
 <h2 id="conversiones-de-tipo">Conversiones de tipo<a class="headerlink" href="#conversiones-de-tipo" title="Permanent link">&para;</a></h2>
 <h3 id="conversiones-por-defecto">Conversiones por defecto<a class="headerlink" href="#conversiones-por-defecto" title="Permanent link">&para;</a></h3>
 <p>Las reglas de Java para saber el tipo de datos resultante de una expresión se siguen las siguientes reglas:</p>
