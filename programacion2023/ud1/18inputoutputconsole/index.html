@@ -3258,7 +3258,7 @@
 <span class="linenos" data-linenos="6 "></span><span class="w">   </span><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Nota</p>
+<p class="admonition-title">Lectura varios valores</p>
 <p>Un objeto <strong>Scanner</strong> tiene un conjunto de cadenas de caracteres que separan o delimitan los fragmentos de datos que está buscando. De forma predeterminada, este conjunto de delimitadores consta de cualquier secuencia no vacía de caracteres en blanco, es decir, los caracteres de espacio, tabulación, retorno y nueva línea. </p>
 <p>Esto permitirá al usuario ingresar varios números enteros separados por espacios antes de presionar la tecla <code>Enter</code>. </p>
 <p>En código sería:</p>
@@ -3274,6 +3274,8 @@
 <p>Esto se produce, por ejemplo, cuando se está ejecutando el método <code>nextInt()</code> para extraer un entero del buffer y se introduce por ejemplo un <code>double o un char</code>.</p>
 <p><img alt="Java" src="../../img/ud1/errorscanner.png" /></p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Espacios en blanco al leer un String con <code>next()</code></p>
 <p>Los espacios en blanco como delimitadores también significan que el método <em>next()</em> no puede devolver una cadena vacía ni puede devolver una cadena que contenga espacios. Por ejemplo, considere el código:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">   </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduce un texto separado por espacio en blanco: &quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">   </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
@@ -3281,12 +3283,16 @@
 </code></pre></div>
 <p>Si se escribe <code>"Hola mundo"</code> y se presiona la tecla <code>Enter</code>, la cadena str almacenará sólo "Hola".</p>
 <p><img alt="Java" src="../../img/ud1/scanner2.png" /></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Leer una línea completa con <code>nextLine()</code></p>
 <p>Para que un objeto <em>Scanner</em> lea cadenas que contienen espacios, debemos usar el método <em>nextLine()</em>:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">   </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduce un texto separado por espacio en blanco: &quot;</span><span class="p">);</span>
 <span class="hll"><span class="linenos" data-linenos="2 "></span><span class="w">   </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
 </span><span class="linenos" data-linenos="3 "></span><span class="w">   </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usted introdujo: &quot;</span><span class="o">+</span><span class="n">str</span><span class="p">);</span><span class="w">   </span>
 </code></pre></div>
 <p><img alt="Java" src="../../img/ud1/scanner3.png" /></p>
+</div>
 <h2 id="limpiar-el-buffer-de-entrada">Limpiar el buffer de entrada<a class="headerlink" href="#limpiar-el-buffer-de-entrada" title="Permanent link">&para;</a></h2>
 <p>Cuando el usuario introduce un dato, scanner lee hasta que encuentra un espacio o un <em>intro('/n')</em>, pero este intro queda en el buffer, por lo que en una segunda lectura de datos por scanner se lo encontrará como primer carácter por lo que no leerá los datos del usuario correctamente</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
@@ -3311,6 +3317,10 @@
 <span class="linenos" data-linenos="8 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Tu nombre es &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; y tienes &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; años&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p><img alt="Java" src="../../img/ud1/scanner5.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Nota</p>
+<p>Es posible que este último ejemplo no sea correcto. Es necesario probarlo para el jdk y sistema operativo que estéis utilizando</p>
+</div>
 
 
 
