@@ -1074,6 +1074,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#salir-de-un-bucle-flag-o-bandera" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salir de un bucle: Flag o bandera
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#salir-de-un-bucle-centinela" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salir de un bucle: Centinela
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#control-de-la-entrada-del-usuario-mediante-while" class="md-nav__link">
     <span class="md-ellipsis">
       Control de la entrada del usuario mediante while
@@ -1084,9 +1102,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ejecutar-el-programa-hasta-que-se-introduzca-un-valor-en-concreto" class="md-nav__link">
+  <a href="#ejecutar-el-programa-hasta-que-se-introduzca-un-valor-en-concretocentinela" class="md-nav__link">
     <span class="md-ellipsis">
-      Ejecutar el programa hasta que se introduzca un valor en concreto
+      Ejecutar el programa hasta que se introduzca un valor en concreto(centinela)
     </span>
   </a>
   
@@ -1096,6 +1114,15 @@
   <a href="#leer-opcion-de-menu-valida-del-usuario-o-dato-de-usuario-valido" class="md-nav__link">
     <span class="md-ellipsis">
       Leer opción de menú válida del usuario o dato de usuario válido
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobar-en-scanner-que-la-entrada-es-valida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobar en  Scanner que la entrada es válida
     </span>
   </a>
   
@@ -3299,9 +3326,34 @@
 <p>Salida</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    55
 </code></pre></div>
+<h2 id="salir-de-un-bucle-flag-o-bandera">Salir de un bucle: Flag o bandera<a class="headerlink" href="#salir-de-un-bucle-flag-o-bandera" title="Permanent link">&para;</a></h2>
+<p>La bandera para salir de un bucle es una técnica de programación que consiste en utilizar una variable booleana (generalmente llamada "bandera" o "flag") que controla cuándo debe terminar la ejecución de un bucle. Esta variable se evalúa en cada iteración del bucle y, cuando cambia de valor (por ejemplo, de true a false), el bucle se interrumpe.</p>
+<p>Esta técnica es útil cuando no conoces el número exacto de iteraciones y el bucle debe detenerse cuando se cumpla una condición específica.</p>
+<p><img alt="" src="../../img/ud2/flag.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Scanner</span><span class="w"> </span><span class="n">scanner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esFin</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">esFin</span><span class="p">){</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduce un número(0 para salir)&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">num</span><span class="o">=</span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">esFin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="salir-de-un-bucle-centinela">Salir de un bucle: Centinela<a class="headerlink" href="#salir-de-un-bucle-centinela" title="Permanent link">&para;</a></h2>
+<p>Un centinela es un valor especial que marca el final de un bucle o el fin de una secuencia de datos. En lugar de usar una variable booleana, el bucle termina cuando se encuentra un valor específico.</p>
+<p>Ejemplo: </p>
+<p>Un bucle que sigue pidiendo al usuario números hasta que introduce un valor centinela, como 0, para indicar que desea terminar.</p>
+<p><img alt="centinela" src="../../img/ud2/centinela.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">numero</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Introduce un número (0 para salir): &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">numero</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="control-de-la-entrada-del-usuario-mediante-while">Control de la entrada del usuario mediante <strong>while</strong><a class="headerlink" href="#control-de-la-entrada-del-usuario-mediante-while" title="Permanent link">&para;</a></h2>
 <p>Las estructuras en bucle permiten controlar la entrada del usuario en nuestros programas. Tenemos varios casos de uso. Vamos a ver algunos.</p>
-<h3 id="ejecutar-el-programa-hasta-que-se-introduzca-un-valor-en-concreto">Ejecutar el programa hasta que se introduzca un valor en concreto<a class="headerlink" href="#ejecutar-el-programa-hasta-que-se-introduzca-un-valor-en-concreto" title="Permanent link">&para;</a></h3>
+<h3 id="ejecutar-el-programa-hasta-que-se-introduzca-un-valor-en-concretocentinela">Ejecutar el programa hasta que se introduzca un valor en concreto(centinela)<a class="headerlink" href="#ejecutar-el-programa-hasta-que-se-introduzca-un-valor-en-concretocentinela" title="Permanent link">&para;</a></h3>
 <p>Este caso:
 Vamos a suponer que el programa terminará cuando el número sea negativo(puede ser cualquier condición)</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>   1. Mostrar mensaje al usuario: &quot;Introduzca un número o ingrese un número negativo para terminar.&quot;
@@ -3361,6 +3413,74 @@ Vamos a suponer que el programa terminará cuando el número sea negativo(puede 
 <span class="linenos" data-linenos="8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Fin&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p>El método <strong>equalsIgnoreCase</strong> compara dos string ignorando mayúsculas y minúsculas</p>
+<p>En programa más complejo, podemos incluir el menú de la siguiente forma. En este ejemplo, mostramos un menú con las opciones de una calculadora simple. Mientras no introduzca un opción válida, mostramos el menú</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Scanner</span><span class="w"> </span><span class="n">scanner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">opcion</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kt">int</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="kt">int</span><span class="w"> </span><span class="n">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="c1">//mientras no sea válida la entrada</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">//mostramos el menú</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Menú:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;1. Sumar&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;2. Restar&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;3. Multiplicar&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;4. Dividir&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;5. Salir&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Ingrese su opción: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="c1">//leemos la opción</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">opcion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">opcion</span><span class="o">&lt;</span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">opcion</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="c1">//leemos los número si quiere seguir</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">opcion</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Ingrese el primer número: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="n">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Ingrese el segundo número: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="n">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="c1">//realizamos la acción</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">opcion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">                </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La suma es: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">                </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La resta es: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">                </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La multiplicación es: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">                </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La división es: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="48 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="49 "></span><span class="w">    </span><span class="c1">//salimos cuando la opción sea 5</span>
+<span class="linenos" data-linenos="50 "></span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">opcion</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="linenos" data-linenos="51 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;¡Hasta luego!&quot;</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="comprobar-en-scanner-que-la-entrada-es-valida">Comprobar en  Scanner que la entrada es válida<a class="headerlink" href="#comprobar-en-scanner-que-la-entrada-es-valida" title="Permanent link">&para;</a></h3>
+<p>Scanner nos permite comprobar si la entrada es válida cuando el usuario introduce el valor. De esta forma evitaremos errores en tiempo de ejecución por lectura inválida</p>
+<p>Ejemplo, si queremos leer un entero, mediante un while repetimos la petición de datos hasta que sea válida la entrada</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Scanner</span><span class="w"> </span><span class="n">scanner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Ingrese un número entero: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">//comprobamos si es un entero</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">scanner</span><span class="p">.</span><span class="na">hasNextInt</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Entrada   inválida. Por favor, ingrese un número entero:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">scanner</span><span class="p">.</span><span class="na">next</span><span class="p">();</span><span class="w"> </span><span class="c1">// Consumimos la entrada inválida</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="kt">int</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Has introducido el número: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">numero</span><span class="p">);</span>
+</code></pre></div>
 
 
 
