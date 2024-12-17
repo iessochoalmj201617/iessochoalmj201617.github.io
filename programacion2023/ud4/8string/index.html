@@ -1752,6 +1752,63 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#modificacion-de-cadenas-con-frecuencia-stringbuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación de cadenas con frecuencia: StringBuilder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modificación de cadenas con frecuencia: StringBuilder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metodos-principales-de-stringbuilder-en-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos principales de StringBuilder en Java
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formateo-de-cadenas-stringformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formateo de cadenas: String.format
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formateo de cadenas: String.format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#especificadores-comunes-en-stringformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Especificadores comunes en String.format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3234,7 +3291,7 @@
 <h1 id="string-en-java">💾 String en Java<a class="headerlink" href="#string-en-java" title="Permanent link">&para;</a></h1>
 <p>Un String es un tipo de dato no primitvo que, en Java representa una cadena de caracteres no modificable.
 Todos los literales de la forma "cualquier texto", es decir, literales entre comillas dobles, que aparecen en un programa java se implementan como objetos de la clase String.</p>
-<p>A diferencia de muchos objetos vimos que un String se puede crear sin la palabra new.</p>
+<p>A diferencia de otras clases, String se puede crear sin la palabra new.</p>
 <p>String text = "hola";</p>
 <h2 id="creacion-de-string">Creación de String<a class="headerlink" href="#creacion-de-string" title="Permanent link">&para;</a></h2>
 <p>Se puede crear un String de varias formas.</p>
@@ -3370,6 +3427,237 @@ Por ejemplo:</p>
 <p class="admonition-title">Tip</p>
 <p>Para más información consulta la documentación oficial de la clase <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Character.html">Character</a></p>
 </div>
+<h2 id="modificacion-de-cadenas-con-frecuencia-stringbuilder">Modificación de cadenas con frecuencia: StringBuilder<a class="headerlink" href="#modificacion-de-cadenas-con-frecuencia-stringbuilder" title="Permanent link">&para;</a></h2>
+<p>Como hemos visto anteriormente, cada vez que se reasigna un String a una variable, se destruye el objeto y se crea uno nuevo lo que puede implicar una perdida de eficiencia y recursos  cuando estamos construyendo un String en un algoritmo que implica muchas reasignaciones.</p>
+<p>Tenemos la clase <strong>StringBuilder</strong> que permite manipular  cadenas de forma eficiente, ya que se puede modificar su contenido sin crear nuevos objetos en memoria.</p>
+<p>Sus métodos principales son</p>
+<h3 id="metodos-principales-de-stringbuilder-en-java">Métodos principales de <code>StringBuilder</code> en Java<a class="headerlink" href="#metodos-principales-de-stringbuilder-en-java" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Método</strong></th>
+<th><strong>Descripción</strong></th>
+<th><strong>Ejemplo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>append(String s)</code></strong></td>
+<td>Añade texto al final del contenido actual del <code>StringBuilder</code>.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola");</code><br><code>sb.append(" Mundo");</code><br><code>// Salida: Hola Mundo</code></td>
+</tr>
+<tr>
+<td><strong><code>insert(int offset, String s)</code></strong></td>
+<td>Inserta una cadena en una posición específica dentro del <code>StringBuilder</code>.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola");</code><br><code>sb.insert(4, " Mundo");</code><br><code>// Salida: Hola Mundo</code></td>
+</tr>
+<tr>
+<td><strong><code>delete(int start, int end)</code></strong></td>
+<td>Elimina los caracteres comprendidos entre las posiciones indicadas (<code>start</code> inclusivo, <code>end</code> exclusivo).</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola Mundo");</code><br><code>sb.delete(5, 10);</code><br><code>// Salida: Hola</code></td>
+</tr>
+<tr>
+<td><strong><code>replace(int start, int end, String s)</code></strong></td>
+<td>Reemplaza los caracteres entre los índices especificados con la cadena proporcionada.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola Mundo");</code><br><code>sb.replace(5, 10, "Java");</code><br><code>// Salida: Hola Java</code></td>
+</tr>
+<tr>
+<td><strong><code>reverse()</code></strong></td>
+<td>Invierte el contenido del <code>StringBuilder</code>.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola");</code><br><code>sb.reverse();</code><br><code>// Salida: aloH</code></td>
+</tr>
+<tr>
+<td><strong><code>length()</code></strong></td>
+<td>Devuelve el número de caracteres que contiene el <code>StringBuilder</code>.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola");</code><br><code>System.out.println(sb.length());</code><br><code>// Salida: 4</code></td>
+</tr>
+<tr>
+<td><strong><code>capacity()</code></strong></td>
+<td>Muestra la capacidad actual del buffer interno. Este valor aumenta automáticamente cuando se excede.</td>
+<td><code>StringBuilder sb = new StringBuilder();</code><br><code>System.out.println(sb.capacity());</code><br><code>// Salida: 16 (por defecto)</code></td>
+</tr>
+<tr>
+<td><strong><code>setCharAt(int index, char ch)</code></strong></td>
+<td>Modifica un carácter específico en la posición indicada.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola");</code><br><code>sb.setCharAt(1, 'e');</code><br><code>// Salida: Hela</code></td>
+</tr>
+<tr>
+<td><strong><code>substring(int start, int end)</code></strong></td>
+<td>Devuelve una subcadena que empieza en <code>start</code> y termina en <code>end</code> (exclusivo), similar a <code>String</code>.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola Mundo");</code><br><code>System.out.println(sb.substring(0, 4));</code><br><code>// Salida: Hola</code></td>
+</tr>
+<tr>
+<td><strong><code>deleteCharAt(int index)</code></strong></td>
+<td>Elimina el carácter en la posición especificada.</td>
+<td><code>StringBuilder sb = new StringBuilder("Hola Mundo");</code><br><code>sb.deleteCharAt(4);</code><br><code>// Salida: HolaMundo</code></td>
+</tr>
+</tbody>
+</table>
+<p>El siguiente ejemplo construimos un String concatenando 100 números mediante StringBuilder</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;Números de 1 al &quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="formateo-de-cadenas-stringformat">Formateo de cadenas: String.format<a class="headerlink" href="#formateo-de-cadenas-stringformat" title="Permanent link">&para;</a></h2>
+<p>La clase String en Java incluye el método estático String.format, que se utiliza para crear cadenas formateadas de manera eficiente. Este método permite insertar valores en una cadena de texto según un formato especificado</p>
+<p>Sintaxis básica</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">formattedString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>format</strong>: Especifica el patrón de formato (con especificadores como %s, %d, %f).</li>
+<li><strong>args</strong>: Lista de argumentos que se insertan en el patrón.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dinero</span><span class="o">=</span><span class="mf">10.345</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="o">=</span><span class="s">&quot;Juanito&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">salida</span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%s tienes %.2f€ en tu cuenta&quot;</span><span class="p">,</span><span class="n">nombre</span><span class="p">,</span><span class="n">dinero</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">salida</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="c1">//Juanito tienes 10,35€ en tu cuenta</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<img alt="String" src="../../img/ud4/stringformat.png" /></p>
+<h3 id="especificadores-comunes-en-stringformat">Especificadores comunes en <code>String.format</code><a class="headerlink" href="#especificadores-comunes-en-stringformat" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Especificador</strong></th>
+<th><strong>Descripción</strong></th>
+<th><strong>Ejemplo</strong></th>
+<th><strong>Salida</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>%s</code></strong></td>
+<td>Representa una cadena de texto.</td>
+<td><code>String.format("Hola %s", "Mundo")</code></td>
+<td><code>Hola Mundo</code></td>
+</tr>
+<tr>
+<td><strong><code>%d</code></strong></td>
+<td>Representa un número entero en formato decimal.</td>
+<td><code>String.format("Número: %d", 42)</code></td>
+<td><code>Número: 42</code></td>
+</tr>
+<tr>
+<td><strong><code>%f</code></strong></td>
+<td>Representa un número en formato decimal (coma flotante).</td>
+<td><code>String.format("Valor: %.2f", 3.1416)</code></td>
+<td><code>Valor: 3.14</code></td>
+</tr>
+<tr>
+<td><strong><code>%x</code></strong></td>
+<td>Representa un número en formato hexadecimal (en minúsculas).</td>
+<td><code>String.format("Hex: %x", 255)</code></td>
+<td><code>Hex: ff</code></td>
+</tr>
+<tr>
+<td><strong><code>%X</code></strong></td>
+<td>Representa un número en formato hexadecimal (en mayúsculas).</td>
+<td><code>String.format("Hex: %X", 255)</code></td>
+<td><code>Hex: FF</code></td>
+</tr>
+<tr>
+<td><strong><code>%o</code></strong></td>
+<td>Representa un número en formato octal.</td>
+<td><code>String.format("Octal: %o", 8)</code></td>
+<td><code>Octal: 10</code></td>
+</tr>
+<tr>
+<td><strong><code>%%</code></strong></td>
+<td>Representa el carácter <code>%</code>.</td>
+<td><code>String.format("Progreso: 75%%")</code></td>
+<td><code>Progreso: 75%</code></td>
+</tr>
+<tr>
+<td><strong><code>%e</code></strong></td>
+<td>Representa un número en notación científica (minúsculas).</td>
+<td><code>String.format("Científico: %e", 12345.6789)</code></td>
+<td><code>Científico: 1.234568e+04</code></td>
+</tr>
+<tr>
+<td><strong><code>%E</code></strong></td>
+<td>Representa un número en notación científica (mayúsculas).</td>
+<td><code>String.format("Científico: %E", 12345.6789)</code></td>
+<td><code>Científico: 1.234568E+04</code></td>
+</tr>
+<tr>
+<td><strong><code>%c</code></strong></td>
+<td>Representa un carácter.</td>
+<td><code>String.format("Letra: %c", 'A')</code></td>
+<td><code>Letra: A</code></td>
+</tr>
+<tr>
+<td><strong><code>%b</code></strong></td>
+<td>Representa un valor booleano (<code>true</code> o <code>false</code>).</td>
+<td><code>String.format("Es válido: %b", true)</code></td>
+<td><code>Es válido: true</code></td>
+</tr>
+<tr>
+<td><strong><code>%,d</code></strong></td>
+<td>Formatea números enteros con separadores de miles (según la configuración regional).</td>
+<td><code>String.format("Número: %,d", 1000000)</code></td>
+<td><code>Número: 1,000,000</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplos">Ejemplos<a class="headerlink" href="#ejemplos" title="Permanent link">&para;</a></h3>
+<p>Ejemplo 1: Formatear texto y números
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">double</span><span class="w"> </span><span class="n">precio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">45.6789</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;El precio es %.2f euros.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">precio</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Salida: El precio es 45.68 euros.</span>
+</code></pre></div>
+Ejemplo 2: Formatear números decimales con precisión
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">double</span><span class="w"> </span><span class="n">precio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">45.6789</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;El precio es %.2f euros.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">precio</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Salida: El precio es 45.68 euros.</span>
+</code></pre></div>
+Ejemplo 3: Representación en diferentes formatos
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;Decimal: %d, Hexadecimal: %x, Octal: %o&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">numero</span><span class="p">,</span><span class="w"> </span><span class="n">numero</span><span class="p">,</span><span class="w"> </span><span class="n">numero</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Salida: Decimal: 255, Hexadecimal: ff, Octal: 377</span>
+</code></pre></div>
+Ejemplo 4: Crear una tabla tabulada
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">altura</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="c1">// Constructores</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">       </span><span class="c1">//....</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="c1">// Getters y setter</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">//....</span>
+<span class="linenos" data-linenos="10 "></span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="c1">// Crear objetos Persona</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Carlos&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mf">1.75</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mf">1.62</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">p3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Luis&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mf">1.80</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="c1">// Imprimir tabla tabulada</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">formatoEncabezado</span><span class="o">=</span><span class="s">&quot;%-10s %-10s %-10s&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">formatoFila</span><span class="o">=</span><span class="s">&quot;%-10s %-10d %-10.2f&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">formatoEncabezado</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Nombre&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Edad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Altura&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">formatoFila</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">(),</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="na">getEdad</span><span class="p">(),</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="na">getAltura</span><span class="p">()));</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">formatoFila</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">(),</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="na">getEdad</span><span class="p">(),</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="na">getAltura</span><span class="p">()));</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="n">formatoFila</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="p">.</span><span class="na">getNombre</span><span class="p">(),</span><span class="w"> </span><span class="n">p3</span><span class="p">.</span><span class="na">getEdad</span><span class="p">(),</span><span class="w"> </span><span class="n">p3</span><span class="p">.</span><span class="na">getAltura</span><span class="p">()));</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="25 "></span><span class="p">}</span>
+</code></pre></div>
+Salida:</p>
+<p><img alt="String" src="../../img/ud4/stringformat2.png" /></p>
 
 
 
