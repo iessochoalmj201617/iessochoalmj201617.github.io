@@ -1963,6 +1963,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-polimorfismo-de-minecraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo de polimorfismo de Minecraft
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3280,15 +3289,15 @@ muestra</p>
 <h2 id="upcasting-downcasting">Upcasting, Downcasting<a class="headerlink" href="#upcasting-downcasting" title="Permanent link">&para;</a></h2>
 <p>Una variable puede contener una referencia a un objeto cuya clase es descendiente de la clase de la variable.
 Ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="c1">//La variable a es una referencia a un objeto Perro que es descendiente de Animal. </span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="c1">//La variable animal es una referencia a un objeto Perro que es descendiente de Animal. </span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">animal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">();</span>
 </code></pre></div>
 <p>Un descendiente de una clase es un hijo de esa clase, o un hijo de un hijo de esa clase, y así sucesivamente. Los hermanos no son descendientes entre sí.</p>
 <p><strong>NO podemos asignar un objeto de referencia de padre a una variable de clase hijo</strong> (Perro p = new Animal()). Si queremos convertir un padre en hijo, la variable tiene que ser creada de tipo hijo.
 Si queremos convertir un hijo en padre tendremos que hacer un Upcasting, y al revés tendríamos un Downcasting:</p>
 <p><img alt="Polimorfismo" src="../../img/ud5/1polimor.png" /></p>
 <p>Ejemplo</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="c1">//NO SE PUEDE HACER</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="c1">//NO SE PUEDE HACER: ERROR</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Perro</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Animal</span><span class="p">();</span><span class="w"> </span><span class="c1">//no compila</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Perro</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Perro</span><span class="p">)</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Animal</span><span class="p">();</span><span class="w"> </span><span class="c1">// compila pero da error de ejecución</span>
 <span class="linenos" data-linenos=" 4 "></span>
@@ -3318,6 +3327,70 @@ sintaxis es:</p>
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div>
 Es una característica que hay que activar en java 17 pero que ya está disponible en la versión 21</p>
+<h2 id="ejemplo-de-polimorfismo-de-minecraft">Ejemplo de polimorfismo de Minecraft<a class="headerlink" href="#ejemplo-de-polimorfismo-de-minecraft" title="Permanent link">&para;</a></h2>
+<p>La capacidad del polimorfismo de la POO permite en los videojuegos programar la gran dificultad de manejar la variedad de los diferentes personajes, pantallas, posibles ampliaciones futuras ...</p>
+<p><img alt="Polimorfismo" src="../../img/ud5/imagen_minecraft.png" /></p>
+<p>Vamos a ver un ejemplo básico del famoso videojuego Minecraft en el que simulamos la programación de la reacción ante la destrucción individual de un bloque, en el que cada tipo de bloque tiene una reacción diferente</p>
+<p>Un posible diseño puede ser el siguiente</p>
+<p><img alt="Polimorfismo" src="../../img/ud5/diagrama_clases_minecraft.png" /></p>
+<p>Definimos un método abstracto <code>destruir</code> que tendrá que ser sobrescrito en cada uno de las nuevas clases de bloques que crearemos</p>
+<p>Cada nueva bloque proporciona una implementación específica del método destruir() para simular el comportamiento de los bloques en Minecraft.</p>
+<p><strong>Polimorfismo</strong>: En el bucle <code>for</code> del método <code>main()</code>, se llama al método <code>destruir()</code> de cada objeto, y Java selecciona automáticamente la implementación correcta basada en el tipo del objeto.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// Clase base Bloque</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Bloque</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destruir</span><span class="p">();</span><span class="w"> </span><span class="c1">// Método abstracto para destruir un bloque</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1">// Subclase Tierra</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="kd">class</span> <span class="nc">Tierra</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Bloque</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destruir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Has destruido un bloque de Tierra. Se convierte en tierra suelta.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="c1">// Subclase Piedra</span>
+<span class="linenos" data-linenos="15 "></span><span class="kd">class</span> <span class="nc">Piedra</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Bloque</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destruir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Has destruido un bloque de Piedra. Se convierte en adoquín.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="c1">// Subclase Diamante</span>
+<span class="linenos" data-linenos="23 "></span><span class="kd">class</span> <span class="nc">Diamante</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Bloque</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destruir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Has destruido un bloque de Diamante. ¡Obtienes un diamante!&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="c1">// Subclase Madera</span>
+<span class="linenos" data-linenos="31 "></span><span class="kd">class</span> <span class="nc">Madera</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Bloque</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destruir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Has destruido un bloque de Madera. Obtienes tablones.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="36 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span><span class="c1">// Clase principal</span>
+<span class="linenos" data-linenos="39 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MinecraftPolimorfismo</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">        </span><span class="c1">// Crear un array de bloques</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">        </span><span class="n">Bloque</span><span class="o">[]</span><span class="w"> </span><span class="n">bloques</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Tierra</span><span class="p">(),</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Piedra</span><span class="p">(),</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Diamante</span><span class="p">(),</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Madera</span><span class="p">()</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">        </span><span class="p">};</span>
+<span class="linenos" data-linenos="48 "></span>
+<span class="linenos" data-linenos="49 "></span><span class="w">        </span><span class="c1">// Destruir cada bloque de forma polimórfica</span>
+<span class="linenos" data-linenos="50 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Bloque</span><span class="w"> </span><span class="n">bloque</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">bloques</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="51 "></span><span class="w">            </span><span class="n">bloque</span><span class="p">.</span><span class="na">destruir</span><span class="p">();</span>
+<span class="linenos" data-linenos="52 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="53 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="54 "></span><span class="p">}</span>
+</code></pre></div>
 
 
 
