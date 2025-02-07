@@ -3695,12 +3695,11 @@ En este ejemplo, el programa termina porque no se ha capturado la excepción</p>
 </code></pre></div>
 <strong>¿Es obligatorio poner <code>throws</code>?</strong></p>
 <ul>
-<li>
-<p><code>unchecked exception</code>: No, no es obligatorio si es una excepción no comprobada  . Pero es conveniente para que se sepa que puede lanzar una excepción</p>
-</li>
-<li>
-<p><code>checked exceptions</code>: Sí, en el caso de excepciones comprobadas. Para excepciones como <code>IOException</code>, es obligatorio declararlas con <code>throws</code></p>
-</li>
+<li><code>unchecked exception</code>: No, no es obligatorio si es una excepción no comprobada  . Pero es conveniente para que se vea en la firma  y sepa que puede lanzar una excepción</li>
+</ul>
+<p><img alt="alt text" src="../../img/ud5/excepciones11.png" /></p>
+<ul>
+<li><code>checked exceptions</code>: Sí, en el caso de excepciones comprobadas. Para excepciones como <code>IOException</code>, es obligatorio declararlas con <code>throws</code></li>
 </ul>
 <h2 id="excepciones-personalizadas">Excepciones personalizadas<a class="headerlink" href="#excepciones-personalizadas" title="Permanent link">&para;</a></h2>
 <p>Aunque las excepciones de Java cubren casi todas las excepciones generales que están obligadas a ocurrir en la programación. Sin embargo, a veces necesitamos complementar estas excepciones estándar con las nuestras.</p>
