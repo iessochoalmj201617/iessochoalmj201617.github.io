@@ -2132,6 +2132,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#throws-incluir-en-la-firma-del-metodo-la-excepcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      throws: Incluir en la firma del método la excepción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#excepciones-personalizadas" class="md-nav__link">
     <span class="md-ellipsis">
       Excepciones personalizadas
@@ -3381,7 +3390,7 @@
 <p>Class Exception y class Error extienden Throwable. </p>
 <p>La <strong>clase Error</strong> está relacionada con errores de la máquina virtual de Java. Generalmente estos
 errores no dependen del programador, por lo que no nos debemos preocupar por tratarlos, por
-ejemplo, OutOfMemoryError, StackOverflowError, errores de hardware, etc.</p>
+ejemplo, <code>OutOfMemoryError</code>, <code>StackOverflowError</code>, errores de hardware, etc.</p>
 <p>En la <strong>clase Exception</strong> se encuentran las excepciones que se pueden lanzar en una aplicación</p>
 <p>Las excepciones son diferentes de los errores porque se pueden escribir programas para recuperarse de excepciones, pero no se pueden escribir programas para recuperarse de errores.</p>
 <p>Las excepciones pueden ser detectadas por una parte del programa que intenta recuperarse del problema.</p>
@@ -3425,7 +3434,7 @@ ejemplo, OutOfMemoryError, StackOverflowError, errores de hardware, etc.</p>
 </code></pre></div>
 <p><img alt="Exception" src="../../img/ud5/excepciones8.png" /></p>
 <h2 id="jerarquia-de-excepciones">Jerarquía de Excepciones<a class="headerlink" href="#jerarquia-de-excepciones" title="Permanent link">&para;</a></h2>
-<p>En la clase Exception se encuentran las excepciones que se pueden lanzar en una aplicación. Tiene
+<p>En la clase <code>Exception</code> se encuentran las excepciones que se pueden lanzar en una aplicación. Tiene
 varias subclases, entre ellas:</p>
 <ul>
 <li><strong>RuntimeException</strong>: son excepciones lanzadas durante la ejecución del programa. Por
@@ -3439,7 +3448,7 @@ clase, pero no se encuentra el fichero .class correspondiente.</li>
 <p>Podemos ver un resumen</p>
 <p><img alt="Exception" src="../../img/ud5/excepciones7.png" /></p>
 <h2 id="tratamiento-de-excepciones">Tratamiento de excepciones<a class="headerlink" href="#tratamiento-de-excepciones" title="Permanent link">&para;</a></h2>
-<p>Un programa que trate una excepción, tiene que un bloque del tipo
+<p>Un programa que trate una excepción, tiene  un bloque del tipo <code>try/catch</code>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="c1">//Instrucciones que se intentan ejecutar, si se produce una</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">//situación inesperada se lanza una excepción</span>
@@ -3468,7 +3477,7 @@ siempre, independientemente si se ha producido una excepción o no</p>
 <h3 id="ejemplos">Ejemplos<a class="headerlink" href="#ejemplos" title="Permanent link">&para;</a></h3>
 <p>El siguiente programa lee un número entero y lo muestra. Si en la instrucción <strong>sc.nextInt()</strong> se
 introduce un número de otro tipo o un carácter, se lanza una excepción <strong>InputMismatchException</strong>
-que es capturada por el bloque catch. En este bloque se realizan las instrucciones necesarias para
+que es capturada por el bloque <code>catch</code>. En este bloque se realizan las instrucciones necesarias para
 resolver la situación y que el programa pueda continuar.</p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
@@ -3510,11 +3519,12 @@ El siguiente ejemplo captura dos excepciones, por un lado se espera la entrada d
 <p class="admonition-title">Importante</p>
 <p>Cuando se lanza una excepción se captura por el primer bloque catch cuyo parámetro sea de la
 misma clase que el objeto excepción o de una clase base directa o indirecta. Por este motivo, es importante el orden en que se coloquen los bloques catch.</p>
-<p>Las excepciones más genéricas se deben capturar al final. Si no es necesario tratar excepciones
-concretas de forma específica se puede poner un bloque catch de una clase base que las capture
+<p>Las excepciones más genéricas se deben capturar al final. </p>
+<p>Si no es necesario tratar excepciones
+concretas de forma específica, se puede poner un bloque <code>catch</code> de una clase base que las capture
 todas y las trate de forma general. Esto se conoce como captura genérica de excepciones.</p>
 </div>
-<p>En el siguiente ejemplo, en el último catch, se captura cualquier posible error que surja</p>
+<p>En el siguiente ejemplo, en el último <code>catch</code>, se captura cualquier posible error que surja</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">};</span>
@@ -3674,11 +3684,29 @@ En este ejemplo, el programa termina porque no se ha capturado la excepción</p>
 <span class="linenos" data-linenos="18 "></span>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
+<h2 id="throws-incluir-en-la-firma-del-metodo-la-excepcion">throws: Incluir en la firma del método la excepción<a class="headerlink" href="#throws-incluir-en-la-firma-del-metodo-la-excepcion" title="Permanent link">&para;</a></h2>
+<p>Podemos indicar en la firma del método que puede lanzar una excepción. Esto se indica con la palabra clave <code>throws</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setNota</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">//si la nota no cumple las especificaciones, lanzamos una excepción</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">nota</span><span class="o">&lt;</span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;La nota tiene que estar en el rango 0..10&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nota</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<strong>¿Es obligatorio poner <code>throws</code>?</strong></p>
+<ul>
+<li>
+<p><code>unchecked exception</code>: No, no es obligatorio si es una excepción no comprobada  . Pero es conveniente para que se sepa que puede lanzar una excepción</p>
+</li>
+<li>
+<p><code>checked exceptions</code>: Sí, en el caso de excepciones comprobadas. Para excepciones como <code>IOException</code>, es obligatorio declararlas con <code>throws</code></p>
+</li>
+</ul>
 <h2 id="excepciones-personalizadas">Excepciones personalizadas<a class="headerlink" href="#excepciones-personalizadas" title="Permanent link">&para;</a></h2>
 <p>Aunque las excepciones de Java cubren casi todas las excepciones generales que están obligadas a ocurrir en la programación. Sin embargo, a veces necesitamos complementar estas excepciones estándar con las nuestras.</p>
 <p>Estas son las principales razones para introducir excepciones personalizadas:</p>
 <ul>
-<li>Añadir excepciones que son específicas de la lógica de nuestra aplicación o empresa. Éstas ayudan a los usuarios de la aplicación o a los desarrolladores a comprender cuál es el problema exacto.</li>
+<li>Añadir excepciones que son específicas de la lógica de nuestra aplicación o empresa. Ayudan a los usuarios de la aplicación o a los desarrolladores a comprender cuál es el problema exacto.</li>
 <li>Para capturar y proporcionar un tratamiento específico a un subconjunto de excepciones de Java existentes.</li>
 <li>Añadir nuevos métodos o atributos que no son parte de las excepciones estándar.</li>
 </ul>
