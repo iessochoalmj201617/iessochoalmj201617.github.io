@@ -3444,9 +3444,21 @@ Sin embargo, desde Java 5, las primitivas se convierten automáticamente en obje
 <span class="linenos" data-linenos="2 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="n">personas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 <span class="linenos" data-linenos="3 "></span><span class="c1">//creamos un ArrayList de String</span>
 <span class="linenos" data-linenos="4 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hobbies</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="c1">//Error---&gt; No se puede definir con tipos primitivos</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listaEntero</span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//Hay que utilizar las clases Wrapper</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listaEntero</span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
 </code></pre></div></p>
 <p>En el ejemplo hemos creado una lista que contendrá elementos de tipo <code>String</code>. Y si nos fijamos no le hemos especificado ningún tamaño como hacíamos en los arrays puesto que Java maneja el tamaño por nosotros automáticamente.</p>
-<p>Si no indicamos el tipo, estamos creando un ArrayList de tipo Object, en el que cabe cualquier elemento</p>
+<p>En muchas ocasiones veremos definido el tipo de la instancia como la interface <code>List</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// Crear una ArrayList de personas</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="n">personas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span><span class="c1">//creamos un ArrayList de String</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hobbies</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="c1">//Hay que utilizar las clases Wrapper</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listaEntero</span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</code></pre></div>
+<p>Si no indicamos el tipo, estamos creando un ArrayList de tipo <code>Object</code>, en el que cabe cualquier elemento</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">ArrayList</span><span class="w"> </span><span class="n">lista</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">lista</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="n">lista</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
@@ -3705,6 +3717,9 @@ Podemos ordenar fácilmente  una lista de Personas</p>
 <span class="linenos" data-linenos="5 "></span><span class="c1">//ordenamos</span>
 <span class="hll"><span class="linenos" data-linenos="6 "></span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">listaPersonas</span><span class="p">);</span>
 </span></code></pre></div>
+<p>En el apartado de Interface se ve con más detalle</p>
+<p><a href="../../ud5/5interfaces/#interfaz-comparable">Comparable</a></p>
+<p><a href="../../ud5/5interfaces/#interface-comparator">Comparator</a></p>
 <h3 id="ejemplo-completo-con-arraylist-de-string">Ejemplo completo con ArrayList de String<a class="headerlink" href="#ejemplo-completo-con-arraylist-de-string" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ProductList</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
