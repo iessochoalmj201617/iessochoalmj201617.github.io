@@ -3631,10 +3631,9 @@ Sin embargo, desde Java 5, las primitivas se convierten automáticamente en obje
 </span><span class="hll"><span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">lugares</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 </span><span class="linenos" data-linenos="14 "></span><span class="p">}</span>
 <span class="linenos" data-linenos="15 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lugares</span><span class="p">);</span>
-<span class="linenos" data-linenos="16 "></span><span class="c1">//[Toronto, Amsterdam, París]</span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="n">La</span><span class="w"> </span><span class="n">solución</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">encontramos</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="err">`</span><span class="n">iterator</span><span class="err">`</span>
+<span class="linenos" data-linenos="16 "></span><span class="c1">//[Toronto, Amsterdam, París]...toronto no tendría que aparecer</span>
 </code></pre></div>
+La solución la encontramos con <code>iterator</code>
 * El <code>iterator</code>, en cambio, proporciona métodos específicos (<code>remove()</code>) que permiten modificar la colección de manera segura durante el recorrido.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//----CORRECTO---</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lugares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>

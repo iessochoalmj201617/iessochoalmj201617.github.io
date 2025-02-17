@@ -2093,36 +2093,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#crear-y-anadir-items-en-una-linkedlist" class="md-nav__link">
+  <a href="#metodos" class="md-nav__link">
     <span class="md-ellipsis">
-      Crear y añadir ítems en una LinkedList
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iterar-una-linkedlist" class="md-nav__link">
-    <span class="md-ellipsis">
-      Iterar una LinkedList
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#insertar-elementos-en-orden" class="md-nav__link">
-    <span class="md-ellipsis">
-      Insertar elementos en orden
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ejemplo-de-clase-de-visitar-lugares" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ejemplo de clase de Visitar Lugares
+      Métodos
     </span>
   </a>
   
@@ -3193,6 +3166,119 @@
 <p><img alt="LinkedList" src="../../img/ud6/linkedlist1.png" /></p>
 <p>ArrayList contiene un único array para el almacenamiento de datos. LinkedList necesita una estructura de datos personalizada. Esta estructura de datos personalizada es conocida como <strong>Nodo</strong>. Es una pequeña clase interna que sirve como envoltorio para cada elemento.</p>
 <p>El primer puntero conocido como <strong>head</strong>, apunta al primer nodo y se actualiza cada vez que se inserta un nuevo nodo al principio. El puntero que apunta al último nodo es conocido como <strong>tail</strong> y también se actualiza cada vez que se agrega un nuevo elemento al final.</p>
+<h2 id="metodos">Métodos<a class="headerlink" href="#metodos" title="Permanent link">&para;</a></h2>
+<h1 id="metodos-principales-de-linkedlist-en-java">Métodos principales de LinkedList en Java<a class="headerlink" href="#metodos-principales-de-linkedlist-en-java" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Nombre del Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add(E e)</code></td>
+<td>Añade un elemento al final de la lista.</td>
+<td><code>lista.add("A");</code></td>
+</tr>
+<tr>
+<td><code>add(int index, E e)</code></td>
+<td>Inserta un elemento en una posición específica.</td>
+<td><code>lista.add(1, "B");</code></td>
+</tr>
+<tr>
+<td><code>addFirst(E e)</code></td>
+<td>Agrega un elemento al inicio de la lista.</td>
+<td><code>lista.addFirst("X");</code></td>
+</tr>
+<tr>
+<td><code>addLast(E e)</code></td>
+<td>Agrega un elemento al final de la lista.</td>
+<td><code>lista.addLast("Y");</code></td>
+</tr>
+<tr>
+<td><code>remove()</code></td>
+<td>Elimina el primer elemento de la lista.</td>
+<td><code>lista.remove();</code></td>
+</tr>
+<tr>
+<td><code>remove(int index)</code></td>
+<td>Elimina el elemento en la posición dada.</td>
+<td><code>lista.remove(2);</code></td>
+</tr>
+<tr>
+<td><code>removeFirst()</code></td>
+<td>Elimina el primer elemento de la lista.</td>
+<td><code>lista.removeFirst();</code></td>
+</tr>
+<tr>
+<td><code>removeLast()</code></td>
+<td>Elimina el último elemento de la lista.</td>
+<td><code>lista.removeLast();</code></td>
+</tr>
+<tr>
+<td><code>get(int index)</code></td>
+<td>Obtiene el elemento en la posición dada.</td>
+<td><code>lista.get(1);</code></td>
+</tr>
+<tr>
+<td><code>getFirst()</code></td>
+<td>Obtiene el primer elemento de la lista.</td>
+<td><code>lista.getFirst();</code></td>
+</tr>
+<tr>
+<td><code>getLast()</code></td>
+<td>Obtiene el último elemento de la lista.</td>
+<td><code>lista.getLast();</code></td>
+</tr>
+<tr>
+<td><code>set(int index, E e)</code></td>
+<td>Reemplaza el elemento en la posición dada.</td>
+<td><code>lista.set(1, "Z");</code></td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>Devuelve el número de elementos en la lista.</td>
+<td><code>lista.size();</code></td>
+</tr>
+<tr>
+<td><code>contains(Object o)</code></td>
+<td>Verifica si un elemento está en la lista.</td>
+<td><code>lista.contains("A");</code></td>
+</tr>
+<tr>
+<td><code>isEmpty()</code></td>
+<td>Comprueba si la lista está vacía.</td>
+<td><code>lista.isEmpty();</code></td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Elimina todos los elementos de la lista.</td>
+<td><code>lista.clear();</code></td>
+</tr>
+<tr>
+<td><code>indexOf(Object o)</code></td>
+<td>Devuelve la primera posición de un elemento.</td>
+<td><code>lista.indexOf("B");</code></td>
+</tr>
+<tr>
+<td><code>lastIndexOf(Object o)</code></td>
+<td>Devuelve la última posición de un elemento.</td>
+<td><code>lista.lastIndexOf("B");</code></td>
+</tr>
+<tr>
+<td><code>iterator()</code></td>
+<td>Devuelve un iterador sobre los elementos.</td>
+<td><code>Iterator&lt;String&gt; it = lista.iterator();</code></td>
+</tr>
+<tr>
+<td><code>listIterator()</code></td>
+<td>Devuelve un <code>ListIterator</code> para recorrer la lista.</td>
+<td><code>ListIterator&lt;String&gt; it = lista.listIterator();</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="crear-y-anadir-items-en-una-linkedlist">Crear y añadir ítems en una <code>LinkedList</code><a class="headerlink" href="#crear-y-anadir-items-en-una-linkedlist" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lugares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Roma&quot;</span><span class="p">);</span>
@@ -3200,6 +3286,8 @@
 <span class="linenos" data-linenos="4 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Amsterdam&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="5 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Toronto&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="6 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Miami&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">String</span><span class="w"> </span><span class="n">primero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lugares</span><span class="p">.</span><span class="na">getFirst</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">String</span><span class="w"> </span><span class="n">ultimo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lugares</span><span class="p">.</span><span class="na">getLast</span><span class="p">();</span>
 </code></pre></div>
 <h2 id="iterar-una-linkedlist">Iterar una <code>LinkedList</code><a class="headerlink" href="#iterar-una-linkedlist" title="Permanent link">&para;</a></h2>
 <p>Para iterar una lista vamos a usar el concepto de iterador. Un iterador es una forma de acceder a cada uno de los elementos de una lista, arrayList, linkedlist, etc. Es el equivalente a un bucle for que hemos estado usando hasta ahora.</p>
@@ -3298,6 +3386,73 @@ La primera línea de código solo es para montar y establecer el iterador.</p>
 <span class="linenos" data-linenos="60 "></span><span class="w">                </span><span class="s">&quot;3 - imprimir el menú&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="61 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
+<h2 id="arraylist-vs-linkedlist">ArrayList vs LinkedList<a class="headerlink" href="#arraylist-vs-linkedlist" title="Permanent link">&para;</a></h2>
+<p>A nivel de programación tenemos pocas diferencias. Pero internamente son diferentes y es importante tenerlo en cuanta cuando trabajamos con gran cantidad de datos donde el rendimiento puede verse afectado con la elección de una u otra estructura.</p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th><code>ArrayList</code></th>
+<th><code>LinkedList</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Acceso por índice (<code>get(index)</code>)</strong></td>
+<td>🚀 Rápido <code>O(1)</code></td>
+<td>🐢 Lento <code>O(n)</code></td>
+</tr>
+<tr>
+<td><strong>Inserción al final (<code>add(E e)</code>)</strong></td>
+<td>🚀 Rápido <code>O(1)</code></td>
+<td>🚀 Rápido <code>O(1)</code></td>
+</tr>
+<tr>
+<td><strong>Inserción en el medio (<code>add(index, E e)</code>)</strong></td>
+<td>🐢 Lento <code>O(n)</code></td>
+<td>🚀 Rápido <code>O(1)</code></td>
+</tr>
+<tr>
+<td><strong>Eliminación en el medio (<code>remove(index)</code>)</strong></td>
+<td>🐢 Lento <code>O(n)</code></td>
+<td>🚀 Rápido <code>O(1)</code></td>
+</tr>
+<tr>
+<td><strong>Uso de memoria</strong></td>
+<td>🚀 Menor</td>
+<td>🐢 Mayor (por punteros)</td>
+</tr>
+<tr>
+<td><strong>Iteración (<code>for-each</code>, <code>iterator</code>)</strong></td>
+<td>🚀 Rápida</td>
+<td>🐢 Más lenta</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usa-arraylist-si">Usa ArrayList si:<a class="headerlink" href="#usa-arraylist-si" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Accedes frecuentemente a los elementos por índice (get(index))</strong>. ArrayList permite acceso rápido, ya que internamente usa un array.</p>
+</li>
+<li>
+<p><strong>El tamaño de la lista no cambia demasiado (pocas inserciones/eliminaciones </strong>en medio<strong>)</strong>. Las operaciones <code>add</code> al final son eficientes. Pero eliminar o insertar en el medio es costoso  porque hay que desplazar elementos.</p>
+</li>
+<li>
+<p><strong>Necesitas eficiencia en iteraciones</strong> (for-each, for, ListIterator). ArrayList es más eficiente que LinkedList en iteraciones simples.</p>
+</li>
+</ul>
+<h3 id="usa-linkedlist-si">Usa LinkedList si:<a class="headerlink" href="#usa-linkedlist-si" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Realizas muchas inserciones/eliminaciones en cualquier posición.</strong> LinkedList es eficiente en add(index, E e) y remove(index). No requiere mover elementos, solo cambiar referencias de nodos.</p>
+</li>
+<li>
+<p><strong>Trabajas con estructuras tipo pila (Stack) o cola (Queue).</strong> Métodos como <code>addFirst</code>(), <code>addLast</code>(), <code>removeFirst</code>(), <code>removeLast</code>() funcionan bien.</p>
+</li>
+<li>
+<p><strong>Necesitas iteraciones con modificaciones en la lista (ListIterator).</strong> LinkedList es más eficiente al modificar elementos durante la iteración.</p>
+</li>
+</ul>
 
 
 
