@@ -3210,6 +3210,87 @@
 <p>Java TreeMap es una estructura de datos que implementa la interfaz <code>Map&lt;Key,Value&gt;</code>, se basa en un árbol binario y <strong>ordena por clave</strong>.</p>
 <p><code>TreeMap</code> es una implementación de Map que mantiene sus entradas ordenadas según el orden natural de sus claves. Para números significa orden ascendente, para cadenas, orden alfabético. Sin embargo, es posible utilizar un comparador si necesita cambiar la lógica.</p>
 <p><code>HashMap</code> le permite almacenar una clave nula y varios valores nulos. <code>TreeMap</code> ordena los elementos en orden natural y no permite claves nulas porque el método <code>compareTo()</code> arroja <code>NullPointerException</code> si se compara con nulo.</p>
+<table>
+<thead>
+<tr>
+<th>Nombre del Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>put(K key, V value)</code></td>
+<td>Inserta una clave y su valor asociado en el mapa.</td>
+<td><code>treeMap.put("clave1", "valor1");</code></td>
+</tr>
+<tr>
+<td><code>get(Object key)</code></td>
+<td>Devuelve el valor asociado con la clave especificada.</td>
+<td><code>String valor = treeMap.get("clave1");</code></td>
+</tr>
+<tr>
+<td><code>remove(Object key)</code></td>
+<td>Elimina la clave y su valor asociado del mapa.</td>
+<td><code>treeMap.remove("clave1");</code></td>
+</tr>
+<tr>
+<td><code>containsKey(Object key)</code></td>
+<td>Devuelve <code>true</code> si el mapa contiene la clave especificada.</td>
+<td><code>boolean existe = treeMap.containsKey("clave1");</code></td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>Devuelve el número de pares clave-valor en el mapa.</td>
+<td><code>int tamaño = treeMap.size();</code></td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Elimina todos los pares clave-valor del mapa.</td>
+<td><code>treeMap.clear();</code></td>
+</tr>
+<tr>
+<td><code>firstKey()</code></td>
+<td>Devuelve la primera clave (la más baja) actualmente en el mapa.</td>
+<td><code>K primeraClave = treeMap.firstKey();</code></td>
+</tr>
+<tr>
+<td><code>lastKey()</code></td>
+<td>Devuelve la última clave (la más alta) actualmente en el mapa.</td>
+<td><code>K ultimaClave = treeMap.lastKey();</code></td>
+</tr>
+<tr>
+<td><code>keySet()</code></td>
+<td>Devuelve un conjunto de todas las claves contenidas en el mapa.</td>
+<td><code>Set&lt;K&gt; claves = treeMap.keySet();</code></td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>Devuelve una colección de todos los valores contenidos en el mapa.</td>
+<td><code>Collection&lt;V&gt; valores = treeMap.values();</code></td>
+</tr>
+<tr>
+<td><code>entrySet()</code></td>
+<td>Devuelve un conjunto de todas las entradas (pares clave-valor) en el mapa.</td>
+<td><code>Set&lt;Map.Entry&lt;K, V&gt;&gt; entradas = treeMap.entrySet();</code></td>
+</tr>
+<tr>
+<td><code>subMap(K fromKey, K toKey)</code></td>
+<td>Devuelve una vista del mapa cuyo rango de claves está entre <code>fromKey</code> y <code>toKey</code>.</td>
+<td><code>SortedMap&lt;K, V&gt; subMapa = treeMap.subMap("clave1", "clave3");</code></td>
+</tr>
+<tr>
+<td><code>headMap(K toKey)</code></td>
+<td>Devuelve una vista del mapa cuyas claves son menores que <code>toKey</code>.</td>
+<td><code>SortedMap&lt;K, V&gt; headMapa = treeMap.headMap("clave3");</code></td>
+</tr>
+<tr>
+<td><code>tailMap(K fromKey)</code></td>
+<td>Devuelve una vista del mapa cuyas claves son mayores o iguales a <code>fromKey</code>.</td>
+<td><code>SortedMap&lt;K, V&gt; tailMapa = treeMap.tailMap("clave1");</code></td>
+</tr>
+</tbody>
+</table>
 
 
 
