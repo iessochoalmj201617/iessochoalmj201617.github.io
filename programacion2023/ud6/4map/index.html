@@ -2114,6 +2114,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#metodos-de-hasmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos de HasMap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#crear-un-mapa" class="md-nav__link">
     <span class="md-ellipsis">
       Crear un Mapa
@@ -3237,6 +3246,108 @@
 <p>Un <code>Map</code> es un objeto que asigna claves a valores. <strong>Un mapa no puede contener claves duplicadas</strong>: cada clave puede asignarse a un valor como máximo. Sin embargo, los valores asignados a la clave pueden tener valores duplicados. La interfaz <code>Map</code> incluye métodos para operaciones básicas (como put, get, remove, containsKey, containsValue, size, y empty) entre muchos otros.</p>
 <p><img alt="Map" src="../../img/ud6/map2.png" /></p>
 <p>La plataforma Java contiene tres implementaciones de <code>Map</code>: <code>HashMap</code>, <code>TreeMap</code> y <code>LinkedHashMap</code>.</p>
+<h2 id="metodos-de-hasmap">Métodos de HasMap<a class="headerlink" href="#metodos-de-hasmap" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>put(K key, V value)</code></td>
+<td>Inserta una clave y su valor en el mapa. Si la clave ya existe, sobrescribe el valor.</td>
+<td><code>map.put("nombre", "Carlos");</code></td>
+</tr>
+<tr>
+<td><code>get(Object key)</code></td>
+<td>Obtiene el valor asociado a la clave dada.</td>
+<td><code>map.get("nombre"); // "Carlos"</code></td>
+</tr>
+<tr>
+<td><code>remove(Object key)</code></td>
+<td>Elimina la clave y su valor del mapa.</td>
+<td><code>map.remove("nombre");</code></td>
+</tr>
+<tr>
+<td><code>containsKey(Object key)</code></td>
+<td>Verifica si una clave existe en el mapa.</td>
+<td><code>map.containsKey("nombre"); // true</code></td>
+</tr>
+<tr>
+<td><code>containsValue(Object value)</code></td>
+<td>Verifica si un valor existe en el mapa.</td>
+<td><code>map.containsValue("Carlos"); // true</code></td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>Devuelve el número de elementos en el mapa.</td>
+<td><code>map.size(); // 1</code></td>
+</tr>
+<tr>
+<td><code>isEmpty()</code></td>
+<td>Comprueba si el mapa está vacío.</td>
+<td><code>map.isEmpty(); // false</code></td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Elimina todos los elementos del mapa.</td>
+<td><code>map.clear();</code></td>
+</tr>
+<tr>
+<td><code>keySet()</code></td>
+<td>Devuelve un <code>Set</code> con todas las claves del mapa.</td>
+<td><code>Set&lt;String&gt; claves = map.keySet();</code></td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>Devuelve una colección con todos los valores del mapa.</td>
+<td><code>Collection&lt;String&gt; valores = map.values();</code></td>
+</tr>
+<tr>
+<td><code>entrySet()</code></td>
+<td>Devuelve un <code>Set</code> con todas las parejas clave-valor.</td>
+<td><code>Set&lt;Map.Entry&lt;String, String&gt;&gt; entradas = map.entrySet();</code></td>
+</tr>
+<tr>
+<td><code>putIfAbsent(K key, V value)</code></td>
+<td>Inserta un valor solo si la clave no existe.</td>
+<td><code>map.putIfAbsent("edad", 30);</code></td>
+</tr>
+<tr>
+<td><code>replace(K key, V value)</code></td>
+<td>Reemplaza el valor de una clave solo si ya existe.</td>
+<td><code>map.replace("nombre", "Ana");</code></td>
+</tr>
+<tr>
+<td><code>getOrDefault(Object key, V defaultValue)</code></td>
+<td>Devuelve el valor de la clave o un valor por defecto si no existe.</td>
+<td><code>map.getOrDefault("apellido", "Desconocido");</code></td>
+</tr>
+<tr>
+<td><code>merge(K key, V value, BiFunction&lt;? super V, ? super V, ? extends V&gt; remappingFunction)</code></td>
+<td>Combina valores en la misma clave según una función.</td>
+<td><code>map.merge("edad", 1, Integer::sum);</code></td>
+</tr>
+<tr>
+<td><code>compute(K key, BiFunction&lt;? super K, ? super V, ? extends V&gt; remappingFunction)</code></td>
+<td>Calcula un nuevo valor para una clave existente.</td>
+<td><code>map.compute("edad", (k, v) -&gt; v + 1);</code></td>
+</tr>
+<tr>
+<td><code>computeIfAbsent(K key, Function&lt;? super K, ? extends V&gt; mappingFunction)</code></td>
+<td>Calcula un valor solo si la clave no está presente.</td>
+<td><code>map.computeIfAbsent("ciudad", k -&gt; "Madrid");</code></td>
+</tr>
+<tr>
+<td><code>computeIfPresent(K key, BiFunction&lt;? super K, ? super V, ? extends V&gt; remappingFunction)</code></td>
+<td>Modifica un valor solo si la clave ya existe.</td>
+<td><code>map.computeIfPresent("edad", (k, v) -&gt; v + 5);</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="crear-un-mapa">Crear un Mapa<a class="headerlink" href="#crear-un-mapa" title="Permanent link">&para;</a></h2>
 <p>Para crear un objeto <code>Map</code> podemos usar cualquiera de las implementaciones para esta interfaz (<code>HashMap</code>, <code>TreeMap</code> y <code>LinkedHashMap</code>), por ejemplo:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idiomas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
