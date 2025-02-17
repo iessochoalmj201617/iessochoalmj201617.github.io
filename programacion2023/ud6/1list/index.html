@@ -2205,6 +2205,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#iterator-foreach-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterator-foreach-for
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#modificar-un-item-en-una-posicion-del-arraylist" class="md-nav__link">
     <span class="md-ellipsis">
       Modificar un ítem en una posición del ArrayList
@@ -3588,33 +3597,67 @@ Sin embargo, desde Java 5, las primitivas se convierten automáticamente en obje
 <span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona</span><span class="p">);</span>
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
-<div class="admonition iterator-foreach">
-<p class="admonition-title">Iterator-foreach</p>
-<p>En Java, un iterator se utiliza en lugar de un bucle foreach  en ciertos casos debido a las limitaciones de este último en términos de modificación de la colección durante el recorrido. Aquí hay algunas razones para preferir un iterator en ciertos escenarios:</p>
+<h3 id="iterator-foreach-for">Iterator-foreach-for<a class="headerlink" href="#iterator-foreach-for" title="Permanent link">&para;</a></h3>
+<p>En Java, un <code>iterator</code> se utiliza en lugar de un bucle <code>foreach</code>  en ciertos casos debido a las limitaciones
+ de este último en términos de modificación de la colección durante el recorrido. Aquí hay algunas razones para preferir un iterator en ciertos escenarios:</p>
 <ul>
-<li>
-<p><strong>Modificación durante el recorrido</strong>:El bucle foreach no permite modificar la colección mientras se está iterando. Si intentas agregar o eliminar elementos durante un bucle foreach, se lanzará una excepción <code>ConcurrentModificationException</code>. El <code>iterator</code>, en cambio, proporciona métodos específicos (<code>remove()</code>) que permiten modificar la colección de manera segura durante el recorrido.
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="c1">//obtenemos el iterador del ArrayList</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="n">iterator</span><span class="o">=</span><span class="n">listaPersonas</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="c1">//mientras queden elementos</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">iterator</span><span class="p">.</span><span class="na">hasNext</span><span class="p">()){</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="c1">//elemento siguiente</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">persona</span><span class="o">=</span><span class="n">iterator</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">persona</span><span class="p">.</span><span class="na">edad</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">){</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="c1">//elimina el elemento, no usar listaPersona.remove(persona)</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="n">iterator</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Personalización del recorrido</strong>: El <code>iterator</code> proporciona más flexibilidad en términos de personalización del recorrido. Puedes utilizar métodos como hasNext(), next(), y remove() para controlar el flujo del recorrido de manera más detallada.</p>
-</li>
+<li><strong>Modificación durante el recorrido</strong>:El bucle foreach no permite modificar la colección mientras se está iterando. Si intentas agregar o eliminar elementos durante un bucle foreach, se lanzará una excepción <code>ConcurrentModificationException</code>. </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//----MAL----</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">//el siguiente código genera un error cuando borramos</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lugares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Roma&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Toronto&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Amsterdam&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;París&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Rodas&quot;</span><span class="p">);</span>
+<span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="k">for</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="p">:</span><span class="w"> </span><span class="n">lugares</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">().</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;ro&quot;</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">lugares</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Por otro lado, si intentamos hacerlo con un for, aunque no se produzcan errores se producen situaciones inesperadas</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//----MAL----</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lugares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Roma&quot;</span><span class="p">);</span><span class="c1">//a eliminar</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Toronto&quot;</span><span class="p">);</span><span class="c1">//a eliminar</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Amsterdam&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;París&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Rodas&quot;</span><span class="p">);</span><span class="c1">//a eliminar</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">//eliminamos aquello que contengan &#39;ro&#39;</span>
+<span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">lugares</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class="hll"><span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="c1">//cuando elimina &#39;Roma&#39;, la posición de &#39;Toronto&#39; pasa a la posición 0, por lo que se lo salta</span>
+</span><span class="hll"><span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="c1">//cuando el siguiente ciclo es i=1</span>
+</span><span class="hll"><span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">lugares</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">toLowerCase</span><span class="p">().</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;ro&quot;</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">lugares</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span class="linenos" data-linenos="14 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lugares</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="c1">//[Toronto, Amsterdam, París]</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="n">La</span><span class="w"> </span><span class="n">solución</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">encontramos</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="err">`</span><span class="n">iterator</span><span class="err">`</span>
+</code></pre></div>
+* El <code>iterator</code>, en cambio, proporciona métodos específicos (<code>remove()</code>) que permiten modificar la colección de manera segura durante el recorrido.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//----CORRECTO---</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lugares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Roma&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Toronto&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Amsterdam&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;París&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">lugares</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Rodas&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">it</span><span class="o">=</span><span class="n">lugares</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos" data-linenos="10 "></span><span class="k">while</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">()){</span>
+</span><span class="hll"><span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">().</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;ro&quot;</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">it</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
+</span><span class="linenos" data-linenos="14 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lugares</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="c1">//[Amsterdam, París]</span>
+</code></pre></div>
+<ul>
+<li><strong>Personalización del recorrido</strong>: El <code>iterator</code> proporciona más flexibilidad en términos de personalización del recorrido. Puedes utilizar métodos como hasNext(), next(), y remove() para controlar el flujo del recorrido de manera más detallada.</li>
 <li><strong>Compatibilidad con tipos específicos</strong>: En algunas situaciones, es posible que desees utilizar un <code>iterator</code> específico para un tipo particular de colección, como un <code>ListIterator</code> para listas. Esto permite acceder a métodos adicionales que son específicos de esa implementación de colección.</li>
 </ul>
 <p>A pesar de estas ventajas, en muchos casos, el bucle foreach es más simple, más conciso y más legible. Por lo tanto, la elección entre un <code>iterator</code> y un bucle <code>foreach</code> depende del contexto y de los requisitos específicos de la manipulación de la colección en tu código.</p>
-</div>
 <p>Ten en cuenta que las estructuras compatibles con el bucle foreach tienen implementado Iterable</p>
 <h3 id="modificar-un-item-en-una-posicion-del-arraylist">Modificar un ítem en una posición del <code>ArrayList</code><a class="headerlink" href="#modificar-un-item-en-una-posicion-del-arraylist" title="Permanent link">&para;</a></h3>
 <p>Para modificar sustituir un elemento de la lista, tenemos <code>set</code>, al que le pasamos el indice y el objeto</p>
