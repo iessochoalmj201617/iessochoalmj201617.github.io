@@ -2203,6 +2203,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#json-y-hashmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON y HashMap
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3430,6 +3439,43 @@
 <p><code>HashMap</code> es una estructura de datos que implementa la <code>Map&lt;Key,Value&gt;</code> interfaz y se basa en el principio de hash.</p>
 <p><strong>Una función hash</strong> es una función que convierte datos de entrada de cualquier tamaño (generalmente grande) en datos de tamaño fijo, generalmente compactos. El resultado de esta función de trabajo se llama <strong>código hash</strong>.</p>
 <p>Cada objeto Java tiene un código hash. Suele ser un número y se calcula utilizando el método hashCode de la clase Object.</p>
+<h2 id="json-y-hashmap">JSON y HashMap<a class="headerlink" href="#json-y-hashmap" title="Permanent link">&para;</a></h2>
+<p>En Java, la clase <code>HashMap</code> es una estructura de datos que permite almacenar pares clave-valor. Cada clave es única y se utiliza para acceder a su valor correspondiente. Los <code>HashMap</code> son muy útiles para almacenar datos que tienen una estructura similar a la de un objeto JSON</p>
+<p>Supongamos que tenemos el siguiente objeto JSON</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Juan&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="nt">&quot;ciudad&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Madrid&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="nt">&quot;telefonos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="s2">&quot;612345678&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="s2">&quot;987654321&quot;</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">  </span><span class="p">]</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div>
+Su representación de  <code>HashMap</code> que podría haberse leído de un servicio web o un fichero:</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//El valor debe ser Object porque podemos contener diversos tipos de datos</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">persona</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Juan&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">persona</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">persona</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;ciudad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Madrid&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">telefonos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">telefonos</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;612345678&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">telefonos</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;987654321&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="n">persona</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;telefonos&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">telefonos</span><span class="p">);</span>
+</code></pre></div>
+Para acceder a los datos debemos hacer un casting</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">String</span><span class="w"> </span><span class="n">ciudad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;ciudad&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">telefonos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;telefonos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nombre: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Edad: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="p">);</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ciudad: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ciudad</span><span class="p">);</span>
+<span class="linenos" data-linenos="9 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Teléfonos: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">telefonos</span><span class="p">);</span>
+</code></pre></div>
 
 
 
