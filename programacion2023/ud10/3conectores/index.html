@@ -3364,11 +3364,12 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </code></pre></div>
 <h3 id="crudcrear-leer-actualizar-eliminar">CRUD(Crear, Leer, Actualizar, Eliminar)<a class="headerlink" href="#crudcrear-leer-actualizar-eliminar" title="Permanent link">&para;</a></h3>
 <p>CRUD es un acrónimo que se refiere a las operaciones básicas que se pueden realizar en una base de datos o sistema de gestión de bases de datos relacionales. Cada letra en CRUD representa una de estas operaciones</p>
+<p><img alt="alt text" src="../../img/ud10/crud.png" /></p>
 <ul>
-<li>Create (Crear): La operación de crear implica agregar nuevos registros o filas a una tabla en la base de datos.</li>
-<li>Read (Leer): La operación de leer implica recuperar información de la base de datos. Esto generalmente implica realizar consultas SELECT para recuperar datos de una o más tablas en la base de datos.</li>
-<li>Update (Actualizar): La operación de actualizar implica modificar los datos existentes en la base de datos. Esto se hace mediante la ejecución de consultas UPDATE que modifican los valores de uno o más registros en una tabla.</li>
-<li>Delete (Eliminar): La operación de eliminar implica eliminar registros o filas de una tabla en la base de datos. Esto se hace mediante la ejecución de consultas DELETE.</li>
+<li><strong>Create</strong> (Crear): La operación de crear implica agregar nuevos registros o filas a una tabla en la base de datos.</li>
+<li><strong>Read</strong> (Leer): La operación de leer implica recuperar información de la base de datos. Esto generalmente implica realizar consultas SELECT para recuperar datos de una o más tablas en la base de datos.</li>
+<li><strong>Update</strong> (Actualizar): La operación de actualizar implica modificar los datos existentes en la base de datos. Esto se hace mediante la ejecución de consultas UPDATE que modifican los valores de uno o más registros en una tabla.</li>
+<li><strong>Delete</strong> (Eliminar): La operación de eliminar implica eliminar registros o filas de una tabla en la base de datos. Esto se hace mediante la ejecución de consultas DELETE.</li>
 </ul>
 <p>El CRUD en un programa define las operaciones básicas sobre la base de datos</p>
 <p>El API JDBC distingue dos tipos de consultas:</p>
@@ -3448,7 +3449,7 @@ Es por ello que se recomienda proceder siempre a cerrarlo manualmente utilizando
 <p>SQLite es un motor de base de datos relacional de código abierto que se especializa en ser ligero, eficiente y fácil de usar. A diferencia de los sistemas de gestión de bases de datos tradicionales que funcionan como servidores independientes y manejan múltiples conexiones de cliente, SQLite es una biblioteca de base de datos sin servidor que se incorpora directamente en la aplicación que la utiliza. </p>
 <p>Vamos a ver como crear un aplicación simple con las operaciones básicas CRUD sobre una tabla Alumnos</p>
 <h3 id="agregar-jdbc-de-sqlite-al-proyecto">Agregar jdbc de SQLite al proyecto<a class="headerlink" href="#agregar-jdbc-de-sqlite-al-proyecto" title="Permanent link">&para;</a></h3>
-<p>Agregamos al proyecto las librerías que manejan SQLite.Necesitamos las librerías. </p>
+<p>Agregamos al proyecto las librerías que manejan SQLite.En el repositorio de Maven. Necesitamos las librerías. </p>
 <ul>
 <li>
 <p>sqlite-jdbc-x.x.x.jar</p>
@@ -3658,7 +3659,7 @@ Es por ello que se recomienda proceder siempre a cerrarlo manualmente utilizando
 <span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="n">alumnos</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
 <span class="linenos" data-linenos="38 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="c1">//Esta sentencia simpre se ejecuta. Hay que cerrar la conexión</span>
 <span class="linenos" data-linenos="41 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="42 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">conexion</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="43 "></span><span class="w">                </span><span class="n">conexion</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
