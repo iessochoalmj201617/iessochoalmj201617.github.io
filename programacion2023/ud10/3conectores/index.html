@@ -3404,6 +3404,7 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <p><code>ResultSet</code>: contiene los datos de la tabla devueltos por una consulta SELECT. Este objeto se usa para iterar sobre las filas en el conjunto de resultados usando el método <code>next()</code>.</p>
 </li>
 </ul>
+<p><img alt="alt text" src="../../img/ud10/results.png" /></p>
 <div class="admonition example">
 <p class="admonition-title">🤓 SQLException: Es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:</p>
 <ul>
@@ -3414,6 +3415,24 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <li><code>.getNextException()</code>, devuelve la cadena de excepciones que se ha producido. De tal manera que podemos navegar sobre ella para ver en detalle de esas excepciones.</li>
 </ul>
 </div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertPersona</span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">persona</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">INSERT_QUERY</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">statement</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">getDni</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">statement</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">statement</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">getApellido</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">statement</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">getEdad</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">statement</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">// Código de error 1062 corresponde a clave duplicada en MySQL</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getSQLState</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;23000&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getErrorCode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1062</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: Clave duplicada para el DNI &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">getDni</span><span class="p">());</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"> </span><span class="c1">// Relanza la excepción si es otro error</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span>
+</code></pre></div>
 <h3 id="liberacion-de-recursos">Liberación de recursos<a class="headerlink" href="#liberacion-de-recursos" title="Permanent link">&para;</a></h3>
 <div class="admonition danger">
 <p class="admonition-title">Danger 😬</p>
@@ -3456,6 +3475,9 @@ Es por ello que se recomienda proceder siempre a cerrarlo manualmente utilizando
 </li>
 <li>
 <p>slf4j-api-x.x.x.jar</p>
+</li>
+<li>
+<p>ch.qos.logback.classic</p>
 </li>
 </ul>
 <p><img alt="jdbc" src="../../img/ud10/bd11.png" /></p>
@@ -3597,7 +3619,14 @@ Es por ello que se recomienda proceder siempre a cerrarlo manualmente utilizando
 <span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">telefono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">telefono</span><span class="p">;</span>
 <span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="14 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;id-&gt;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="s">&quot;, nombre-&gt;&#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;\&#39;&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">                </span><span class="s">&quot;, email-&gt;&#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;\&#39;&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">                </span><span class="s">&quot;, telefono-&gt;&#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">telefono</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Una de las acciones más habituales es devolver una lista de Alumnos a partir de la consulta realizada</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Alumno</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">listaAlumnos</span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">conexion</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
