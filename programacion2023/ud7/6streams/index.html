@@ -3527,13 +3527,13 @@ La función de mapeo utilizada para la transformación en <code>flatMap()</code>
 <span class="linenos" data-linenos="12 "></span><span class="c1">//[1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
 </code></pre></div>
 Obtener los apellidos diferentes de todas las personas</p>
-<p>Teniendo en cuenta que podemos convertir una array en un Stream como sigue
+<p>Teniendo en cuenta que podemos convertir un array en un Stream como sigue
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">array</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">};</span>
 <span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">pares</span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w">               </span>
 <span class="linenos" data-linenos="4 "></span><span class="w">                </span><span class="p">.</span><span class="na">toArray</span><span class="p">();</span>
 </code></pre></div>
-podemos obtener para cada persona un array con sus apellidos que convertimos en stream y justamos con el de el resto de personas</p>
+podemos obtener para cada persona un array con sus apellidos que convertimos en stream y juntamos con  el resto de personas</p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//lista de apellidos diferentes</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listaApellidos</span><span class="o">=</span><span class="n">personas</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="c1">//para cada persona, obtenemos un array con los dos apellidos y lo convertimos en un stream</span>
