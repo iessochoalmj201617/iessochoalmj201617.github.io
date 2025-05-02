@@ -3397,7 +3397,7 @@
 <h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>El objetivo será crear el mantenimiento de la siguiente base de datos en MySql</p>
 <p><img alt="alt text" src="../../img/ud8/proy001.png" /></p>
-<p>En el que toda persona pertenece a un departamento y un departamento tiene un Jefe. Permitiremos que un trabajador no tenga departamento y que un departamento no tenga jefe dejando que puedan ser nulos</p>
+<p>En el que un trabajador pertenece a un departamento y un departamento tiene un Jefe. Permitiremos que un trabajador no tenga departamento y que un departamento no tenga jefe dejando que puedan ser nulos dichos campos de ambas tablas.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>En muchas ocasiones, para evitar trabajar con nulos, se decide crear una tupla general que sea represente la no pertenencia. Por ejemplo: Se crea la tubla en Departamento “Sin departamento”, y en trabajadores una persona llamada: “Sin Jefe”</p>
@@ -3405,7 +3405,7 @@
 <p>La aplicación permitirá acceder al mantenimiento de Empleados y Departamentos permitiendo filtrar la información para facilitar al usuario encontrar los datos que necesite. Aprovecharemos los mantenimientos para poder seleccionar la información  por parte del usuario en otros mantenimientos donde sea necesaria.</p>
 <h2 id="resultado-final">Resultado final<a class="headerlink" href="#resultado-final" title="Permanent link">&para;</a></h2>
 <p>Tenemos el código final en el repositorio</p>
-<p><a href="https://github.com/Programacion2023JoseAntonioLopez/EjemploDBJavaFX/tree/1e4c29a4130c883fcd38fe3ca50ccc86d8c995a6">Proyecto JavaFX-MySQL</a></p>
+<p><a href="https://github.com/Programacion2023JoseAntonioLopez/EjemploDBJavaFX">Proyecto JavaFX-MySQL</a></p>
 <p>La aplicación final tiene el siguiente aspecto</p>
 <p><img alt="alt text" src="../../img/ud8/proy010.png" /></p>
 <p>El mantenimiento de Empleado permite filtrar la información y la creación, borrado y edición</p>
@@ -3436,38 +3436,16 @@
 <span class="linenos" data-linenos="16 "></span>
 <span class="linenos" data-linenos="17 "></span><span class="w"> </span><span class="c1">-- Añadir clave foránea a Empleado si no existe</span>
 <span class="linenos" data-linenos="18 "></span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Empleado</span>
-<span class="linenos" data-linenos="19 "></span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">fk_empleado_departamento</span>
+<span class="linenos" data-linenos="19 "></span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w">  </span><span class="n">fk_empleado_departamento</span>
 <span class="linenos" data-linenos="20 "></span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">departamento</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Departamento</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
 <span class="linenos" data-linenos="21 "></span><span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
 <span class="linenos" data-linenos="22 "></span>
-<span class="linenos" data-linenos="23 "></span><span class="w"> </span><span class="c1">-- Añadir clave foránea a Departamento si no existe</span>
-<span class="linenos" data-linenos="24 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="p">(</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">     </span><span class="n">codigo</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">     </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="linenos" data-linenos="27 "></span><span class="w">     </span><span class="n">jefe</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">UNIQUE</span>
-<span class="linenos" data-linenos="28 "></span><span class="w"> </span><span class="p">);</span>
-<span class="linenos" data-linenos="29 "></span>
-<span class="linenos" data-linenos="30 "></span><span class="w"> </span><span class="c1">-- Crear tabla Empleado si no existe (sin clave foránea)</span>
-<span class="linenos" data-linenos="31 "></span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Empleado</span><span class="w"> </span><span class="p">(</span>
-<span class="linenos" data-linenos="32 "></span><span class="w">     </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="linenos" data-linenos="33 "></span><span class="w">     </span><span class="n">dni</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
-<span class="linenos" data-linenos="34 "></span><span class="w">     </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-<span class="linenos" data-linenos="35 "></span><span class="w">     </span><span class="n">apellido</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-<span class="linenos" data-linenos="36 "></span><span class="w">     </span><span class="n">edad</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
-<span class="linenos" data-linenos="37 "></span><span class="w">     </span><span class="n">departamento</span><span class="w"> </span><span class="nb">INT</span>
-<span class="linenos" data-linenos="38 "></span><span class="w"> </span><span class="p">);</span>
-<span class="linenos" data-linenos="39 "></span>
-<span class="linenos" data-linenos="40 "></span><span class="w"> </span><span class="c1">-- Añadir clave foránea a Empleado si no existe</span>
-<span class="linenos" data-linenos="41 "></span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Empleado</span>
-<span class="linenos" data-linenos="42 "></span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">fk_empleado_departamento</span>
-<span class="linenos" data-linenos="43 "></span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">departamento</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Departamento</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
-<span class="linenos" data-linenos="44 "></span><span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
-<span class="linenos" data-linenos="45 "></span>
-<span class="linenos" data-linenos="46 "></span><span class="w"> </span><span class="c1">-- Añadir clave foránea a Departamento si no existe</span>
-<span class="linenos" data-linenos="47 "></span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Departamento</span>
-<span class="linenos" data-linenos="48 "></span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">fk_departamento_empleado</span>
-<span class="linenos" data-linenos="49 "></span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jefe</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Empleado</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
-<span class="linenos" data-linenos="50 "></span><span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span><span class="w"> </span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w"> </span><span class="c1">-- Añadir clave foránea a Departamento si no existe</span>
+<span class="linenos" data-linenos="25 "></span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Departamento</span>
+<span class="linenos" data-linenos="26 "></span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_departamento_empleado</span>
+<span class="linenos" data-linenos="27 "></span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jefe</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Empleado</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <p>Añadimos unas tuplas de ejemplo para probar la aplicación</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">-- Insertar departamentos inicialmente sin jefe</span>
@@ -3592,22 +3570,22 @@
 <p><img alt="alt text" src="../../img/ud8/proy023.png" /></p>
 <p>En el método <code>iniciaTableViewEmpleados</code>, creamos la <code>observableList</code>, iniciamos la <code>TableView</code>, asociando a cada columna el nombre de la propiedad de <code>Empleado</code> a mostrar</p>
 <p><img alt="alt text" src="../../img/ud8/proy024.png" /></p>
-<p>Para las columnas Departamento, tendremos que elegir el dato a mostrar</p>
+<p>Para las columnas que muestran la información del <code>Departamento</code>, tendremos que elegir el dato a mostrar</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// Para mostrar el código del departamento, se utiliza una función lambda</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="c1">// para acceder a la propiedad anidada &#39;departamento&#39; y luego a &#39;codigo&#39;.</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="n">tcidDep</span><span class="p">.</span><span class="na">setCellValueFactory</span><span class="p">(</span>
 <span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">param</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReadOnlyObjectWrapper</span><span class="o">&lt;&gt;</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">                </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">().</span><span class="na">getCodigo</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">                </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">().</span><span class="na">getCodigo</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="p">)</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="p">);</span>
 <span class="linenos" data-linenos=" 8 "></span><span class="c1">// Para mostrar el nombre del departamento, se utiliza una función lambda</span>
 <span class="linenos" data-linenos=" 9 "></span><span class="c1">// para acceder a la propiedad anidada &#39;departamento&#39; y luego a &#39;nombre&#39;.</span>
 <span class="linenos" data-linenos="10 "></span><span class="n">tcDepartamento</span><span class="p">.</span><span class="na">setCellValueFactory</span><span class="p">(</span>
 <span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">param</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReadOnlyObjectWrapper</span><span class="o">&lt;&gt;</span><span class="p">(</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">                </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">().</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">                </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">().</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sin departamento&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="13 "></span><span class="p">);</span>
 </code></pre></div>
-<p>y leemos de la base de datos desde el DAO la lista de empleados</p>
+<p>Leemos la lista de empleados de la base de datos desde el DAO </p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">// Carga todos los empleados desde la base de datos y los añade a la lista observable.</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">listaEmpleados</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">());</span>
@@ -3625,7 +3603,7 @@
 <h2 id="abrir-en-javafx-una-nueva-ventana">Abrir en JavaFX una nueva ventana<a class="headerlink" href="#abrir-en-javafx-una-nueva-ventana" title="Permanent link">&para;</a></h2>
 <p>Nuestra aplicación comienza en la ventana principal que permitirá abrir el mantenimiento de Empleados y Departamentos. </p>
 <p><img alt="alt text" src="../../img/ud8/proy010.png" /></p>
-<p>Para poder abrir Empleados al pulsar en el botón correspondiente, creamos una nuevo <code>Stage</code> a partir del View creado anteriormente.</p>
+<p>Para poder abrir <code>Empleados</code> al pulsar en el botón correspondiente, creamos una nuevo <code>Stage</code> a partir del <code>View</code> creado anteriormente.</p>
 <div class="highlight"><span class="filename">InicioController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="cm">/**</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="cm">     * Método invocado al hacer clic en el botón para acceder a la gestión de departamentos.</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="cm">     * Carga y muestra la vista de departamentos en una nueva ventana modal.</span>
@@ -3657,8 +3635,12 @@
 <span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 <h2 id="borrar-empleado">Borrar Empleado<a class="headerlink" href="#borrar-empleado" title="Permanent link">&para;</a></h2>
-<p>Para implementar el borrado, tenemos que saber que elemento de la tabla está seleccionado y como es una acción que no tiene vuelta a atrás, queremos mostrar una alerta al usuario para que se asegure que quiere borrar el empleado</p>
-<p>Tendremos un método que elimine el un empleado y actualice la TableView</p>
+<p>Para implementar el borrado, tenemos que:</p>
+<ul>
+<li>saber el elemento de la tabla  seleccionado</li>
+<li>como es una acción que no tiene vuelta a atrás, queremos mostrar una alerta al usuario para que se asegure que quiere borrar el empleado</li>
+</ul>
+<p>Tendremos un método que elimine el un empleado y actualice la <code>TableView</code></p>
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">borrarEmpleado</span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">            </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">deleteEmpleado</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
@@ -3914,8 +3896,8 @@ Llamamos al método en <code>Initialize</code></p>
 <span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">lbError</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="10 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Para llamar y abrir la ventana de edición de Empleado, lo haremos asignado el empleado previamente desde este método</p>
-<p>En el Controller de Empleados</p>
+<p>Para llamar y abrir la ventana de edición de <code>Empleado</code>, lo haremos asignado el empleado previamente desde este método</p>
+<p>En el <code>Controller</code> de <code>Empleados</code></p>
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">abrirEmpleado</span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">            </span><span class="c1">// Carga la escena desde el recurso FXML.</span>
@@ -3957,7 +3939,7 @@ Llamamos al método en <code>Initialize</code></p>
 <span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="p">}</span>
 <span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>Abrimos la venta si es nuevo o edición en el onClick de los botones correspondientes
+<p>Abrimos la venta si es nuevo o edición en el <code>onClick</code> de los botones correspondientes
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="nd">@FXML</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickbtAlta</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">abrirEmpleado</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
@@ -3973,11 +3955,11 @@ Llamamos al método en <code>Initialize</code></p>
 <span class="linenos" data-linenos="13 "></span><span class="p">}</span>
 </code></pre></div></p>
 <h2 id="devolver-un-resultado-de-una-ventana">Devolver un resultado de una ventana<a class="headerlink" href="#devolver-un-resultado-de-una-ventana" title="Permanent link">&para;</a></h2>
-<p>El mantenimiento de Departamento es muy parecido al de Empleados, pero para seleccionar el jefe, utilizaremos el mantenimiento de Empleados </p>
+<p>El mantenimiento de <code>Departamento</code> es muy parecido al de <code>Empleados</code>, pero para seleccionar el jefe, utilizaremos el mantenimiento de <code>Empleados</code> </p>
 <p><img alt="alt text" src="../../img/ud8/proy031.png" /></p>
 <p>Para conseguir el objetivo, la ventana que devuelve el dato, tiene que definir una Interface con el método que devuelve el dato. Los pasos son los siguiente:</p>
 <h3 id="definir-la-interface-en-empleadoscontroller">Definir la Interface en EmpleadosController<a class="headerlink" href="#definir-la-interface-en-empleadoscontroller" title="Permanent link">&para;</a></h3>
-<p>Esta Interface contiene un método que tiene como parámetro el Empleado seleccionado</p>
+<p>Esta Interface contiene un método que tiene como parámetro el <code>Empleado</code> seleccionado</p>
 <p><div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">SeleccionEmpleadoCallback</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="cm">/**</span>
 <span class="linenos" data-linenos="3 "></span><span class="cm">         * Método llamado cuando un empleado es seleccionado.</span>
