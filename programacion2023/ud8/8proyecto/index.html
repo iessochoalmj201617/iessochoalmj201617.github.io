@@ -3400,21 +3400,22 @@
 <p>En el que un trabajador pertenece a un departamento y un departamento tiene un Jefe. Permitiremos que un trabajador no tenga departamento y que un departamento no tenga jefe dejando que puedan ser nulos dichos campos de ambas tablas.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>En muchas ocasiones, para evitar trabajar con nulos, se decide crear una tupla general que sea represente la no pertenencia. Por ejemplo: Se crea la tubla en Departamento “Sin departamento”, y en trabajadores una persona llamada: “Sin Jefe”</p>
+<p>En muchas ocasiones, para evitar trabajar con nulos, se decide crear una tupla general que  represente la no pertenencia. Por ejemplo: Se crea la tupla en Departamento “<code>Sin departamento</code>”, y en trabajadores una persona llamada: “<code>Sin Jefe</code>”</p>
 </div>
-<p>La aplicación permitirá acceder al mantenimiento de Empleados y Departamentos permitiendo filtrar la información para facilitar al usuario encontrar los datos que necesite. Aprovecharemos los mantenimientos para poder seleccionar la información  por parte del usuario en otros mantenimientos donde sea necesaria.</p>
+<p>La aplicación permitirá acceder al mantenimiento de <code>Empleados</code> y <code>Departamentos</code> permitiendo filtrar la información para facilitar al usuario encontrar los datos que necesite. </p>
+<p>Aprovecharemos las ventanas de mantenimientos para poder seleccionar la información  por parte del usuario en otros mantenimientos donde sea necesaria.</p>
 <h2 id="resultado-final">Resultado final<a class="headerlink" href="#resultado-final" title="Permanent link">&para;</a></h2>
 <p>Tenemos el código final en el repositorio</p>
 <p><a href="https://github.com/Programacion2023JoseAntonioLopez/EjemploDBJavaFX">Proyecto JavaFX-MySQL</a></p>
 <p>La aplicación final tiene el siguiente aspecto</p>
 <p><img alt="alt text" src="../../img/ud8/proy010.png" /></p>
-<p>El mantenimiento de Empleado permite filtrar la información y la creación, borrado y edición</p>
+<p>El mantenimiento de <code>Empleado</code> permite la creación, borrado y edición y filtrar la información para su búsqueda</p>
 <p><img alt="alt text" src="../../img/ud8/proy011.png" /></p>
-<p>La ventana de Nuevo y Edición será la misma, y creará o modificará un Empleado. Facilitará al usuario la selección del Departamento al que pertenece</p>
+<p>La ventana de <code>Nuevo</code> y <code>Edición</code> será la misma, y creará o modificará un <code>Empleado</code>. Facilitará al usuario la selección del <code>Departamento</code> al que pertenece</p>
 <p><img alt="alt text" src="../../img/ud8/proy012.png" /></p>
-<p>El mantenimiento de Departamento permite la creación, borrado y edición. </p>
+<p>El mantenimiento de <code>Departamento</code> permite la creación, borrado y edición. </p>
 <p><img alt="alt text" src="../../img/ud8/proy013.png" /></p>
-<p>Permite seleccionar el jefe del departamento desde el mantenimiento de Empleado</p>
+<p>Permite seleccionar el jefe del departamento desde el mantenimiento de <code>Empleado</code></p>
 <p><img alt="alt text" src="../../img/ud8/proy014.png" /></p>
 <h2 id="crear-la-base-de-datos">Crear la base de datos<a class="headerlink" href="#crear-la-base-de-datos" title="Permanent link">&para;</a></h2>
 <p>En MySql o MariaDB, crear una base de datos(la llamaremos empresa) y creamos las tablas y algunos registros iniciales para probar el funcionamiento de nuestro programa. El script puede ser el siguiente</p>
@@ -3476,7 +3477,7 @@
 <p><img alt="alt text" src="../../img/ud8/proy002.png" /></p>
 <p>Es necesario añadir en <code>module-info.java</code> lo siguiente</p>
 <p><img alt="alt text" src="../../img/ud8/proy003.png" /></p>
-<p>Para añadir la librería jdbc  de mysql al proyecto, lo haremos con Maven</p>
+<p>Para añadir la librería <code>jdbc</code>  de MySQL al proyecto, lo haremos con <code>Maven</code></p>
 <p><img alt="alt text" src="../../img/ud8/proy004.png" /></p>
 <h2 id="estructura-del-proyecto">Estructura del proyecto<a class="headerlink" href="#estructura-del-proyecto" title="Permanent link">&para;</a></h2>
 <p>Como ya vimos en <a href="../../ud10/7projectstructure">Estructura de un proyecto</a></p>
@@ -3502,7 +3503,7 @@
 <p>Recuerda descomentarlo cuando incluyas código en los paquetes</p>
 </div>
 <h2 id="conexion-a-la-base-de-datos">Conexión a la base de datos<a class="headerlink" href="#conexion-a-la-base-de-datos" title="Permanent link">&para;</a></h2>
-<p>Definimos la clase para la conexión a la base de datos en el en el paquete db como ya vimos en el proyecto.</p>
+<p>Definimos la clase para la conexión a la base de datos en el en el paquete <code>db</code> como ya vimos en el proyecto.</p>
 <div class="highlight"><span class="filename">DBConnection.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DBConnection</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="c1">// URL de conexión a la base de datos MySQL</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;jdbc:mysql://localhost:3306/empresa&quot;</span><span class="p">;</span><span class="w"> </span>
@@ -3546,27 +3547,27 @@
 <span class="linenos" data-linenos="41 "></span><span class="p">}</span>
 </code></pre></div>
 <h2 id="mantenimiento-de-empleado">Mantenimiento de Empleado<a class="headerlink" href="#mantenimiento-de-empleado" title="Permanent link">&para;</a></h2>
-<p>Vamos a comenzar con el mantenimiento de Empleado. </p>
+<p>Vamos a comenzar con el mantenimiento de <code>Empleado</code>. </p>
 <h3 id="modelo-empleado-pojo-empleado">Modelo Empleado (POJO Empleado)<a class="headerlink" href="#modelo-empleado-pojo-empleado" title="Permanent link">&para;</a></h3>
-<p>Representará las necesidades de la aplicación para la tabla Empleado y su relación con Departamento. Decidimos mantener los datos de la tabla más el objeto Departamento al que pertenecen para facilitar mostrar la información al usuario</p>
+<p>Representará las necesidades de la aplicación para la tabla <code>Empleado</code> y su relación con <code>Departamento</code>. Decidimos mantener los datos de la tabla más el objeto <code>Departamento</code> al que pertenecen para facilitar mostrar la información al usuario</p>
 <p><img alt="alt text" src="../../img/ud8/proy016.png" /></p>
 <h3 id="dao-empleado">DAO Empleado<a class="headerlink" href="#dao-empleado" title="Permanent link">&para;</a></h3>
 <p>Tenemos que definir las sentencias SQL necesarias para la aplicación. Vamos a crear la clase DAO con las sentencias SQL que permitan el CRUD (Creación, Edición, Borrado y Selección) para la aplicación. </p>
 <p><img alt="alt text" src="../../img/ud8/proy017.png" /></p>
 <p><img alt="alt text" src="../../img/ud8/proy019.png" /></p>
-<p>Creamos las sentencias select que permitan obtener la información a mostrar al usuario incluyendo los filtros que utilizamos ( no mezclamos los filtros, se deja como ejercicio)</p>
+<p>Creamos las sentencias <code>SELECT</code> que permitan obtener la información a mostrar al usuario incluyendo los filtros que utilizamos (no aplicamos  los filtros en conjunto, se deja como ejercicio)</p>
 <p><img alt="alt text" src="../../img/ud8/proy018.png" /></p>
 <h3 id="vista-empleado-tableview">Vista Empleado: TableView<a class="headerlink" href="#vista-empleado-tableview" title="Permanent link">&para;</a></h3>
 <p>Como hemos indicado, vamos a mostrar un listado de los empleados donde podremos filtrar, crear, modificar y eliminar. </p>
-<p>Creamos un nuevo fichero  fxml y su correspondiente Controller en lo paquetes correspondientes</p>
+<p>Creamos un nuevo fichero  <code>fxml</code> y su correspondiente <code>Controller</code> en lo paquetes correspondientes</p>
 <p><img alt="alt text" src="../../img/ud8/proy021.png" /></p>
 <p>Nuestro primer objetivo tiene que ser poder mostrar la lista con todos los empleados</p>
 <p><img alt="alt text" src="../../img/ud8/proy020.png" /></p>
 <p>Para mostrar la lista utilizaremos un <em>TableView</em> de JavaFX</p>
-<p>El <code>TableView</code> nos permite mostrar <a href="https://docs.oracle.com/javafx/2/api/javafx/collections/ObservableList.html">ObservableList</a> que es muy parecido a un <code>ArrayList</code>, por lo que recuperaremos la lista de empleados de la base de datos utilizando DAO y lo cargaremos en la <code>ObservableList</code> y se lo asignaremos al TableView.</p>
-<p>Para crear el TableView tenemos que darle un id y asignarle las columnas necesarias con la información que queremos mostrar en <code>SceneBuilder</code>. Es necesario asignar <code>ids</code> a las columnas también.</p>
+<p>El <code>TableView</code> nos permite mostrar <a href="https://docs.oracle.com/javafx/2/api/javafx/collections/ObservableList.html">ObservableList</a> que es muy parecido a un <code>ArrayList</code>, por lo que recuperaremos la lista de empleados de la base de datos utilizando DAO y lo cargaremos en la <code>ObservableList</code> y se lo asignaremos al <code>TableView</code>.</p>
+<p>Para crear el <code>TableView</code> tenemos que darle un <code>id</code> y asignarle las columnas necesarias con la información que queremos mostrar en <code>SceneBuilder</code>. Es necesario asignar <code>ids</code> a las columnas también.</p>
 <p><img alt="alt text" src="../../img/ud8/proy022.png" /></p>
-<p>En el Controller, definimos la <code>ObservableList</code> y los tipos para cada columna que tiene que coincidir con los tipo de la clase Empleado.</p>
+<p>En el <code>Controller</code>, definimos la <code>ObservableList</code> y los tipos para cada columna que tiene que coincidir con los tipo de la clase <code>Empleado</code>.</p>
 <p><img alt="alt text" src="../../img/ud8/proy023.png" /></p>
 <p>En el método <code>iniciaTableViewEmpleados</code>, creamos la <code>observableList</code>, iniciamos la <code>TableView</code>, asociando a cada columna el nombre de la propiedad de <code>Empleado</code> a mostrar</p>
 <p><img alt="alt text" src="../../img/ud8/proy024.png" /></p>
@@ -3594,45 +3595,44 @@
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Desde el método <code>Initialize</code>, llamamos al método anterior, que si todo es correcto, mostrará la lista de empleados</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="nd">@Override</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">URL</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceBundle</span><span class="w"> </span><span class="n">resourceBundle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">iniciaTableViewEmpleados</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicializa la TableView de empleados.</span>
-<span class="linenos" data-linenos="4 "></span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">URL</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceBundle</span><span class="w"> </span><span class="n">resourceBundle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">iniciaTableViewEmpleados</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicializa la TableView de empleados.    </span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
 </code></pre></div>
 <h2 id="abrir-en-javafx-una-nueva-ventana">Abrir en JavaFX una nueva ventana<a class="headerlink" href="#abrir-en-javafx-una-nueva-ventana" title="Permanent link">&para;</a></h2>
-<p>Nuestra aplicación comienza en la ventana principal que permitirá abrir el mantenimiento de Empleados y Departamentos. </p>
+<p>Nuestra aplicación comienza en la ventana principal que permitirá abrir el mantenimiento de <code>Empleados</code> y <code>Departamentos</code>. </p>
 <p><img alt="alt text" src="../../img/ud8/proy010.png" /></p>
-<p>Para poder abrir <code>Empleados</code> al pulsar en el botón correspondiente, creamos una nuevo <code>Stage</code> a partir del <code>View</code> creado anteriormente.</p>
+<p>Para poder abrir <code>Empleados</code> al pulsar en el botón correspondiente, creamos una nuevo <code>Stage</code> desde el <code>View</code> creado anteriormente.</p>
 <div class="highlight"><span class="filename">InicioController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="cm">/**</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="cm">     * Método invocado al hacer clic en el botón para acceder a la gestión de departamentos.</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="cm">     * Carga y muestra la vista de departamentos en una nueva ventana modal.</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="cm">     *</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="cm">     * @param event El evento de acción.</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="cm">     */</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nd">@FXML</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickDepartamentos</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="c1">// Es necesario el control de excepciones para manejar posibles errores al cargar la vista.</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="c1">// Cargamos la escena desde el archivo FXML que define la interfaz de departamentos.</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">FXMLLoader</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FXMLLoader</span><span class="p">(</span><span class="n">EjemploDBJavaFx</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="s">&quot;views/departamentos-view.fxml&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">Parent</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">load</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm"> * Método invocado al hacer clic en el botón para acceder a la gestión de departamentos.</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm"> * Carga y muestra la vista de departamentos en una nueva ventana modal.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm"> * @param event El evento de acción.</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickDepartamentos</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Es necesario el control de excepciones para manejar posibles errores al cargar la vista.</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="c1">// Cargamos la escena desde el archivo FXML que define la interfaz de departamentos.</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">FXMLLoader</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FXMLLoader</span><span class="p">(</span><span class="n">EjemploDBJavaFx</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="s">&quot;views/departamentos-view.fxml&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">Parent</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">load</span><span class="p">();</span>
 <span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">Scene</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="c1">// Iniciamos un nuevo Stage (ventana) para mostrar la escena de departamentos.</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stage</span><span class="p">();</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;IES Severos Ochoa/Departamentos&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Establecemos el título de la ventana.</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setResizable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Deshabilitamos la posibilidad de redimensionar la ventana.</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">initModality</span><span class="p">(</span><span class="n">Modality</span><span class="p">.</span><span class="na">APPLICATION_MODAL</span><span class="p">);</span><span class="w"> </span><span class="c1">// Establecemos la modalidad de la ventana como modal de aplicación,</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="c1">// lo que bloquea la interacción con otras ventanas de la aplicación</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="c1">// hasta que esta se cierre.</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span><span class="w"> </span><span class="c1">// Asignamos la escena al Stage.</span>
-<span class="linenos" data-linenos="24 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">showAndWait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Mostramos la ventana y esperamos a que el usuario la cierre.</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="c1">// En caso de error al cargar el archivo FXML, mostramos un mensaje de error en la consola.</span>
-<span class="linenos" data-linenos="27 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="n">Scene</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="c1">// Iniciamos un nuevo Stage (ventana) para mostrar la escena de departamentos.</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stage</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;IES Severos Ochoa/Departamentos&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Establecemos el título de la ventana.</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setResizable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Deshabilitamos la posibilidad de redimensionar la ventana.</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">initModality</span><span class="p">(</span><span class="n">Modality</span><span class="p">.</span><span class="na">APPLICATION_MODAL</span><span class="p">);</span><span class="w"> </span><span class="c1">// Establecemos la modalidad de la ventana como modal de aplicación,</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="c1">// lo que bloquea la interacción con otras ventanas de la aplicación</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">// hasta que esta se cierre.</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span><span class="w"> </span><span class="c1">// Asignamos la escena al Stage.</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">showAndWait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Mostramos la ventana y esperamos a que el usuario la cierre.</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="c1">// En caso de error al cargar el archivo FXML, mostramos un mensaje de error en la consola.</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span><span class="p">}</span>
 </code></pre></div>
 <h2 id="borrar-empleado">Borrar Empleado<a class="headerlink" href="#borrar-empleado" title="Permanent link">&para;</a></h2>
 <p>Para implementar el borrado, tenemos que:</p>
@@ -3642,31 +3642,31 @@
 </ul>
 <p>Tendremos un método que elimine el un empleado y actualice la <code>TableView</code></p>
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">borrarEmpleado</span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">            </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">deleteEmpleado</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">deleteEmpleado</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
 <span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="n">listaEmpleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">                    </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">()</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="p">);</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">listaEmpleados</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">listaEmpleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">                </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">listaEmpleados</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>No tenemos en cuenta los filtros actuales. Se deja como ejercicio.</p>
 </div>
-<h3 id="seleccion-del-empleado-de-la-tableview">Selección del empleado de la TableView<a class="headerlink" href="#seleccion-del-empleado-de-la-tableview" title="Permanent link">&para;</a></h3>
-<p>Para saber el elemento seleccionado de la TableView:</p>
+<h3 id="seleccion-del-empleado-de-la-tableview">Selección del empleado de la <code>TableView</code><a class="headerlink" href="#seleccion-del-empleado-de-la-tableview" title="Permanent link">&para;</a></h3>
+<p>Para saber el elemento seleccionado de la <code>TableView</code>:</p>
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@FXML</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickBorrar</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="c1">//obtenemos el empleado seleccionado</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedItem</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="alert-avisos-al-usuario">Alert: Avisos al usuario<a class="headerlink" href="#alert-avisos-al-usuario" title="Permanent link">&para;</a></h3>
-<p>(<a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html">Alert</a></p>
+<p><a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html">Alert</a></p>
 <p>Mostraremos un cuadro de dialogo al usuario antes de borrar y si decide que sí, llamamos al método borrar</p>
 <p><img alt="alt text" src="../../img/ud8/proy030.png" /></p>
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@FXML</span>
@@ -3688,7 +3688,7 @@
 <span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 <h2 id="filtros-empleados">Filtros Empleados<a class="headerlink" href="#filtros-empleados" title="Permanent link">&para;</a></h2>
-<p>Para programar los filtros, vamos a definir unos EditText para el filtrar por dni y por nombre y un ComboBox para los departamentos</p>
+<p>Para programar los filtros, vamos a definir unos <code>EditText</code> para el filtrar por <code>dni</code> y por <code>nombre</code> y un <code>ComboBox</code> para los departamentos</p>
 <p><img alt="alt text" src="../../img/ud8/proy025.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
@@ -3759,19 +3759,21 @@
 <span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
 <span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">nombreBusqueda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tfNombre</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">nombreBusqueda</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">selectEmpleadosPorNombre</span><span class="p">(</span><span class="n">nombreBusqueda</span><span class="p">);</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">();</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="p">}</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">listaEmpleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span><span class="n">empleados</span><span class="p">);</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">listaEmpleados</span><span class="p">);</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="c1">//si hay filtro, lo aplicamos</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">nombreBusqueda</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">selectEmpleadosPorNombre</span><span class="p">(</span><span class="n">nombreBusqueda</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="c1">//no hay filtro, seleccionamos todos</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">//asignamos la nueva lista a la TableView</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">listaEmpleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span><span class="n">empleados</span><span class="p">);</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">listaEmpleados</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>La búsqueda por DNI es muy parecida</p>
+<p>La búsqueda por <code>DNI</code> es muy parecida</p>
 <h3 id="combobox-filtro-por-departamento">ComboBox: Filtro por Departamento<a class="headerlink" href="#combobox-filtro-por-departamento" title="Permanent link">&para;</a></h3>
 <p><a href="https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm">ComboBox</a>: Queremos filtra los empleados según un departamento seleccionado mediante un <code>ComboBox</code> que muestre la lista de departamentos</p>
 <p><img alt="alt text" src="../../img/ud8/proy026.png" /></p>
@@ -3781,17 +3783,17 @@
 <p>Suponiendo que ya tenemos definido el DAO para <code>Departamento</code> y su <code>Modelo</code></p>
 <p><img alt="alt text" src="../../img/ud8/proy028.png" /></p>
 <p>Cada elemento de la lista del <code>ComboBox</code>, mostrará  el resultado del método <code>toString</code> de la clase <code>Departamento</code></p>
-<p>Para ello definimos el tipo que se mostrará en el <code>ComboBox</code> en el Controller</p>
+<p>Para ello, definimos el tipo que se mostrará en el <code>ComboBox</code> en el <code>Controller</code></p>
 <p><div class="highlight"><span class="filename">EmpleadoController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="cm">/**</span>
 <span class="linenos" data-linenos="2 "></span><span class="cm">     * ComboBox para filtrar empleados por departamento.</span>
 <span class="linenos" data-linenos="3 "></span><span class="cm">     */</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="nd">@FXML</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ComboBox</span><span class="o">&lt;</span><span class="n">Departamento</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cbDepartamento</span><span class="p">;</span>
 </code></pre></div>
-El método que inicia el ComboBox:</p>
+El método que inicia el <code>ComboBox</code>:</p>
 <ul>
 <li>Busca la lista de departamentos en la base de datos</li>
-<li>Añade un elemento llamado 'Todos' para se puedan ver todos los empleado</li>
+<li>Añade un elemento llamado '<code>Todos</code>' para se puedan ver todos los empleado</li>
 <li>Asigna los departamentos al <code>ComboBox</code></li>
 <li>Añade un <code>listener</code> para filtrar por departamento cuando se modifica el <code>ComboBox</code></li>
 </ul>
@@ -3855,10 +3857,10 @@ Llamamos al método en <code>Initialize</code></p>
 <span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 <h2 id="crear-y-editar-empleado">Crear y Editar Empleado<a class="headerlink" href="#crear-y-editar-empleado" title="Permanent link">&para;</a></h2>
-<p>Como indicamos, la ventana de Nuevo y Edición será la misma, y creará o modificará un Empleado. Facilitará al usuario la selección del Departamento al que pertenece.</p>
+<p>Como indicamos, la ventana de <code>Nuevo</code> y <code>Edición</code> será la misma, y creará o modificará un <code>Empleado</code>. Facilitará al usuario la selección del <code>Departamento</code> al que pertenece.</p>
 <p><img alt="alt text" src="../../img/ud8/proy012.png" /></p>
-<p>Para conseguirlo, cuando abrimos la ventana de <code>Empleado</code>, tenemos que saber si estamos creando un  empleado es nuevo o nos han pasado un  Empleado para editarlo.</p>
-<p>Una vez que hemos definido el diseño de <code>EmpleadoView</code> con <code>SceneBuilder</code>, en <code>EmpleadoController</code> tenemos una propiedad Empleado y un método que carga los datos del empleado en los Controles de la pantalla</p>
+<p>Para conseguirlo, cuando abrimos la ventana de <code>Empleado</code>, tenemos que saber si estamos creando un  empleado  o nos han pasado un  <code>Empleado</code> para editarlo.</p>
+<p>Una vez que hemos definido el diseño de <code>EmpleadoView</code> con <code>SceneBuilder</code>, en <code>EmpleadoController</code> tenemos una propiedad <code>Empleado</code> y un método que carga los datos del empleado en los Controles de la pantalla</p>
 <div class="highlight"><span class="filename">EmpleadoController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmpleadoController</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Initializable</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span>
@@ -3939,7 +3941,8 @@ Llamamos al método en <code>Initialize</code></p>
 <span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="p">}</span>
 <span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>Abrimos la venta si es nuevo o edición en el <code>onClick</code> de los botones correspondientes
+<p>Abrimos la venta si es nuevo o edición en el <code>onClick</code> de los botones correspondientes</p>
+<p><img alt="alt text" src="../../img/ud8/proy032.png" /></p>
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="nd">@FXML</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickbtAlta</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">abrirEmpleado</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
@@ -3953,13 +3956,13 @@ Llamamos al método en <code>Initialize</code></p>
 <span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empleado</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">abrirEmpleado</span><span class="p">(</span><span class="n">empleado</span><span class="p">);</span>
 <span class="linenos" data-linenos="13 "></span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="devolver-un-resultado-de-una-ventana">Devolver un resultado de una ventana<a class="headerlink" href="#devolver-un-resultado-de-una-ventana" title="Permanent link">&para;</a></h2>
 <p>El mantenimiento de <code>Departamento</code> es muy parecido al de <code>Empleados</code>, pero para seleccionar el jefe, utilizaremos el mantenimiento de <code>Empleados</code> </p>
 <p><img alt="alt text" src="../../img/ud8/proy031.png" /></p>
 <p>Para conseguir el objetivo, la ventana que devuelve el dato, tiene que definir una Interface con el método que devuelve el dato. Los pasos son los siguiente:</p>
 <h3 id="definir-la-interface-en-empleadoscontroller">Definir la Interface en EmpleadosController<a class="headerlink" href="#definir-la-interface-en-empleadoscontroller" title="Permanent link">&para;</a></h3>
-<p>Esta Interface contiene un método que tiene como parámetro el <code>Empleado</code> seleccionado</p>
+<p>Esta <code>Interface</code> contiene un método que tiene como parámetro el <code>Empleado</code> seleccionado</p>
 <p><div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">SeleccionEmpleadoCallback</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="cm">/**</span>
 <span class="linenos" data-linenos="3 "></span><span class="cm">         * Método llamado cuando un empleado es seleccionado.</span>
@@ -3980,7 +3983,7 @@ Definimos el Set que permite asignar el la instancia anterior</p>
 <span class="linenos" data-linenos="5 "></span><span class="p">}</span>
 </code></pre></div>
 <h3 id="ejecutar-la-accion-que-devuelve-el-empleado">Ejecutar la acción que devuelve el Empleado<a class="headerlink" href="#ejecutar-la-accion-que-devuelve-el-empleado" title="Permanent link">&para;</a></h3>
-<p>Cuando se pulse en seleccionar llamamos al método anterior del callback y le pasamos el empleado</p>
+<p>Cuando se pulse en seleccionar llamamos al método anterior del <code>CallBack</code> y le pasamos el empleado</p>
 <div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@FXML</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickSeleccion</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="o">=</span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedItem</span><span class="p">();</span>
@@ -3996,7 +3999,7 @@ Definimos el Set que permite asignar el la instancia anterior</p>
 <span class="linenos" data-linenos="13 "></span><span class="p">}</span>
 </code></pre></div>
 <h3 id="asignar-la-instancia-de-la-interface">Asignar la instancia de la Interface<a class="headerlink" href="#asignar-la-instancia-de-la-interface" title="Permanent link">&para;</a></h3>
-<p>Al abrir la ventana de Empleados desde Departamento, le asignamos una instancia del tipo de la Interface anterior que permitirá asignar el empleado seleccionado al campo correspondiente</p>
+<p>Al abrir la ventana de <code>Empleados</code> desde <code>Departamento</code>, le asignamos una instancia del tipo de la <code>Interface</code> anterior que permitirá asignar el empleado seleccionado al campo correspondiente</p>
 <div class="highlight"><span class="filename">DepartamentoController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@FXML</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickBuscarJefe</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="c1">// Intenta cargar la vista de empleados para seleccionar un jefe.</span>
