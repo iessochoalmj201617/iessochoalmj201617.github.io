@@ -1,0 +1,4081 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../6streams/">
+      
+      
+        <link rel="next" href="../../ud6/3innerclass/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>🦄 Expresiones regulares - Programación</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#expresiones-regulares" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Programación" class="md-header__button md-logo" aria-label="Programación" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programación
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🦄 Expresiones regulares
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Programación" class="md-nav__button md-logo" aria-label="Programación" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Programación
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    00- Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD01-Elementos de un programa informático
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD01-Elementos de un programa informático
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/1elementos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Programa y lenguajes de programación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 El lenguaje Java
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            💾 El lenguaje Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/121conceptosbasicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conceptos básicos del lenguaje
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/122setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/123holamundo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proyecto Hola Mundo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 Variables, sentencias y paquetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            💾 Variables, sentencias y paquetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/131variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/132sentencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sentencias y paquetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 Tipos de datos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            💾 Tipos de datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/14datatypejava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datos primitivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/142noprimitive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datos no primitivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/143string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    String
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/15operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Operadores y expresiones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/16comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Comentarios en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/17constantesliterales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Constantes y literales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/18inputoutputconsole/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Entrada y salida de información por consola
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD02-Estructuras básicas de control
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD02-Estructuras básicas de control
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Algoritmos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Algoritmos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/00algoritmos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/00algoritmos2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estructuras de selección
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de selección en Java
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de selección en Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/1seleccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    If Statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/11booleanexpressions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expresiones booleanas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/2switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Switch Statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/2switch2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nuevo switch de Java 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de repetición
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de repetición
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22while/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle while
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22dowhile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle do while
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22whileif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucles while con if
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22for/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle for
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22nestedloop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucles anidados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22principlesloop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principios del diseño de bucles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de salto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de salto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/23breakcontinue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sentencias break y continue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD03-Programación modular
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD03-Programación modular
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26pro_modular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Introducción a la programación modular
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Introducción a los métodos en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/24exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Control de excepciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/25fallos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Prueba y depuración de aplicaciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD04-Programación orientada a objetos POO
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD04-Programación orientada a objetos POO
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/0poo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Introducción a la programación orientada a objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/1metodoclase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Clases en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/2constructor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Constructores y destructores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/3sobrecargametodos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Métodos y sobrecarga de métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/4referencevalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Paso de parámetros por valor y referencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/5static/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Variables, métodos y clases estáticas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/7nullvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Null value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD05-Arrays y Strings
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD05-Arrays y Strings
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/1arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/2usefularrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos útiles en arrays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/3referencetypearrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Tipos de referencia y tipos de valor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/4arrayobjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Array de objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/8string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 String
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/5sortarrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos de ordenación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/6searcharrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos de búsqueda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/7twodimensionarray/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Arrays multidimensionales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD06-Herencia y polimorfismo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD06-Herencia y polimorfismo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ✨ Herencia
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            ✨ Herencia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1herencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concepto de herencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1thisvssuper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    This vs super
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1xclaseobject/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clase Object
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/2composicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Composición
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/3encapsulacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Encapsulación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/4polimorfismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Polimorfismo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/5interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Interfaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/6abstraccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Abstracción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/7exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Excepciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD07-Colecciones
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            UD07-Colecciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/1list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 List y ArrayList
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/2linkedlist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Linked List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/4map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/5set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Set
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/6ordercollections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Colecciones ordenadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/7final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Keyword Final
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/8hashcode_equals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Equals & hashcode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD08 Programación avanzada
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            UD08 Programación avanzada
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/6recursion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Recursividad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Genéricos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Expresiones lambda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3predicates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Predicate, Supplier and Consumer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Referencia a métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    🦄 Expresiones regulares
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Expresiones regulares
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#clases-de-caracteres-y-limites-de-coincidencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clases de caracteres y límites de coincidencia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meta-caracteres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meta caracteres
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Meta caracteres">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#especificacion-de-modos-dentro-de-la-expresion-regular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Especificación de modos dentro de la expresión regular
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuantificadores-regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuantificadores Regex
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrena-tus-regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrena tus Regex
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-regex-core-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Java Regex Core Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clase-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clase Pattern
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clase-matcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clase Matcher
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clase Matcher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      reset()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group" class="md-nav__link">
+    <span class="md-ellipsis">
+      group()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stringmatches" class="md-nav__link">
+    <span class="md-ellipsis">
+      String.matches
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stringreplaceall" class="md-nav__link">
+    <span class="md-ellipsis">
+      String.replaceAll
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operadores-logicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operadores lógicos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-expresion-regular" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos expresión regular
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/3innerclass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Clases Anidadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8fechas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Fechas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD09 Entrada/Salida (I/O) de la información
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            UD09 Entrada/Salida (I/O) de la información
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/1io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Input/Output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/12binaryfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros binarios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/13characterfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de caracteres
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/14fileclass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Clase File
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/15javanio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 java.nio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/16randomaccessfile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de acceso aleatorio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/17configfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de configuración
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/18xmlfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 XML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/19jsonfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 JSON
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/20createjar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Crear un .jar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/21tryresources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 try-with-resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD10 Persistencia de la información
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            UD10 Persistencia de la información
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/1persistence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Persistencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/2mapeo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Desfase objeto-relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/3conectores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Manejo de conectores - JDBC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/4transactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Transacciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/6rendimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Mejora del rendimiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/7projectstructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Estructura de los proyectos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD11 Interfaces de usuario
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            UD11 Interfaces de usuario
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/1javafx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Java FX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/2stage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Stage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/3scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Scene
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/4node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/6layouts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Layouts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/5uicontrols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Controles UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/7events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Eventos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/8proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Mantenimiento Base de datos-JavaFX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔣 Atajos de teclado para IntelliJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="expresiones-regulares">Expresiones Regulares<a class="headerlink" href="#expresiones-regulares" title="Permanent link">&para;</a></h1>
+<p>Una expresión regular (regex) define un patrón de búsqueda para cadenas. El patrón de búsqueda puede ser cualquier cosa, desde un carácter simple, una cadena fija o una expresión compleja que contenga caracteres especiales que describan el patrón.</p>
+<p>Se puede usar una expresión regular para buscar, editar y manipular texto.</p>
+<p>La expresión regular se aplica en el texto de izquierda a derecha.</p>
+<p>Se usa ampliamente para definir la restricción en cadenas como contraseña y validación de correo electrónico.</p>
+<p>Java Regex API proporciona 1 interfaz y 3 clases en el paquete  <code>java.util.regex</code>:</p>
+<ul>
+<li>MatchResult interface</li>
+<li>Matcher class</li>
+<li>Pattern class</li>
+<li>PatternSyntaxException class</li>
+</ul>
+<h2 id="clases-de-caracteres-y-limites-de-coincidencia">Clases de caracteres y límites de coincidencia<a class="headerlink" href="#clases-de-caracteres-y-limites-de-coincidencia" title="Permanent link">&para;</a></h2>
+<p>La forma más simple de una expresión regular (regex) es una cadena, un literal, un String. Por ejemplo, "Hola" es una regex que coincide (matches) con la palabra "Hola".</p>
+<p>Si solo usáramos literales como patrón para buscar en un String, las regex no serían muy interesantes. Por eso, se crearon las <strong>Character classes &amp; boundary matches</strong>.</p>
+<p>Los boundary matches o límites de coincidencia son: <code>^</code> (al principio del String), <code>$</code> (final del String), <code>\b</code> (principio y final palabra).</p>
+<p>Una clase caracter es como un comodín y representa un conjunto o clase de caracteres.</p>
+<table>
+<thead>
+<tr>
+<th>Regex</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>Coincide con cualquier carácter.</td>
+</tr>
+<tr>
+<td>^pattern</td>
+<td>El símbolo ^ indica al inicio del String. Encuentra la regex que coincide con el patrón dado al comienzo del String.  Por ejemplo, /^start/ coincidirá con "start" solo si está al principio de una línea.</td>
+</tr>
+<tr>
+<td>pattern$</td>
+<td>El símbolo $ indica el final del String. Encuentra la regex que coincide con el patrón dado al final del String.  Por ejemplo, /end$/ coincidirá con "end" solo si está al final de una línea</td>
+</tr>
+<tr>
+<td>[abc]</td>
+<td>Los corchetes representan un conjunto. El String debe coincidir con la/s letra/s dentro del corchete.   Por ejemplo, <code>gr[ae]y</code> coincidirá con "gray" y "grey" pero no con "groy".</td>
+</tr>
+<tr>
+<td>[abc][12]</td>
+<td>El String debe coincidir con las letras a, b ó c, seguidas de 1 ó 2.  Por ejemplo, "a1", "b2"</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>El símbolo ^ dentro de los corchetes indica negación. El String debe coincidir con cualquier carácter excepto "a" ó "b" ó "c". Ejemplo <code>cod[^abc]</code> "cod3" y "codv" pero no "coda" o "codb"</td>
+</tr>
+<tr>
+<td>[a-z1-9]</td>
+<td>Rango. Busca coincidir las letras minúsculas de la a a la z (ambas incluidas) y los dígitos del 1 al 9 (ambos incluidos). Por ejemplo,<code>cod[a-z1-9]</code> "cod3", "code" pero no "codE" ni cod$ ni "coda2"</td>
+</tr>
+<tr>
+<td>a|o</td>
+<td>Encuentra en el String las ocurrencias de "a" ó "o".  Por ejemplo, <code>perro|gato</code>  "perro" y "gato" pero no "pez"</td>
+</tr>
+<tr>
+<td>ab</td>
+<td>Encuentra en el String todas las ocurrencias de 'a' seguido de una 'b'. Por ejemplo, "abuelo",</td>
+</tr>
+</tbody>
+</table>
+<h2 id="meta-caracteres">Meta caracteres<a class="headerlink" href="#meta-caracteres" title="Permanent link">&para;</a></h2>
+<p>Los siguientes metacaracteres tienen un significado predefinido y hacen que ciertos patrones comunes sean más fáciles de usar. Por ejemplo, puede usar \d como definición simplificada para [0..9].</p>
+<table>
+<thead>
+<tr>
+<th>Regex</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\d</td>
+<td>Cualquier dígito. Equivale a [0-9].</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>No dígito. Equivale a [^0-9].</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>Espacio en blanco. Equivale a [ \t\n\x0b\r\f]</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>No espacio en blanco. Equivale a [^\s]</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>Una letra mayúscula o minúscula, un dígito o el carácter '_'. Equivale a  [a-zA-Z0-9_]</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>Equivale a [^\w]</td>
+</tr>
+<tr>
+<td>\S+</td>
+<td>Varios caracteres que no son espacios en blanco</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>Límite de una palabra. Por ejemplo <code>\b\d[a-z]\b</code>. Coincide con "2a", "4c" pero no con "2c3" "</td>
+</tr>
+</tbody>
+</table>
+<h3 id="especificacion-de-modos-dentro-de-la-expresion-regular">Especificación de modos dentro de la expresión regular<a class="headerlink" href="#especificacion-de-modos-dentro-de-la-expresion-regular" title="Permanent link">&para;</a></h3>
+<p>Puede agregar los siguientes modificadores de modo al comienzo de la expresión regular. Para especificar múltiples modos, simplemente se juntan: <code>(?ismx)</code>.</p>
+<ul>
+<li><code>(?i)</code>  hace que la expresión regular sea insensible a mayúsculas y minúsculas. Ejemplo <code>(?i)hola</code>, coincide con "HoLa","hoLA", "HOLa"....</li>
+<li><code>(?s)</code>  para "modo de una sola línea" hace que el punto coincida con todos los caracteres, incluidos los saltos de línea. Por ejemplo, si deseas realizar una búsqueda en un texto que incluya múltiples líneas y deseas que el punto . coincida con cualquier carácter</li>
+<li><code>(?m)</code>  para "modo multilínea" hace que el símbolo de intercalación y el dólar coincidan al principio y al final de cada línea en la cadena de asunto.</li>
+</ul>
+<h2 id="cuantificadores-regex">Cuantificadores Regex<a class="headerlink" href="#cuantificadores-regex" title="Permanent link">&para;</a></h2>
+<p>Los cuantificadores especifican el número de ocurrencias de un carácter.</p>
+<p>Un cuantificador define con qué frecuencia puede ocurrir un elemento. Los símbolos ?, *, + y {} son calificadores.</p>
+<table>
+<thead>
+<tr>
+<th>Regex</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>Indica que ocurre 0 ó más veces. Equivale a {0,}. Por ejemplo, <code>go*d</code>  coincidirá con "gd", "god", "good", "gooood", etc</td>
+</tr>
+<tr>
+<td>+</td>
+<td>Indica que ocurre 1 ó más veces. Equivale a {1,}.  Por ejemplo, <code>go+d</code> coincidirá con "god", "good", "gooood", pero no con "gd"</td>
+</tr>
+<tr>
+<td>?</td>
+<td>Indica que ocurre 0 ó 1 veces. Equivale a {0,1}.  Por ejemplo, <code>go?d</code> coincidirá con "gd", "god" . Pero no con "good"</td>
+</tr>
+<tr>
+<td>{X}</td>
+<td>Indica que lo que va justo antes de las llaves {} se repite X número de veces. Por ejemplo <code>A\d{3}B</code>, "A231B", "A365B". Pero no coincide con "As23B" ó "A1234B"</td>
+</tr>
+<tr>
+<td>{X, Y}</td>
+<td>Indica que lo que va justo antes de las llaves {} se repite mínimo X número de veces y máximo Y. Por ejemplo <code>\b\w{4,6}\b</code> coincide "apple", "123456" pero no "abc", "1234567", "biblioteca"</td>
+</tr>
+<tr>
+<td>*?</td>
+<td>? después de un cuantificador lo convierte en un cuantificador perezoso (lazy). Intenta encontrar la coincidencia más pequeña. Esto hace que la expresión regular se detenga en la primera coincidencia.</td>
+</tr>
+</tbody>
+</table>
+<p>En la documentación de Oracle podemos ver todas las clases de caracteres que hay para construir una expresión regular.</p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html</a></p>
+<h2 id="entrena-tus-regex">Entrena tus Regex<a class="headerlink" href="#entrena-tus-regex" title="Permanent link">&para;</a></h2>
+<p><a href="https://regexcrossword.com/">https://regexcrossword.com/</a></p>
+<p><a href="https://www.freeformatter.com/java-regex-tester.html">https://www.freeformatter.com/java-regex-tester.html</a></p>
+<h2 id="java-regex-core-classes">Java Regex Core Classes<a class="headerlink" href="#java-regex-core-classes" title="Permanent link">&para;</a></h2>
+<p>La API de expresiones regulares de Java consta de dos clases principales. Estos son:</p>
+<p><code>Pattern</code> (java.util.regex.Pattern)
+<code>Matcher</code> (java.util.regex.Matcher)</p>
+<h2 id="clase-pattern">Clase <a href="https://docs.oracle.com/javase/9/docs/api/java/util/regex/Pattern.html"><code>Pattern</code></a><a class="headerlink" href="#clase-pattern" title="Permanent link">&para;</a></h2>
+<p>La clase <code>Pattern</code> se utiliza para crear patrones (expresiones regulares). Un patrón es una expresión regular precompilada en forma de objeto (como una instancia de patrón), capaz de compararse con un texto.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.*http://.*&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="clase-matcher">Clase <a href="https://docs.oracle.com/javase/9/docs/api/java/util/regex/Matcher.html"><code>Matcher</code></a><a class="headerlink" href="#clase-matcher" title="Permanent link">&para;</a></h2>
+<p>La clase <code>Matcher</code> se usa para hacer coincidir una expresión regular determinada (ùna instancia de <code>Pattern</code>) con un texto varias veces. En otras palabras, buscar múltiples ocurrencias de la expresión regular en el texto. <code>Matcher</code> nos dirá en qué parte del texto (índice de caracteres) encontró las ocurrencias. Puede obtener una instancia de Matcher a partir de una instancia de Pattern.</p>
+<p>Implementa la interfaz <code>MatchResult</code>.</p>
+<p>Algunos de los métodos de la clase Matcher son:</p>
+<ul>
+<li><strong>boolean matches():</strong> prueba si la expresión regular coincide con el patrón.</li>
+<li><strong>booleano find():</strong> encuentra la siguiente expresión que coincide con el patrón.</li>
+<li><strong>boolean find(int start):</strong> encuentra la siguiente expresión que coincide con el patrón del número de inicio dado.</li>
+<li><strong>String group():</strong> devuelve la subsecuencia coincidente.</li>
+<li><strong>int start():</strong> devuelve el índice inicial de la subsecuencia coincidente.</li>
+<li><strong>int end():</strong> devuelve el índice final de la subsecuencia coincidente.</li>
+<li><strong>int groupCount():</strong> devuelve el número total de la subsecuencia coincidente.</li>
+</ul>
+<p>Ejemplo:</p>
+<p>Coincidencia de una cadena con la expresión regular</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ab+c&quot;</span><span class="p">;</span><span class="c1">//&#39;palabras que empicen por &#39;a&#39; siga 1 o más &#39;b&#39; y terminen por &#39;c&#39;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abbc&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">matches</span><span class="p">();</span><span class="w"> </span><span class="c1">// Devuelve true si toda la cadena coincide con la expresión regular</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">matches</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime: true</span>
+</code></pre></div>
+Búsqueda de ocurrencias de una expresión regular en una cadena:</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ab\\w*o&quot;</span><span class="p">;</span><span class="c1">// palabras que empiecen por &#39;ab&#39; y terminen e &#39;o&#39;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">String</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot; hola que tal abuelo, donde vamos&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">// Devuelve true si encuentra al menos una ocurrencia de la expresión regular</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">();</span><span class="w"> </span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">find</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime: true</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">String</span><span class="w"> </span><span class="n">input2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot; hola que tal abuela, donde vamos&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">input2</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">find</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">();</span><span class="w"> </span>
+<span class="linenos" data-linenos="12 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">find</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime: false</span>
+</code></pre></div>
+Obtener todas las coincidencias de una expresión regular en una cadena
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//palabras entre 4 y 6 letras. Fijate en \b que indica inicio y fin</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">String</span><span class="w"> </span><span class="n">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;\\b\\w{4,6}\\b&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">String</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ver banana casa 1234567&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="c1">//extrae el elemento que coincide con el patrón</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">());</span><span class="w"> </span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Imprime: banana casa</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div></p>
+<p>Encontrar las posiciones de la coincidencia
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="s">&quot;&lt;h1&gt;Head&lt;/h1&gt;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">html</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;&lt;h2&gt;Etiqueta h2 de encabezado&lt;/h2&gt;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">html</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;&lt;p&gt;Esto es un párrafo en html&lt;/p&gt;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">html</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;&lt;h2&gt;Resumen&lt;/h2&gt;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">html</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;&lt;p&gt;Fin del html&lt;/p&gt;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;&lt;h2&gt;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">html</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1">//buscamos la posición de las coincidencias</span>
+<span class="linenos" data-linenos="10 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Coincidencia encontrada en la posición &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">start</span><span class="p">());</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="cm">/*Coincidencia encontrada en la posición 13</span>
+<span class="linenos" data-linenos="14 "></span><span class="cm">Coincidencia encontrada en la posición 80*/</span>
+</code></pre></div>
+Reemplazar todas las ocurrencias de una expresión regular en una cadena</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;\\d&quot;</span><span class="p">;</span><span class="c1">//números</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abc123xyz&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">String</span><span class="w"> </span><span class="n">replaced</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">replaced</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime: abc***xyz</span>
+</code></pre></div>
+<h3 id="reset">reset()<a class="headerlink" href="#reset" title="Permanent link">&para;</a></h3>
+<p>El método de la clase Matcher <code>reset()</code> restablece el estado de coincidencia internamente en el Matcher. En caso de que haya comenzado a hacer coincidir las ocurrencias en una cadena a través del método <code>find()</code>, el Matcher mantendrá internamente un estado sobre qué tan lejos ha buscado a través del texto de entrada. Al llamar a <code>reset()</code>, la coincidencia comenzará nuevamente desde el principio del texto.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;La casa está en el lago y el gato está en la casa.&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">// Patrón para encontrar palabras que contienen la letra &#39;a&#39;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\b\\w*a\\w*\\b&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1">// Encontrar y reemplazar las letras &#39;a&#39; con &#39;X&#39;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kt">int</span><span class="w"> </span><span class="n">replacementCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">replacement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">().</span><span class="na">replace</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;X&#39;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">start</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">replacement</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">end</span><span class="p">());</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">replacementCount</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Texto con &#39;a&#39; reemplazado por &#39;X&#39;:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w"> </span><span class="c1">//LX cXsX está en el lXgo y el gXto está en lX cXsX.</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="c1">// Reiniciar el objeto Matcher para usarlo nuevamente</span>
+<span class="linenos" data-linenos="19 "></span><span class="n">matcher</span><span class="p">.</span><span class="na">reset</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="c1">// Encontrar la cantidad total de palabras que contienen &#39;a&#39;</span>
+<span class="linenos" data-linenos="22 "></span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos="23 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos" data-linenos="25 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Total de palabras que contienen &#39;a&#39;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span><span class="c1">//Total de palabras que contienen &#39;a&#39;: 6</span>
+</code></pre></div>
+<h3 id="group">group()<a class="headerlink" href="#group" title="Permanent link">&para;</a></h3>
+<p>Los grupos están marcados con paréntesis en la expresión regular. Por ejemplo:</p>
+<blockquote>
+<p>(Hola)</p>
+</blockquote>
+<p>Esta expresión regular coincide con el texto Hola. <strong>Los paréntesis no son parte del texto que se compara</strong>. Los paréntesis marcan un grupo. Cuando se encuentra una coincidencia en un texto, puede obtener acceso a la parte de la expresión regular dentro del grupo.</p>
+<p>Para acceder a un grupo se utiliza el método <code>group(int groupNo)</code>. Una expresión regular puede tener más de un grupo. Por lo tanto, cada grupo está marcado con un conjunto separado de paréntesis. Para obtener acceso al texto que coincidió con la subparte de la expresión en un grupo específico, se pasa el número del grupo al método <code>group(int groupNo)</code>.</p>
+<p>El grupo con el número 0 es siempre la expresión regular completa. Para obtener acceso a un grupo marcado entre paréntesis, debe comenzar con los números de grupo 1.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="s">Name: Juan, Phone: 123456789</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="s">Name: Pepe, Phone: 345678989</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="s">&quot;&quot;&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">// Patrón para extraer el nombre y el teléfono</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;Name: (.*), Phone: (\\d+)&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Obtiene el grupo de captura 1 (el nombre)</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">telefono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// Obtiene el grupo de captura 2 (el teléfono)</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nombre: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Teléfono: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">telefono</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="cm">/*</span>
+<span class="linenos" data-linenos="16 "></span><span class="cm">Nombre: Juan</span>
+<span class="linenos" data-linenos="17 "></span><span class="cm">Teléfono: 123456789</span>
+<span class="linenos" data-linenos="18 "></span><span class="cm">Nombre: Pepe</span>
+<span class="linenos" data-linenos="19 "></span><span class="cm">Teléfono: 345678989</span>
+<span class="linenos" data-linenos="20 "></span><span class="cm">         */</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="stringmatches">String.matches<a class="headerlink" href="#stringmatches" title="Permanent link">&para;</a></h2>
+<p>El método matches() de String se utiliza para determinar si una cadena coincide con una expresión regular completa. Devuelve true si la cadena coincide completamente con la expresión regular y false en caso contrario</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hola Mundo&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">texto</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="s">&quot;Hola.*&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La cadena comienza con &#39;Hola&#39;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La cadena no comienza con &#39;Hola&#39;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="stringreplaceall">String.replaceAll<a class="headerlink" href="#stringreplaceall" title="Permanent link">&para;</a></h2>
+<p>Permite sustituir en un String las coincidencias de una expresión regular</p>
+<p>Sustituir el Dni por asteriscos</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Pepe con DNI 12345678F y María con DNI 87654321G&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">// Expresión regular para coincidir con el DNI</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">String</span><span class="w"> </span><span class="n">regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;\\b\\d{8}[A-HJ-NP-TV-Z]\\b&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">String</span><span class="w"> </span><span class="n">reemplazo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;*********&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1">// Reemplazar los DNI</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">String</span><span class="w"> </span><span class="n">dniOcultos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emails</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span><span class="w"> </span><span class="n">reemplazo</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Resultado:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">dniOcultos</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1">//Pepe con DNI ********* y María con DNI *********</span>
+</code></pre></div>
+<h2 id="operadores-logicos">Operadores lógicos<a class="headerlink" href="#operadores-logicos" title="Permanent link">&para;</a></h2>
+<p>La API de Java Regex admite un conjunto de operadores lógicos que se pueden usar para combinar múltiples subpatrones dentro de una sola expresión regular.</p>
+<p>Los operadores lógicos son: el operador and, el operador or y el operador not.</p>
+<p>El operador <strong>and</strong> es implícito. Si dos caracteres (u otros subpatrones) se suceden en una expresión regular, eso significa que tanto el primer como el segundo subpatrón coinciden en gran medida con la cadena de destino.</p>
+<p>El operador <strong>or</strong> es explícito y está representado por el carácter vertical <code>|</code>.</p>
+<p>El operador <strong>not</strong> es explícito, está representado por el símbolo <code>!</code>, brinda la posibilidad de excluir un patrón. Con esto se puede decir que una cadena no debe ir seguida de otra cadena.</p>
+<p>En expresión regular, hay anticipación positiva <code>(? =)</code> y anticipación negativa <code>(?!)</code>:</p>
+<ul>
+<li><code>(?=)</code> garantiza que algo siga a algo más.<code>b(?=c)</code> coincide con una b seguida de una c</li>
+</ul>
+<p>Por ejemplo, si queremos encontrar palabras que contengan "apple" seguidas de "pie"  </p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;apple juice, apple pie, apple juice, apple cake, apple pie&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\bapple(?=\\spie)\\b&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">start</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">//13 49</span>
+</code></pre></div>
++ <code>(?!)</code> garantiza que algo NO sea seguido por otra cosa. <code>b(?!c)</code> coincide con una b que NO va seguida de una c</p>
+<p>Por ejemplo, si queremos encontrar palabras que contengan "apple" <strong>no</strong> seguidas de "pie"  </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;apple juice, apple pie, apple juice, apple cake, apple pie&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\bapple(?=\\spie)\\b&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">start</span><span class="p">());</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span>
+<span class="linenos" data-linenos="9 "></span><span class="c1">//0 24 37</span>
+</code></pre></div>
+<h2 id="ejemplos-expresion-regular">Ejemplos expresión regular<a class="headerlink" href="#ejemplos-expresion-regular" title="Permanent link">&para;</a></h2>
+<p>teléfono móvil de España</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//(+34) 655-555-555</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">String</span><span class="w"> </span><span class="n">regexTelefono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^([\\(]{1}[\\+]{1}34[\\)]{1}[ ]{1}[0-9]{3}[\\-]{1}[0-9]{3}[\\-]{1}[0-9]{3})$&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">String</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;123456789&quot;</span><span class="p">;</span><span class="c1">//no</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">String</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(+35) 123456-789&quot;</span><span class="p">;</span><span class="c1">//no</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">String</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(+34) 123-456-789&quot;</span><span class="p">;</span><span class="c1">//si</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">String</span><span class="w"> </span><span class="n">t4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(+34)123-456-78&quot;</span><span class="p">;</span><span class="c1">//no</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="n">regexTelefono</span><span class="p">));</span><span class="c1">//false</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t2</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="n">regexTelefono</span><span class="p">));</span><span class="c1">//false</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t3</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="n">regexTelefono</span><span class="p">));</span><span class="c1">//true</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">t4</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="n">regexTelefono</span><span class="p">));</span><span class="c1">//false</span>
+</code></pre></div>
+<p>Buscar un patrón numérico en una cadena
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;El precio es $50.00&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\$\\d+\\.\\d{2}&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">texto</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Precio encontrado: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">());</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+Validar una dirección de correo electrónico</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuario@example.com&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">email</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">matches</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La dirección de correo electrónico es válida.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+Buscar todas las apariciones de una palabra específica en una cadena</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;La lluvia en Sevilla es una maravilla. Sevilla tiene un color especial.&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\bSevilla\\b&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">texto</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="kt">int</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">contador</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La palabra &#39;Sevilla&#39; aparece &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; veces.&quot;</span><span class="p">);</span>
+</code></pre></div>
+Extraer el contenido entre paréntesis:</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;La temperatura es (25°C) y la humedad es (50%)&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\((.*?)\\)&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">texto</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Contenido entre paréntesis: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">// </span>
+<span class="linenos" data-linenos=" 9 "></span><span class="cm">/*</span>
+<span class="linenos" data-linenos="10 "></span><span class="cm">Contenido entre paréntesis: 25°C</span>
+<span class="linenos" data-linenos="11 "></span><span class="cm">Contenido entre paréntesis: 50%</span>
+<span class="linenos" data-linenos="12 "></span><span class="cm">.*? significa el mínimo posible, si pusieramos (.*) habría capturado</span>
+<span class="linenos" data-linenos="13 "></span><span class="cm">25°C) y la humedad es (50% como un solo grupo</span>
+<span class="linenos" data-linenos="14 "></span><span class="cm">*/</span>
+</code></pre></div>
+Buscar y reemplazar todas las ocurrencias de una palabra en una cadena:</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;La casa es pequeña, pero la casa es acogedora.&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\bcasa\\b&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">texto</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">String</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&quot;vivienda&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="c1">//La vivienda es pequeña, pero la vivienda es acogedora.</span>
+</code></pre></div>
+Validar una fecha en formato MM/DD/AAAA</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">fecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;12/31/2023&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;(0[1-9]|1[0-2])/([0-2][0-9]|3[0-1])/\\d{4}&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">fecha</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">matches</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;La fecha es válida.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+Extraer los nombres de usuario de direcciones de correo electrónico:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">emails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuario1@example.com, usuario2@example.com, usuario3@example.com&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">Pattern</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;\\b([a-zA-Z0-9._%+-]+)@&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">emails</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Nombre de usuario: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm">/*</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm">Nombre de usuario: usuario1</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="cm">Nombre de usuario: usuario2</span>
+<span class="linenos" data-linenos="10 "></span><span class="cm">Nombre de usuario: usuario3</span>
+<span class="linenos" data-linenos="11 "></span><span class="cm">*/</span>
+</code></pre></div></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:<ja.lopez@edu.gva.es>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.56.56 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "toc.integrate", "content.code.copy", "content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

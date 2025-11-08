@@ -1,0 +1,3959 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../132sentencias/">
+      
+      
+        <link rel="next" href="../142noprimitive/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Datos primitivos - Programación</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tipos-de-datos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Programación" class="md-header__button md-logo" aria-label="Programación" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programación
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Datos primitivos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Programación" class="md-nav__button md-logo" aria-label="Programación" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Programación
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    00- Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD01-Elementos de un programa informático
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD01-Elementos de un programa informático
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1elementos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Programa y lenguajes de programación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 El lenguaje Java
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            💾 El lenguaje Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../121conceptosbasicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conceptos básicos del lenguaje
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../122setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../123holamundo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proyecto Hola Mundo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 Variables, sentencias y paquetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            💾 Variables, sentencias y paquetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../131variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../132sentencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sentencias y paquetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 Tipos de datos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            💾 Tipos de datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Datos primitivos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datos primitivos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primitivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitivos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primitivos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#byte" class="md-nav__link">
+    <span class="md-ellipsis">
+      byte
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short" class="md-nav__link">
+    <span class="md-ellipsis">
+      short
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#int" class="md-nav__link">
+    <span class="md-ellipsis">
+      int
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long" class="md-nav__link">
+    <span class="md-ellipsis">
+      long
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#float" class="md-nav__link">
+    <span class="md-ellipsis">
+      float
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double" class="md-nav__link">
+    <span class="md-ellipsis">
+      double
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char" class="md-nav__link">
+    <span class="md-ellipsis">
+      char
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secuencia-de-escape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secuencia de escape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      boolean
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapper-classes-clases-contenedores-o-envolventes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrapper classes (clases contenedores o envolventes)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion-de-tipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversión de tipos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conversión de tipos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversion-implicita-casting-implicito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversión implícita (Casting implícito)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-explicita-casting-explicito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversión explícita (Casting explícito)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-sucede-internamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Qué sucede internamente?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overflow-y-underflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overflow y Underflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overflow y Underflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#underflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Underflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../142noprimitive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datos no primitivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../143string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    String
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Operadores y expresiones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Comentarios en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17constantesliterales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Constantes y literales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18inputoutputconsole/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Entrada y salida de información por consola
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD02-Estructuras básicas de control
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD02-Estructuras básicas de control
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Algoritmos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Algoritmos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/00algoritmos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/00algoritmos2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estructuras de selección
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de selección en Java
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de selección en Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/1seleccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    If Statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/11booleanexpressions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expresiones booleanas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/2switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Switch Statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/2switch2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nuevo switch de Java 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de repetición
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de repetición
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22while/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle while
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22dowhile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle do while
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22whileif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucles while con if
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22for/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle for
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22nestedloop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucles anidados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22principlesloop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principios del diseño de bucles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de salto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de salto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/23breakcontinue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sentencias break y continue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD03-Programación modular
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD03-Programación modular
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26pro_modular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Introducción a la programación modular
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Introducción a los métodos en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/24exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Control de excepciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/25fallos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Prueba y depuración de aplicaciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD04-Programación orientada a objetos POO
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD04-Programación orientada a objetos POO
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/0poo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Introducción a la programación orientada a objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/1metodoclase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Clases en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/2constructor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Constructores y destructores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/3sobrecargametodos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Métodos y sobrecarga de métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/4referencevalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Paso de parámetros por valor y referencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/5static/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Variables, métodos y clases estáticas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/7nullvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Null value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD05-Arrays y Strings
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD05-Arrays y Strings
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/1arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/2usefularrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos útiles en arrays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/3referencetypearrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Tipos de referencia y tipos de valor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/4arrayobjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Array de objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/8string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 String
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/5sortarrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos de ordenación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/6searcharrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos de búsqueda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/7twodimensionarray/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Arrays multidimensionales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD06-Herencia y polimorfismo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD06-Herencia y polimorfismo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ✨ Herencia
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            ✨ Herencia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1herencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concepto de herencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1thisvssuper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    This vs super
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1xclaseobject/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clase Object
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/2composicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Composición
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/3encapsulacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Encapsulación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/4polimorfismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Polimorfismo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/5interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Interfaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/6abstraccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Abstracción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/7exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Excepciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD07-Colecciones
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            UD07-Colecciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/1list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 List y ArrayList
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/2linkedlist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Linked List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/4map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/5set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Set
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/6ordercollections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Colecciones ordenadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/7final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Keyword Final
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/8hashcode_equals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Equals & hashcode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD08 Programación avanzada
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            UD08 Programación avanzada
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/6recursion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Recursividad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/1generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Genéricos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/2lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Expresiones lambda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/3predicates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Predicate, Supplier and Consumer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/4functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/5references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Referencia a métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/6streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/7regularexpressions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Expresiones regulares
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/3innerclass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Clases Anidadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/8fechas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Fechas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD09 Entrada/Salida (I/O) de la información
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            UD09 Entrada/Salida (I/O) de la información
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/1io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Input/Output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/12binaryfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros binarios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/13characterfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de caracteres
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/14fileclass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Clase File
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/15javanio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 java.nio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/16randomaccessfile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de acceso aleatorio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/17configfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de configuración
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/18xmlfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 XML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/19jsonfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 JSON
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/20createjar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Crear un .jar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/21tryresources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 try-with-resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD10 Persistencia de la información
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            UD10 Persistencia de la información
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/1persistence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Persistencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/2mapeo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Desfase objeto-relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/3conectores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Manejo de conectores - JDBC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/4transactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Transacciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/6rendimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Mejora del rendimiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/7projectstructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Estructura de los proyectos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD11 Interfaces de usuario
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            UD11 Interfaces de usuario
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/1javafx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Java FX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/2stage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Stage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/3scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Scene
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/4node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/6layouts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Layouts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/5uicontrols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Controles UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/7events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Eventos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud8/8proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Mantenimiento Base de datos-JavaFX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔣 Atajos de teclado para IntelliJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tipos-de-datos">💾 Tipos de datos<a class="headerlink" href="#tipos-de-datos" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
+<p>Un   ordenador  está  compuesto  fundamentalmente  por  circuitos  electrónicos  digitales.Los datos circulan por estos circuitos en forma de impulsos eléctricos.</p>
+<p>De forma muy simplificada podemos decir que por un circuito pasa o no pasa corrientey esto lo podemos representar con dos dígitos: 0 y 1.</p>
+<p>Todos los datos e información que contiene un ordenador, están representados de forma interna mediante secuencias de ceros y unos. Un sistema de representación que utiliza solamente dos símbolos ( 0 , 1 ) se llama sistema binario. Por tanto, los datos tal y como los expresamos de forma natural se deben codificar de forma interna en binario para que puedan ser tratados por el ordenador.</p>
+<p>El sistema binario utiliza solamente dos dígitos ( 0 y 1 ) llamados bits. </p>
+<p>Utilizando 2 bits podemos representar 4 valores: 00, 01, 10, 11.</p>
+<p>Utilizando 3 bits podemos representar 8 valores: 000, 001, 010, 011, 100, 101, 110, 111.</p>
+<p>Utilizando 4 bits podemos representar 16 valores: 0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111...</p>
+<p>En general, utilizandon bits podremos representar 2n valores. Ocho bits forman un byte. El byte es la unidad básica de medida de la información. Un byte es la cantidad más pequeña de información que el ordenador puede manejar. </p>
+<p>Con un byte se pueden representar 28= 256 caracteres.En el interior del ordenador los datos se transmiten y almacenan en grupos de bytes llamados palabras.La longitud de palabra depende de cada tipo de ordenador: 8, 16, 32, 64.</p>
+<p><img alt="Java" src="../../img/ud1/tipodatos.png" /></p>
+<p>Un tipo de datos es un conjunto de valores y un conjunto de operaciones definidas en ellos.</p>
+<p><img alt="Java" src="../../img/ud1/tipodatos2.png" /></p>
+<p>Para que los datos formen parte del procesamiento de la información, deben encontrarse en la memoria principal o memoria RAM. Y ahí se representan de forma lógica a través de una estructura de datos, la cual define un contenedor para el dato </p>
+<p>Se pueden clasificar en primitivos y objetos.
+<img alt="Java" src="../../img/primitives.png" /></p>
+<h2 id="primitivos">Primitivos<a class="headerlink" href="#primitivos" title="Permanent link">&para;</a></h2>
+<p>Los primitivos son los más básicos y fundamentales, vienen integrados en Java. Especifican el tipo de valor almacenado en una variable y el tamaño de la memoria. Hay 8 tipos primitivos de datos integrados en el lenguaje Java. Estos incluyen: int, byte, short, long, float, double, boolean y char.</p>
+<p><img alt="Java" src="../../img/ud1/datosprimitivos.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Notación científica</p>
+<ul>
+<li>La notación científica es una forma compacta de expresar números grandes o pequeños.
+Está escrita en la forma N×10^e donde <code>N</code> es la mantisa y <code>e</code> el exponente</li>
+<li>Los números grandes tienen exponentes positivos, y los pequeños, exponentes negativos.</li>
+</ul>
+<p><img alt="Java" src="../../img/ud1/primitivos2.png" /></p>
+<p>en Java se representan de la siguiente forma</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">double</span><span class="w"> </span><span class="n">numeroGrande</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.23e5</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1.23 x 10^5 = 123000.0</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">double</span><span class="w"> </span><span class="n">numeroPequeno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.56e-4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 4.56 x 10^-4 = 0.000456</span>
+</code></pre></div>
+</div>
+<h3 id="byte">byte<a class="headerlink" href="#byte" title="Permanent link">&para;</a></h3>
+<p>Como su propio nombre denota, emplea un solo byte (8 bits) de almacenamiento. Esto permite almacenar valores en el rango [-128, 127]. Raramente se usa. Ocupa menos memoria y puede ser más rápido accedido.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">byte</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="short">short<a class="headerlink" href="#short" title="Permanent link">&para;</a></h3>
+<p>Usa el doble de almacenamiento que el anterior, es decir, ocupa 16 bits [-32.768, 32.767].</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">short</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3467</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="int">int<a class="headerlink" href="#int" title="Permanent link">&para;</a></h3>
+<p>Emplea 4 bytes (32 bits) de almacenamiento y es el tipo de dato entero más empleado. Necesita cuatro veces el espacio que ocupa un byte. <strong>Es el entero predeterminado usado en Java.</strong></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">maxValor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2147483647</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="c1">// after java 7 and higher</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2_147_483_647</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="long">long<a class="headerlink" href="#long" title="Permanent link">&para;</a></h3>
+<p>Es el tipo entero de mayor tamaño, 8 bytes (64 bits). Para definir un long, tenemos que hacerlo de la siguiente forma:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">myLongNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500L</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="float">float<a class="headerlink" href="#float" title="Permanent link">&para;</a></h3>
+<p>Tiene una parte flotante que sirve para expresar números decimales. Es de simple precisión (formato y cantidad de espacio que ocupa) porque ocupa 32 bits. No se recomienda mucho su uso.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4f</span><span class="p">;</span><span class="w"> </span><span class="c1">//también válida</span>
+</code></pre></div>
+<h3 id="double">double<a class="headerlink" href="#double" title="Permanent link">&para;</a></h3>
+<p>Es un número de precisión doble y ocupa 64 bits. <strong>Es el flotante predeterminado en Java.</strong> Se recomienda su uso. Muchas librerías internas de Java, relacionadas con operaciones matemáticas, usan double.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5d</span><span class="p">;</span><span class="w"> </span><span class="c1">//también válida</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="c1">//en notación científica</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">numeroGrande</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.23e5</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1.23 x 10^5 = 123000.0</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">numeroPequeno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.56e-4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 4.56 x 10^-4 = 0.000456</span>
+</code></pre></div>
+<h3 id="char">char<a class="headerlink" href="#char" title="Permanent link">&para;</a></h3>
+<p>Se utiliza para almacenar caracteres (letras, números, signos, etc.) individuales. Ocupa 2 bytes en memoria (16 bits). Permite almacenar caracteres Unicode. Unicode es un estándar de codificación internacional que nos permite representar diferentes idiomas; y la forma en que funciona es usando una combinación de los dos bytes que un char ocupa en la memoria, que puede representar hasta 65535 diferentes tipos de caracteres. <a href="https://unicode-table.com/en/">Unicode table.</a></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;P&#39;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">char</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\u00A2&#39;</span><span class="p">;</span><span class="c1">//print unicode character</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="kt">char</span><span class="w"> </span><span class="n">sonrie</span><span class="o">=</span><span class="sc">&#39;\u263A&#39;</span><span class="p">;</span><span class="c1">//emoticono sonriente ☺</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Emoji: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sonrie</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="c1">//combinación Unicode</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">String</span><span class="w"> </span><span class="n">emojiModerno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;\uD83D\uDE0A&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// 😊</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Emoji moderno: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emojiModerno</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">el par de sustitutos (surrogate pair) Unicode</p>
+<p>Java utiliza la codificación UTF-16, por lo que algunos caracteres como los emojis modernos necesitan dos caracteres Unicode (surrogate pairs) para representarse.</p>
+<p>\uD83D\uDE0A es el par de sustitutos (surrogate pair) que representan el código Unicode U+1F60A (😊)</p>
+</div>
+<h3 id="secuencia-de-escape">Secuencia de escape<a class="headerlink" href="#secuencia-de-escape" title="Permanent link">&para;</a></h3>
+<p>Un carácter precedido por una barra invertida () es una secuencia de escape y tiene un significado especial para el compilador. La siguiente tabla muestra las secuencias de escape de Java:</p>
+<p><img alt="Java" src="../../img/scapedsequences.png" /></p>
+<p>Nos permiten representar tabulaciones, saltos de línea, el propio caracter <code>\</code> o <code>"</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos="2 "></span><span class="cm">Java</span>
+<span class="linenos" data-linenos="3 "></span><span class="cm">Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos="4 "></span><span class="cm">Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos="5 "></span><span class="cm">  */</span><span class="w">        </span>
+<span class="linenos" data-linenos="6 "></span><span class="n">String</span><span class="w"> </span><span class="n">miTexto</span><span class="o">=</span><span class="s">&quot;Java\nEs un lenguaje \&quot;Increíble\&quot;\nTengo que trabajar duro para aprenderlo&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">miTexto</span><span class="p">);</span>
+</code></pre></div>
+<p>Las versiones actuales de Java, nos permiten definir texto sin necesidad de los caracteres scape utilizando <code>"""</code>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">Java</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm">  */</span><span class="w">        </span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">String</span><span class="w"> </span><span class="n">miTexto</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="s">        Java</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="s">        Es un lenguaje &quot;Increíble&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="s">        Tengo que trabajar duro para aprenderlo</span>
+<span class="linenos" data-linenos="10 "></span><span class="s">        &quot;&quot;&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">miTexto</span><span class="p">);</span>
+</code></pre></div></p>
+<h3 id="boolean">boolean<a class="headerlink" href="#boolean" title="Permanent link">&para;</a></h3>
+<p>En Java, el tipo de dato <em>boolean</em> es un tipo primitivo que puede almacenar uno de dos valores: <em>true o false</em>. Este tipo de dato es utilizado principalmente en decisiones de control de flujo</p>
+<p><img alt="bool" src="../../img/ud1/bool1.png" /></p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esVerdadero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">esFalso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor de esVerdadero: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">esVerdadero</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor de esFalso: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">esFalso</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="cm">/*imprime:</span>
+<span class="linenos" data-linenos="7 "></span><span class="cm">Valor de esVerdadero: true</span>
+<span class="linenos" data-linenos="8 "></span><span class="cm">Valor de esFalso: false</span>
+<span class="linenos" data-linenos="9 "></span><span class="cm">*/</span>
+</code></pre></div>
+En los lenguajes de programación tenemos el tipo de datos <em>boolean</em> que nos permite tomar diferentes caminos en el algoritmo. Es necesario dominar las expresiones con resultado booleano para saber el camino que toma el algoritmo.</p>
+<p>Un ejemplo puede ser un videojuego en el que tenemos que mostrar el enemigo cuando muere de una forma o si está vivo de otra. Podemos tener una variable booleana asociada al enemigo llamada estaMuerto y en cada fotograma ir comparando la variable para saber la  imagen a mostrar</p>
+<p><img alt="bool" src="../../img/ud1/bool2.png" /></p>
+<h2 id="wrapper-classes-clases-contenedores-o-envolventes">Wrapper classes (clases contenedores o envolventes)<a class="headerlink" href="#wrapper-classes-clases-contenedores-o-envolventes" title="Permanent link">&para;</a></h2>
+<p>Las clases contenedoras proporcionan una forma de utilizar tipos de datos primitivos como objetos. </p>
+<p><img alt="w" src="../../img/ud1/wrapper.png" /></p>
+<p>En Java, tenemos una Wrapper class para cada uno de los 8 tipos de datos primitivos. </p>
+<table>
+<thead>
+<tr>
+<th>Primitive data type</th>
+<th>Wrapper class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+</tbody>
+</table>
+<p>Las clases contenedoras tienen gran número de métodos que nos ayudarán en nuestros programas:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//minimo valor de un entero</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">minimoValorInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="c1">//transforma el string al tipo correspondiente</span>
+<span class="linenos" data-linenos="4 "></span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="o">=</span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="s">&quot;12&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">float</span><span class="w"> </span><span class="n">nota</span><span class="o">=</span><span class="n">Float</span><span class="p">.</span><span class="na">parseFloat</span><span class="p">(</span><span class="s">&quot;5.5&quot;</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Consulta la Api de Java</p>
+<p>Busca  la clase <em>Integer</em> y comienza a habituarte a la documentación técnica viendo sus métodos y propiedades</p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html</a></p>
+</div>
+<h2 id="conversion-de-tipos">Conversión de tipos<a class="headerlink" href="#conversion-de-tipos" title="Permanent link">&para;</a></h2>
+<p>La conversión de tipos en Java se refiere al proceso de cambiar el tipo de datos de una variable o expresión a otro tipo compatible. Esto es útil cuando necesitas realizar operaciones con variables de diferentes tipos o cuando deseas asignar el valor de una variable a otra de un tipo diferente.</p>
+<p><img alt="Java" src="../../img/ud1/variable6.png" /></p>
+<p>Java ofrece dos tipos principales de conversión de tipos:</p>
+<h3 id="conversion-implicita-casting-implicito"><strong>Conversión implícita (Casting implícito)</strong><a class="headerlink" href="#conversion-implicita-casting-implicito" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ocurre automáticamente cuando no hay pérdida de datos y no se requiere intervención del programador.</li>
+<li>Sucede cuando estás convirtiendo un tipo de dato "más pequeño" en un tipo "más grande"</li>
+</ul>
+<p>Por ejemplo, convertir un int a double:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">entero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entero</span><span class="p">;</span><span class="w"> </span><span class="c1">// Conversión implícita</span>
+</code></pre></div>
+<h3 id="conversion-explicita-casting-explicito"><strong>Conversión explícita (Casting explícito)</strong><a class="headerlink" href="#conversion-explicita-casting-explicito" title="Permanent link">&para;</a></h3>
+<ul>
+<li>El casting explícito es necesario cuando intentas convertir un tipo más grande a un tipo más pequeño, o cuando estás trabajando con tipos que no son directamente compatibles. En estos casos, debes decirle explícitamente a Java que realice la conversión. El casting explícito puede resultar en pérdida de datos si no se tiene cuidado.</li>
+<li>Puedes realizar una conversión explícita colocando el tipo de destino entre paréntesis antes de la variable o expresión que deseas convertir.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.75</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">entero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">decimal</span><span class="p">;</span><span class="w"> </span><span class="c1">// Conversión explícita</span>
+</code></pre></div>
+Aquí se está forzando la conversión de un double a un int. El resultado es que el valor 9.75 se convierte en 9, perdiendo la parte decimal.</p>
+<p>También es crucial asegurarse de que las conversiones sean seguras y no generen excepciones en tiempo de ejecución.</p>
+<h3 id="que-sucede-internamente">¿Qué sucede internamente?<a class="headerlink" href="#que-sucede-internamente" title="Permanent link">&para;</a></h3>
+<p><strong>Truncado decimal</strong>: Cuando se convierte un número decimal a un entero, Java simplemente elimina la parte decimal sin redondear. Solo queda la parte entera del número.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">float</span><span class="w"> </span><span class="n">valorDecimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.35f</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valorEntero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">valorDecimal</span><span class="p">;</span><span class="w"> </span><span class="c1">//trunca la parte decimal</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">valorEntero</span><span class="p">);</span><span class="c1">//imprime 9</span>
+</code></pre></div>
+<p><strong>Desbordamiento de bits</strong>: Si el valor de un tipo más grande no cabe en el tipo más pequeño, Java utiliza solo los bits que puede manejar el tipo más pequeño, y el resto se descarta, lo que puede cambiar completamente el valor final. Esto sucede porque los tipos numéricos en Java están representados en binario y se utilizan los bits que encajan en el tamaño del nuevo tipo. </p>
+<p>Esto puede llevar a errores inesperados</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valorEntero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">130</span><span class="p">;</span><span class="w"> </span><span class="c1">// En binario(32bits): 0000 0000 0000 0000 0000 0000 1000 0010</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">byte</span><span class="w"> </span><span class="n">valorByte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="n">valorEntero</span><span class="p">;</span><span class="w"> </span><span class="c1">// Solo caben 8 bits en un byte</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">valorByte</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime -126</span>
+</code></pre></div>
+<p>La representación en binario de 130 es 1000 0010. Un byte solo puede almacenar 8 bits, por lo que Java toma los últimos 8 bits, que corresponden a 1000 0010, lo cual equivale a -126 en la representación de complemento a dos.</p>
+<div class="admonition note">
+<p class="admonition-title">Complemento a 2</p>
+<p>El complemento a 2 es un sistema de representación de números enteros en binario que permite manejar tanto números positivos como negativos de manera eficiente en los sistemas digitales</p>
+<p><strong>¿Cómo funciona el complemento a 2?</strong></p>
+<p>En el sistema de complemento a 2:</p>
+<p>Números positivos: Se representan de la misma manera que en binario normal.
+Números negativos: Se obtienen tomando el complemento a 2 del número positivo correspondiente. Esto implica invertir todos los bits (complemento a 1) y luego sumarle 1 al resultado.</p>
+<p><strong>Ejemplo para -126</strong></p>
+<ul>
+<li>Escribe el número positivo equivalente (126) en binario usando 8 bits.</li>
+</ul>
+<p>0111 1110</p>
+<ul>
+<li>Invierte los bits (complemento a 1).</li>
+</ul>
+<p>1000 0001</p>
+<ul>
+<li>Suma 1 al resultado para obtener el complemento a 2.</li>
+</ul>
+<p>1000 0001 + 1 = 1000 0010</p>
+</div>
+<h2 id="overflow-y-underflow">Overflow y Underflow<a class="headerlink" href="#overflow-y-underflow" title="Permanent link">&para;</a></h2>
+<h3 id="overflow">Overflow<a class="headerlink" href="#overflow" title="Permanent link">&para;</a></h3>
+<p>En Java, un <strong>overflow</strong> en un tipo de dato ocurre cuando un valor excede el rango máximo o mínimo que puede almacenar una variable de ese tipo. En el caso de un int en Java, que utiliza 32 bits, su rango es de:</p>
+<p>Valor mínimo: = -2,147,483,648</p>
+<p>Valor máximo:= 2,147,483,647</p>
+<p>Cuando se produce un overflow, el valor "rebota" y se convierte en el valor mínimo o máximo del tipo de dato, dependiendo de si el valor supera el rango superior o inferior.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valorMaximo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2,147,483,647</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor máximo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">valorMaximo</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Provocamos el overflow</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">overflow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valorMaximo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor después del overflow: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">overflow</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//imprime &quot;Valor después del overflow: -2147483648&quot;</span>
+</code></pre></div>
+<p>Pero los resultados pueden ser inesperados aparentemente aleatorio. Si multiplicamos dos números muy grandes y guardamos en un int</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1_000_000</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor original: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">valor</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Multiplicamos por un valor grande para provocar overflow</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">valor</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Resultado después del overflow: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//imprime &quot;Resultado después del overflow: -727379968&quot;</span>
+</code></pre></div>
+<h3 id="underflow">Underflow<a class="headerlink" href="#underflow" title="Permanent link">&para;</a></h3>
+<p>El <strong>underflow</strong> en Java ocurre cuando un valor es más bajo que el valor mínimo que un tipo de dato puede representar. Al igual que el overflow, el underflow causa que el valor "rebote", pero en este caso desde el valor mínimo hacia el valor máximo del rango permitido.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">valorMinimo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">;</span><span class="w"> </span><span class="c1">// -2,147,483,648</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor mínimo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">valorMinimo</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Provocamos el underflow</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">underflow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valorMinimo</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Valor después del underflow: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">underflow</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//imprime &quot;Valor después del underflow: 2147483647&quot;</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:<ja.lopez@edu.gva.es>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.56.56 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "toc.integrate", "content.code.copy", "content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

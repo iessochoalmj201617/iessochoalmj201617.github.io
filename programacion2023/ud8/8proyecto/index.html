@@ -1,0 +1,4360 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../7events/">
+      
+      
+        <link rel="next" href="../../shortcuts/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>🤩 Mantenimiento Base de datos-JavaFX - Programación</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#proyecto-de-mantenimiento-de-base-de-datos-con-javafx" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Programación" class="md-header__button md-logo" aria-label="Programación" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programación
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🤩 Mantenimiento Base de datos-JavaFX
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Programación" class="md-nav__button md-logo" aria-label="Programación" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Programación
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    00- Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD01-Elementos de un programa informático
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD01-Elementos de un programa informático
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/1elementos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Programa y lenguajes de programación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 El lenguaje Java
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            💾 El lenguaje Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/121conceptosbasicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conceptos básicos del lenguaje
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/122setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/123holamundo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proyecto Hola Mundo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 Variables, sentencias y paquetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            💾 Variables, sentencias y paquetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/131variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/132sentencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sentencias y paquetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    💾 Tipos de datos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            💾 Tipos de datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/14datatypejava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datos primitivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/142noprimitive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datos no primitivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/143string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    String
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/15operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Operadores y expresiones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/16comments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Comentarios en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/17constantesliterales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Constantes y literales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/18inputoutputconsole/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    💾 Entrada y salida de información por consola
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD02-Estructuras básicas de control
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD02-Estructuras básicas de control
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Algoritmos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Algoritmos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/00algoritmos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/00algoritmos2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estructuras de selección
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de selección en Java
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de selección en Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/1seleccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    If Statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/11booleanexpressions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expresiones booleanas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/2switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Switch Statement
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/2switch2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nuevo switch de Java 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de repetición
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de repetición
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22while/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle while
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22dowhile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle do while
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22whileif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucles while con if
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22for/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucle for
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22nestedloop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bucles anidados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22principlesloop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principios del diseño de bucles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Estructuras de salto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            🖲️ Estructuras de salto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/23breakcontinue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sentencias break y continue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD03-Programación modular
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD03-Programación modular
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26pro_modular/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Introducción a la programación modular
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Introducción a los métodos en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/24exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Control de excepciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/25fallos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🖲️ Prueba y depuración de aplicaciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD04-Programación orientada a objetos POO
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD04-Programación orientada a objetos POO
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/0poo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Introducción a la programación orientada a objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/1metodoclase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Clases en Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/2constructor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Constructores y destructores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/3sobrecargametodos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Métodos y sobrecarga de métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/4referencevalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Paso de parámetros por valor y referencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/5static/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Variables, métodos y clases estáticas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/7nullvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🌎 Null value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD05-Arrays y Strings
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD05-Arrays y Strings
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/1arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/2usefularrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos útiles en arrays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/3referencetypearrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Tipos de referencia y tipos de valor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/4arrayobjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Array de objetos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/8string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 String
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/5sortarrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos de ordenación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/6searcharrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Algoritmos de búsqueda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/7twodimensionarray/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 Arrays multidimensionales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD06-Herencia y polimorfismo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD06-Herencia y polimorfismo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ✨ Herencia
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            ✨ Herencia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1herencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concepto de herencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1thisvssuper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    This vs super
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/1xclaseobject/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clase Object
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/2composicion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Composición
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/3encapsulacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Encapsulación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/4polimorfismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Polimorfismo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/5interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Interfaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/6abstraccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Abstracción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/7exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Excepciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD07-Colecciones
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            UD07-Colecciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/1list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 List y ArrayList
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/2linkedlist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Linked List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/4map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/5set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Set
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/6ordercollections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Colecciones ordenadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/7final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Keyword Final
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/8hashcode_equals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧆 Equals & hashcode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD08 Programación avanzada
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            UD08 Programación avanzada
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/6recursion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Recursividad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/1generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Genéricos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/2lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Expresiones lambda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/3predicates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Predicate, Supplier and Consumer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/4functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/5references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Referencia a métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/6streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/7regularexpressions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Expresiones regulares
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud6/3innerclass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Clases Anidadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud7/8fechas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🦄 Fechas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD09 Entrada/Salida (I/O) de la información
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            UD09 Entrada/Salida (I/O) de la información
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/1io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Input/Output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/12binaryfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros binarios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/13characterfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de caracteres
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/14fileclass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Clase File
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/15javanio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 java.nio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/16randomaccessfile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de acceso aleatorio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/17configfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Ficheros de configuración
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/18xmlfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 XML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/19jsonfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 JSON
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/20createjar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 Crear un .jar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud9/21tryresources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📝 try-with-resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD10 Persistencia de la información
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            UD10 Persistencia de la información
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/1persistence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Persistencia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/2mapeo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Desfase objeto-relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/3conectores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Manejo de conectores - JDBC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/4transactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Transacciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/6rendimiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Mejora del rendimiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud10/7projectstructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Estructura de los proyectos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD11 Interfaces de usuario
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            UD11 Interfaces de usuario
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1javafx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Java FX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2stage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Stage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Scene
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6layouts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Layouts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5uicontrols/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Controles UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Eventos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    🤩 Mantenimiento Base de datos-JavaFX
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    🤩 Mantenimiento Base de datos-JavaFX
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado final
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear la base de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-y-configurar-el-proyecto-javafx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear y configurar el proyecto JavaFX
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura del proyecto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-a-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión a la base de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mantenimiento-de-empleado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mantenimiento de Empleado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mantenimiento de Empleado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modelo-empleado-pojo-empleado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelo Empleado (POJO Empleado)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dao-empleado" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAO Empleado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vista-empleado-tableview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vista Empleado: TableView
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abrir-en-javafx-una-nueva-ventana" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abrir en JavaFX una nueva ventana
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#borrar-empleado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrar Empleado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Borrar Empleado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seleccion-del-empleado-de-la-tableview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selección del empleado de la TableView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-avisos-al-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alert: Avisos al usuario
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtros-empleados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtros Empleados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtros Empleados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtro-dni-y-nombre" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtro: DNI y Nombre
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combobox-filtro-por-departamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      ComboBox: Filtro por Departamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-y-editar-empleado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear y Editar Empleado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devolver-un-resultado-de-una-ventana" class="md-nav__link">
+    <span class="md-ellipsis">
+      Devolver un resultado de una ventana
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Devolver un resultado de una ventana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definir-la-interface-en-empleadoscontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definir la Interface en EmpleadosController
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecutar-la-accion-que-devuelve-el-empleado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejecutar la acción que devuelve el Empleado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asignar-la-instancia-de-la-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asignar la instancia de la Interface
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🔣 Atajos de teclado para IntelliJ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="proyecto-de-mantenimiento-de-base-de-datos-con-javafx">Proyecto de mantenimiento de Base de datos con JavaFX<a class="headerlink" href="#proyecto-de-mantenimiento-de-base-de-datos-con-javafx" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
+<p>El objetivo será crear el mantenimiento de la siguiente base de datos en MySql</p>
+<p><img alt="alt text" src="../../img/ud8/proy001.png" /></p>
+<p>En el que un trabajador pertenece a un departamento y un departamento tiene un Jefe. Permitiremos que un trabajador no tenga departamento y que un departamento no tenga jefe dejando que puedan ser nulos dichos campos de ambas tablas.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En muchas ocasiones, para evitar trabajar con nulos, se decide crear una tupla general que  represente la no pertenencia. Por ejemplo: Se crea la tupla en Departamento “<code>Sin departamento</code>”, y en trabajadores una persona llamada: “<code>Sin Jefe</code>”</p>
+</div>
+<p>La aplicación permitirá acceder al mantenimiento de <code>Empleados</code> y <code>Departamentos</code> permitiendo filtrar la información para facilitar al usuario encontrar los datos que necesite. </p>
+<p>Aprovecharemos las ventanas de mantenimientos para poder seleccionar la información  por parte del usuario en otros mantenimientos donde sea necesaria.</p>
+<h2 id="resultado-final">Resultado final<a class="headerlink" href="#resultado-final" title="Permanent link">&para;</a></h2>
+<p>Tenemos el código final en el repositorio</p>
+<p><a href="https://github.com/Programacion2023JoseAntonioLopez/EjemploDBJavaFX">Proyecto JavaFX-MySQL</a></p>
+<p>La aplicación final tiene el siguiente aspecto</p>
+<p><img alt="alt text" src="../../img/ud8/proy010.png" /></p>
+<p>El mantenimiento de <code>Empleado</code> permite la creación, borrado y edición y filtrar la información para su búsqueda</p>
+<p><img alt="alt text" src="../../img/ud8/proy011.png" /></p>
+<p>La ventana de <code>Nuevo</code> y <code>Edición</code> será la misma, y creará o modificará un <code>Empleado</code>. Facilitará al usuario la selección del <code>Departamento</code> al que pertenece</p>
+<p><img alt="alt text" src="../../img/ud8/proy012.png" /></p>
+<p>El mantenimiento de <code>Departamento</code> permite la creación, borrado y edición. </p>
+<p><img alt="alt text" src="../../img/ud8/proy013.png" /></p>
+<p>Permite seleccionar el jefe del departamento desde el mantenimiento de <code>Empleado</code></p>
+<p><img alt="alt text" src="../../img/ud8/proy014.png" /></p>
+<h2 id="crear-la-base-de-datos">Crear la base de datos<a class="headerlink" href="#crear-la-base-de-datos" title="Permanent link">&para;</a></h2>
+<p>En MySql o MariaDB, crear una base de datos(la llamaremos empresa) y creamos las tablas y algunos registros iniciales para probar el funcionamiento de nuestro programa. El script puede ser el siguiente</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">     </span><span class="n">codigo</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">     </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">     </span><span class="n">jefe</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">UNIQUE</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w"> </span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w"> </span><span class="c1">-- Crear tabla Empleado si no existe (sin clave foránea)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Empleado</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">     </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">     </span><span class="n">dni</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">     </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">     </span><span class="n">apellido</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">     </span><span class="n">edad</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">     </span><span class="n">departamento</span><span class="w"> </span><span class="nb">INT</span>
+<span class="linenos" data-linenos="15 "></span><span class="w"> </span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w"> </span><span class="c1">-- Añadir clave foránea a Empleado si no existe</span>
+<span class="linenos" data-linenos="18 "></span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Empleado</span>
+<span class="linenos" data-linenos="19 "></span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w">  </span><span class="n">fk_empleado_departamento</span>
+<span class="linenos" data-linenos="20 "></span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">departamento</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Departamento</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
+<span class="linenos" data-linenos="22 "></span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w"> </span><span class="c1">-- Añadir clave foránea a Departamento si no existe</span>
+<span class="linenos" data-linenos="25 "></span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Departamento</span>
+<span class="linenos" data-linenos="26 "></span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_departamento_empleado</span>
+<span class="linenos" data-linenos="27 "></span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jefe</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Empleado</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span><span class="w"> </span>
+</code></pre></div>
+<p>Añadimos unas tuplas de ejemplo para probar la aplicación</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">-- Insertar departamentos inicialmente sin jefe</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">jefe</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Recursos Humanos&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tecnología&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Marketing&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1">-- Insertar Empleados (jefes y empleados)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Empleado</span><span class="w"> </span><span class="p">(</span><span class="n">dni</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellido</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">,</span><span class="w"> </span><span class="n">departamento</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="p">(</span><span class="s1">&#39;12345678A&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Laura&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Gómez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w">  </span><span class="c1">-- jefe de RRHH</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">(</span><span class="s1">&#39;23456789B&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Carlos&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;López&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="c1">-- jefe de Tecnología</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">(</span><span class="s1">&#39;34567890C&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Marta&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Pérez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w">  </span><span class="c1">-- jefe de Marketing</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">(</span><span class="s1">&#39;45678901D&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Juan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sánchez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span>
+<span class="linenos" data-linenos="13 "></span><span class="p">(</span><span class="s1">&#39;56789012E&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ana&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Martínez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span>
+<span class="linenos" data-linenos="14 "></span><span class="p">(</span><span class="s1">&#39;67890123F&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Pedro&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ruiz&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">(</span><span class="s1">&#39;78901234G&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Lucía&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Fernández&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+<span class="linenos" data-linenos="16 "></span><span class="p">(</span><span class="s1">&#39;89012345H&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;David&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Torres&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">(</span><span class="s1">&#39;90123456I&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sofía&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ramírez&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span>
+<span class="linenos" data-linenos="18 "></span><span class="p">(</span><span class="s1">&#39;01234567J&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jorge&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hernández&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span><span class="c1">-- Asignar jefes a los departamentos</span>
+<span class="linenos" data-linenos="20 "></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">jefe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos" data-linenos="21 "></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">jefe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos" data-linenos="22 "></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">jefe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">codigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">             </span>
+</code></pre></div>
+<h2 id="crear-y-configurar-el-proyecto-javafx">Crear y configurar el proyecto JavaFX<a class="headerlink" href="#crear-y-configurar-el-proyecto-javafx" title="Permanent link">&para;</a></h2>
+<p>En IntelliJ creamos el proyecto</p>
+<p><img alt="alt text" src="../../img/ud8/proy002.png" /></p>
+<p>Es necesario añadir en <code>module-info.java</code> lo siguiente</p>
+<p><img alt="alt text" src="../../img/ud8/proy003.png" /></p>
+<p>Para añadir la librería <code>jdbc</code>  de MySQL al proyecto, lo haremos con <code>Maven</code></p>
+<p><img alt="alt text" src="../../img/ud8/proy004.png" /></p>
+<h2 id="estructura-del-proyecto">Estructura del proyecto<a class="headerlink" href="#estructura-del-proyecto" title="Permanent link">&para;</a></h2>
+<p>Como ya vimos en <a href="../../ud10/7projectstructure">Estructura de un proyecto</a></p>
+<p>Vamos a organizar el proyecto en paquetes que se adapten al patrón MVC</p>
+<p>Creamos los paquetes siguientes:</p>
+<p><img alt="alt text" src="../../img/ud8/proy005.png" /></p>
+<p>Refactoriza cambiando el nombre tanto del fichero fxml como el controles y moviéndolos a las carpetas correspondientes</p>
+<p><img alt="alt text" src="../../img/ud8/proy006.png" /></p>
+<p>Corrige la ubicación del fichero en la clase de inicio</p>
+<p><img alt="alt text" src="../../img/ud8/proy007.png" /></p>
+<p>Cada paquete nuevo es necesario registrarlo en el fichero <code>module-info</code></p>
+<p><img alt="alt text" src="../../img/ud8/proy008.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Es posible que IntelliJ muestre un error que se corrige cuando creamos nuevas clases en los paquetes</p>
+</div>
+<p>Los recursos de la aplicación como las imágenes, páginas CSS, fuentes...las organizaremos en carpetas:</p>
+<p><img alt="alt text" src="../../img/ud8/proy015.png" /></p>
+<p>Probar que funciona correctamente la aplicación. Es posible que tengas que comentar parte de lo anterior</p>
+<p><img alt="alt text" src="../../img/ud8/proy009.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Importante</p>
+<p>Recuerda descomentarlo cuando incluyas código en los paquetes</p>
+</div>
+<h2 id="conexion-a-la-base-de-datos">Conexión a la base de datos<a class="headerlink" href="#conexion-a-la-base-de-datos" title="Permanent link">&para;</a></h2>
+<p>Definimos la clase para la conexión a la base de datos en el en el paquete <code>db</code> como ya vimos en el proyecto.</p>
+<div class="highlight"><span class="filename">DBConnection.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DBConnection</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="c1">// URL de conexión a la base de datos MySQL</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">=</span><span class="s">&quot;jdbc:mysql://localhost:3306/empresa&quot;</span><span class="p">;</span><span class="w"> </span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">USERNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;root&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;password&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">connection</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Constructor privado para evitar instancias directas</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">DBConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="c1">// Método estático para obtener la instancia única de la conexión</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="nf">getConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connection</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="c1">// Bloqueo sincronizado para evitar concurrencia</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">DBConnection</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connection</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">                       </span><span class="c1">// Establecer la conexión</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">                        </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span><span class="w"> </span><span class="n">USERNAME</span><span class="p">,</span><span class="w"> </span><span class="n">PASSWORD</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">                        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">                    </span><span class="p">}</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">                </span><span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">connection</span><span class="p">;</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="c1">// Método para cerrar la conexión</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">closeConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connection</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">                </span><span class="n">connection</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">                </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="41 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="mantenimiento-de-empleado">Mantenimiento de Empleado<a class="headerlink" href="#mantenimiento-de-empleado" title="Permanent link">&para;</a></h2>
+<p>Vamos a comenzar con el mantenimiento de <code>Empleado</code>. </p>
+<h3 id="modelo-empleado-pojo-empleado">Modelo Empleado (POJO Empleado)<a class="headerlink" href="#modelo-empleado-pojo-empleado" title="Permanent link">&para;</a></h3>
+<p>Representará las necesidades de la aplicación para la tabla <code>Empleado</code> y su relación con <code>Departamento</code>. Decidimos mantener los datos de la tabla más el objeto <code>Departamento</code> al que pertenecen para facilitar mostrar la información al usuario</p>
+<p><img alt="alt text" src="../../img/ud8/proy016.png" /></p>
+<h3 id="dao-empleado">DAO Empleado<a class="headerlink" href="#dao-empleado" title="Permanent link">&para;</a></h3>
+<p>Tenemos que definir las sentencias SQL necesarias para la aplicación. Vamos a crear la clase DAO con las sentencias SQL que permitan el CRUD (Creación, Edición, Borrado y Selección) para la aplicación. </p>
+<p><img alt="alt text" src="../../img/ud8/proy017.png" /></p>
+<p><img alt="alt text" src="../../img/ud8/proy019.png" /></p>
+<p>Creamos las sentencias <code>SELECT</code> que permitan obtener la información a mostrar al usuario incluyendo los filtros que utilizamos (no aplicamos  los filtros en conjunto, se deja como ejercicio)</p>
+<p><img alt="alt text" src="../../img/ud8/proy018.png" /></p>
+<h3 id="vista-empleado-tableview">Vista Empleado: TableView<a class="headerlink" href="#vista-empleado-tableview" title="Permanent link">&para;</a></h3>
+<p>Como hemos indicado, vamos a mostrar un listado de los empleados donde podremos filtrar, crear, modificar y eliminar. </p>
+<p>Creamos un nuevo fichero  <code>fxml</code> y su correspondiente <code>Controller</code> en lo paquetes correspondientes</p>
+<p><img alt="alt text" src="../../img/ud8/proy021.png" /></p>
+<p>Nuestro primer objetivo tiene que ser poder mostrar la lista con todos los empleados</p>
+<p><img alt="alt text" src="../../img/ud8/proy020.png" /></p>
+<p>Para mostrar la lista utilizaremos un <em>TableView</em> de JavaFX</p>
+<p>El <code>TableView</code> nos permite mostrar <a href="https://docs.oracle.com/javafx/2/api/javafx/collections/ObservableList.html">ObservableList</a> que es muy parecido a un <code>ArrayList</code>, por lo que recuperaremos la lista de empleados de la base de datos utilizando DAO y lo cargaremos en la <code>ObservableList</code> y se lo asignaremos al <code>TableView</code>.</p>
+<p>Para crear el <code>TableView</code> tenemos que darle un <code>id</code> y asignarle las columnas necesarias con la información que queremos mostrar en <code>SceneBuilder</code>. Es necesario asignar <code>ids</code> a las columnas también.</p>
+<p><img alt="alt text" src="../../img/ud8/proy022.png" /></p>
+<p>En el <code>Controller</code>, definimos la <code>ObservableList</code> y los tipos para cada columna que tiene que coincidir con los tipo de la clase <code>Empleado</code>.</p>
+<p><img alt="alt text" src="../../img/ud8/proy023.png" /></p>
+<p>En el método <code>iniciaTableViewEmpleados</code>, creamos la <code>observableList</code>, iniciamos la <code>TableView</code>, asociando a cada columna el nombre de la propiedad de <code>Empleado</code> a mostrar</p>
+<p><img alt="alt text" src="../../img/ud8/proy024.png" /></p>
+<p>Para las columnas que muestran la información del <code>Departamento</code>, tendremos que elegir el dato a mostrar</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// Para mostrar el código del departamento, se utiliza una función lambda</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">// para acceder a la propiedad anidada &#39;departamento&#39; y luego a &#39;codigo&#39;.</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">tcidDep</span><span class="p">.</span><span class="na">setCellValueFactory</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">param</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReadOnlyObjectWrapper</span><span class="o">&lt;&gt;</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">                </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">().</span><span class="na">getCodigo</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">// Para mostrar el nombre del departamento, se utiliza una función lambda</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1">// para acceder a la propiedad anidada &#39;departamento&#39; y luego a &#39;nombre&#39;.</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">tcDepartamento</span><span class="p">.</span><span class="na">setCellValueFactory</span><span class="p">(</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">param</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReadOnlyObjectWrapper</span><span class="o">&lt;&gt;</span><span class="p">(</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">                </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="na">getValue</span><span class="p">().</span><span class="na">getDepartamento</span><span class="p">().</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sin departamento&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">);</span>
+</code></pre></div>
+<p>Leemos la lista de empleados de la base de datos desde el DAO </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">// Carga todos los empleados desde la base de datos y los añade a la lista observable.</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">listaEmpleados</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">());</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Desde el método <code>Initialize</code>, llamamos al método anterior, que si todo es correcto, mostrará la lista de empleados</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">URL</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceBundle</span><span class="w"> </span><span class="n">resourceBundle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">iniciaTableViewEmpleados</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicializa la TableView de empleados.    </span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="abrir-en-javafx-una-nueva-ventana">Abrir en JavaFX una nueva ventana<a class="headerlink" href="#abrir-en-javafx-una-nueva-ventana" title="Permanent link">&para;</a></h2>
+<p>Nuestra aplicación comienza en la ventana principal que permitirá abrir el mantenimiento de <code>Empleados</code> y <code>Departamentos</code>. </p>
+<p><img alt="alt text" src="../../img/ud8/proy010.png" /></p>
+<p>Para poder abrir <code>Empleados</code> al pulsar en el botón correspondiente, creamos una nuevo <code>Stage</code> desde el <code>View</code> creado anteriormente.</p>
+<div class="highlight"><span class="filename">InicioController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm"> * Método invocado al hacer clic en el botón para acceder a la gestión de departamentos.</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm"> * Carga y muestra la vista de departamentos en una nueva ventana modal.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm"> * @param event El evento de acción.</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickDepartamentos</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Es necesario el control de excepciones para manejar posibles errores al cargar la vista.</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="c1">// Cargamos la escena desde el archivo FXML que define la interfaz de departamentos.</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">FXMLLoader</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FXMLLoader</span><span class="p">(</span><span class="n">EjemploDBJavaFx</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="s">&quot;views/departamentos-view.fxml&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">Parent</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">load</span><span class="p">();</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="n">Scene</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="c1">// Iniciamos un nuevo Stage (ventana) para mostrar la escena de departamentos.</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stage</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;IES Severos Ochoa/Departamentos&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Establecemos el título de la ventana.</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setResizable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// Deshabilitamos la posibilidad de redimensionar la ventana.</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">initModality</span><span class="p">(</span><span class="n">Modality</span><span class="p">.</span><span class="na">APPLICATION_MODAL</span><span class="p">);</span><span class="w"> </span><span class="c1">// Establecemos la modalidad de la ventana como modal de aplicación,</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="c1">// lo que bloquea la interacción con otras ventanas de la aplicación</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">// hasta que esta se cierre.</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span><span class="w"> </span><span class="c1">// Asignamos la escena al Stage.</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">showAndWait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Mostramos la ventana y esperamos a que el usuario la cierre.</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="c1">// En caso de error al cargar el archivo FXML, mostramos un mensaje de error en la consola.</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="borrar-empleado">Borrar Empleado<a class="headerlink" href="#borrar-empleado" title="Permanent link">&para;</a></h2>
+<p>Para implementar el borrado, tenemos que:</p>
+<ul>
+<li>saber el elemento de la tabla  seleccionado</li>
+<li>como es una acción que no tiene vuelta a atrás, queremos mostrar una alerta al usuario para que se asegure que quiere borrar el empleado</li>
+</ul>
+<p>Tendremos un método que elimine el un empleado y actualice la <code>TableView</code></p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">borrarEmpleado</span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">deleteEmpleado</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">listaEmpleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">                </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">listaEmpleados</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No tenemos en cuenta los filtros actuales. Se deja como ejercicio.</p>
+</div>
+<h3 id="seleccion-del-empleado-de-la-tableview">Selección del empleado de la <code>TableView</code><a class="headerlink" href="#seleccion-del-empleado-de-la-tableview" title="Permanent link">&para;</a></h3>
+<p>Para saber el elemento seleccionado de la <code>TableView</code>:</p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickBorrar</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="c1">//obtenemos el empleado seleccionado</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedItem</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="alert-avisos-al-usuario">Alert: Avisos al usuario<a class="headerlink" href="#alert-avisos-al-usuario" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Alert.html">Alert</a></p>
+<p>Mostraremos un cuadro de dialogo al usuario antes de borrar y si decide que sí, llamamos al método borrar</p>
+<p><img alt="alt text" src="../../img/ud8/proy030.png" /></p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickBorrar</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="c1">//obtenemos el empleado seleccionado</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedItem</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empleado</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">            </span><span class="c1">//Abrimos un cuadro de diálogo para que confirme si borra o no</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="n">Alert</span><span class="w"> </span><span class="n">alert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Alert</span><span class="p">(</span><span class="n">Alert</span><span class="p">.</span><span class="na">AlertType</span><span class="p">.</span><span class="na">CONFIRMATION</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="n">alert</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Borrar Empleado&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">alert</span><span class="p">.</span><span class="na">setHeaderText</span><span class="p">(</span><span class="s">&quot;Borrar Empleado&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="n">alert</span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="s">&quot;¿Está seguro de borrar el empleado &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empleado</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empleado</span><span class="p">.</span><span class="na">getApellidos</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;?&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">alert</span><span class="p">.</span><span class="na">showAndWait</span><span class="p">().</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">response</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ButtonType</span><span class="p">.</span><span class="na">OK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">                    </span><span class="n">borrarEmpleado</span><span class="p">(</span><span class="n">empleado</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">                </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="p">});</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="filtros-empleados">Filtros Empleados<a class="headerlink" href="#filtros-empleados" title="Permanent link">&para;</a></h2>
+<p>Para programar los filtros, vamos a definir unos <code>EditText</code> para el filtrar por <code>dni</code> y por <code>nombre</code> y un <code>ComboBox</code> para los departamentos</p>
+<p><img alt="alt text" src="../../img/ud8/proy025.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Los filtros no funcionan en conjunto. Se deja como ejercicio el crear el DAO y lógica para hacerlos funcionar en conjunto.</p>
+</div>
+<h3 id="filtro-dni-y-nombre">Filtro: DNI y Nombre<a class="headerlink" href="#filtro-dni-y-nombre" title="Permanent link">&para;</a></h3>
+<p>Tenemos definido en el DAO los métodos que nos permiten obtener los empleados por DNI y por nombre</p>
+<div class="highlight"><span class="filename">EmpleadoDAO.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">     * Recupera todos los empleados cuyo nombre o apellido coincida parcialmente</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">     * con la cadena de búsqueda proporcionada.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">     *</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm">     * @param nombre La cadena de búsqueda para el nombre o apellido del empleado.</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm">     * @return Una lista de objetos {@link Empleado} que coinciden con la búsqueda.</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm">     * Si no hay coincidencias, la lista estará vacía.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm">     * @throws SQLException Si ocurre un error al interactuar con la base de datos.</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="cm">     */</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">selectEmpleadosPorNombre</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">nombreLike</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">apellidoLike</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">SELECT_EMPLEADOS_POR_NOMBRE</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nombreLike</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">apellidoLike</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">                    </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultSetToEmpleado</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">                    </span><span class="n">lista</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">empleado</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">                </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lista</span><span class="p">;</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="cm">/**</span>
+<span class="linenos" data-linenos="28 "></span><span class="cm">     * Recupera todos los empleados cuyo DNI coincida parcialmente con la cadena</span>
+<span class="linenos" data-linenos="29 "></span><span class="cm">     * de búsqueda proporcionada.</span>
+<span class="linenos" data-linenos="30 "></span><span class="cm">     *</span>
+<span class="linenos" data-linenos="31 "></span><span class="cm">     * @param dni La cadena de búsqueda para el DNI del empleado.</span>
+<span class="linenos" data-linenos="32 "></span><span class="cm">     * @return Una lista de objetos {@link Empleado} que coinciden con la búsqueda.</span>
+<span class="linenos" data-linenos="33 "></span><span class="cm">     * Si no hay coincidencias, la lista estará vacía.</span>
+<span class="linenos" data-linenos="34 "></span><span class="cm">     * @throws SQLException Si ocurre un error al interactuar con la base de datos.</span>
+<span class="linenos" data-linenos="35 "></span><span class="cm">     */</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">selectEmpleadosPorDNI</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">dni</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">dniLike</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dni</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">SELECT_EMPLEADOS_POR_DNI</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">            </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">dniLike</span><span class="p">);</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">                    </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultSetToEmpleado</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">                    </span><span class="n">lista</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">empleado</span><span class="p">);</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">                </span><span class="p">}</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="48 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lista</span><span class="p">;</span>
+<span class="linenos" data-linenos="49 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>La búsqueda por <code>nombre</code> será tan simple como buscar la lista mediante el DAO y reasignarla a la <code>TableView</code></p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">     * Método invocado al hacer clic en el botón de buscar por nombre.</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">     * Realiza una búsqueda de empleados por el nombre introducido en el TextField.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">     * Si el TextField está vacío, muestra todos los empleados.</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm">     *</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm">     * @param event El evento de acción.</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm">     */</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickBuscarPorNombre</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">nombreBusqueda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tfNombre</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="c1">//si hay filtro, lo aplicamos</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">nombreBusqueda</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">selectEmpleadosPorNombre</span><span class="p">(</span><span class="n">nombreBusqueda</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="c1">//no hay filtro, seleccionamos todos</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">//asignamos la nueva lista a la TableView</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">listaEmpleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span><span class="n">empleados</span><span class="p">);</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">listaEmpleados</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>La búsqueda por <code>DNI</code> es muy parecida</p>
+<h3 id="combobox-filtro-por-departamento">ComboBox: Filtro por Departamento<a class="headerlink" href="#combobox-filtro-por-departamento" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm">ComboBox</a>: Queremos filtra los empleados según un departamento seleccionado mediante un <code>ComboBox</code> que muestre la lista de departamentos</p>
+<p><img alt="alt text" src="../../img/ud8/proy026.png" /></p>
+<p><img alt="alt text" src="../../img/ud8/proy029.png" /></p>
+<p>Para ello hay que agregar mediante <code>SceneBuilder</code> un <code>ComboBox</code> y asignarle un <code>id</code></p>
+<p><img alt="alt text" src="../../img/ud8/proy027.png" /></p>
+<p>Suponiendo que ya tenemos definido el DAO para <code>Departamento</code> y su <code>Modelo</code></p>
+<p><img alt="alt text" src="../../img/ud8/proy028.png" /></p>
+<p>Cada elemento de la lista del <code>ComboBox</code>, mostrará  el resultado del método <code>toString</code> de la clase <code>Departamento</code></p>
+<p>Para ello, definimos el tipo que se mostrará en el <code>ComboBox</code> en el <code>Controller</code></p>
+<p><div class="highlight"><span class="filename">EmpleadoController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="cm">/**</span>
+<span class="linenos" data-linenos="2 "></span><span class="cm">     * ComboBox para filtrar empleados por departamento.</span>
+<span class="linenos" data-linenos="3 "></span><span class="cm">     */</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ComboBox</span><span class="o">&lt;</span><span class="n">Departamento</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cbDepartamento</span><span class="p">;</span>
+</code></pre></div>
+El método que inicia el <code>ComboBox</code>:</p>
+<ul>
+<li>Busca la lista de departamentos en la base de datos</li>
+<li>Añade un elemento llamado '<code>Todos</code>' para se puedan ver todos los empleado</li>
+<li>Asigna los departamentos al <code>ComboBox</code></li>
+<li>Añade un <code>listener</code> para filtrar por departamento cuando se modifica el <code>ComboBox</code></li>
+</ul>
+<p><div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">     * Inicializa el ComboBox de departamentos, cargando los departamentos desde la base de datos</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">     * y añadiendo un listener para filtrar la tabla de empleados según el departamento seleccionado.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">     */</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">iniciaCbDepartamentos</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Departamento</span><span class="o">&gt;</span><span class="w"> </span><span class="n">departamentos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="c1">//Buscamos todos los departamentos</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">departamentos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DepartamentoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllDepartamentos</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="c1">// Añade una opción &quot;Todos&quot; al principio del ComboBox para mostrar todos</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">Departamento</span><span class="w"> </span><span class="n">todos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Departamento</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Todos&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">departamentos</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">todos</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="c1">// Añade cada departamento al ComboBox.</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="n">departamentos</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                    </span><span class="n">departamento</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">cbDepartamento</span><span class="p">.</span><span class="na">getItems</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">departamento</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="c1">// Selecciona la opción &quot;Todos&quot; por defecto.</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">cbDepartamento</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">select</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="c1">// Añade un listener para detectar cambios en la selección del ComboBox.</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">cbDepartamento</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">selectedItemProperty</span><span class="p">().</span><span class="na">addListener</span><span class="p">(</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">                    </span><span class="p">(</span><span class="n">observableValue</span><span class="p">,</span><span class="w"> </span><span class="n">depAnterior</span><span class="p">,</span><span class="w"> </span><span class="n">depSeleccionado</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">                        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">                        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">                            </span><span class="c1">// Si se selecciona &quot;Todos&quot;, carga todos los empleados.</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">depSeleccionado</span><span class="p">.</span><span class="na">getCodigo</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">                                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">();</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">                            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">                                </span><span class="c1">// Si se selecciona un departamento específico, carga los empleados de ese departamento.</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">                                </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">empleadosDepartamento</span><span class="p">(</span><span class="n">depSeleccionado</span><span class="p">.</span><span class="na">getCodigo</span><span class="p">());</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">                            </span><span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">                        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">                            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">                        </span><span class="p">}</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">                        </span><span class="c1">// Actualiza la lista observable y la TableView con los empleados filtrados.</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">                        </span><span class="n">listaEmpleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span><span class="n">empleados</span><span class="p">);</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">                        </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">listaEmpleados</span><span class="p">);</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">                    </span><span class="p">}</span>
+<span class="linenos" data-linenos="39 "></span>
+<span class="linenos" data-linenos="40 "></span><span class="w">            </span><span class="p">);</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">            </span><span class="c1">// Define una acción al seleccionar un departamento (actualmente comentado).</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">            </span><span class="n">cbDepartamento</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">                </span><span class="n">Departamento</span><span class="w"> </span><span class="n">departamento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cbDepartamento</span><span class="p">.</span><span class="na">getValue</span><span class="p">();</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">                </span><span class="cm">/* echo: por terminar*/</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">            </span><span class="p">});</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="48 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="49 "></span>
+<span class="linenos" data-linenos="50 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+Llamamos al método en <code>Initialize</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">URL</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceBundle</span><span class="w"> </span><span class="n">resourceBundle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">iniciaTableViewEmpleados</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicializa la TableView de empleados.</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">iniciaCbDepartamentos</span><span class="p">();</span><span class="w"> </span><span class="c1">// Inicializa el ComboBox de departamentos.</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="crear-y-editar-empleado">Crear y Editar Empleado<a class="headerlink" href="#crear-y-editar-empleado" title="Permanent link">&para;</a></h2>
+<p>Como indicamos, la ventana de <code>Nuevo</code> y <code>Edición</code> será la misma, y creará o modificará un <code>Empleado</code>. Facilitará al usuario la selección del <code>Departamento</code> al que pertenece.</p>
+<p><img alt="alt text" src="../../img/ud8/proy012.png" /></p>
+<p>Para conseguirlo, cuando abrimos la ventana de <code>Empleado</code>, tenemos que saber si estamos creando un  empleado  o nos han pasado un  <code>Empleado</code> para editarlo.</p>
+<p>Una vez que hemos definido el diseño de <code>EmpleadoView</code> con <code>SceneBuilder</code>, en <code>EmpleadoController</code> tenemos una propiedad <code>Empleado</code> y un método que carga los datos del empleado en los Controles de la pantalla</p>
+<div class="highlight"><span class="filename">EmpleadoController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmpleadoController</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Initializable</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm">     * Muestra los datos del empleado actual en los campos de texto y selecciona</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm">     * su departamento en el ComboBox. Si el empleado es {@code null},</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm">     * se configura la vista para la creación de un nuevo empleado.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm">     */</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">iniciaEmpleado</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">// Si el empleado es null, se está creando un nuevo empleado.</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empleado</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">lbTitulo</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Nuevo Empleado&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="c1">// Si hay un empleado para editar, se llenan los campos de texto con sus datos.</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">tfDni</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getDni</span><span class="p">());</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">tfNombre</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">tfApellidos</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getApellidos</span><span class="p">());</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">tfEdad</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getEdad</span><span class="p">()));</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="c1">// Selecciona el departamento del empleado en el ComboBox.</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">cbDepartamento</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">empleado</span><span class="p">.</span><span class="na">getDepartamento</span><span class="p">());</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="c1">// Actualiza el título de la ventana para indicar que se está editando un empleado.</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="n">lbTitulo</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Editar: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empleado</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empleado</span><span class="p">.</span><span class="na">getApellidos</span><span class="p">());</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>Definimos un método que permitirá iniciar la ventana pasándole un empleado si estamos editando o null si es nuevo</p>
+<div class="highlight"><span class="filename">EmpleadoController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="c1">// Inicializa el ComboBox con los departamentos.</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">iniciaCbDepartamentos</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="c1">// Guarda la instancia del empleado a editar.</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empleado</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="c1">// Muestra los datos del empleado en los campos de texto y el ComboBox.</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">iniciaEmpleado</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="c1">// Limpia cualquier mensaje de error que pudiera estar visible.</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">lbError</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Para llamar y abrir la ventana de edición de <code>Empleado</code>, lo haremos asignado el empleado previamente desde este método</p>
+<p>En el <code>Controller</code> de <code>Empleados</code></p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">abrirEmpleado</span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">            </span><span class="c1">// Carga la escena desde el recurso FXML.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">            </span><span class="n">FXMLLoader</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FXMLLoader</span><span class="p">(</span><span class="n">EjemploDBJavaFx</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="s">&quot;views/empleado-view.fxml&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="n">Parent</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">load</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="c1">// Obtiene el controlador de la ventana de edición de empleado.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="n">EmpleadoController</span><span class="w"> </span><span class="n">empleadoController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">getController</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="c1">// Inicializa el controlador con el empleado a editar (si es null, se prepara para una alta).</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="n">empleadoController</span><span class="p">.</span><span class="na">initialize</span><span class="p">(</span><span class="n">empleado</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">Scene</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="c1">// Crea un nuevo Stage para la ventana modal.</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stage</span><span class="p">();</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empleado</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">                </span><span class="n">stage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Alta de Empleado&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="k">else</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">                </span><span class="n">stage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Empleado: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empleado</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">empleado</span><span class="p">.</span><span class="na">getApellidos</span><span class="p">());</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="c1">// Establece la modalidad de la ventana como modal, bloqueando la interacción con la ventana padre.</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">initModality</span><span class="p">(</span><span class="n">Modality</span><span class="p">.</span><span class="na">WINDOW_MODAL</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="c1">// Establece la ventana padre de la ventana modal.</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">initOwner</span><span class="p">(</span><span class="n">btBuscarPorNombre</span><span class="p">.</span><span class="na">getScene</span><span class="p">().</span><span class="na">getWindow</span><span class="p">());</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setResizable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">            </span><span class="c1">// Define un evento que se ejecuta al cerrar la ventana de edición.</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setOnHidden</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">                </span><span class="c1">// Al cerrar la ventana, se actualiza la lista de empleados en la TableView.</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">                    </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">FXCollections</span><span class="p">.</span><span class="na">observableArrayList</span><span class="p">(</span><span class="n">EmpleadoDAO</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">listAllEmpleados</span><span class="p">()));</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">                    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">                </span><span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">            </span><span class="p">});</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">            </span><span class="c1">// Asigna la escena al Stage y muestra la ventana modal, esperando a que se cierre.</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">showAndWait</span><span class="p">();</span>
+<span class="linenos" data-linenos="36 "></span>
+<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>Abrimos la venta si es nuevo o edición en el <code>onClick</code> de los botones correspondientes</p>
+<p><img alt="alt text" src="../../img/ud8/proy032.png" /></p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickbtAlta</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">abrirEmpleado</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickEditar</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">//obtenemos el empleado seleccionado de la TableView</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedItem</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empleado</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">abrirEmpleado</span><span class="p">(</span><span class="n">empleado</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="devolver-un-resultado-de-una-ventana">Devolver un resultado de una ventana<a class="headerlink" href="#devolver-un-resultado-de-una-ventana" title="Permanent link">&para;</a></h2>
+<p>El mantenimiento de <code>Departamento</code> es muy parecido al de <code>Empleados</code>, pero para seleccionar el jefe, utilizaremos el mantenimiento de <code>Empleados</code> </p>
+<p><img alt="alt text" src="../../img/ud8/proy031.png" /></p>
+<p>Para conseguir el objetivo, la ventana que devuelve el dato, tiene que definir una Interface con el método que devuelve el dato. Los pasos son los siguiente:</p>
+<h3 id="definir-la-interface-en-empleadoscontroller">Definir la Interface en EmpleadosController<a class="headerlink" href="#definir-la-interface-en-empleadoscontroller" title="Permanent link">&para;</a></h3>
+<p>Esta <code>Interface</code> contiene un método que tiene como parámetro el <code>Empleado</code> seleccionado</p>
+<p><div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">SeleccionEmpleadoCallback</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="cm">/**</span>
+<span class="linenos" data-linenos="3 "></span><span class="cm">         * Método llamado cuando un empleado es seleccionado.</span>
+<span class="linenos" data-linenos="4 "></span><span class="cm">         *</span>
+<span class="linenos" data-linenos="5 "></span><span class="cm">         * @param empleado El empleado seleccionado.</span>
+<span class="linenos" data-linenos="6 "></span><span class="cm">         */</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">onEmpleadoSelected</span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="p">);</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+Definimos una propiedad con una instancia del tipo anterior</p>
+<p><div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">SeleccionEmpleadoCallback</span><span class="w"> </span><span class="n">seleccionEmpleadoCallback</span><span class="p">;</span>
+</code></pre></div>
+Definimos el Set que permite asignar el la instancia anterior</p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setSeleccionEmpleadoCallback</span><span class="p">(</span><span class="n">SeleccionEmpleadoCallback</span><span class="w"> </span><span class="n">seleccionEmpleadoCallback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">seleccionEmpleadoCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seleccionEmpleadoCallback</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="c1">//mostramos el botón que permite mostrar el botón de selección</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">btSeleccionEmpleado</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="ejecutar-la-accion-que-devuelve-el-empleado">Ejecutar la acción que devuelve el Empleado<a class="headerlink" href="#ejecutar-la-accion-que-devuelve-el-empleado" title="Permanent link">&para;</a></h3>
+<p>Cuando se pulse en seleccionar llamamos al método anterior del <code>CallBack</code> y le pasamos el empleado</p>
+<div class="highlight"><span class="filename">EmpleadosController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickSeleccion</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Empleado</span><span class="w"> </span><span class="n">empleado</span><span class="o">=</span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedItem</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empleado</span><span class="o">!=</span><span class="kc">null</span><span class="p">){</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">seleccionEmpleadoCallback</span><span class="o">!=</span><span class="kc">null</span><span class="p">){</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">            </span><span class="c1">//devolvemos el empleado seleccionado</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="n">seleccionEmpleadoCallback</span><span class="p">.</span><span class="na">onEmpleadoSelected</span><span class="p">(</span><span class="n">empleado</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="c1">//cerramos la ventana</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="o">=</span><span class="p">(</span><span class="n">Stage</span><span class="p">)</span><span class="w"> </span><span class="n">tvEmpleados</span><span class="p">.</span><span class="na">getScene</span><span class="p">().</span><span class="na">getWindow</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="asignar-la-instancia-de-la-interface">Asignar la instancia de la Interface<a class="headerlink" href="#asignar-la-instancia-de-la-interface" title="Permanent link">&para;</a></h3>
+<p>Al abrir la ventana de <code>Empleados</code> desde <code>Departamento</code>, le asignamos una instancia del tipo de la <code>Interface</code> anterior que permitirá asignar el empleado seleccionado al campo correspondiente</p>
+<div class="highlight"><span class="filename">DepartamentoController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@FXML</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickBuscarJefe</span><span class="p">(</span><span class="n">ActionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="c1">// Intenta cargar la vista de empleados para seleccionar un jefe.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="n">FXMLLoader</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FXMLLoader</span><span class="p">(</span><span class="n">EjemploDBJavaFx</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="s">&quot;views/empleados-view.fxml&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">            </span><span class="n">Parent</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">load</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="c1">// Obtiene el controlador de la vista de empleados.</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">EmpleadosController</span><span class="w"> </span><span class="n">empleadosController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">getController</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="c1">// Establece un callback para recibir el empleado seleccionado como jefe.</span>
+<span class="hll"><span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">empleadosController</span><span class="p">.</span><span class="na">setSeleccionEmpleadoCallback</span><span class="p">(</span><span class="n">empleado</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="linenos" data-linenos="12 "></span><span class="w">                </span><span class="c1">//si se ha seleccionar un empleado</span>
+</span><span class="hll"><span class="linenos" data-linenos="13 "></span><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">empleado</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="linenos" data-linenos="14 "></span><span class="w">                    </span><span class="n">jefe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empleado</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos" data-linenos="15 "></span><span class="w">                    </span><span class="n">lbJefe</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">jefe</span><span class="p">.</span><span class="na">getNombreCompleto</span><span class="p">());</span><span class="w"> </span><span class="c1">// Muestra el nombre completo del jefe seleccionado.</span>
+</span><span class="hll"><span class="linenos" data-linenos="16 "></span><span class="w">                </span><span class="p">}</span>
+</span><span class="hll"><span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="p">});</span>
+</span><span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">Scene</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="c1">// Crea y muestra una nueva ventana modal para la selección de empleados (jefes).</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Stage</span><span class="p">();</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Ies Ochoa/Empleados&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setResizable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">initModality</span><span class="p">(</span><span class="n">Modality</span><span class="p">.</span><span class="na">APPLICATION_MODAL</span><span class="p">);</span><span class="w"> </span><span class="c1">// Bloquea la interacción con la ventana padre.</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">            </span><span class="n">stage</span><span class="p">.</span><span class="na">showAndWait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Espera hasta que la ventana de selección de empleados se cierre.</span>
+<span class="linenos" data-linenos="26 "></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">            </span><span class="c1">// Imprime un mensaje de error si no se puede cargar la vista de empleados.</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:<ja.lopez@edu.gva.es>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1 2.05 2 1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.56.56 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4-8 5-8-5V6l8 5 8-5"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "toc.integrate", "content.code.copy", "content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
