@@ -1781,6 +1781,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Array de objetos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#otras-formas-de-inicio-de-los-arrays-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Otras formas de inicio de los arrays de objetos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evitar-error-de-nulos-nullpointerexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evitar error de nulos: NullPointerException
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3504,6 +3528,31 @@ Si declaramos un array de Alumnos, hay que crear las instancias para cada posici
 </code></pre></div>
 Vemos en la última línea marcada como se intenta acceder a una instancia de la posición 2 pero no se ha creado una instancia, esto  producirá un error en tiempo de ejecución <strong>NullPointerException</strong></p>
 <p><img alt="Arrays" src="../../img/ud4/array10.png" /></p>
+<h3 id="otras-formas-de-inicio-de-los-arrays-de-objetos">Otras formas de inicio de los arrays de objetos<a class="headerlink" href="#otras-formas-de-inicio-de-los-arrays-de-objetos" title="Permanent link">&para;</a></h3>
+<p><strong>Inicializar todos los objetos directamente</strong></p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Alumno</span><span class="o">[]</span><span class="w"> </span><span class="n">dam1k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="s">&quot;Pepe&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">),</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="s">&quot;Maria&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">),</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">),</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="s">&quot;Pedro&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">};</span>
+</code></pre></div>
+<strong>Inicializar con un bucle</strong></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Alumno</span><span class="o">[]</span><span class="w"> </span><span class="n">dam1k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dam1k</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">dam1k</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="s">&quot;Alumno&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// inicialización básica</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="evitar-error-de-nulos-nullpointerexception">Evitar error de nulos: <strong>NullPointerException</strong><a class="headerlink" href="#evitar-error-de-nulos-nullpointerexception" title="Permanent link">&para;</a></h2>
+<p>Deberíamos siempre comprobar si un elemento es <code>null</code> antes de su uso. Dependerá siempre de las características del problema. Existen lenguajes como Kotlin, que te obligan siempre a comprobarlo.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dam1k</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">dam1k</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">.</span><span class="na">mostrarAlumno</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;El alumno 2 todavía no existe.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
 <h2 id="argumentos-de-linea-de-comandos-string-args">Argumentos de línea de comandos: String[] args<a class="headerlink" href="#argumentos-de-linea-de-comandos-string-args" title="Permanent link">&para;</a></h2>
 <p>Como ya sabemos el método <code>main</code> recibe un array de Strings como parámetro:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -3548,7 +3597,7 @@ Vemos en la última línea marcada como se intenta acceder a una instancia de la
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Convertir String en tipo primitivo</p>
-<p>Si tenemos que transformar un String que representa un tipo primitivo(int, float...),  utilizaremos los métodos static de la clase envoltorio(Wrapper Classes).
+<p>Si tenemos que transformar un String que representa un tipo primitivo(int, float...),  utilizaremos los métodos static de la <a href="/ud1/14datatypejava/#wrapper-classes-clases-contenedores-o-envolventes">clase envoltorio(Wrapper Classes)</a>.
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="c1">// --- 1. Conversión a Entero (int) ---</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">strEntero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;12345&quot;</span><span class="p">;</span><span class="w">    </span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">numeroInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">strEntero</span><span class="p">);</span>
