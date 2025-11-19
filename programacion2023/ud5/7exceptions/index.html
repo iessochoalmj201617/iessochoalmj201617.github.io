@@ -2294,49 +2294,22 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#buenas-practicas-para-definir-excepciones-personalizadas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Buenas prácticas para definir excepciones personalizadas
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Buenas prácticas para definir excepciones personalizadas">
+    <nav class="md-nav" aria-label="Excepciones personalizadas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#haz-que-tenga-sentido" class="md-nav__link">
+  <a href="#crear-excepciones" class="md-nav__link">
     <span class="md-ellipsis">
-      Haz que tenga sentido
+      Crear Excepciones
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sigue-la-convencion-de-nomenclatura-estandar" class="md-nav__link">
+  <a href="#ejemplo" class="md-nav__link">
     <span class="md-ellipsis">
-      Sigue la convención de nomenclatura estándar
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#anade-javadoc-a-tu-clase-de-excepcion-personalizada" class="md-nav__link">
-    <span class="md-ellipsis">
-      Añade Javadoc a tu clase de excepción personalizada
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#proporciona-un-constructor" class="md-nav__link">
-    <span class="md-ellipsis">
-      Proporciona un constructor
+      Ejemplo
     </span>
   </a>
   
@@ -2344,15 +2317,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pasos-para-implementar-una-excepcion-personalizada" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pasos para implementar una excepción personalizada
-    </span>
-  </a>
   
 </li>
       
@@ -4024,51 +3988,119 @@ En este ejemplo, el programa termina porque no se ha capturado la excepción</p>
 <li><code>checked exceptions</code>: Sí, en el caso de excepciones comprobadas. Para excepciones como <code>IOException</code>, es obligatorio declararlas con <code>throws</code></li>
 </ul>
 <h2 id="excepciones-personalizadas">Excepciones personalizadas<a class="headerlink" href="#excepciones-personalizadas" title="Permanent link">&para;</a></h2>
-<p>Aunque las excepciones de Java cubren casi todas las excepciones generales que están obligadas a ocurrir en la programación. Sin embargo, a veces necesitamos complementar estas excepciones estándar con las nuestras.</p>
-<p>Estas son las principales razones para introducir excepciones personalizadas:</p>
+<p>Las excepciones de Java cubren casi todas las excepciones generales que están obligadas a ocurrir en la programación.</p>
+<p>Java nos permite complementar estas excepciones estándar con las nuestras que mejoren la lógica y comprensión de la aplicación, permitiendo un control del programa mediante excepciones.</p>
+<p><strong>Ejemplo</strong>: </p>
 <ul>
-<li>Añadir excepciones que son específicas de la lógica de nuestra aplicación o empresa. Ayudan a los usuarios de la aplicación o a los desarrolladores a comprender cuál es el problema exacto.</li>
-<li>Para capturar y proporcionar un tratamiento específico a un subconjunto de excepciones de Java existentes.</li>
-<li>Añadir nuevos métodos o atributos que no son parte de las excepciones estándar.</li>
+<li>Queremos implementar una clase Clientes en la que tenemos un array en el que no queremos repeticiones. Podemos proteger nuestra clase creando un nuevo tipo de excepción en el que salte dicha excepción si se intenta insertar un cliente que ya existe.</li>
+<li>Lanzar una excepción  cuando no hay stock suficiente cuando se realiza un pedido</li>
+<li>En una cuenta bancaria salte una excepción si el saldo es insuficiente.</li>
 </ul>
-<h2 id="buenas-practicas-para-definir-excepciones-personalizadas">Buenas prácticas para definir excepciones personalizadas<a class="headerlink" href="#buenas-practicas-para-definir-excepciones-personalizadas" title="Permanent link">&para;</a></h2>
-<h3 id="haz-que-tenga-sentido"><strong>Haz que tenga sentido</strong><a class="headerlink" href="#haz-que-tenga-sentido" title="Permanent link">&para;</a></h3>
-<p>Proporciona información o funcionalidad que no forma parte de las excepciones estándar de Java.</p>
-<p>Esa es la esencia de la primera y más importante recomendación. De lo contrario, su excepción no brinda ningún beneficio en comparación con la gran cantidad de excepciones que ya proporciona el JDK.</p>
-<p>Si no puede proporcionar ningún beneficio, es mejor que use una de las excepciones estándar, como UnsupportedOperationException o IllegalArgumentException. Todos los desarrolladores de Java ya conocen estas excepciones. Eso hace que su código y API sean más fáciles de entender.</p>
-<h3 id="sigue-la-convencion-de-nomenclatura-estandar"><strong>Sigue la convención de nomenclatura estándar</strong><a class="headerlink" href="#sigue-la-convencion-de-nomenclatura-estandar" title="Permanent link">&para;</a></h3>
-<p>Cuando obsevamos las clases de excepción proporcionadas por el JDK, rápidamente nos damos cuenta que todos sus nombres terminan con <code>Exception</code>. Esta convención de nomenclatura general se utiliza en todo el sistema de Java. Y su excepción personalizada también debería seguirlo, por ejemplo, <code>ImpresoraException</code>.</p>
-<h3 id="anade-javadoc-a-tu-clase-de-excepcion-personalizada"><strong>Añade Javadoc a tu clase de excepción personalizada</strong><a class="headerlink" href="#anade-javadoc-a-tu-clase-de-excepcion-personalizada" title="Permanent link">&para;</a></h3>
-<p>Las API no documentadas son muy difíciles de usar.</p>
-<p>Las clases de excepción pueden no ser la parte más obvia de tu API, pero siguen siendo parte de ella. Tan pronto como uno de sus métodos orientados al cliente arroja una excepción, la clase de excepción se convierte en parte de la API. Eso implica que requiere documentación y un buen Javadoc.</p>
-<p>El Javadoc debe describir el significado general de la excepción y las situaciones en las que podría ocurrir. El objetivo es ayudar a otros desarrolladores a comprender su API y evitar escenarios de error comunes.</p>
-<h3 id="proporciona-un-constructor">Proporciona un constructor<a class="headerlink" href="#proporciona-un-constructor" title="Permanent link">&para;</a></h3>
-<p>Normalmente, nuestro código detectará una excepción estándar antes de lanzar nuestra excepción personalizada. Esto, no debe ocultarse ya que la excepción capturada generalmente contendrá información esencial que necesitaremos para analizar el incidente.</p>
-<p>En el siguiente ejemplo, <code>NumberFormatException</code> proporciona información detallada sobre el error. Perderá esta información si no la configura como la causa de <code>MyException</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">methodA</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">entrada</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">MyException</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="c1">// código</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">NumberFormatException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyException</span><span class="p">(</span><span class="s">&quot;Mensaje que describe el error.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorCode</span><span class="p">.</span><span class="na">INVALID_ENTRY</span><span class="p">);</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+<h3 id="crear-excepciones">Crear Excepciones<a class="headerlink" href="#crear-excepciones" title="Permanent link">&para;</a></h3>
+<p>Podemos crearla de dos tipo:</p>
+<ul>
+<li><strong>unchecked</strong>: La excepción no te obligará a controlarla con try-catch. Crearemos una excepción que herede de <code>RuntimeException</code></li>
+<li><strong>checked</strong>: La excepción se tiene que controlar con try-catch. Crearemos una excepción que herede de <code>Exception</code></li>
+</ul>
+<h3 id="ejemplo">Ejemplo<a class="headerlink" href="#ejemplo" title="Permanent link">&para;</a></h3>
+<p>Vamos a crear excepciones <em>checked</em> para una clase <em>Clientes</em> que:</p>
+<ul>
+<li>contiene un array con los nombres de clientes </li>
+<li>si se intenta insertar un cliente que ya existe, lance una excepción</li>
+<li>si no nos queda espacio en el array, lance una excepción</li>
+</ul>
+<p>Creamos la excepción para controlar que el usuario no existe</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ClienteYaExisteException</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">ClienteYaExisteException</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">mensaje</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">mensaje</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;ClienteYaExisteException: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getMessage</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
 </code></pre></div>
-<p><code>Exception</code> y <code>RuntimeException</code> proporcionan constructores que aceptan un <code>Throwable</code> que describe la causa de la excepción. Por tanto, nuestra excepción debería hacer lo mismo. Debemos implementar <strong>al menos un constructor que obtenga el Throwable causante como parámetro y lo establezca en la superclase</strong>.</p>
-<h2 id="pasos-para-implementar-una-excepcion-personalizada">Pasos para implementar una excepción personalizada<a class="headerlink" href="#pasos-para-implementar-una-excepcion-personalizada" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Debemos extender de la clase <code>java.lang.Exception</code>.</li>
-<li>Se debe proporcionar un constructor que establezca la excepción causante y brinde un beneficio en comparación con las excepciones estándar disponibles.</li>
-</ol>
-<p>Ejemplo:</p>
-<p><img alt="Exception" src="../../img/ud5/exceptions5.png" /></p>
-<p><img alt="Exception" src="../../img/ud5/exceptions3.png" /></p>
-<p><code>MyException</code> usa un enum personalizado para almacenar un código de error que identifica el problema de nuestra aplicación. Los clientes pueden usar el código de error para mostrar mensajes de error localizados o decirle al usuario que incluya este código en un ticket de soporte.</p>
-<p>Para usar <code>MyException</code> en nuestra aplicación o programa necesitaremos especificarlo como parte de la signatura de un método o simplemente capturarla con un bloque <code>try-catch</code>.</p>
-<p><img alt="Exception" src="../../img/ud5/exceptions4.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Si queremos crear una excepción personalizada de tipo unchecked exception realizaremos el mismo procedimiento con la diferencia de que tendremos que extender de la clase <code>java.lang.RuntimeException</code>.</p>
-</div>
+<p>Creamos la excepción que controla si no queda espacio en el array</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NoHayEspacioException</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">NoHayEspacioException</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">mensaje</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">mensaje</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;NoHayEspacioException: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getMessage</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
+La clase Clientes controla el uso correcto mediante exceptiones. Será el usuario de la clase quien controle los errores de cara a mostrar mensajes por pantalla o a un log</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clientes</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">clientes</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="c1">//lleva el total de clientes actual</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Clientes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">tamaño</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">clientes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="n">tamaño</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="c1">//indicamos en la firma que hay que tratar la excepciones</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">agregarCliente</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="kd">throws</span><span class="w"> </span><span class="n">ClienteYaExisteException</span><span class="p">,</span><span class="w"> </span><span class="n">NoHayEspacioException</span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="c1">// comprobar espacio</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">contador</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">clientes</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="c1">//lanza excepción</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NoHayEspacioException</span><span class="p">(</span><span class="s">&quot;No queda espacio para añadir: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">// comprobar si ya existe</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">contador</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">clientes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">                </span><span class="c1">//lanza excepción</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ClienteYaExisteException</span><span class="p">(</span><span class="s">&quot;El cliente &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39; ya existe.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="c1">// agregar cliente</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="n">clientes</span><span class="o">[</span><span class="n">contador</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">        </span><span class="n">contador</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="33 "></span>
+<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mostrarClientes</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Lista de clientes:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">contador</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;- &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">clientes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="40 "></span><span class="p">}</span>
+</code></pre></div>
+<p>La clase que utilice <em>Clientes</em> está obligada mediante <code>try-catch</code> a manejar las excepciones que hemos creado</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">Clientes</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Clientes</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="n">lista</span><span class="p">.</span><span class="na">agregarCliente</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="n">lista</span><span class="p">.</span><span class="na">agregarCliente</span><span class="p">(</span><span class="s">&quot;Luis&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">lista</span><span class="p">.</span><span class="na">agregarCliente</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// No hay espacio → lanza excepción</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">ClienteYaExisteException</span><span class="w">  </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span><span class="w"> </span><span class="c1">// llama a toString()</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">NoHayEspacioException</span><span class="w"> </span><span class="n">e</span><span class="p">){</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">lista</span><span class="p">.</span><span class="na">mostrarClientes</span><span class="p">();</span><span class="c1">//Ana-Luis</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Salida</p>
+<p><img alt="alt text" src="../../img/ud5/excep27.png" /></p>
 
 
 
