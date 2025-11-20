@@ -3588,12 +3588,14 @@
 
 
 <h1 id="excepciones">Excepciones<a class="headerlink" href="#excepciones" title="Permanent link">&para;</a></h1>
+<p><img alt="alt text" src="../../img/ud5/excep35.png" /></p>
 <h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>En el proceso de ejecución de un programa, pueden surgir errores que como programadores pueden ser difíciles de controlar. Por ejemplo</p>
 <ul>
-<li>cuando tenemos que leer un fichero y este no existe</li>
-<li>cuando el usuario tiene que introducir un número e introduce un texto</li>
-<li>cuando hacemos una petición a una base de datos y no contesta...</li>
+<li>Tenemos que leer un fichero y este no existe</li>
+<li>El usuario tiene que introducir un número e introduce un texto</li>
+<li>Hacemos una petición a una base de datos y no contesta...</li>
+<li>...</li>
 </ul>
 <p>Por ejemplo, las siguientes muestras de código provocan la parada del programa</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">numeros</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
@@ -4035,7 +4037,7 @@ En este ejemplo, el programa termina porque no se ha capturado la excepción</p>
 <span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="11 "></span><span class="p">}</span>
 </code></pre></div>
-La clase Clientes controla el uso correcto mediante exceptiones. Será el usuario de la clase quien controle los errores de cara a mostrar mensajes por pantalla o a un log</p>
+La clase Clientes controla el uso correcto mediante excepciones. Será el usuario de la clase quien controle los errores de cara a mostrar mensajes por pantalla o enviar el error a un fichero log</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Clientes</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">clientes</span><span class="p">;</span>
