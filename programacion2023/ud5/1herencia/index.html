@@ -3630,6 +3630,40 @@ la clase base). En este caso, el atributo de la clase base queda oculto por el d
 <h2 id="modificadores-de-acceso-en-java">Modificadores de acceso en Java<a class="headerlink" href="#modificadores-de-acceso-en-java" title="Permanent link">&para;</a></h2>
 <p>Una clase derivada podrá acceder a los miembros de su padre según el modificador</p>
 <p><img alt="herencia" src="../../img/ud5/modificadoresdeacceso.png" /></p>
+<p>En UML el diagrama de clases los modificadores tienen su símbolo</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modificador de Acceso</th>
+<th style="text-align: left;">Símbolo UML</th>
+<th style="text-align: left;">Descripción de Visibilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Público</strong></td>
+<td style="text-align: left;"><strong><code>+</code></strong> (signo más)</td>
+<td style="text-align: left;">Visible y accesible para <strong>cualquier</strong> clase en el sistema.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Privado</strong></td>
+<td style="text-align: left;"><strong><code>-</code></strong> (signo menos)</td>
+<td style="text-align: left;">Visible y accesible <strong>solo</strong> desde el interior de la propia clase.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Protegido</strong></td>
+<td style="text-align: left;"><strong><code>#</code></strong> (signo de número)</td>
+<td style="text-align: left;">Visible y accesible para la propia clase y sus <strong>subclases</strong> (herederas).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Paquete</strong></td>
+<td style="text-align: left;"><strong><code>~</code></strong> (tilde)</td>
+<td style="text-align: left;">Visible y accesible para todas las clases dentro del <strong>mismo paquete</strong> (o <em>namespace</em>).</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="herencia" src="../../img/ud5/modificadoresdeacceso2.png" /></p>
+<p><img alt="herencia" src="../../img/ud5/modificadoresdeacceso3.png" /></p>
 <h2 id="package-y-metodos-de-acceso">Package y métodos de acceso<a class="headerlink" href="#package-y-metodos-de-acceso" title="Permanent link">&para;</a></h2>
 <p>Un paquete en Java se utiliza para agrupar clases relacionadas de acuerdo
 con algún criterio lógico. Cuando el proyecto a desarrollar contiene
@@ -3640,19 +3674,21 @@ demasiadas clases es recomendable dividir el sistema en paquetes.</p>
 <li>Definidos por el usuario</li>
 </ul>
 <p>Se definen de la siguiente manera</p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">package</span><span class="w"> </span><span class="nn">nombrePaquete</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">package</span><span class="w"> </span><span class="nn">nombrePaquete</span><span class="p">;</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">class</span> <span class="nc">nombreClase</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="w"> </span>
 <span class="linenos" data-linenos="4 "></span><span class="p">}</span>
 </code></pre></div>
-Respecto a la herencia, hay que tener en cuenta:</p>
+<div class="admonition importante">
+<p class="admonition-title">Importante</p>
+<p>Respecto a la herencia, hay que tener en cuenta:</p>
 <ul>
 <li>Una subclase puede acceder a todos los atributos  protegidos de su clase padre, sin importar en qué paquete esté la subclase</li>
 <li>Una clase  en el mismo paquete puede acceder a los atributos  protegidos de otra clase
 clase</li>
-<li>Una clase  en el distinto paquete <strong>no puede</strong> acceder a los atributos  protegidos de otra clase
-clase</li>
+<li>Una clase  en el distinto paquete <strong>no puede</strong> acceder a los atributos  protegidos de otra clase</li>
 </ul>
+</div>
 <h2 id="constructores-y-herencia-en-java-constructores-en-clases-derivadas">Constructores y herencia en Java. Constructores en clases derivadas<a class="headerlink" href="#constructores-y-herencia-en-java-constructores-en-clases-derivadas" title="Permanent link">&para;</a></h2>
 <p>Los constructores no se heredan. Cada clase derivada tendrá sus propios constructores. La clase
 base es la encargada de inicializar sus atributos. La clase derivada se encarga de inicializar solo los
