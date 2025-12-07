@@ -3586,19 +3586,58 @@ compatibles. Para asegurarnos de ello podemos utilizar el operador <code>instanc
 <p><strong>instanceof</strong> devuelve true si el objeto es instancia de la clase y false en caso contrario. La
 sintaxis es:</p>
 <p><strong>Objecto instanceof Clase</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Animal</span><span class="w"> </span><span class="n">animal</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;ConBotas&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="2 "></span><span class="k">if</span><span class="p">(</span><span class="n">animal</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Gato</span><span class="p">)</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;soy un gato&quot;</span><span class="p">);</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Animal</span><span class="w"> </span><span class="n">animal</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;ConBotas&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">animal</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Gato</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;soy un gato&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">animal</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Perro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;soy un perro&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">animal</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Persona</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;soy una persona&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;no se que quien soy&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
 </code></pre></div>
-<p>El nuevo switch de java 17 nos permite tomar decisiones en función del tipo de objeto</p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">queSoy</span><span class="o">=</span><span class="k">switch</span><span class="p">(</span><span class="n">animal</span><span class="p">){</span>
+Un ejemplo más claro con varios animales en el que tenemos que tomar decisiones en función del tipo de animal</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// 1. Crear el array de Animales</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">Animal</span><span class="o">[]</span><span class="w"> </span><span class="n">animales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Animal</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">animales</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;ConBotas&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">animales</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Scooby&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">animales</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">animales</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Félix&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--- Procesando el array de animales ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">// 2. Recorrer el array usando un bucle for-each</span>
+<span class="linenos" data-linenos="11 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Animal</span><span class="w"> </span><span class="n">animal</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">animales</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">queSoy</span><span class="p">;</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">animal</span><span class="p">.</span><span class="na">getNombre</span><span class="p">();</span><span class="w"> </span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="c1">// 3. Evaluar el tipo usando if/else if (instanceof)</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">animal</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Gato</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;soy un gato&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">animal</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Perro</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;soy un perro&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">animal</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Persona</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;soy una persona&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">queSoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;no se que quien soy&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">queSoy</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Nuevo switch de java</p>
+<p>El <a href="../../ud2/2switch2/#nuevo-switch-de-java-12">nuevo switch de java</a>  nos permite tomar decisiones en función del tipo de objeto. Es una opción mucha más clara que un if-else.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">queSoy</span><span class="o">=</span><span class="k">switch</span><span class="p">(</span><span class="n">animal</span><span class="p">){</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">Gato</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;soy un gato&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">Perro</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;soy un perro&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="n">Persona</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;soy una persona&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">  </span><span class="s">&quot;no se que quien soy&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div>
-Es una característica que hay que activar en java 17 pero que ya está disponible en la versión 21</p>
+</div>
+<p>Este switch lo podéis usar en vuestros proyectos desde java 14 y con la característica anterior, desde java 17</p>
 <h2 id="ejemplo-de-polimorfismo-de-minecraft">Ejemplo de polimorfismo de Minecraft<a class="headerlink" href="#ejemplo-de-polimorfismo-de-minecraft" title="Permanent link">&para;</a></h2>
 <p>La capacidad del polimorfismo de la POO permite en los videojuegos programar la gran dificultad de manejar la variedad de los diferentes personajes, pantallas, posibles ampliaciones futuras ...</p>
 <p><img alt="Polimorfismo" src="../../img/ud5/imagen_minecraft.png" /></p>
@@ -3663,6 +3702,59 @@ Es una característica que hay que activar en java 17 pero que ya está disponib
 <span class="linenos" data-linenos="53 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="54 "></span><span class="p">}</span>
 </code></pre></div>
+<p>El polimorfismo nos permite, en nuestro caso,  en una nueva actualización de Minecraft, añadir nuevos bloques sin que afecte al código principal. Por ejemplo, añadimos los bloques Arena y Lava</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//  NUEVA SUBCLASE 1: Arena</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">class</span> <span class="nc">Arena</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Bloque</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destruir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Has destruido un bloque de Arena. La arena cae debido a la gravedad.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1">//  NUEVA SUBCLASE 2: Lava</span>
+<span class="linenos" data-linenos="10 "></span><span class="kd">class</span> <span class="nc">Lava</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Bloque</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destruir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Has destruido un bloque de Lava. ¡Te quemas! El flujo de lava se detiene temporalmente.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+</code></pre></div>
+El juego no se ve afectado</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// Destruir cada bloque de forma polimórfica</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1">// La referencia &#39;bloque&#39; siempre es de tipo Bloque, pero el método ejecutado</span>
+<span class="linenos" data-linenos="3 "></span><span class="c1">// depende del tipo de objeto real (Tierra, Piedra,  Arena, Lava...)</span>
+<span class="linenos" data-linenos="4 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Bloque</span><span class="w"> </span><span class="n">bloque</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">bloques</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">bloque</span><span class="p">.</span><span class="na">destruir</span><span class="p">();</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Resumen de ventajas clave del Polimorfismo</p>
+<p>El polimorfismo permite que una única interfaz maneje objetos de diferentes tipos, ofreciendo beneficios clave:</p>
+<ol>
+<li>
+<p>Simplificación y Claridad del Código</p>
+<ul>
+<li><strong>Interfaz Única:</strong> Permite usar un nombre de método común (<code>destruir()</code>) para múltiples implementaciones específicas.</li>
+<li><strong>Código Limpio:</strong> Se elimina la necesidad de grandes estructuras <code>if/else if</code> o <code>switch</code> basadas en el tipo de objeto (<code>instanceof</code>), simplificando la lógica.</li>
+<li><strong>Reusabilidad:</strong> El código que interactúa con la clase base (<code>Bloque</code>) sirve para todas las subclases futuras.</li>
+</ul>
+</li>
+<li>
+<p>Extensibilidad y Mantenibilidad</p>
+<ul>
+<li><strong>Fácil Expansión:</strong> Añadir un nuevo tipo de objeto (<code>Arena</code>) solo requiere crear la subclase e implementar el método.</li>
+<li><strong>Mínimo Impacto:</strong> El código ya existente (el bucle de recorrido) no necesita modificarse para manejar los nuevos tipos de objetos, haciendo el sistema más <strong>robusto</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Flexibilidad y Desacoplamiento</p>
+<ul>
+<li><strong>Objetos Intercambiables:</strong> Los objetos de diferentes clases pueden tratarse de manera uniforme a través de la referencia de la clase base.</li>
+<li><strong>Baja Dependencia:</strong> El código cliente solo depende de la clase base (<code>Bloque</code>), no de los detalles de implementación específicos de cada subclase, creando sistemas <strong>modulares</strong>.</li>
+</ul>
+</li>
+</ol>
+</div>
 
 
 
