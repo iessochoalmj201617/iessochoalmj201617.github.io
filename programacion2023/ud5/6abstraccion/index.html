@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../5interfaces/">
+        <link rel="prev" href="../4polimorfismo/">
       
       
-        <link rel="next" href="../7exceptions/">
+        <link rel="next" href="../5interfaces/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -2057,29 +2057,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../5interfaces/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ✨ Interfaces
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -2151,9 +2128,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interfaces-vs-clases-abstractas" class="md-nav__link">
+  <a href="#clases-hijas-abstractas" class="md-nav__link">
     <span class="md-ellipsis">
-      Interfaces vs Clases abstractas
+      Clases hijas abstractas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-de-caracteristica-de-las-clase-abstractas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen de característica de las clase abstractas
     </span>
   </a>
   
@@ -2163,6 +2149,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5interfaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Interfaces
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -3459,39 +3468,202 @@
 <ol>
 <li>Botón derecho en el paquete de nuestra aplicación &rarr; New ---&gt; Java class y añadimos la palabra reservada <code>abstract</code>:</li>
 </ol>
-<p><img alt="Abstraccion" src="../../img/ud5/abstraccion1.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="p">}</span>
+</code></pre></div>
 <h2 id="metodos-abstractos">Métodos abstractos<a class="headerlink" href="#metodos-abstractos" title="Permanent link">&para;</a></h2>
 <p>Las clases abstractas pueden opcionalmente contener métodos abstractos. También pueden contener métodos no abstractos, que serán heredados por los hijos.</p>
 <p><strong>Un método abstracto no tiene cuerpo</strong>. (No tiene código). Solo se escribe la signatura del método con la palabra reservada abstract.</p>
 <p>Vamos a crear una clase abstracta <code>Animal</code>:</p>
-<p><img alt="Abstraccion" src="../../img/ud5/abstraccion2.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Animal</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">// Campo (variable de instancia)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="c1">// Constructor</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Animal</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="c1">// Métodos abstractos (deben ser implementados por las subclases)</span>
+<span class="hll"><span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">alimentar</span><span class="p">();</span>
+</span><span class="linenos" data-linenos="13 "></span>
+<span class="hll"><span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mover</span><span class="p">();</span>
+</span><span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="c1">// Método concreto (ya implementado en la clase base)</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getNombre</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="c1">//  Método Concreto</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">descansar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; está tomando una siesta ligera.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="24 "></span><span class="p">}</span>
+</code></pre></div>
 <p>Si ahora creamos una clase hija que herede de <code>Animal</code> obtendremos un error:</p>
-<p><img alt="Abstraccion" src="../../img/ud5/abstraccion3.png" /></p>
-<p>Esto es debido a que una clase hija no abstracta hereda el método o los métodos abstractos del padre y <strong>debe desarrollarlos como métodos no abstractos</strong>, es decir, con código. Si no lo hace debe declararse como abstracta.</p>
+<p><img alt="abstracción" src="../../img/ud5/abstraccion3.png" /></p>
+<p>Es necesario implementar los métodos abstractos para la clase derivada. la clase puede implementar sus propios métodos.</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Dog</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">// Constructor que llama al constructor de la clase base (Animal)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Dog</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="c1">// Implementación obligatoria del método abstracto</span>
+<span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="nd">@Override</span>
+</span><span class="hll"><span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">alimentar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;El perro &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; está comiendo.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="c1">// Implementación obligatoria del método abstracto</span>
+<span class="hll"><span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="nd">@Override</span>
+</span><span class="hll"><span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mover</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se está moviendo ruidosamente&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="c1">//método propio de Dog</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">darLaPata</span><span class="p">(){</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ofrece la pata amablemente&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span><span class="p">}</span>
+</code></pre></div>
+Otro ejemplo de clase derivada
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Gato</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">// Constructor: Llama al constructor de la clase base Animal</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Gato</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span><span class="w"> </span><span class="c1">// Llama a public Animal(String nombre)</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="c1">// 1. Implementación del método abstracto alimentar()</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">alimentar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;El gato &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; está bebiendo leche y come pescado.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="c1">// 2. Implementación del método abstracto mover()</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mover</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se está moviendo silenciosamente.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="c1">// 3. Método específico de la subclase Gato</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">maullar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: ¡Miau! Miau!&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="24 "></span><span class="p">}</span>
+</code></pre></div>
+Ejemplo de instancias </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="c1">// --- Gato ---</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">Gato</span><span class="w"> </span><span class="n">misifu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Misifu&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--- Llamando a Gato ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="c1">// Se llama al método sobreescrito de la subclase Gato</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">misifu</span><span class="p">.</span><span class="na">alimentar</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">misifu</span><span class="p">.</span><span class="na">mover</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="c1">//método propio</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">misifu</span><span class="p">.</span><span class="na">maullar</span><span class="p">();</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="c1">//llamada a método común implementado en Animal</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">misifu</span><span class="p">.</span><span class="na">descansar</span><span class="p">();</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="c1">// --- Perro ---</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">Dog</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(</span><span class="s">&quot;Max&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- Llamando a Perro ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="c1">// Se llama al método sobreescrito de la subclase Dog</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">max</span><span class="p">.</span><span class="na">alimentar</span><span class="p">();</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">max</span><span class="p">.</span><span class="na">mover</span><span class="p">();</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="c1">//método propio</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="n">max</span><span class="p">.</span><span class="na">darLaPata</span><span class="p">();</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="c1">//llamada a método común implementado en Animal</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="n">max</span><span class="p">.</span><span class="na">descansar</span><span class="p">();</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="clases-hijas-abstractas">Clases hijas abstractas<a class="headerlink" href="#clases-hijas-abstractas" title="Permanent link">&para;</a></h2>
 <p>Un hijo abstracto de un padre abstracto no tiene que definir métodos no abstractos para los métodos abstractas que hereda. Esto significa que puede haber varios pasos entre una clase base abstracta y una clase secundaria que no es completamente abstracta.</p>
-<p><img alt="Abstraccion" src="../../img/ud5/abstraccion4.png" /></p>
-<p><img alt="Abstraccion" src="../../img/ud5/abstraccion41.png" /></p>
-<p>No todo lo definido en una clase abstracta debe ser abstracto. Sin embargo, <strong>si una clase contiene incluso un método abstracto, entonces la clase en sí debe declararse abstracta</strong>.</p>
-<p>Si añadimos otra clase hija <code>Ave</code> que hereda de <code>Animal</code> y le agregamos un método abstracto. El IntelliJ nos muestra un error.</p>
-<p><img alt="Abstraccion" src="../../img/ud5/abstraccion5.png" /></p>
-<p>Tenemos que crear la clase como abstracta, ya que contiene un método abstracto.</p>
-<p>Una vez creada la clase <code>Ave</code> como abstracta podríamos heredar de ella y crear clases hijas que implementarán el método abstracto volar:</p>
-<p><img alt="Abstraccion" src="../../img/ud5/abstraccion6.png" /></p>
-<p>Las clases abstractas se utilizan para organizar programas. Agrupar las clases es importante para mantener un programa organizado y comprensible.</p>
-<p>La ventaja de usar una clase abstracta es que puede agrupar varias clases relacionadas como hermanas.</p>
-<p>Aunque no se puedan instanciar <strong>las clases abstractas también poseen constructores</strong>. La mayoría de las veces se utilizan cuando quieres realizar alguna inicialización de los campos de la clase abstracta antes de la instanciación de una clase hija.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Cuando se invoca un método, es la clase del objeto (no de la variable) la que determina qué método se ejecuta.</p>
-</div>
-<h2 id="interfaces-vs-clases-abstractas">Interfaces vs Clases abstractas<a class="headerlink" href="#interfaces-vs-clases-abstractas" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Las clases abstractas pueden tener variables de instancia (atributos) que se heredan, al contrario que las interfaces, que no permiten definir variables <strong>solo constantes estáticas</strong>.</li>
-<li>Ni las interfaces ni las clases abstractas se puede instanciar.</li>
-<li>Las interfaces no pueden tener constructores y las clases abstractas si.</li>
-<li>Todos los métodos definidos en una interfaz son por defecto <strong>públicos y abstractos</strong>, mientras que, en un clase abstracta podemos tener métodos con diferentes visibilidades (<code>public</code>, <code>private</code> o <code>protected</code>) y abstractos o con cuerpo.</li>
-<li>Si implementas una interfaz debes sobreescribir todos sus métodos, si heredas de una clase abstractas solo estás obligado a sobreescribir los métodos abstractos.</li>
-</ul>
+<p>Por ejemplo una subespecie Ave puede ser abstracta con nuevos métodos abstractos</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Ave</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="c1">// Constructor</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Ave</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Nuevo método abstracto específico de la subclase Ave</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">volar</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
+La clase que herede de Ave tiene que implementar tanto los métodos de Animal como de Ave</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Ganso</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Ave</span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Ganso</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="c1">//Implementa todos los métodos abstractos heredados</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">volar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Vuela lento pero mucha distancia&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">alimentar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Come insectos en la laguna&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mover</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se desplaza elegantemente por el agua y cómicamente por tierra&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="resumen-de-caracteristica-de-las-clase-abstractas">Resumen de característica de las clase abstractas<a class="headerlink" href="#resumen-de-caracteristica-de-las-clase-abstractas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Ejemplo (<code>Animal</code> / <code>Gato</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Declaración</strong></td>
+<td style="text-align: left;">Se usa la palabra clave <strong><code>abstract</code></strong> delante de <code>class</code>.</td>
+<td style="text-align: left;"><code>public abstract class Animal { ... }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Instanciación</strong></td>
+<td style="text-align: left;"><strong>No se pueden</strong> crear objetos directamente de esta clase.</td>
+<td style="text-align: left;">No puedes hacer <code>Animal a = new Animal("Pepe");</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Métodos Abstractos</strong></td>
+<td style="text-align: left;">No tienen cuerpo (solo firma). Obligan a las subclases a implementarlos.</td>
+<td style="text-align: left;"><code>public abstract void alimentar();</code> (En <code>Animal</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Métodos Concretos</strong></td>
+<td style="text-align: left;">Tienen cuerpo y lógica. Son heredados y compartidos por las subclases.</td>
+<td style="text-align: left;"><code>public void descansar() { ... }</code> (En <code>Animal</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Herencia</strong></td>
+<td style="text-align: left;">Una subclase <strong>concreta</strong> debe implementar <strong>todos</strong> los métodos abstractos del padre.</td>
+<td style="text-align: left;"><code>class Gato extends Animal { @Override public void alimentar() {...} }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constructores</strong></td>
+<td style="text-align: left;">Pueden tener constructores, pero solo son llamados por la subclase usando <strong><code>super()</code></strong>.</td>
+<td style="text-align: left;">El constructor de <code>Gato</code> llama a <code>super(nombre);</code> del constructor de <code>Animal</code>.</td>
+</tr>
+</tbody>
+</table>
 
 
 

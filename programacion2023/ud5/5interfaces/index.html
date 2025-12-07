@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../4polimorfismo/">
+        <link rel="prev" href="../6abstraccion/">
       
       
-        <link rel="next" href="../6abstraccion/">
+        <link rel="next" href="../7exceptions/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -2057,6 +2057,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../6abstraccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ✨ Abstracción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2241,33 +2264,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#interfaces-vs-clases-abstractas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interfaces vs Clases abstractas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-de-caracteristicas-de-las-interfaces-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen de Características de las Interfaces (Java)
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../6abstraccion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ✨ Abstracción
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -4014,6 +4032,149 @@ De esta forma, podremos ordenar nuestros datos según diferentes criterios</p>
 <span class="linenos" data-linenos="35 "></span>
 <span class="linenos" data-linenos="36 "></span><span class="p">}</span>
 </code></pre></div>
+<h2 id="interfaces-vs-clases-abstractas">Interfaces vs Clases abstractas<a class="headerlink" href="#interfaces-vs-clases-abstractas" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Las clases abstractas pueden tener variables de instancia (atributos) que se heredan, al contrario que las interfaces, que no permiten definir variables <strong>solo constantes estáticas</strong>.</li>
+<li>Ni las interfaces ni las clases abstractas se puede instanciar.</li>
+<li>Las interfaces no pueden tener constructores y las clases abstractas si.</li>
+<li>Todos los métodos definidos en una interfaz son por defecto <strong>públicos y abstractos</strong>, mientras que, en un clase abstracta podemos tener métodos con diferentes visibilidades (<code>public</code>, <code>private</code> o <code>protected</code>) y abstractos o con cuerpo.</li>
+<li>Si implementas una interfaz debes sobreescribir todos sus métodos, si heredas de una clase abstractas solo estás obligado a sobreescribir los métodos abstractos.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">Clase Abstracta (<code>abstract class</code>)</th>
+<th style="text-align: left;">Interfaz (<code>interface</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Palabra Clave</strong></td>
+<td style="text-align: left;"><code>abstract class</code></td>
+<td style="text-align: left;"><code>interface</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Herencia</strong></td>
+<td style="text-align: left;">Una clase solo puede <strong>extender</strong> (heredar) de <strong>una</strong> clase abstracta (Herencia Simple).</td>
+<td style="text-align: left;">Una clase puede <strong>implementar</strong> <strong>múltiples</strong> interfaces.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Métodos Definidos</strong></td>
+<td style="text-align: left;">Puede contener <strong>métodos concretos</strong> (con cuerpo) y compartirlos con subclases.</td>
+<td style="text-align: left;">Puede contener <strong>métodos <code>default</code></strong> o <strong><code>static</code></strong> con cuerpo (desde Java 8).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Métodos Abstractos</strong></td>
+<td style="text-align: left;">Los métodos abstractos deben ser declarados explícitamente con <code>abstract</code>.</td>
+<td style="text-align: left;">Todos los métodos (excepto <code>default</code> y <code>static</code>) son implícitamente <strong><code>public abstract</code></strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Campos (Variables)</strong></td>
+<td style="text-align: left;">Puede contener <strong>variables de instancia</strong> de cualquier acceso (<code>private</code>, <code>protected</code>, etc.).</td>
+<td style="text-align: left;">Solo puede contener <strong>constantes</strong> (implícitamente <strong><code>public static final</code></strong>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constructores</strong></td>
+<td style="text-align: left;"><strong>Puede</strong> tener constructores (llamados por <code>super()</code> desde la subclase).</td>
+<td style="text-align: left;"><strong>No puede</strong> tener constructores.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación Lógica</strong></td>
+<td style="text-align: left;">Define una relación <strong>"es un"</strong> (Estructural).</td>
+<td style="text-align: left;">Define un <strong>contrato de capacidad</strong> o <strong>comportamiento</strong> (Funcional).</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando usar clases abstractas o interfaces</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Situación de Diseño</th>
+<th style="text-align: left;">Clase Abstracta (<code>abstract class</code>)</th>
+<th style="text-align: left;">Interfaz (<code>interface</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Herencia Estructural</strong></td>
+<td style="text-align: left;">Cuando la relación es de tipo <strong>"es un"</strong> fuerte, y las clases comparten una identidad base común (ej: <code>Perro es un Animal</code>).</td>
+<td style="text-align: left;">Cuando la relación define una <strong>capacidad</strong> o <strong>rol</strong> (ej: puede <code>Volador</code>, puede <code>Imprimir</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Compartir Implementación</strong></td>
+<td style="text-align: left;">Cuando quieres proporcionar una <strong>implementación base</strong> (métodos concretos) o estado (variables de instancia) útil para todas o la mayoría de las subclases.</td>
+<td style="text-align: left;">Cuando quieres solo <strong>declarar un contrato</strong> y obligar a cada clase a proporcionar su propia implementación completa.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Jerarquía</strong></td>
+<td style="text-align: left;">Cuando tienes una jerarquía de clases profundamente relacionada y quieres compartir código común en varios niveles.</td>
+<td style="text-align: left;">Cuando quieres que clases <strong>no relacionadas</strong> implementen un comportamiento común (herencia múltiple de comportamiento).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Extensibilidad</strong></td>
+<td style="text-align: left;">Cuando necesitas un comportamiento base por defecto (ej: <code>descansar()</code>) que puede ser opcionalmente sobrescrito.</td>
+<td style="text-align: left;">Cuando necesitas la capacidad de <strong>herencia múltiple de comportamiento</strong> (implementar varios contratos simultáneamente).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Control de Acceso</strong></td>
+<td style="text-align: left;">Cuando necesitas definir métodos y campos con cualquier nivel de acceso (<code>public</code>, <code>private</code>, <code>protected</code>).</td>
+<td style="text-align: left;">Cuando solo necesitas métodos <code>public</code> y constantes (<code>public static final</code>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resumen-de-caracteristicas-de-las-interfaces-java">Resumen de Características de las Interfaces (Java)<a class="headerlink" href="#resumen-de-caracteristicas-de-las-interfaces-java" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Ejemplo de Código (<code>interface Volador</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Declaración</strong></td>
+<td style="text-align: left;">Se usa la palabra clave <strong><code>interface</code></strong>. No se usa <code>abstract</code>.</td>
+<td style="text-align: left;"><code>public interface Volador { ... }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Métodos Abstractos</strong></td>
+<td style="text-align: left;">Todos los métodos son implícitamente <strong><code>public</code></strong> y <strong><code>abstract</code></strong> (sin cuerpo).</td>
+<td style="text-align: left;"><code>void despegar();</code> (es igual a <code>public abstract void despegar();</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Campos</strong></td>
+<td style="text-align: left;">Solo se permiten <strong>constantes</strong>. Son implícitamente <strong><code>public static final</code></strong>.</td>
+<td style="text-align: left;"><code>int ALTURA_MAXIMA = 1000;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Herencia</strong></td>
+<td style="text-align: left;">Una clase usa <strong><code>implements</code></strong> para adoptar el contrato de la interfaz.</td>
+<td style="text-align: left;"><code>class Avion implements Volador { ... }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Herencia Múltiple</strong></td>
+<td style="text-align: left;">Una clase puede <strong>implementar múltiples interfaces</strong>, logrando la herencia múltiple de comportamiento.</td>
+<td style="text-align: left;"><code>class Pato implements Volador, Nadador { ... }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Métodos <code>default</code></strong></td>
+<td style="text-align: left;">(Java 8+) Permite añadir métodos <strong>con cuerpo</strong> a la interfaz.</td>
+<td style="text-align: left;"><code>default void aterrizar() { System.out.println("Aterrizando."); }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Métodos <code>static</code></strong></td>
+<td style="text-align: left;">(Java 8+) Permite definir métodos utilitarios dentro de la interfaz.</td>
+<td style="text-align: left;"><code>static void alerta() { System.out.println("¡Alerta de vuelo!"); }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Relación Lógica</strong></td>
+<td style="text-align: left;">Define un <strong>"contrato"</strong> de comportamiento o capacidad.</td>
+<td style="text-align: left;">Un <code>Avion</code> <strong>puede</strong> <code>Volador</code>.</td>
+</tr>
+</tbody>
+</table>
 
 
 
