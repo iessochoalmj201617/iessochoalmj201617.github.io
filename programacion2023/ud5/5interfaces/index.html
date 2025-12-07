@@ -3953,6 +3953,47 @@ De esta forma, podremos ordenar nuestros datos según diferentes criterios</p>
 <span class="linenos" data-linenos="5 "></span><span class="c1">//ordenamos por nombre descendente por Comparator</span>
 <span class="linenos" data-linenos="6 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="n">comparadorNombreDescendente</span><span class="p">);</span>
 </code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;"><code>Comparable</code></th>
+<th style="text-align: left;"><code>Comparator</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Ubicación del Código</strong></td>
+<td style="text-align: left;">El código de ordenación está <strong>dentro de la clase</strong> a ser ordenada (Orden Natural).</td>
+<td style="text-align: left;">El código de ordenación está <strong>fuera de la clase</strong>, en una clase separada o lambda (Orden Personalizado).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Método Principal</strong></td>
+<td style="text-align: left;"><code>public int compareTo(T other)</code></td>
+<td style="text-align: left;"><code>public int compare(T a, T b)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Implementación</strong></td>
+<td style="text-align: left;">Implementado por la <strong>propia clase</strong> (<code>implements Comparable&lt;T&gt;</code>).</td>
+<td style="text-align: left;">Implementado por una <strong>clase externa</strong> (<code>implements Comparator&lt;T&gt;</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cantidad de Órdenes</strong></td>
+<td style="text-align: left;">Solo se puede definir <strong>un único orden natural</strong> para la clase.</td>
+<td style="text-align: left;">Se pueden definir <strong>múltiples órdenes</strong> para la misma clase (por nombre, por precio, etc.).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modificación de Clase</strong></td>
+<td style="text-align: left;"><strong>Requiere modificar</strong> la clase original.</td>
+<td style="text-align: left;"><strong>No requiere modificar</strong> la clase original; es útil para clases de terceros (<code>final</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Caso de Uso Ideal</strong></td>
+<td style="text-align: left;">Ordenar por un atributo <strong>intrínseco</strong> (ej: ordenar <code>String</code> alfabéticamente).</td>
+<td style="text-align: left;">Ordenar por un <strong>atributo secundario</strong> o aplicar lógica de orden diferente a la predeterminada.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="novedades">❇️ Novedades<a class="headerlink" href="#novedades" title="Permanent link">&para;</a></h2>
 <p>Desde Java 8 podemos incluir en una interfaz:</p>
 <ul>
