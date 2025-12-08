@@ -2214,18 +2214,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interfaz-comparable" class="md-nav__link">
+  <a href="#interfaz-comparable-apijava" class="md-nav__link">
     <span class="md-ellipsis">
-      ❇️ Interfaz Comparable
+      ❇️ Interfaz Comparable (apiJava)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="❇️ Interfaz Comparable (apiJava)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordenar-listas-y-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordenar Listas y Arrays
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#interface-comparator" class="md-nav__link">
+  <a href="#interface-comparatorapijava" class="md-nav__link">
     <span class="md-ellipsis">
-      ❇️ Interface Comparator
+      ❇️ Interface Comparator(ApiJava)
     </span>
   </a>
   
@@ -2241,13 +2256,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#novedades" class="md-nav__link">
+  <a href="#novedades-interfaces-default-methods-y-metodos-estaticos" class="md-nav__link">
     <span class="md-ellipsis">
-      ❇️ Novedades
+      ❇️ Novedades Interfaces: default methods y métodos estáticos
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="❇️ Novedades">
+    <nav class="md-nav" aria-label="❇️ Novedades Interfaces: default methods y métodos estáticos">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3621,6 +3636,18 @@ arrancable, dibujable, etc</code>.</p>
 <p>Si ponemos <code>public</code> IntelliJ nos avisa:</p>
 <p><img alt="Interface" src="../../img/ud5/4interfaces.png" /></p>
 <p><img alt="Interface" src="../../img/ud5/12interfaces.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Impuesto</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">//constantes</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">TASA_DE_IMPUESTO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.06</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="c1">//métodos abstractos</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">calcularImpuestoAnual</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">imprimirImpuesto</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
 <h2 id="relaciones-entre-interfaces-y-clases">❇️ Relaciones entre interfaces y clases<a class="headerlink" href="#relaciones-entre-interfaces-y-clases" title="Permanent link">&para;</a></h2>
 <p>Tenemos tres tipos de relaciones:</p>
 <ul>
@@ -3638,23 +3665,55 @@ arrancable, dibujable, etc</code>.</p>
 <p>Observamos que IntelliJ nos genera un error, ya que debemos definir o implementar los métodos que habíamos declarado en la interfaz. Si hacemos click en el error, IntelliJ nos ofrece crearlos:</p>
 <p><img alt="Interface" src="../../img/ud5/6interfaces.png" /></p>
 <p><img alt="Interface" src="../../img/ud5/7interfaces.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TelefonoMovil</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">miNumero</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">estaSonando</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">TelefonoMovil</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">miNumero</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">miNumero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">miNumero</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">calcular</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">TASA_DE_IMPUESTO</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">imprimirImpuesto</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;El impuesto anual del teléfono es &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">calcular</span><span class="p">());</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
 <p>IntelliJ nos ha creado <strong>TODOS</strong> los métodos que habíamos definido en la interfaz, como vemos con la anotación <code>@Override</code>, ya que los está sobreescribiendo puesto que estaban declarados en la interfaz.</p>
 <div class="admonition note importante">
 <p class="admonition-title">Note</p>
 <p><strong>TODOS</strong> los métodos definidos en la interfaz se han de implementar en la clase, no podríamos implementar solo algunos.</p>
 </div>
 <p>Veamos como probar el código en nuestra clase <code>Main</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainTelefono</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">Impuesto</span><span class="w"> </span><span class="n">impuesto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TelefonoMovil</span><span class="p">(</span><span class="mi">123456789</span><span class="p">);</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="n">impuesto</span><span class="p">.</span><span class="na">imprimirImpuesto</span><span class="p">();</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainTelefono</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="c1">//Variable  creada de tipo móvil</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">TelefonoMovil</span><span class="w"> </span><span class="n">iphone5</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">TelefonoMovil</span><span class="p">(</span><span class="mi">555456789</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">iphone5</span><span class="p">.</span><span class="na">imprimirImpuesto</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="c1">//Variable de tipo Impuesto que contiene objeto Movil. Usa el polimorfismo</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">Impuesto</span><span class="w"> </span><span class="n">impuestoMovil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TelefonoMovil</span><span class="p">(</span><span class="mi">123456789</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">impuestoMOvil</span><span class="p">.</span><span class="na">imprimirImpuesto</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning warning">
 <p class="admonition-title">Warning</p>
 <p>Las interfaces <em>NO PUEDEN INSTANCIARSE</em>, es decir, no podemos crear objetos de interfaces. Hay que usar una clase que haya implementado la funcionalidad definida por la interfaz.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">//ERROR</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">Impuesto</span><span class="w"> </span><span class="n">impuestoMovil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Impuesto</span><span class="p">();</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">impuestoMOvil</span><span class="p">.</span><span class="na">imprimirImpuesto</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
 </div>
 <h2 id="otro-ejemplo-con-herencia-e-interface">❇️Otro ejemplo con herencia e interface<a class="headerlink" href="#otro-ejemplo-con-herencia-e-interface" title="Permanent link">&para;</a></h2>
 <p>Queremos crear un videojuego en el que tenemos pieza de cubo que el usuario las utilizará para construir un mundo. Algunas de las piezas(no todas) cuando se toquen pueden explotar y otras pueden quemarse, otras pueden quemarse y explotar. </p>
@@ -3774,13 +3833,14 @@ arrancable, dibujable, etc</code>.</p>
 <p>Para estos casos tenemos las clases anónimas. Son clases sin nombre que implementan un interface y que utilizan el nombre de la Interface como constructor.</p>
 <p>Vamos a suponer que en un momento del juego, queremos generar una explosión exclusiva que no está asociada a ningún objeto. Podemos crear una objeto de la clase anónima de la siguiente forma</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Explotable</span><span class="w"> </span><span class="n">miExplosion</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Explotable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">            </span><span class="nd">@Override</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">explotar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;boonnobooonnnoboonnnobonnbonn!&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">            </span><span class="p">}</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">        </span><span class="p">};</span>
-<span class="linenos" data-linenos="7 "></span><span class="c1">//No hay una clase específica</span>
-<span class="linenos" data-linenos="8 "></span><span class="n">miExplosion</span><span class="p">.</span><span class="na">explotar</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1">//implementamos el método que nos obliga e la interface</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">            </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">explotar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;boonnobooonnnoboonnnobonnbonn!&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="p">};</span>
+<span class="linenos" data-linenos="8 "></span><span class="c1">//No hay una clase específica, es una clase anónima, creada para este código</span>
+<span class="linenos" data-linenos="9 "></span><span class="n">miExplosion</span><span class="p">.</span><span class="na">explotar</span><span class="p">();</span>
 </code></pre></div>
 <h2 id="clase-anonimas-y-desarrollo-en-entornos-graficos">❇️ Clase anónimas y desarrollo en entornos gráficos<a class="headerlink" href="#clase-anonimas-y-desarrollo-en-entornos-graficos" title="Permanent link">&para;</a></h2>
 <p>En el desarrollo de aplicaciones en entornos gráficos orientados a eventos, las clases anónimas se utilizan constantemente, ya que para definir los diferentes eventos como puede ser realizar una acción cuando hace click sobre un botón, el método correspondiente para asignar el evento al botón espera un objeto de una clase que implemente cierta interface, y como solamente defines una vez lo que tiene que hacerse cuando se pulsa el botón, no creas una clase concreta, creas una clase anónima que implementa la interface.</p>
@@ -3812,44 +3872,81 @@ Para asignar el evento al botón vemos el tipo de objeto que necesita</p>
 <span class="linenos" data-linenos="6 "></span><span class="w">        </span><span class="p">}</span>
 <span class="linenos" data-linenos="7 "></span><span class="p">});</span>
 </code></pre></div>
-<h2 id="interfaz-comparable">❇️ Interfaz Comparable<a class="headerlink" href="#interfaz-comparable" title="Permanent link">&para;</a></h2>
+<h2 id="interfaz-comparable-apijava">❇️ Interfaz Comparable (<a href="https://docs.oracle.com/en/java/javase/22/docs/api//java.base/java/lang/Comparable.html">apiJava</a>)<a class="headerlink" href="#interfaz-comparable-apijava" title="Permanent link">&para;</a></h2>
 <p>En programación hay ciertas operaciones que son tan comunes que se han desarrollado en la Api de Java. Una de estas operaciones es determinar el orden de una lista de objetos de la misma clase.</p>
 <p>En Java, la interfaz <code>Comparable</code> es una interfaz genérica que se utiliza para definir el orden natural de los objetos de una clase. Esta interfaz se encuentra en el paquete <code>java.lang</code> y tiene un único método llamado <code>compareTo()</code> . </p>
 <p>La idea es que una clase que implementa la interfaz <code>Comparable</code> puede ser comparada con otras instancias de la misma clase y se puede saber si es menor, mayor o igual.</p>
 <p>La clase que implementa <code>Comparable</code> tiene que implementar el método <code>compareTo()</code> que devuelve un entero</p>
 <p><strong>int compareTo(Object ob)</strong></p>
 <p>De tal manera que</p>
-<p><strong>ob1.compareTo(ob2) &lt; 0</strong>  si ob1 va antes que ob2</p>
-<p><strong>ob1.compareTo(ob2) &gt; 0</strong>  si ob2 va antes que ob1</p>
-<p><strong>ob1.compareTo(ob2) = 0</strong>  si ob1 es igual que ob2</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Expresión</th>
+<th style="text-align: left;">Condición</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ob1.compareTo(ob2) &lt; 0</strong></td>
+<td style="text-align: left;">Menor que cero (Negativo)</td>
+<td style="text-align: left;"><strong><code>ob1</code> va antes que <code>ob2</code></strong> en orden de clasificación (clasificación natural).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ob1.compareTo(ob2) &gt; 0</strong></td>
+<td style="text-align: left;">Mayor que cero (Positivo)</td>
+<td style="text-align: left;"><strong><code>ob2</code> va antes que <code>ob1</code></strong> en orden de clasificación.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ob1.compareTo(ob2) = 0</strong></td>
+<td style="text-align: left;">Cero</td>
+<td style="text-align: left;"><strong><code>ob1</code> es igual que <code>ob2</code></strong> (tienen el mismo orden de clasificación).</td>
+</tr>
+</tbody>
+</table>
 <p>En este ejemplo, la comparación se realiza en función de la edad de las personas. Puedes personalizar la lógica dentro del método <code>compareTo()</code> según los criterios de orden que desees establecer para tus objetos.</p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 4 "></span>
 <span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="c1">// Constructor y otros métodos de la clase</span>
 <span class="linenos" data-linenos=" 6 "></span>
 <span class="hll"><span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nd">@Override</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compareTo</span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">otraPersona</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="c1">// Comparación basada en la edad</span>
-</span><span class="hll"><span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">edad</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">otraPersona</span><span class="p">.</span><span class="na">edad</span><span class="p">;</span>
-</span><span class="hll"><span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
-</span><span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Maria&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
-<span class="linenos" data-linenos="16 "></span>
-<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">persona2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; es menor que &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">persona2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; es mayor que &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; tiene la misma edad que &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="25 "></span><span class="p">}</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="c1">// Con esta implementación, una lista de objetos Persona </span>
+</span><span class="hll"><span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">// se ordenará de forma ascendente (de menor a mayor) </span>
+</span><span class="hll"><span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="c1">// según su atributo edad</span>
+</span><span class="hll"><span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">edad</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">otraPersona</span><span class="p">.</span><span class="na">edad</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos" data-linenos="13 "></span>
+</span><span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="c1">//Para ordenar de forma descendente (del más viejo al más joven),</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="c1">//  simplemente invertirías el orden de la resta:</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="c1">//return otraPersona.edad - this.edad;</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span><span class="c1">// Constructor para inicializar los atributos</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Persona</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nombre</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Maria&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">persona2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; es menor que &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">persona2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; es mayor que &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; tiene la misma edad que &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="38 "></span><span class="p">}</span>
 </code></pre></div>
-De esta manera, la Api de Java tiene clases que utilizan la interface <code>Comparable</code> para ordenar. Por ejemplo la clase Arrays.</p>
+<h3 id="ordenar-listas-y-arrays">Ordenar Listas y Arrays<a class="headerlink" href="#ordenar-listas-y-arrays" title="Permanent link">&para;</a></h3>
+<p>De esta manera, la Api de Java tiene clases que utilizan la interface <code>Comparable</code> para ordenar. Por ejemplo la <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-java.lang.Object:A-">clase Arrays y el método sort</a>.</p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Maria&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
@@ -3857,7 +3954,7 @@ De esta manera, la Api de Java tiene clases que utilizan la interface <code>Comp
 <span class="linenos" data-linenos=" 5 "></span>
 <span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">Persona</span><span class="o">[]</span><span class="w"> </span><span class="n">personas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">persona1</span><span class="p">,</span><span class="w"> </span><span class="n">persona2</span><span class="p">,</span><span class="w"> </span><span class="n">persona3</span><span class="p">};</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">imprimirArray</span><span class="p">(</span><span class="n">personas</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="c1">// Ordenar el array utilizando Arrays.sort()</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="c1">// Ordenar el array utilizando el método estático Arrays.sort() mediante  el orden por defecto definido en compareTo</span>
 <span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">);</span>
 </span><span class="linenos" data-linenos="10 "></span>
 <span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nArray de personas después de ordenar por edad:&quot;</span><span class="p">);</span>
@@ -3866,7 +3963,7 @@ De esta manera, la Api de Java tiene clases que utilizan la interface <code>Comp
 <span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="c1">// Método para imprimir el array de personas</span>
 <span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">imprimirArray</span><span class="p">(</span><span class="n">Persona</span><span class="o">[]</span><span class="w"> </span><span class="n">personas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">persona</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">personas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - Edad: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">getEdad</span><span class="p">());</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona</span><span class="p">);</span>
 <span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="p">}</span>
 <span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
@@ -3896,15 +3993,16 @@ o para ordenar un ArrayList</p>
 <span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="c1">// Método para imprimir el ArrayList de personas</span>
 <span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">imprimirArrayList</span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listaPersonas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">persona</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">listaPersonas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - Edad: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">getEdad</span><span class="p">());</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona</span><span class="p">);</span>
 <span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="p">}</span>
 <span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<h2 id="interface-comparator">❇️ Interface Comparator<a class="headerlink" href="#interface-comparator" title="Permanent link">&para;</a></h2>
+<h2 id="interface-comparatorapijava">❇️ Interface Comparator(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">ApiJava</a>)<a class="headerlink" href="#interface-comparatorapijava" title="Permanent link">&para;</a></h2>
 <p>Mediante la interface <code>Comparable</code> hemos visto que otras clases pueden ordenar un conjunto de objetos de una clase por una condición(en el ejemplo, por la edad), pero podemos tener la necesidad de tener que ordenar por otras condiciones(por ejemplo por el nombre).</p>
-<p>Si vemos la a Api de Java para la clase Arrays, tenemos el método <code>sort</code> sobrecargado, y una de las sobrecargas es</p>
-<p><strong>sort(T[] a, Comparator&lt;? super T&gt; c)</strong></p>
+<p>Si vemos la a [Api de Java para la clase Arrays], tenemos el método <code>sort</code> sobrecargado, y una de las sobrecargas es</p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-T:A-java.util.Comparator-">sort(T[] a, Comparator&lt;? super T&gt; c)</a></p>
 <p>Vemos que acepta un objeto que implementa <code>Comparator</code>. Esto nos permite ordenar por otras condiciones determinadas por <code>Comparator</code></p>
+<p><code>Comparator</code> nos obliga a implementar el método <code>compare</code></p>
 <p>Por ejemplo, queremos ordenar un array de Personas por nombre, haríamos lo siguiente</p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Persona</span><span class="o">[]</span><span class="w"> </span><span class="n">personas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
@@ -3925,7 +4023,7 @@ o para ordenar un ArrayList</p>
 <span class="linenos" data-linenos="17 "></span>
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="c1">// Imprimiendo la lista ordenada ascendente</span>
 <span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">persona</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">personas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona</span><span class="p">.</span><span class="na">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">persona</span><span class="p">.</span><span class="na">edad</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">persona</span><span class="p">);</span>
 <span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="22 "></span><span class="p">}</span>
 </code></pre></div>
@@ -3934,24 +4032,58 @@ El mismo ejemplo pero con un <code>ArrayList</code>.</p>
 <span class="linenos" data-linenos="2 "></span><span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="w"> </span><span class="n">comparadorNombreAscendente</span><span class="p">);</span>
 </code></pre></div>
 De esta forma, podremos ordenar nuestros datos según diferentes criterios</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//ordenar por nombre de forma descendente</span>
-<span class="linenos" data-linenos="2 "></span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comparadorNombreDescendente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="nd">@Override</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">per1</span><span class="p">,</span><span class="w"> </span><span class="n">Persona</span><span class="w"> </span><span class="n">per2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">            </span><span class="c1">//descendente por nombre</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">per2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">per1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">};</span>
-<span class="linenos" data-linenos="9 "></span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="n">comparadorNombreDescendente</span><span class="p">);</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//ordenar por nombre de forma descendente</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comparadorNombreDescendente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">per1</span><span class="p">,</span><span class="w"> </span><span class="n">Persona</span><span class="w"> </span><span class="n">per2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="c1">//descendente por nombre. Utiliza el compareTo de String</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">per2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">per1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">};</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="n">comparadorNombreDescendente</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w"> </span><span class="c1">//Arrays tiene un método que transforma el contenido a String en formato [o1,o2...]</span>
+<span class="linenos" data-linenos="11 "></span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">personas</span><span class="p">));</span>
+</code></pre></div>
+Gracias a las clases anónima, no es necesario crear una variable de instancia, podemos reducir el código creando el objeto de clase anónima dentro de la llamada de sort</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//ordenar por nombre de forma descendente con llamada directa</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">per1</span><span class="p">,</span><span class="w"> </span><span class="n">Persona</span><span class="w"> </span><span class="n">per2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">            </span><span class="c1">//descendente por nombre</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">per2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">per1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w"> </span><span class="p">);</span>
 </code></pre></div>
 <h2 id="comparable-vs-comparator">Comparable vs Comparator<a class="headerlink" href="#comparable-vs-comparator" title="Permanent link">&para;</a></h2>
 <p><code>Comparable</code> nos va a permitir ordenar por un criterio principal el conjunto de objetos de una clase y <code>Comparator</code> nos permitirá ordenar por otros criterios los objetos de la clase</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//ordenamos por edad mediante Comparable</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">);</span>
-<span class="linenos" data-linenos="3 "></span><span class="c1">//ordenamos por nombre ascendente por Comparator</span>
-<span class="linenos" data-linenos="4 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="n">comparadorNombreAscendente</span><span class="p">);</span>
-<span class="linenos" data-linenos="5 "></span><span class="c1">//ordenamos por nombre descendente por Comparator</span>
-<span class="linenos" data-linenos="6 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="n">comparadorNombreDescendente</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//ordenamos por edad mediante Comparable</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">personas</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">//ordenamos por nombre ascendente por Comparator</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">per1</span><span class="p">,</span><span class="w"> </span><span class="n">Persona</span><span class="w"> </span><span class="n">per2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="c1">//descendente por nombre</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">per1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">per2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">personas</span><span class="p">));</span>
+<span class="linenos" data-linenos="15 "></span><span class="c1">//ordenamos por nombre descendente por Comparator</span>
+<span class="linenos" data-linenos="16 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">personas</span><span class="p">,</span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Persona</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Persona</span><span class="w"> </span><span class="n">per1</span><span class="p">,</span><span class="w"> </span><span class="n">Persona</span><span class="w"> </span><span class="n">per2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="c1">//descendente por nombre. Cambia el orden de los objetos</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">per2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">per1</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">personas</span><span class="p">));</span>
 </code></pre></div>
 <table>
 <thead>
@@ -3994,7 +4126,7 @@ De esta forma, podremos ordenar nuestros datos según diferentes criterios</p>
 </tr>
 </tbody>
 </table>
-<h2 id="novedades">❇️ Novedades<a class="headerlink" href="#novedades" title="Permanent link">&para;</a></h2>
+<h2 id="novedades-interfaces-default-methods-y-metodos-estaticos">❇️ Novedades Interfaces: default methods y métodos estáticos<a class="headerlink" href="#novedades-interfaces-default-methods-y-metodos-estaticos" title="Permanent link">&para;</a></h2>
 <p>Desde Java 8 podemos incluir en una interfaz:</p>
 <ul>
 <li>
