@@ -3515,9 +3515,12 @@ Sin embargo, este comportamiento predeterminado suele ser insuficiente para repr
 <span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="11 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Cuando es necesaria una transformación a String, Java llama automáticamente al método toString(), por lo que puedes simplemente usar:</p>
+<div class="admonition nota">
+<p class="admonition-title">Nota</p>
+<p>Cuando es necesaria una transformación a String, el método llama automáticamente al método <strong>toString()</strong>, por lo que puedes simplemente usar:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">coche</span><span class="p">);</span>
 </code></pre></div>
+</div>
 <h2 id="metodo-equals">Método <strong>equals()</strong><a class="headerlink" href="#metodo-equals" title="Permanent link">&para;</a></h2>
 <p>En Java, el método equals() se utiliza para comparar la igualdad de dos objetos. Este método está definido en la clase Object, que es la clase base para todas las clases en Java. Sin embargo, es común que las clases personalizadas sobrescriban este método para proporcionar una implementación específica de la igualdad entre dos objetos de la misma clase.</p>
 <p>La firma del método equals() en la clase Object es la siguiente:</p>

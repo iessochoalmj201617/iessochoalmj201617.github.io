@@ -3467,56 +3467,60 @@
 <span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos=" 7 "></span>
 <span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hablar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">nombre</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: ....&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">nombre</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: ....&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="kd">class</span> <span class="nc">Gato</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Gato</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nd">@Override</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hablar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">nombre</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: Miaaauuuuuu....&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="22 "></span><span class="p">}</span>
-<span class="linenos" data-linenos="23 "></span>
-<span class="linenos" data-linenos="24 "></span><span class="kd">class</span> <span class="nc">Perro</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Perro</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
-<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="28 "></span>
-<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="nd">@Override</span>
-<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hablar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="31 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">nombre</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: Guuuaaaaaaauuuuu.....&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="33 "></span><span class="p">}</span>
-<span class="linenos" data-linenos="34 "></span>
-<span class="linenos" data-linenos="35 "></span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Persona</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
-<span class="linenos" data-linenos="38 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="39 "></span>
-<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="nd">@Override</span>
-<span class="linenos" data-linenos="41 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hablar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="42 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">nombre</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: Blablablabla....&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="43 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="44 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getNombre</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="kd">class</span> <span class="nc">Gato</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Gato</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hablar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">getNombre</span><span class="p">()</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: Miaaauuuuuu....&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="kd">class</span> <span class="nc">Perro</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Perro</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hablar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">getNombre</span><span class="p">()</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: Guuuaaaaaaauuuuu.....&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="37 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="38 "></span>
+<span class="linenos" data-linenos="39 "></span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Persona</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">nombre</span><span class="p">);</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="43 "></span>
+<span class="linenos" data-linenos="44 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">hablar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="w"> </span><span class="n">getNombre</span><span class="p">()</span><span class="o">+</span><span class="w"> </span><span class="s">&quot; dice: Blablablabla....&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="48 "></span><span class="p">}</span>
 </code></pre></div>
 Cada uno de los animales habla su propio idioma al sobrescribir el método <code>hablar()</code></p>
 <p>En nuestro fantástico juego, queremos que los animales de la habitación tengan una conversación, el código puede ser algo parecido a los siguiente. </p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Gato</span><span class="w"> </span><span class="n">gato1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Garfiel&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Perro</span><span class="w"> </span><span class="n">perro1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Laika&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Pirico&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">public</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">conversar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">        </span><span class="n">gato1</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="n">perro1</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
-<span class="linenos" data-linenos="8 "></span><span class="w">        </span><span class="n">persona1</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
-<span class="linenos" data-linenos="9 "></span><span class="w">    </span><span class="p">}</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Gato</span><span class="w"> </span><span class="n">gato1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Garfiel&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">Perro</span><span class="w"> </span><span class="n">perro1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Laika&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">Persona</span><span class="w"> </span><span class="n">persona1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Pirico&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="c1">//conversar</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">gato1</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">perro1</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="n">persona1</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
-Cada uno de los personajes hablará en su idioma al llamar a <code>conversar()</code>.</p>
+Cada uno de los personajes hablará en su idioma .</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Garfield<span class="w">  </span>dice:<span class="w"> </span>Miaaauuuuuu....
 <span class="linenos" data-linenos="2 "></span>Laika<span class="w"> </span>dice:<span class="w"> </span>Guuuaaaaaaauuuuu.....
 <span class="linenos" data-linenos="3 "></span>Perico<span class="w"> </span>dice:<span class="w"> </span>Blablablabla....
@@ -3529,24 +3533,49 @@ Cada uno de los personajes hablará en su idioma al llamar a <code>conversar()</
 muestra</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Garfield<span class="w">  </span>dice:<span class="w"> </span>Miaaauuuuuu....
 </code></pre></div>
-<p>Esto nos permite una solución más abierta manteniendo una lista de tipo Animal, donde guardamos los diferentes animales y recorremos para que hablen todos los animales, cada uno en su idioma.</p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//creamos la lista de tipo Animal</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Animal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">animales</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">//añadimos animales de los tipos descendientes</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">animales</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Garfiel&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">animales</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Laika&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">animales</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Pirico&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">public</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">conversar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Animal</span><span class="w"> </span><span class="n">animal</span><span class="p">:</span><span class="n">animales</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="c1">//llamará al método correspondiente del tipo de la instancia</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">animal</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span>
+<p>Esto nos permite una solución más abierta manteniendo un array de tipo Animal, donde guardamos los diferentes animales y recorremos para que hablen todos los animales, cada uno en su idioma.</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="c1">//creamos un array de tipo Animal</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">Animal</span><span class="o">[]</span><span class="w"> </span><span class="n">animales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Garfiel&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Laika&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Pirico&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Misifu&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Goofy&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="p">};</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">//Conversanción de animales</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Animal</span><span class="w"> </span><span class="n">animal</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">animales</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="c1">//llamará al método correspondiente del tipo de la instancia</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">animal</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Garfiel<span class="w"> </span>dice:<span class="w"> </span>Miaaauuuuuu....
+<span class="linenos" data-linenos="2 "></span>Laika<span class="w"> </span>dice:<span class="w"> </span>Guuuaaaaaaauuuuu.....
+<span class="linenos" data-linenos="3 "></span>Pirico<span class="w"> </span>dice:<span class="w"> </span>Blablablabla....
+<span class="linenos" data-linenos="4 "></span>Misifu<span class="w"> </span>dice:<span class="w"> </span>Miaaauuuuuu....
+<span class="linenos" data-linenos="5 "></span>Goofy<span class="w"> </span>dice:<span class="w"> </span>Guuuaaaaaaauuuuu.....
 </code></pre></div>
 <img alt="polimorfismo" src="../../img/ud3/polimorfismo2.png" /></p>
 <p>De esta forma, podríamos añadir en un futuro nuevos tipos de animal y que no afectara al código del método <code>conversar()</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">animales</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Raton</span><span class="p">(</span><span class="s">&quot;Mickey&quot;</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Animal</span><span class="o">[]</span><span class="w"> </span><span class="n">animales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">                </span><span class="c1">//nuevo animal</span>
+<span class="hll"><span class="linenos" data-linenos=" 3 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Raton</span><span class="p">(</span><span class="s">&quot;Mickey&quot;</span><span class="p">),</span>
+</span><span class="linenos" data-linenos=" 4 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Garfiel&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Laika&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Pirico&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Gato</span><span class="p">(</span><span class="s">&quot;Misifu&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Goofy&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="p">};</span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">//***********************************************</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1">//******el código principal no se ve afectado****</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1">//***********************************************</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="c1">//Conversanción de animales</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Animal</span><span class="w"> </span><span class="n">animal</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">animales</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="c1">//llamará al método correspondiente del tipo de la instancia</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">animal</span><span class="p">.</span><span class="na">hablar</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="p">}</span>
 </code></pre></div>
 <div class="admonition resumen">
 <p class="admonition-title">Resumen</p>
@@ -3574,11 +3603,13 @@ Si queremos convertir un hijo en padre tendremos que hacer un Upcasting, y al re
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Perro</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Perro</span><span class="p">)</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Animal</span><span class="p">();</span><span class="w"> </span><span class="c1">// compila pero da error de ejecución</span>
 <span class="linenos" data-linenos=" 4 "></span>
 <span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="c1">//DOWNCASTING, convertir padre en hijo</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Tobi&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">Perro</span><span class="w"> </span><span class="n">pe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Perro</span><span class="p">)</span><span class="n">a</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 8 "></span>
 <span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">//UPCASTING, convertir hijo en padre</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Milu&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="c1">//no es necesario hacer cast</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">Animal</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Perro</span><span class="p">(</span><span class="s">&quot;Niebla&quot;</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="el-operador-instanceof">El operador <code>instanceof</code><a class="headerlink" href="#el-operador-instanceof" title="Permanent link">&para;</a></h2>
 <p>Las operaciones entre clases y en particular el downcasting requieren que las clases sean de tipos
