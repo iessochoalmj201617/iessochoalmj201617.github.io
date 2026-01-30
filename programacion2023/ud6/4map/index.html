@@ -2368,6 +2368,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#treemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      TreeMap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TreeMap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Características principales
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3725,6 +3749,7 @@
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
 Su representación de  <code>HashMap</code> que podría haberse leído de un servicio web o un fichero:</p>
+<p><img alt="Map" src="../../img/ud6/map8.png" /></p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//El valor debe ser Object porque podemos contener diversos tipos de datos</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="n">persona</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Juan&quot;</span><span class="p">);</span>
@@ -3747,6 +3772,152 @@ Para acceder a los datos debemos hacer un casting</p>
 <span class="linenos" data-linenos="7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Edad: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="p">);</span>
 <span class="linenos" data-linenos="8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Ciudad: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ciudad</span><span class="p">);</span>
 <span class="linenos" data-linenos="9 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Teléfonos: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">telefonos</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="treemap">TreeMap<a class="headerlink" href="#treemap" title="Permanent link">&para;</a></h2>
+<p>TreeMap es una clase de Java que pertenece al paquete java.util y implementa la interfaz Map. Sirve para guardar pares clave–valor, pero manteniendo las claves ordenadas automáticamente.</p>
+<p><strong>TreeMap = Map + Orden automático por clave</strong></p>
+<h3 id="caracteristicas-principales">Características principales<a class="headerlink" href="#caracteristicas-principales" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Las claves se ordenan de forma natural (String alfabéticamente, Integer de menor a mayor).</p>
+</li>
+<li>
+<p>También se puede usar un Comparator personalizado.</p>
+</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mapa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</code></pre></div>
+Su estructura interna es un árbol binario de búsqueda <a href="https://es.wikipedia.org/wiki/%C3%81rbol_rojo-negro">balanceado rojos/negro</a>, lo que significa:</p>
+<p><img alt="alt text" src="../../img/ud6/map3.png" /></p>
+<p>Cada nodo contiene:</p>
+<ul>
+<li>una clave</li>
+<li>un valor</li>
+<li>referencia al hijo izquierdo</li>
+<li>referencia al hijo derecho</li>
+<li>referencia al padre</li>
+<li>un color (rojo o negro). Garantiza que el árbol esté siempre equilibrado, evitando que se vuelva muy alto</li>
+</ul>
+<p>Las claves se colocan siguiendo esta regla:</p>
+<ul>
+<li>
+<p>Claves menores → subárbol izquierdo</p>
+</li>
+<li>
+<p>Claves mayores → subárbol derecho</p>
+</li>
+</ul>
+<p>Ejemplo:</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mapa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">mapa</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Luis&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">mapa</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ana&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">mapa</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Carlos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="mi">2</span><span class="o">=</span><span class="n">Luis</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">       </span><span class="o">/</span><span class="w">       </span><span class="err">\</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">   </span><span class="mi">1</span><span class="o">=</span><span class="n">Ana</span><span class="w">     </span><span class="mi">3</span><span class="o">=</span><span class="n">Carlos</span>
+</code></pre></div>
+TreeMap permite operaciones muy útiles para trabajar con rangos:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subMap(a, b)</code></td>
+<td>Claves entre <code>a</code> y <code>b</code></td>
+</tr>
+<tr>
+<td><code>headMap(k)</code></td>
+<td>Claves menores que <code>k</code></td>
+</tr>
+<tr>
+<td><code>tailMap(k)</code></td>
+<td>Claves mayores o iguales a <code>k</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ideal para fechas, notas, IDs, tramos, etc.</p>
+<p>TreeMap es más lento que HashMap pero mantiene el orden siempre correcto y la búsquedas son muy eficientes(get, put, remove).</p>
+<p>El recorrido del TreeMap sale siempre ordenado</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">mapa</span><span class="p">.</span><span class="na">entrySet</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getKey</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Cuando usar</strong></p>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>Mejor opción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orden automático</td>
+<td><code>TreeMap</code></td>
+</tr>
+<tr>
+<td>Máxima velocidad</td>
+<td><code>HashMap</code></td>
+</tr>
+<tr>
+<td>Mantener orden de inserción</td>
+<td><code>LinkedHashMap</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplos</p>
+<p>Uso básico de TreeMap</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EjemploTreeMap</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">alumnos</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Carlos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">alumnos</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ana&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">alumnos</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Luis&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">alumnos</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="c1">//{1=Ana, 2=Luis, 3=Carlos}</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+</code></pre></div>
+Recorrer un TreeMap ordenado
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/*</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">1 -&gt; Ana</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">2 -&gt; Luis</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">3 -&gt; Carlos</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm">*/</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">clave</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">alumnos</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">clave</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; -&gt; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">alumnos</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">clave</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+Obtener la primera y última clave
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Primera clave: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">alumnos</span><span class="p">.</span><span class="na">firstKey</span><span class="p">());</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Última clave: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">alumnos</span><span class="p">.</span><span class="na">lastKey</span><span class="p">());</span>
+</code></pre></div>
+Trabajar con rangos de claves</p>
+<p><img alt="Map" src="../../img/ud6/map9.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">TreeMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rango</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">rango</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Suspenso&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">rango</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Aprobado&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">rango</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Notable&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">rango</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sobresaliente&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">// Claves entre 5 y 9 (sin incluir 9)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rango</span><span class="p">.</span><span class="na">subMap</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">));</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="c1">// Claves menores que 7</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rango</span><span class="p">.</span><span class="na">headMap</span><span class="p">(</span><span class="mi">7</span><span class="p">));</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="c1">// Claves mayores o iguales que 7</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rango</span><span class="p">.</span><span class="na">tailMap</span><span class="p">(</span><span class="mi">7</span><span class="p">));</span>
 </code></pre></div>
 
 
