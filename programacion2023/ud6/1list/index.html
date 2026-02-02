@@ -3749,54 +3749,106 @@ Sin embargo, desde Java 5, las primitivas se convierten automáticamente en obje
 <table>
 <thead>
 <tr>
-<th>MÉTODO</th>
-<th>DESCRIPCIÓN</th>
+<th>Método</th>
+<th>Descripción corta</th>
+<th>Ejemplo</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>size()</td>
-<td>Devuelve el número de elementos (int).</td>
+<td><code>add(E e)</code></td>
+<td>Añade un elemento al final</td>
+<td><code>lista.add("Juan");</code></td>
 </tr>
 <tr>
-<td>add(x)</td>
-<td>Añade el objeto X al final. Devuelve true.</td>
+<td><code>add(int index, E e)</code></td>
+<td>Inserta elemento en una posición</td>
+<td><code>lista.add(0, "Ana");</code></td>
 </tr>
 <tr>
-<td>add(posición, X)</td>
-<td>Inserta el objeto X en la posición indicada desplazando hacia adelante el resto de elementos de la colección.</td>
+<td><code>get(int index)</code></td>
+<td>Obtiene el elemento de una posición</td>
+<td><code>lista.get(0);</code></td>
 </tr>
 <tr>
-<td>get(posición)</td>
-<td>Devuelve el elemento que está en la posición indicada.</td>
+<td><code>set(int index, E e)</code></td>
+<td>Reemplaza un elemento</td>
+<td><code>lista.set(0, "Luis");</code></td>
 </tr>
 <tr>
-<td>remove(posición)</td>
-<td>Elimina el elemento que se encuentra en la posición indicada desplazando hacia atrás el resto de los elementos de la colección. Devuelve el elemento eliminado.</td>
+<td><code>remove(int index)</code></td>
+<td>Elimina por índice</td>
+<td><code>lista.remove(0);</code></td>
 </tr>
 <tr>
-<td>remove(X)</td>
-<td>Elimina la primera ocurrencia del objeto X. Devuelve true si el elemento está en la lista.</td>
+<td><code>remove(Object o)</code></td>
+<td>Elimina por valor</td>
+<td><code>lista.remove("Juan");</code></td>
 </tr>
 <tr>
-<td>clear()</td>
-<td>Elimina todos los elementos.</td>
+<td><code>size()</code></td>
+<td>Devuelve el tamaño</td>
+<td><code>lista.size();</code></td>
 </tr>
 <tr>
-<td>set(posición, X)</td>
-<td>Sustituye el elemento que se encuentra en la posición indicada por el objeto X. Devuelve el elemento sustituido.</td>
+<td><code>isEmpty()</code></td>
+<td>Comprueba si está vacía</td>
+<td><code>lista.isEmpty();</code></td>
 </tr>
 <tr>
-<td>contains(x)</td>
-<td>Comprueba si la colección contiene al objeto X. Devuelve true o false.</td>
+<td><code>contains(Object o)</code></td>
+<td>Comprueba si existe un elemento</td>
+<td><code>lista.contains("Ana");</code></td>
 </tr>
 <tr>
-<td>indexOf()</td>
-<td>Devuelve la primera posición del objeto X. Si no existe devuelve -1.</td>
+<td><code>clear()</code></td>
+<td>Elimina todos los elementos</td>
+<td><code>lista.clear();</code></td>
 </tr>
 <tr>
-<td>lastIndexOf(X)</td>
-<td>Devuelve la última posición del objeto X. Si no existe devuelve -1.</td>
+<td><code>indexOf(Object o)</code></td>
+<td>Devuelve el índice del elemento</td>
+<td><code>lista.indexOf("Ana");</code></td>
+</tr>
+<tr>
+<td><code>lastIndexOf(Object o)</code></td>
+<td>Última aparición del elemento</td>
+<td><code>lista.lastIndexOf("Ana");</code></td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td>Convierte a array</td>
+<td><code>lista.toArray();</code></td>
+</tr>
+<tr>
+<td><code>addAll(Collection c)</code></td>
+<td>Añade otra colección</td>
+<td><code>lista.addAll(otraLista);</code></td>
+</tr>
+<tr>
+<td><code>removeAll(Collection c)</code></td>
+<td>Elimina elementos de otra colección</td>
+<td><code>lista.removeAll(otraLista);</code></td>
+</tr>
+<tr>
+<td><code>retainAll(Collection c)</code></td>
+<td>Mantiene solo los comunes</td>
+<td><code>lista.retainAll(otraLista);</code></td>
+</tr>
+<tr>
+<td><code>subList(int a, int b)</code></td>
+<td>Devuelve una sublista</td>
+<td><code>lista.subList(0, 2);</code></td>
+</tr>
+<tr>
+<td><code>ensureCapacity(int n)</code></td>
+<td>Asegura capacidad mínima</td>
+<td><code>lista.ensureCapacity(20);</code></td>
+</tr>
+<tr>
+<td><code>trimToSize()</code></td>
+<td>Reduce capacidad al tamaño actual</td>
+<td><code>lista.trimToSize();</code></td>
 </tr>
 </tbody>
 </table>
@@ -3853,6 +3905,37 @@ Sin embargo, desde Java 5, las primitivas se convierten automáticamente en obje
 <p>Si nos fijamos en la jerarquía de clases para Colletions, vemos que también tenemos en la cabeza la interface Iterator.</p>
 <p><img alt="List" src="../../img/ud6/iterable.png" /></p>
 <p>Iterator proporciona un mecanismo para iterar sobre los elementos de una colección de manera secuencial, permitiendo acceder a los elementos de la colección uno a uno sin exponer la estructura interna de la colección.</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción corta</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hasNext()</code></td>
+<td>Comprueba si hay más elementos</td>
+<td><code>it.hasNext();</code></td>
+</tr>
+<tr>
+<td><code>next()</code></td>
+<td>Devuelve el siguiente elemento</td>
+<td><code>it.next();</code></td>
+</tr>
+<tr>
+<td><code>remove()</code></td>
+<td>Elimina el último elemento devuelto</td>
+<td><code>it.remove();</code></td>
+</tr>
+<tr>
+<td><code>forEachRemaining(Consumer)</code></td>
+<td>Aplica una acción a los elementos restantes</td>
+<td><code>it.forEachRemaining(e -&gt; System.out.println(e));</code></td>
+</tr>
+</tbody>
+</table>
 <p>La interfaz Iterator generalmente consta de tres métodos clave:</p>
 <p><code>hasNext()</code>: Este método devuelve un valor booleano que indica si hay más elementos en la colección para ser iterados. Si devuelve true, significa que hay al menos un elemento más para ser recuperado; de lo contrario, si devuelve false, se ha alcanzado el final de la iteración.</p>
 <p><code>next()</code>: Este método devuelve el próximo elemento de la colección durante la iteración. Cada llamada a este método avanza la iteración al siguiente elemento. </p>
