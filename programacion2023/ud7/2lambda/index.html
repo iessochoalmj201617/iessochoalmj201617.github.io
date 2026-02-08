@@ -3537,6 +3537,7 @@
 
 
 <h1 id="expresiones-lambda">Expresiones lambda<a class="headerlink" href="#expresiones-lambda" title="Permanent link">&para;</a></h1>
+<p><img alt="lambda" src="../../img/ud7/lambda7.png" /></p>
 <p>Las funciones lambdas es un término adoptado de la programación funcional y corresponden con funciones de Java que normalmente son anónimas y se escriben en línea allí donde se usan.</p>
 <p>Una expresión lambda como cualquier función recibe cero o más argumentos y devuelven uno o ningún valor de retorno. Como cualquier función, puede consumir métodos de otras clases y objetos. Al declararse al mismo tiempo en donde se usa, puede acceder a las variables locales del ámbito al que pertenece, pero sólo podrá usar estos como valores de sólo lectura, impidiendo realizar alguna modificación</p>
 <h2 id="interfaces-funcionales">Interfaces funcionales<a class="headerlink" href="#interfaces-funcionales" title="Permanent link">&para;</a></h2>
@@ -3594,7 +3595,8 @@ Ya hemos visto como utilizar esta Interfaz, y como podemos crear clases anónima
 <span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">holaIngles</span><span class="p">.</span><span class="na">say</span><span class="p">());</span>
 <span class="linenos" data-linenos="25 "></span><span class="p">}</span>
 </code></pre></div>
-Cuando el cuerpo de la lambda solo tiene una línea podemos abreviar</p>
+<img alt="alt text" src="../../img/ud7/lambda11.png" /></p>
+<p>Cuando el cuerpo de la lambda solo tiene una línea podemos abreviar</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Saludo</span><span class="w"> </span><span class="n">holaSpain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;Hola...&quot;</span><span class="p">;</span><span class="w">       </span>
 <span class="linenos" data-linenos="2 "></span><span class="n">Saludo</span><span class="w"> </span><span class="n">holaPortugues</span><span class="o">=</span><span class="p">()</span><span class="o">-&gt;</span><span class="s">&quot;Olá...&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos="3 "></span><span class="n">Saludo</span><span class="w"> </span><span class="n">holaIngles</span><span class="o">=</span><span class="p">()</span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;Hello...&quot;</span><span class="p">;</span>
@@ -3651,7 +3653,12 @@ Cuando el cuerpo de la lambda solo tiene una línea podemos abreviar</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">(</span><span class="n">Coche</span><span class="w"> </span><span class="n">coche</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;El coche es: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">coche</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="comparable-y-comparator-mediante-lambdas">Comparable y Comparator mediante lambdas<a class="headerlink" href="#comparable-y-comparator-mediante-lambdas" title="Permanent link">&para;</a></h3>
-<p>Las lambdas nos van a permitir manejar las interfaces de la API de Java de una forma mucho más reducida. Si recordamos los ejemplos que vimos en el capítulo de Interface. Teniendo en cuenta que el método sort espera una implementación de <code>Comparator</code>, podemos reducir el código mediante lambdas.</p>
+<p>Las lambdas nos van a permitir manejar las interfaces de la API de Java de una forma mucho más reducida. Si recordamos los ejemplos que vimos en el capítulo de Interface, Comparable y Comparator son Interfaces de un solo método.</p>
+<p><img alt="alt text" src="../../img/ud7/lambda14.png" /></p>
+<p>Teniendo en cuenta que el método sort espera una implementación de <code>Comparator</code></p>
+<p><img alt="alt text" src="../../img/ud7/lambda13.png" /></p>
+<p>podemos reducir el código mediante lambdas.</p>
+<p><img alt="alt text" src="../../img/ud7/lambda12.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">     </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
@@ -3673,10 +3680,12 @@ Cuando el cuerpo de la lambda solo tiene una línea podemos abreviar</p>
 </span><span class="hll"><span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">listaPersonas</span><span class="p">.</span><span class="na">sort</span><span class="p">((</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">p1</span><span class="p">.</span><span class="na">nombre</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="na">nombre</span><span class="p">));</span>
 </span><span class="hll"><span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="c1">//Ordenar por edad</span>
 </span><span class="hll"><span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">listaPersonas</span><span class="p">.</span><span class="na">sort</span><span class="p">((</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">p1</span><span class="p">.</span><span class="na">edad</span><span class="o">-</span><span class="n">p2</span><span class="p">.</span><span class="na">edad</span><span class="p">);</span>
-</span><span class="hll"><span class="linenos" data-linenos="22 "></span>
-</span><span class="linenos" data-linenos="23 "></span>
-<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="25 "></span><span class="p">}</span>
+</span><span class="hll"><span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">//también</span>
+</span><span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="c1">//listaPersonas.sort((p1, p2) -&gt; Integer.compare(p1.edad, p2.edad));</span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="27 "></span><span class="p">}</span>
 </code></pre></div>
 <h3 id="bucle-for-each-en-collections">Bucle for-each en Collections<a class="headerlink" href="#bucle-for-each-en-collections" title="Permanent link">&para;</a></h3>
 <p>Podemos utilizar el método <code>foreach</code> de las listas que permite pasarle una lambda que se ejecuta para cada elemento de la lista</p>
@@ -3696,8 +3705,10 @@ Cuando el cuerpo de la lambda solo tiene una línea podemos abreviar</p>
 <span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">add</span><span class="p">((</span><span class="mi">2</span><span class="p">));</span>
 <span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w">    </span>
-<span class="hll"><span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span><span class="s">&quot;Es par&quot;</span><span class="p">:</span><span class="s">&quot;Es impar&quot;</span><span class="p">));</span>
-</span><span class="linenos" data-linenos="18 "></span><span class="p">}</span>
+<span class="hll"><span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span>
+</span><span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">n</span><span class="o">-&gt;</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span><span class="s">&quot;Es par&quot;</span><span class="p">:</span><span class="s">&quot;Es impar&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
 </code></pre></div>
 <h2 id="escenario-sin-expresiones-lambda">Escenario sin expresiones lambda<a class="headerlink" href="#escenario-sin-expresiones-lambda" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">interface</span> <span class="nc">Saludo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>

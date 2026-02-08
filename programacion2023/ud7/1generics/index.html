@@ -2479,6 +2479,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#el-comodin" class="md-nav__link">
+    <span class="md-ellipsis">
+      El comodín &lt;?&gt;
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3450,6 +3459,7 @@
 
 
 <h1 id="genericos">Genéricos<a class="headerlink" href="#genericos" title="Permanent link">&para;</a></h1>
+<p><img alt="alt text" src="../../img/ud7/gen7.png" /></p>
 <p>Antes de Java 5 cuando introducíamos objetos en una colección estos se guardaban como objetos de tipo <code>Object</code>, aprovechando el polimorfismo para poder introducir cualquier tipo de objeto en la colección. Esto nos obligaba a hacer un casting al tipo original al obtener los elementos de la colección.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Ejemplo</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
 <span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
@@ -3461,7 +3471,7 @@
 <span class="linenos" data-linenos="8 "></span><span class="w">  </span><span class="p">}</span><span class="w">  </span>
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span><span class="w"> </span>
 </code></pre></div>
-<p>Esta forma de trabajar no solo nos ocasiona tener que escribir más código innecesariamente, sino que es propenso a errores porque carecemos de un sistema de comprobación de tipos. Si introdujeramos un objeto de tipo incorrecto el programa compilaría pero lanzaría una excepción en tiempo de ejecución al intentar convertir el objeto en <code>String</code>:</p>
+<p>Esta forma de trabajar no solo nos ocasiona tener que escribir más código innecesariamente, sino que es propenso a errores porque carecemos de un sistema de comprobación de tipos. Si introdujéramos un objeto de tipo incorrecto el programa compilaría pero lanzaría una excepción en tiempo de ejecución al intentar convertir el objeto en <code>String</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Ejemplo</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
 <span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">List</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">();</span><span class="w">  </span>
@@ -3475,6 +3485,7 @@
 <p>Desde Java 5 contamos con una característica llamada generics que puede solventar esta clase de problemas. Los generics son una mejora al sistema de tipos que nos permite programar abstrayéndonos de los tipos de datos.</p>
 <p><strong>Genéricos</strong> significa <strong>tipos parametrizados</strong>. La idea es permitir que <strong><em>el tipo</em></strong> (<code>Integer</code>, <code>String</code>, etc., y tipos definidos por el usuario) <strong>sea un parámetro</strong> para métodos, clases e interfaces. Utilizando Generics, es posible crear clases que trabajen con diferentes tipos de datos. Una entidad como clase, interfaz o método que opera en un tipo parametrizado es una entidad genérica.</p>
 <p>Gracias a los genéricos podemos especificar el tipo de objeto que introduciremos en la colección, de forma que el compilador conozca el tipo de objeto que vamos a utilizar, evitándonos así el casting. Además, gracias a esta información, el compilador podrá comprobar el tipo de los objetos que introducimos, y lanzar un error en tiempo de compilación si se intenta introducir un objeto de un tipo incompatible, en lugar de que se produzca una excepción en tiempo de ejecución.</p>
+<p><img alt="alt text" src="../../img/ud7/gen8.png" /></p>
 <h2 id="el-operador-diamond">El operador Diamond &lt;&gt;<a class="headerlink" href="#el-operador-diamond" title="Permanent link">&para;</a></h2>
 <p>Para utilizar <code>generics</code> con nuestras colecciones tan solo tenemos que indicar el tipo entre <strong>el operador Diamond &lt;&gt;</strong> a la hora de crearla. A estas clases a las que podemos pasar un tipo como {«parámetro»+} se les llama <strong>clases parametrizadas, clases genéricas o simplemente genéricas (generics)</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Ejemplo</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
@@ -3488,14 +3499,15 @@
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span><span class="w"> </span>
 </code></pre></div>
 <p>El código anterior no compilaría, si intentáramos insertar en la lista un número <code>lista.add(14);</code>, nos daría un error de compilación de tipos.</p>
+<p><img alt="alt text" src="../../img/ud7/gen6.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>Algo a tener en cuenta es que el tipo parámetro debe ser una clase; no podemos utilizar tipos primitivos.</strong></p>
+<p><strong>Algo a tener en cuenta, es que el tipo parámetro debe ser una clase. No podemos utilizar tipos primitivos.</strong></p>
 </div>
 <h2 id="clases-genericas">Clases genéricas<a class="headerlink" href="#clases-genericas" title="Permanent link">&para;</a></h2>
 <p>Al crear una clase que utiliza o contiene algún atributo genérico, me obliga a añadir este tipo de genérico en la definición de clase. <strong>Por convención se suele utilizar una sola letra mayúscula para el tipo genérico</strong>.</p>
 <p>Es decir, si mi clase tiene un atributo <code>T elemento</code> genérico que no sé qué tipo de dato va a ser, entero, double, float.... le pongo una letra y con esto le digo que ese atributo es de tipo genérico, puede ser cualquier tipo de dato.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span>
 <span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">elemento</span><span class="p">;</span>
 <span class="linenos" data-linenos="4 "></span>
@@ -3504,6 +3516,7 @@
 <span class="linenos" data-linenos="7 "></span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
+<img alt="alt text" src="../../img/ud7/gen5.png" /></p>
 <p>Según las convenciones los nombres de los parámetros de tipo usados comúnmente son los siguientes:</p>
 <ul>
 <li>E: elemento de una colección.</li>
@@ -3547,6 +3560,85 @@
 <span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="p">}</span>
 <span class="linenos" data-linenos="5 "></span><span class="p">}</span>
 </code></pre></div>
+<h2 id="el-comodin">El comodín &lt;?&gt;<a class="headerlink" href="#el-comodin" title="Permanent link">&para;</a></h2>
+<p>En Java, &lt;?&gt; se lee como:</p>
+<p>“un tipo desconocido”</p>
+<p>Se usa cuando:</p>
+<ul>
+<li>No nos importa el tipo exacto</li>
+<li>Solo queremos leer datos, no modificarlos</li>
+<li>Queremos que el método funcione con cualquier tipo genérico</li>
+</ul>
+<p>Si tenemos la clase Caja</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Caja</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">contenido</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Caja</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">contenido</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contenido</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">getContenido</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">contenido</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setContenido</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">contenido</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contenido</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+</code></pre></div>
+Podemos crear objetos como ya hemos visto como</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Caja</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="p">.</span><span class="na">getContenido</span><span class="p">();</span><span class="w"> </span><span class="c1">// NO hace falta cast</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Caja</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c2</span><span class="p">.</span><span class="na">getContenido</span><span class="p">();</span><span class="w"> </span><span class="c1">// auto-unboxing</span>
+</code></pre></div>
+<p>Mediante el operador <code>&lt;?&gt;</code> podemos definir objetos desconocidos</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Caja</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Object</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">getContenido</span><span class="p">();</span><span class="w"> </span><span class="c1">// solo puedo leer como Object</span>
+<span class="linenos" data-linenos="3 "></span><span class="c1">//no compila</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Caja</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">c</span><span class="p">.</span><span class="na">setContenido</span><span class="p">(</span><span class="s">&quot;adios&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// ❌ ERROR</span>
+</code></pre></div>
+El siguiente ejemplo no compila.
+<code>c</code>  podría ser realmente <code>Caja&lt;Integer&gt;</code> y estarías metiendo un <code>String</code>. Java no es capaz de inferirlo</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//no compila</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Caja</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">c</span><span class="p">.</span><span class="na">setContenido</span><span class="p">(</span><span class="s">&quot;adios&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// ❌ ERROR</span>
+</code></pre></div>
+Lo único que se puede “meter” en <code>Caja&lt;?&gt;</code> es <code>null</code>.</p>
+<p>Porque  <code>Caja&lt;String&gt;</code> <em>NO</em> es <code>Caja&lt;Object&gt;</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Caja</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">c</span><span class="p">.</span><span class="na">setContenido</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w"> </span><span class="c1">// ✅ (null vale para cualquier tipo)</span>
+</code></pre></div>
+Lo correcto si quieres “cualquier Caja”:</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Caja</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
+</code></pre></div>
+Pero hay que realizar un cash para obtener el dato</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// String s= c.getContenido();  ❌ ERROR</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">getContenido</span><span class="p">();</span>
+</code></pre></div>
+El sitio típico donde usamos <code>&lt;?&gt;</code> en en la definición de <code>equals</code>, donde no sabemos el genérico usado</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">equals</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">      </span><span class="c1">//No compila: ❌ ERROR</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">o</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">caja</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Objects</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">contenido</span><span class="p">,</span><span class="w"> </span><span class="n">caja</span><span class="p">.</span><span class="na">contenido</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+Tú no sabes si obj es:</p>
+<p><code>Caja&lt;String&gt;</code></p>
+<p><code>Caja&lt;Integer&gt;</code></p>
+<p>o cualquier otro tipo</p>
+<p>Lo correcto es usar <code>&lt;?&gt;</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">equals</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">o</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Caja</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">caja</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Objects</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">contenido</span><span class="p">,</span><span class="w"> </span><span class="n">caja</span><span class="p">.</span><span class="na">contenido</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+En resumen</p>
+<p><img alt="alt text" src="../../img/ud7/gen10.png" /></p>
 
 
 
