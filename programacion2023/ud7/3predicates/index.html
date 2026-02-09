@@ -20,7 +20,7 @@
     
     
       
-        <title>🦄 Predicate, Supplier and Consumer - Programación</title>
+        <title>🦄 Interfaces funcionales en Java - Programación</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🦄 Predicate, Supplier and Consumer
+              🦄 Interfaces funcionales en Java
             
           </span>
         </div>
@@ -2463,7 +2463,7 @@
   
   
   <span class="md-ellipsis">
-    🦄 Predicate, Supplier and Consumer
+    🦄 Interfaces funcionales en Java
     
   </span>
   
@@ -2476,7 +2476,7 @@
   
   
   <span class="md-ellipsis">
-    🦄 Predicate, Supplier and Consumer
+    🦄 Interfaces funcionales en Java
     
   </span>
   
@@ -2529,6 +2529,24 @@
   <a href="#consumer" class="md-nav__link">
     <span class="md-ellipsis">
       Consumer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#biconsumer-y-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Biconsumer y Map
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function
     </span>
   </a>
   
@@ -3458,10 +3476,21 @@
 
 
 
+<p><img alt="lambda" src="../../img/ud7/javafun.png" /></p>
 <h1 id="entidades-de-javautilfunctional">Entidades de java.util.functional<a class="headerlink" href="#entidades-de-javautilfunctional" title="Permanent link">&para;</a></h1>
-<p>Antes de crear una función de tipo lambda, conviene conocer las entidades básicas que componen esta manera de programar. Las principales entidades son interfaces con un único método que debe implementar el programador y que estas implementaciones pueden hacerse llegar como argumentos de métodos de otras muchas clases del API de Java</p>
-<p>Las implementaciones de estas interfaces son del tipo, consume un valor y retorna otro tipo de valor, o produce un valor sin argumentos o produce un valor dados dos argumentos. A éstas se les llama unidades funcionales porque componen una lógica interna que a priori el consumidor de esta lógica no conoce, pero de la que sí se conoce su interfaz y por tanto la manera de relacionarse con el resto de los objetos, o lo que es lo mismo la manera de ser invocada</p>
-<p>Las interfaces funcionales más importantes contenidas en java.util.functional son:</p>
+<p>Una interfaz funcional es una interfaz de Java que tiene un solo método abstracto.
+Se utilizan principalmente para trabajar con expresiones lambda y programación funcional.</p>
+<p>Vienen anotadas con <code>@FunctionalInterface</code>. No es obligatoria, pero se recomienda.</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@FunctionalInterface</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">interface</span> <span class="nc">Saludo</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">decirHola</span><span class="p">();</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+</code></pre></div>
+Si intentas añadir otro método abstracto, el compilador dará error.</p>
+<p>La Api de Java incluye en el paquete <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html">java.util.function</a> una serie de interfaces funcionales que se utilizan en otras clases/interfaces de la Api o que podemos usar en nuestro propias clases.</p>
+<p>Las implementaciones de estas interfaces son del tipo, consume un valor y retorna otro tipo de valor, o produce un valor sin argumentos o produce un valor dados dos argumentos. </p>
+<p>A éstas se les llama unidades funcionales porque componen una lógica interna que a priori el consumidor de esta lógica no conoce, pero de la que sí se conoce su interfaz y por tanto la manera de relacionarse con el resto de los objetos, o lo que es lo mismo la manera de ser invocada</p>
+<p>Las interfaces funcionales más importantes contenidas en <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html">java.util.function</a> son:</p>
 <p><img alt="lambda" src="../../img/ud7/lambda3.png" /></p>
 <ul>
 <li><strong>Predicate</strong>: Se utiliza en expresiones lambda para comprobar si una condición dada es verdadera o falsa</li>
@@ -3470,11 +3499,9 @@
 <li><strong><code>Function&lt;T,R&gt;</code></strong> esta interfaz permite definir una función que acepta un parámetro de tipo T y devuelve un resultado del tipo R pudiendo aplicarle alguna transformación u operación.</li>
 <li><strong><code>BiFunction&lt;T,R,S&gt;</code></strong> esta interfaz permite definir una función que acepta dos parámetros de tipo T y R, devolviendo un resultado del tipo S. Normalmente serán operaciones de agregación u operadores binarios como la suma, resta, etc..</li>
 </ul>
-<h2 id="predicate">Predicate<a class="headerlink" href="#predicate" title="Permanent link">&para;</a></h2>
+<h2 id="predicate"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html">Predicate</a><a class="headerlink" href="#predicate" title="Permanent link">&para;</a></h2>
 <p>Predicate la interfaz predicado debe devolver forzosamente un boolean dado un objeto de tipo T, normalmente utilizado para filtrar elementos de una colección.</p>
-<p><strong>Predicate</strong> es una interfaz funcional que se encuentra en el paquete <code>java.util.function</code>. Mejora la capacidad de administración del código, ayuda a realizar pruebas unitarias por separado.</p>
-<p>Se utiliza en expresiones lambda para comprobar si una condición dada es verdadera o falsa.</p>
-<p>En lugar de pasar un booleano con valor true or false,  pasas una referencia de tipo Predicate para determinar de manera dinámica si una condición dada es verdadera, o falsa.</p>
+<p>Recibe un valor y devuelve true o false</p>
 <p>Esta es la estructura de la interfaz <code>Predicate</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@FunctionalInterface</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -3484,14 +3511,46 @@
 </code></pre></div>
 <p>Como vemos la interfaz <code>Predicate</code> utiliza los genéricos para poder decirle que tipo concreto vamos a utilizar.</p>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EjemploPredicate</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">checker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">checker</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;Miguel&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EjemploPredicate</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">esMayorQue10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">esMayorQue10</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="mi">15</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">checker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">checker</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;Miguel&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Hemos creado un objeto <code>Predicate</code> de tipo <code>String</code>. Le damos cuerpo al método <code>test</code> con una expresión lambda que se le pasa un argumento y devuelve un booleano.</p>
+<p>Nos permitirá recibir en un método como parámetro una condición independiente del algoritmo.</p>
+<p>El siguiente ejemplo el método recibe una lista y un objeto de tipo predicate que será la condición. Imprime aquellos elementos que cumplen la condición</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">procesar</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="p">,</span><span class="w"> </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">condicion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">lista</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">            </span><span class="c1">//será True/False en función del predicate</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condicion</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+La llamada sería
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="c1">// Predicate: números pares</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">esPar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="c1">// Llamada al método pasando el predicate</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">procesar</span><span class="p">(</span><span class="n">numeros</span><span class="p">,</span><span class="w"> </span><span class="n">esPar</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">// Predicate: menores que 10</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">esMenor10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="c1">// Llamada al método pasando el predicate</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">procesar</span><span class="p">(</span><span class="n">numeros</span><span class="p">,</span><span class="w"> </span><span class="n">esMenor10</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div></p>
 <h2 id="metodos-predicate">Métodos Predicate<a class="headerlink" href="#metodos-predicate" title="Permanent link">&para;</a></h2>
 <p>La interfaz <code>Predicate</code> contiene algunos métodos como:</p>
 <ul>
@@ -3501,7 +3560,7 @@
 <li><code>negate()</code>: Devuelve un predicado que representa la negación lógica de este predicado.</li>
 </ul>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">greaterThan10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">greaterThan10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lessThan20</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">//si es mayor de 10 y menor de 20-&gt;true</span>
 <span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">andPredicate</span><span class="o">=</span><span class="n">greaterThan10</span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">lessThan20</span><span class="p">);</span>
@@ -3510,10 +3569,19 @@
 <span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="c1">//negate, niega el resultado del predicado</span>
 <span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">andPredicate</span><span class="p">.</span><span class="na">negate</span><span class="p">().</span><span class="na">test</span><span class="p">(</span><span class="mi">15</span><span class="p">));</span><span class="c1">//false</span>
 <span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="c1">//isEquals, Devuelve un predicado que prueba si dos argumentos son iguales //según Objects.equals(Object, Object).</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">compara</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Predicate</span><span class="p">.</span><span class="na">isEqual</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">compara</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;java&quot;</span><span class="p">));</span><span class="c1">//false</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">compara</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">));</span><span class="c1">//true</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="c1">//isEquals, Devuelve un predicado que prueba si dos argumentos son iguales </span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="c1">//según Objects.equals(Object, Object).</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">compara</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Predicate</span><span class="p">.</span><span class="na">isEqual</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">compara</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;java&quot;</span><span class="p">));</span><span class="c1">//false</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">compara</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;hola&quot;</span><span class="p">));</span><span class="c1">//true</span>
+</code></pre></div>
+Siguiendo el ejemplo de la lista</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// menores de 10 y pares</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">procesar</span><span class="p">(</span><span class="n">numeros</span><span class="p">,</span><span class="w"> </span><span class="n">esMenor10</span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">esPar</span><span class="p">));</span>
+<span class="linenos" data-linenos="3 "></span><span class="c1">//mayores o iguales de 10</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">procesar</span><span class="p">(</span><span class="n">numeros</span><span class="p">,</span><span class="w"> </span><span class="n">esMenor10</span><span class="p">.</span><span class="na">negate</span><span class="p">())</span>
+<span class="linenos" data-linenos="5 "></span><span class="c1">//impares menores de 10</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">procesar</span><span class="p">(</span><span class="n">numeros</span><span class="p">,</span><span class="n">esPar</span><span class="p">.</span><span class="na">negate</span><span class="p">().</span><span class="na">and</span><span class="p">(</span><span class="n">esMenor10</span><span class="p">))</span>
 </code></pre></div>
 <div class="admonition nota">
 <p class="admonition-title">Nota</p>
@@ -3538,7 +3606,7 @@
 <span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filtroLongitud</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;java&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// false</span>
 </code></pre></div>
-<h2 id="supplier">Supplier<a class="headerlink" href="#supplier" title="Permanent link">&para;</a></h2>
+<h2 id="supplier"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Supplier.html">Supplier</a><a class="headerlink" href="#supplier" title="Permanent link">&para;</a></h2>
 <p><code>Supplier</code> es otra interfaz funcional dentro del paquete <code>java.util.function</code> que nos provee del método abstracto <code>**get**</code>, sin argumentos que devuelve un tipo de dato.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@FunctionalInterface</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Supplier</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -3554,7 +3622,7 @@
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Jugada 2: &quot;</span><span class="w"> </span><span class="o">+</span><span class="n">dados</span><span class="p">.</span><span class="na">get</span><span class="p">());</span>
 </code></pre></div>
 <p>Al igual que ocurría en los predicados con los <code>Supplier</code> también disponemos de las clases <code>IntSupplier</code>, <code>DoubleSupplier</code>, <code>LongSupplier</code> y <code>BooleanSupplier</code>.</p>
-<h2 id="consumer">Consumer<a class="headerlink" href="#consumer" title="Permanent link">&para;</a></h2>
+<h2 id="consumer"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><a class="headerlink" href="#consumer" title="Permanent link">&para;</a></h2>
 <p><code>Consumer</code> es otra interfaz funcional dentro del paquete <code>java.util.function</code> que provee un método que recibe un solo parámetro de tipo genérico y no devuelve nada.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">accept</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
@@ -3585,8 +3653,12 @@ El método foreach de Collection que hemos visto anteriormente, acepta un Consum
 <span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">add</span><span class="p">((</span><span class="mi">2</span><span class="p">));</span>
 <span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="linenos" data-linenos="17 "></span>
-<span class="hll"><span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span><span class="s">&quot;Es par&quot;</span><span class="p">:</span><span class="s">&quot;Es impar&quot;</span><span class="p">));</span>
-</span><span class="linenos" data-linenos="19 "></span><span class="p">}</span>
+<span class="hll"><span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="n">list2</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span>
+</span><span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">n</span><span class="o">-&gt;</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span><span class="s">&quot;Es par&quot;</span><span class="p">:</span><span class="s">&quot;Es impar&quot;</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="p">)</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span><span class="p">}</span>
 </code></pre></div>
 <p><code>BiConsumer</code> es un caso especial de las expresiones <code>Consumer</code>, son aquellas que reciben dos valores como parámetro y no devuelven resultado.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@FunctionalInterface</span>
@@ -3598,6 +3670,201 @@ El método foreach de Collection que hemos visto anteriormente, acepta un Consum
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">biConsumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">biConsumer</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; puntos&quot;</span><span class="p">);</span>
 </code></pre></div>
+<h2 id="biconsumer-y-map">Biconsumer y Map<a class="headerlink" href="#biconsumer-y-map" title="Permanent link">&para;</a></h2>
+<p>Map tiene un método abstracto que foreach que recibe un Biconsumer, donde el primer valor es la clave y el segundo el valor
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">forEach</span><span class="p">(</span><span class="n">BiConsumer</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">super</span><span class="w"> </span><span class="n">K</span><span class="p">,</span><span class="o">?</span><span class="w"> </span><span class="kd">super</span><span class="w"> </span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="n">action</span><span class="p">)</span>
+</code></pre></div>
+Podemos simplificar el recorrido de un mapa</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edades</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">edades</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">edades</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Luis&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">edades</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;Marta&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">imprimir</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="p">);</span>
+<span class="linenos" data-linenos="8 "></span>
+<span class="linenos" data-linenos="9 "></span><span class="n">edades</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">imprimir</span><span class="p">);</span>
+</code></pre></div>
+o más simple</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">edades</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="p">);</span>
+</code></pre></div>
+<h2 id="function"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html">Function<T, R></a><a class="headerlink" href="#function" title="Permanent link">&para;</a></h2>
+<p>Nos permite recibir un parámetro, ejecutar un código y devolver un valor mediante el método <code>apply</code>.</p>
+<p>Su principal uso es la transformación de un valor en otro</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">funcionLambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">            </span><span class="c1">//suma el valor del código Unicode del caracter</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="n">total</span><span class="o">+=</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">total</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">};</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">funcionLambda</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="s">&quot;Programación&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="c1">//devuelve el cuadrado</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cuadrado</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">                </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuadrado</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Cuadrado: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="p">);</span>
+</code></pre></div>
+Vamos a ver un ejemplo más complejo en el que una función transforma cada elemento de una lista según  la Funcition pasada como parámetro</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// Método que transforma una lista usando Function</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transformarLista</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="p">,</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">funcion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lista</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lista</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">nuevoValor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">funcion</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">valor</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">            </span><span class="n">lista</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">nuevoValor</span><span class="p">);</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+podemos llamarla enviado distintas transformaciones</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="c1">// 1ª llamada: multiplicar por 2</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">copia1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">numeros</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">transformarLista</span><span class="p">(</span><span class="n">copia1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">copia1</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="c1">// 2ª llamada: sumar 10</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">copia2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">numeros</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">transformarLista</span><span class="p">(</span><span class="n">copia2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">copia2</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="c1">// 3ª llamada: cuadrado</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">copia3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">numeros</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="n">transformarLista</span><span class="p">(</span><span class="n">copia3</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">copia3</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="o">]</span>
+<span class="linenos" data-linenos="2 "></span><span class="o">[</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="o">]</span>
+<span class="linenos" data-linenos="3 "></span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="o">]</span>
+</code></pre></div></p>
+<p>Al igual que las otras interfaces, tenemos variantes que nos simplifican el código</p>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th>Firma</th>
+<th>Tipo de transformación</th>
+<th>Ejemplo de lambda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Function&lt;T,R&gt;</code></td>
+<td><code>T → R</code></td>
+<td>Objeto → objeto</td>
+<td><code>s -&gt; s.length()</code></td>
+</tr>
+<tr>
+<td><code>BiFunction&lt;T,U,R&gt;</code></td>
+<td><code>(T,U) → R</code></td>
+<td>Dos objetos → objeto</td>
+<td><code>(a,b) -&gt; a + b</code></td>
+</tr>
+<tr>
+<td><code>UnaryOperator&lt;T&gt;</code></td>
+<td><code>T → T</code></td>
+<td>Objeto → mismo objeto</td>
+<td><code>n -&gt; n * n</code></td>
+</tr>
+<tr>
+<td><code>BinaryOperator&lt;T&gt;</code></td>
+<td><code>(T,T) → T</code></td>
+<td>Dos objetos → mismo objeto</td>
+<td><code>(a,b) -&gt; a + b</code></td>
+</tr>
+</tbody>
+</table>
+<p>Especializadas para transformar Objeto a primitivo</p>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th>Firma</th>
+<th>Transformación</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ToIntFunction&lt;T&gt;</code></td>
+<td><code>T → int</code></td>
+<td>Objeto → int</td>
+<td><code>s -&gt; s.length()</code></td>
+</tr>
+<tr>
+<td><code>ToDoubleFunction&lt;T&gt;</code></td>
+<td><code>T → double</code></td>
+<td>Objeto → double</td>
+<td><code>p -&gt; p.getPrecio()</code></td>
+</tr>
+<tr>
+<td><code>ToLongFunction&lt;T&gt;</code></td>
+<td><code>T → long</code></td>
+<td>Objeto → long</td>
+<td><code>d -&gt; d.getTime()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Especializadas para transformar primitivo a primitivo</p>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th>Firma</th>
+<th>Transformación</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IntToDoubleFunction</code></td>
+<td><code>int → double</code></td>
+<td>int → double</td>
+<td><code>n -&gt; n * 1.5</code></td>
+</tr>
+<tr>
+<td><code>IntToLongFunction</code></td>
+<td><code>int → long</code></td>
+<td>int → long</td>
+<td><code>n -&gt; n * 1000L</code></td>
+</tr>
+<tr>
+<td><code>DoubleToIntFunction</code></td>
+<td><code>double → int</code></td>
+<td>double → int</td>
+<td><code>d -&gt; (int) d</code></td>
+</tr>
+<tr>
+<td><code>DoubleToLongFunction</code></td>
+<td><code>double → long</code></td>
+<td>double → long</td>
+<td><code>d -&gt; (long) d</code></td>
+</tr>
+<tr>
+<td><code>LongToIntFunction</code></td>
+<td><code>long → int</code></td>
+<td>long → int</td>
+<td><code>l -&gt; (int) l</code></td>
+</tr>
+<tr>
+<td><code>LongToDoubleFunction</code></td>
+<td><code>long → double</code></td>
+<td>long → double</td>
+<td><code>l -&gt; l / 2.0</code></td>
+</tr>
+</tbody>
+</table>
 
 
 

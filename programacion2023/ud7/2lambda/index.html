@@ -2580,15 +2580,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#function-crear-una-expresion-lambda-sin-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      Function Crear una expresión lambda sin interface
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2610,7 +2601,7 @@
   
   
   <span class="md-ellipsis">
-    🦄 Predicate, Supplier and Consumer
+    🦄 Interfaces funcionales en Java
     
   </span>
   
@@ -3743,20 +3734,6 @@ Ya hemos visto como utilizar esta Interfaz, y como podemos crear clases anónima
 <span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">s2</span><span class="p">.</span><span class="na">saludar</span><span class="p">();</span><span class="w">  </span>
 <span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="p">}</span><span class="w">  </span>
 <span class="linenos" data-linenos="16 "></span><span class="p">}</span><span class="w">  </span>
-</code></pre></div>
-<h2 id="function-crear-una-expresion-lambda-sin-interface"><code>Function</code> Crear una expresión lambda sin interface<a class="headerlink" href="#function-crear-una-expresion-lambda-sin-interface" title="Permanent link">&para;</a></h2>
-<p>Para definir una expresión lambda de un método que no está definido en ninguna interfaz funcional, tenemos que utilizar la clase <code>Function</code>. A la clase Function se le especifican dos tipos de parámetros entre <code>&lt;&gt;</code>, el primero es el parámetro de entrada de la función, y el segundo es el parámetro de salida que devuelve la función o método.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">funcionLambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">                </span><span class="c1">//suma el valor del código Unicode del carcter</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">                </span><span class="n">total</span><span class="o">+=</span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">            </span><span class="p">}</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">total</span><span class="p">;</span>
-<span class="linenos" data-linenos="8 "></span><span class="w">        </span><span class="p">};</span>
-</code></pre></div>
-<p>Para ejecutar el código en el interior de la expresión lambda, utilizaremos el método <code>apply</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">funcionLambda</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="s">&quot;Programación&quot;</span><span class="p">));</span>
 </code></pre></div>
 
 
