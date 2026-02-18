@@ -3427,6 +3427,7 @@
 
 
 <h1 id="acceso-aleatorio-a-ficheros">Acceso aleatorio a ficheros<a class="headerlink" href="#acceso-aleatorio-a-ficheros" title="Permanent link">&para;</a></h1>
+<p><img alt="alt text" src="../../img/ud9/fich22.png" /></p>
 <p>Todos los flujos de E/S que hemos usado hasta ahora se conocen como flujos de solo lectura o solo escritura. Estos flujos se denominan flujos <strong>secuenciales</strong> en Java.</p>
 <p>Un fichero que se lee o escribe mediante un flujo secuencial se denomina <strong>fichero de acceso secuencial</strong>. Los datos de un fichero de acceso secuencial <strong>NO se pueden actualizar</strong>.</p>
 <p>Por lo tanto, para leer y escribir datos simultáneamente, Java proporciona la clase <code>RandomAccessFile</code>. Con esta clase, podemos leer y escribir datos en cualquier ubicación del fichero. Los archivos de acceso aleatorio son útiles para muchas aplicaciones diferentes.</p>
@@ -3447,25 +3448,186 @@
 </code></pre></div>
 <h2 id="constructor-de-la-clase-randomaccessfile">Constructor de la clase RandomAccessFile<a class="headerlink" href="#constructor-de-la-clase-randomaccessfile" title="Permanent link">&para;</a></h2>
 <p>Para construir un objeto de la clase tenemos que especificar el modo (<strong>mode</strong>) que determina qué tipo de acceso a ficheros está permitido.</p>
-<ul>
-<li>r: el fichero es de solo lectura.</li>
-<li>rw: se abre en modo lectura-escritura.</li>
-<li>rws: se abre para lectura y escritura y cada cambio en los datos del fichero se escribirá inmediatamente en el dispositivo físico.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="o">&gt;</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;myfile.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">);</span>
+<table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Significado</th>
+<th>¿Permite escribir?</th>
+<th>¿Sincroniza inmediatamente en disco?</th>
+<th>Ejemplo de uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"r"</code></td>
+<td>Solo lectura</td>
+<td>❌ No</td>
+<td>❌ No aplica</td>
+<td><code>new RandomAccessFile("datos.dat", "r");</code></td>
+</tr>
+<tr>
+<td><code>"rw"</code></td>
+<td>Lectura y escritura</td>
+<td>✅ Sí</td>
+<td>❌ No (usa buffer del sistema)</td>
+<td><code>new RandomAccessFile("datos.dat", "rw");</code></td>
+</tr>
+<tr>
+<td><code>"rws"</code></td>
+<td>Lectura y escritura sincronizada</td>
+<td>✅ Sí</td>
+<td>✅ Sí (datos y metadatos)</td>
+<td><code>new RandomAccessFile("datos.dat", "rws");</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;myfile.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="ejemplo-de-un-programa-que-anade-texto-al-final-de-un-fichero">Ejemplo de un programa que añade texto al final de un fichero<a class="headerlink" href="#ejemplo-de-un-programa-que-anade-texto-al-final-de-un-fichero" title="Permanent link">&para;</a></h2>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">());</span><span class="w"> </span><span class="c1">// Moving file pointer to the end.</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeBytes</span><span class="p">(</span><span class="s">&quot;\nJava&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Append text.</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm"> * Abre un fichero usando RandomAccessFile en modo &quot;rw&quot;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm"> * (lectura y escritura).</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm"> * - Mueve el puntero al final del fichero.</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm"> * - Añade la palabra &quot;Java&quot;.</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm"> * - Se cierra automáticamente gracias a try-with-resources.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="c1">// try-with-resources:</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="c1">// El RandomAccessFile se cerrará automáticamente</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="c1">// al salir del bloque try</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                 </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="c1">// file.length() devuelve el tamaño actual del fichero en bytes</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="c1">// seek() mueve el puntero interno a la posición indicada</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="c1">// Aquí lo movemos al final para añadir texto (append)</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">());</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">// writeBytes escribe la cadena en formato byte</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="c1">// &quot;\nJava&quot; añade salto de línea + texto</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeBytes</span><span class="p">(</span><span class="s">&quot;\nJava&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="c1">// Se captura cualquier error de entrada/salida</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="31 "></span><span class="p">}</span>
+</code></pre></div>
+Otro ejemplo de modificación de  fichero de número:</p>
+<p>Escribir números
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.RandomAccessFile</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm"> * Escribe los números 10, 20, 30 y 40</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm"> * en el fichero &quot;numeros.dat&quot;.</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm"> * Cada número se guarda como int (4 bytes).</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos="10 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">escribirNumeros</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">                 </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;numeros.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="c1">// Nos aseguramos de empezar desde el inicio</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="c1">// Escribimos los números como enteros (4 bytes cada uno)</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Números escritos correctamente.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span><span class="p">}</span>
+</code></pre></div>
+Cada int ocupa 4 bytes, por lo tanto:</p>
+<table>
+<thead>
+<tr>
+<th>Número</th>
+<th>Bytes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>0–3</td>
+</tr>
+<tr>
+<td>20</td>
+<td>4–7</td>
+</tr>
+<tr>
+<td>30</td>
+<td>8–11</td>
+</tr>
+<tr>
+<td>40</td>
+<td>12–15</td>
+</tr>
+</tbody>
+</table>
+<p>leer los números</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm"> * Lee los números del fichero &quot;numeros.dat&quot;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm"> * y los muestra por pantalla.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">leerNumeros</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">                 </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;numeros.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">// Mientras no lleguemos al final del fichero</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">getFilePointer</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">numero</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
+Modificar un número</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.RandomAccessFile</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ModificarNumero</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">                     </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;numeros.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="c1">// Supongamos que el fichero tiene:</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="c1">// 10, 20, 30, 40</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">posicion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// tercer número (empieza en 0)</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="c1">// Cada int ocupa 4 bytes</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">posicion</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="c1">// Sobrescribimos el valor</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="n">file</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">999</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="c1">//el fichero quedaría:</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="c1">// 10, 20, 999, 40</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número modificado correctamente.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span><span class="p">}</span>
 </code></pre></div>
 Si el programa requiere  trabajar con objetos, todos los objetos tienen que ser del mismo tamaño. Vamos a ver un ejemplo en el que fijamos el tamaño de los string en el que recortamos el los campos o rellenamos con espacios si no tiene la longitud definida y calculamos el tamaño que tiene un objeto de tipo Contacto</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="  1 "></span><span class="kd">class</span> <span class="nc">Contacto</span><span class="w"> </span><span class="p">{</span>

@@ -3518,30 +3518,43 @@ Pero podemos seguir usando la versión con <code>finally</code> </p>
 <p><img alt="JavaIO" src="../../img/ud9/fichero10.png" /></p>
 <p>Cuando se cierra el stream <code>close()</code>, es como si pincháramos en guardar de forma gráfica, es decir, que si no cerramos el stream es como si el fichero estuviera vacío.</p>
 <p><strong>El almacenamiento en búfer hace que las operaciones de E/S sean más eficientes.</strong> Para un programa que realiza E/S masivas, el almacenamiento en búfer es esencial. La E/S es muy lenta en comparación con las operaciones con almacenamiento principal. Sin almacenamiento en búfer, la E/S sería muy, muy lenta.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">writeBuffer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">DataOutputStream</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataOutputStream</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedOutputStream</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datosBufer.dat&quot;</span><span class="p">)));</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="n">out</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">FileNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="p">}</span><span class="k">finally</span><span class="p">{</span><span class="c1">//siempre se ejecuta y permite cerrar</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">fos</span><span class="o">!=</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">                    </span><span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">                    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">                </span><span class="p">}</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="p">}</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="24 "></span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm"> * Método writeBuffer()</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm"> * Escribe 1000 números enteros en el fichero &quot;datosBufer.dat&quot;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm"> * utilizando:</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm"> * - FileOutputStream        → conexión con el fichero</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm"> * - BufferedOutputStream    → mejora el rendimiento (usa memoria intermedia)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="cm"> * - DataOutputStream        → permite escribir datos primitivos (int, double, etc.)</span>
+<span class="linenos" data-linenos="10 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos="11 "></span><span class="cm"> * Se utiliza try-with-resources para cerrar automáticamente el flujo.</span>
+<span class="linenos" data-linenos="12 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos="13 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">writeBuffer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="c1">// try-with-resources:</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="c1">// El recurso declarado dentro del paréntesis se cierra automáticamente</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">DataOutputStream</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">                 </span><span class="k">new</span><span class="w"> </span><span class="n">DataOutputStream</span><span class="p">(</span><span class="w">             </span><span class="c1">// Permite escribir tipos primitivos</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">                         </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedOutputStream</span><span class="p">(</span><span class="w"> </span><span class="c1">// Añade buffer (mejora rendimiento)</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">                                 </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datosBufer.dat&quot;</span><span class="p">))))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Conexión al fichero</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">// Escribimos 1000 enteros en el fichero</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">            </span><span class="c1">// writeInt escribe 4 bytes por cada entero</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="n">out</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="c1">// No hace falta cerrar el stream manualmente</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="c1">// Se cerrará automáticamente al salir del try</span>
+<span class="linenos" data-linenos="31 "></span>
+<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="33 "></span>
+<span class="linenos" data-linenos="34 "></span><span class="w">        </span><span class="c1">// Capturamos cualquier error de escritura o creación del fichero</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="37 "></span><span class="p">}</span>
 </code></pre></div>
 <h2 id="lectura-de-datos-en-un-fichero-binario">Lectura de datos en un fichero binario<a class="headerlink" href="#lectura-de-datos-en-un-fichero-binario" title="Permanent link">&para;</a></h2>
 <p>Para leer un fichero, primero hemos de preguntarnos un poco sobre él, es decir, si fue escrito por un programa Java, entonces necesitaremos saber qué tipos de datos se usaron, y así poder usar una subclase de <code>InputStream</code> para leer bytes para ese tipo de datos.</p>
@@ -3565,8 +3578,9 @@ Pero podemos seguir usando la versión con <code>finally</code> </p>
 </code></pre></div>
 <p>Al igual que en la escritura para la lectura también disponemos de la clase <code>BufferedInputStream</code>.</p>
 <h2 id="lectura-y-escritura-de-objetos-en-ficheros">Lectura y escritura de Objetos en ficheros<a class="headerlink" href="#lectura-y-escritura-de-objetos-en-ficheros" title="Permanent link">&para;</a></h2>
-<p>Para poder guardar objetos de una Clase en un fichero es necesario que la clase implemente la interface <code>Serializable</code> que no es obligatorio implementar ningún método.
+<p>Para poder guardar objetos de una Clase en un fichero es necesario que la clase implemente la interface <code>Serializable</code>. Esta interface no te obliga a implementar ningún método.
 Vamos a ver un ejemplo donde guardamos una ArrayList y luego lo recuperamos</p>
+<p><img alt="alt text" src="../../img/ud9/fich20.png" /></p>
 <p><div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Socio</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
 </span><span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="c1">//nombre del fichero</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">SOCIOS_DAT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;socios.dat&quot;</span><span class="p">;</span>
@@ -3588,28 +3602,82 @@ Vamos a ver un ejemplo donde guardamos una ArrayList y luego lo recuperamos</p>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
 Para la escritura del ArrayList de Socios en el fichero podemos llamar al siguiente método
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// Método para guardar en un archivo binario</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">guardarEnArchivo</span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socios</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombreArchivo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">oos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">nombreArchivo</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">            </span><span class="n">oos</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">socios</span><span class="p">);</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// Método para guardar en un archivo binario</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm"> * Guarda una lista de objetos Socio en un archivo binario.</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm"> * Este método:</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm"> * 1. Crea un ObjectOutputStream conectado al fichero indicado.</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm"> * 2. Serializa (convierte en binario) el ArrayList completo.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm"> * 3. Cierra automáticamente el flujo gracias a try-with-resources.</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos="10 "></span><span class="cm"> * Requisito importante:</span>
+<span class="linenos" data-linenos="11 "></span><span class="cm"> * La clase Socio debe implementar Serializable.</span>
+<span class="linenos" data-linenos="12 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos="13 "></span><span class="cm"> * @param socios        Lista de socios que se desea guardar</span>
+<span class="linenos" data-linenos="14 "></span><span class="cm"> * @param nombreArchivo Nombre del fichero binario (ej: &quot;socios.dat&quot;)</span>
+<span class="linenos" data-linenos="15 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos="16 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">guardarEnArchivo</span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socios</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombreArchivo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="c1">// try-with-resources:</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="c1">// El ObjectOutputStream se cerrará automáticamente al finalizar el bloque</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">oos</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">                 </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">                         </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">nombreArchivo</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="c1">// writeObject serializa el objeto completo (la lista y todos sus elementos)</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="n">oos</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">socios</span><span class="p">);</span>
+<span class="linenos" data-linenos="26 "></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="c1">// Se captura cualquier error de escritura o creación del fichero</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span><span class="p">}</span>
 </code></pre></div>
 Para la lectura
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">leerDesdeArchivo</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombreArchivo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">ois</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="n">nombreArchivo</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">            </span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">obj</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">                </span><span class="n">socios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="p">}</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">socios</span><span class="p">;</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/**</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm"> * Lee una lista de objetos Socio desde un archivo binario.</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm"> * Este método:</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="cm"> * 1. Abre un ObjectInputStream conectado al fichero indicado.</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm"> * 2. Lee el objeto serializado con readObject().</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm"> * 3. Comprueba que el objeto leído sea un ArrayList.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm"> * 4. Realiza un casting seguro a ArrayList&lt;Socio&gt;.</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="cm"> *</span>
+<span class="linenos" data-linenos="10 "></span><span class="cm"> * @param nombreArchivo Nombre del fichero binario (ej: &quot;socios.dat&quot;)</span>
+<span class="linenos" data-linenos="11 "></span><span class="cm"> * @return ArrayList&lt;Socio&gt; leída del fichero o null si ocurre error</span>
+<span class="linenos" data-linenos="12 "></span><span class="cm"> */</span>
+<span class="linenos" data-linenos="13 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">leerDesdeArchivo</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombreArchivo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="w"> </span><span class="n">socios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="c1">// try-with-resources:</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="c1">// El ObjectInputStream se cerrará automáticamente</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">ois</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">                 </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">                         </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="n">nombreArchivo</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="22 "></span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="c1">// readObject() devuelve un Object genérico</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ois</span><span class="p">.</span><span class="na">readObject</span><span class="p">();</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="c1">// Comprobamos que el objeto leído sea realmente un ArrayList</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">obj</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">ArrayList</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">            </span><span class="c1">// Hacemos casting explícito a ArrayList&lt;Socio&gt;</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">            </span><span class="n">socios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Socio</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="34 "></span>
+<span class="linenos" data-linenos="35 "></span><span class="w">        </span><span class="c1">// IOException → error de lectura del fichero</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">        </span><span class="c1">// ClassNotFoundException → no encuentra la clase Socio</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="39 "></span>
+<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="c1">// Devolvemos la lista leída (o null si hubo error)</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">socios</span><span class="p">;</span>
+<span class="linenos" data-linenos="42 "></span><span class="p">}</span>
 </code></pre></div>
 Un ejemplo de guardado y recuperación
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

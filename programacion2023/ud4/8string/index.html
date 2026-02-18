@@ -1921,6 +1921,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#systemoutprintf" class="md-nav__link">
+    <span class="md-ellipsis">
+      System.out.printf
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4097,6 +4106,33 @@ Ejemplo 4: Crear una tabla tabulada
 </code></pre></div>
 Salida:</p>
 <p><img alt="String" src="../../img/ud4/stringformat2.png" /></p>
+<h3 id="systemoutprintf"><code>System.out.printf</code><a class="headerlink" href="#systemoutprintf" title="Permanent link">&para;</a></h3>
+<p>Podemos utilizar el método <code>printf</code> al igual <code>format</code></p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Mostrar el número 1.2342 en un ancho de campo de 10 caracteres y con dos decimales.</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">double</span><span class="w"> </span><span class="n">precio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.2342</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;Precio %10.2f&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">precio</span><span class="p">);</span>
+</code></pre></div>
+Un ejemplo más completo
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Laptop Gaming&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ratón Óptico&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Teclado Mec.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Monitor 4K&quot;</span><span class="p">};</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">cantidades</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">};</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kt">double</span><span class="o">[]</span><span class="w"> </span><span class="n">precios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">1200.99</span><span class="p">,</span><span class="w"> </span><span class="mf">19.50</span><span class="p">,</span><span class="w"> </span><span class="mf">85.00</span><span class="p">,</span><span class="w"> </span><span class="mf">349.95</span><span class="p">};</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">// Cabecera de la tabla</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;==============================================&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%-15s | %8s | %12s %n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PRODUCTO&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;STOCK&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PRECIO UNIT.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----------------------------------------------&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">// Bucle para imprimir los 4 productos con formato</span>
+<span class="linenos" data-linenos="11 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">productos</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="c1">// %-15s -&gt; Texto alineado a la izquierda (15 espacios)</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="c1">// %8d   -&gt; Entero alineado a la derecha (8 espacios)</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="c1">// %10.2f -&gt; Decimal con 2 decimales y 10 espacios de ancho</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%-15s | %8d | %10.2f€ %n&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">productos</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">cantidades</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">precios</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;==============================================&quot;</span><span class="p">);</span>
+</code></pre></div></p>
 
 
 
