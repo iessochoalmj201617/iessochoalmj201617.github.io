@@ -3462,7 +3462,44 @@
 <h1 id="ficheros-de-caracteres">Ficheros de caracteres<a class="headerlink" href="#ficheros-de-caracteres" title="Permanent link">&para;</a></h1>
 <p><img alt="alt text" src="../../img/ud9/fich21.png" /></p>
 <p>Las  clases Java <code>FileWriter</code> y <code>FileReader</code> se utilizan para escribir y leer datos de archivos de texto (son clases de flujo de caracteres, <strong>character stream</strong>). Se recomienda no utilizar las clases <code>FileInputStream</code> y <code>FileOutputStream</code> si vamos a leer o escribir información de texto.</p>
-<p><img alt="JavaIO" src="../../img/ud9/8extensioncharfiles.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Extensión</th>
+<th>Tipo de fichero</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.txt</td>
+<td>Fichero de texto plano</td>
+</tr>
+<tr>
+<td>.xml</td>
+<td>Fichero XML</td>
+</tr>
+<tr>
+<td>.json</td>
+<td>Fichero de intercambio de información</td>
+</tr>
+<tr>
+<td>.props</td>
+<td>Fichero de propiedades</td>
+</tr>
+<tr>
+<td>.conf</td>
+<td>Fichero de configuración</td>
+</tr>
+<tr>
+<td>.sql</td>
+<td>Script SQL</td>
+</tr>
+<tr>
+<td>.srt</td>
+<td>Fichero de subtítulo</td>
+</tr>
+</tbody>
+</table>
 <h2 id="escritura-de-caracteres">Escritura de caracteres<a class="headerlink" href="#escritura-de-caracteres" title="Permanent link">&para;</a></h2>
 <p>La clase Java <code>FileWriter</code> del paquete java.io se utiliza para escribir datos en forma de caracteres en un archivo.</p>
 <ul>
@@ -3685,8 +3722,8 @@
 <span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="c1">// try-with-resources:</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="c1">// El BufferedReader se cerrará automáticamente al finalizar el bloque</span>
 <span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="c1">// var permite inferencia de tipo (BufferedReader)</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="n">BufferedReader</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span>
 <span class="linenos" data-linenos="16 "></span><span class="w">                     </span><span class="k">new</span><span class="w"> </span><span class="n">FileReader</span><span class="p">(</span><span class="s">&quot;datos.txt&quot;</span><span class="p">))</span>
 <span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="18 "></span>

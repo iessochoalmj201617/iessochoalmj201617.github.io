@@ -3496,9 +3496,75 @@
 </ul>
 <p>Las clases principales</p>
 <p><em>Clases principales de InputStream:</em></p>
-<p><img alt="JavaIO" src="../../img/ud9/2javaio.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ByteArrayInputStream</td>
+<td>Permite utilizar los buffers de memoria como InputStream</td>
+</tr>
+<tr>
+<td>StringBufferInputStream</td>
+<td>Convierte un string en InputStream</td>
+</tr>
+<tr>
+<td>FileInputStream</td>
+<td>Para leer la información del Archivo</td>
+</tr>
+<tr>
+<td>PipeInputStream</td>
+<td>Implementa el concepto de tubería (pipe)</td>
+</tr>
+<tr>
+<td>SequenceInputStream</td>
+<td>Convierte dos o más objetos InputStream en un único InputStream</td>
+</tr>
+<tr>
+<td>BufferedInputStream</td>
+<td>Añade la función de almacenamiento en buffer a las operaciones de lectura</td>
+</tr>
+<tr>
+<td>DataInputStream</td>
+<td>Proporciona una funcionalidad para leer de un flujo de tipos primitivos Java</td>
+</tr>
+</tbody>
+</table>
 <p><em>Clases principales de OutputStream:</em></p>
-<p><img alt="JavaIO" src="../../img/ud9/3javaio.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ByteArrayOutputStream</td>
+<td>Crea un buffer en la memoria, todos los datos transmitidos en el flujo se colocan en este buffer.</td>
+</tr>
+<tr>
+<td>FileOutputStream</td>
+<td>Para transmitir información de Archivo</td>
+</tr>
+<tr>
+<td>PipeOutputStream</td>
+<td>Implementa el concepto de tubería (pipe)</td>
+</tr>
+<tr>
+<td>BufferedOutputStream</td>
+<td>Añade la función de almacenamiento en buffer a las operaciones de escritura</td>
+</tr>
+<tr>
+<td>DataOutputStream</td>
+<td>Proporciona funcionalidad para escribir en archivos de tipo primitivo de Java</td>
+</tr>
+</tbody>
+</table>
 <h3 id="character-streams-flujos-de-caracteres">Character Streams (Flujos de caracteres):<a class="headerlink" href="#character-streams-flujos-de-caracteres" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Los character streams operan a nivel de caracteres, lo que significa que manejan datos como secuencias de caracteres Unicode.</li>
@@ -3507,9 +3573,75 @@
 <li>Las clases principales para manejar estos flujos son las clases abstractas <strong>Reader</strong> y <strong>Writer</strong>.</li>
 </ul>
 <p><em>Clases principales de Reader</em>:</p>
-<p><img alt="JavaIO" src="../../img/ud9/4javaio.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StringReader</td>
+<td>Representa un stream que opera con cadenas</td>
+</tr>
+<tr>
+<td>InputStreamReader</td>
+<td>Es una clase puente entre el stream de char y el stream de bytes</td>
+</tr>
+<tr>
+<td>FileReader</td>
+<td>Proporciona soporte para la lectura de caracteres desde un archivo</td>
+</tr>
+<tr>
+<td>PipedReader</td>
+<td>Permite leer los caracteres de una pipe</td>
+</tr>
+<tr>
+<td>BufferedReader</td>
+<td>Añade la función de almacenamiento en buffer al stream para que no sea necesario acceder al sistema de archivos para cada operación de lectura</td>
+</tr>
+<tr>
+<td>LineNumberReader</td>
+<td>Mantiene un registro del número de línea desde el que se leen los caracteres</td>
+</tr>
+</tbody>
+</table>
 <p><em>Clases principales de Writer:</em></p>
-<p><img alt="JavaIO" src="../../img/ud9/5javaio.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StringWriter</td>
+<td>Permite escribir stream manipulados como cadenas</td>
+</tr>
+<tr>
+<td>OutputStreamWriter</td>
+<td>Es una clase puente entre el stream de char y el stream de bytes</td>
+</tr>
+<tr>
+<td>FileWriter</td>
+<td>Proporciona soporte para la escritura de caracteres en un archivo</td>
+</tr>
+<tr>
+<td>PipedWriter</td>
+<td>Permite escribir caracteres en una pipe</td>
+</tr>
+<tr>
+<td>PrintWriter</td>
+<td>Ofrece soporte para la impresión de caracteres con formato</td>
+</tr>
+<tr>
+<td>BufferedWriter</td>
+<td>Añade la funcionalidad de almacenamiento en buffer al flujo para que no haya necesidad de acceder al sistema de archivos para cada operación de escritura</td>
+</tr>
+</tbody>
+</table>
 <p>La siguiente figura muestra la jerarquía del paquete <code>java.io</code>.
 Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo tiene flujos de entrada y flujos de salida.</p>
 <p><img alt="JavaIO" src="../../img/ud9/2stream.png" /></p>
