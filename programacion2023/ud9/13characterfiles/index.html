@@ -2734,6 +2734,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Escritura de caracteres">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#try-with-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      try-with-resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3538,6 +3553,29 @@
 </tr>
 </tbody>
 </table>
+<p>Cuando trabajamos con flujos es necesario cerrarlo para evitar perdida de recursos, incluso aunque se produzca un error, por lo que normalmente se realiza en el el apartado finally del try/cath.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Siempre hay que cerrar el flujo para asegurarse de liberar todos los recursos asociados a él y que el sistema operativo no consuma recursos.</p>
+</div>
+<p>La excepción <code>IOException</code> se lanza si el stream se ha cerrado y el flujo de salida contenido no admite la escritura después del cierre, o se produce otro error de I/O.</p>
+<h3 id="try-with-resources">try-with-resources<a class="headerlink" href="#try-with-resources" title="Permanent link">&para;</a></h3>
+<p>La declaración <code>try-with-resource</code> es una característica introducida en Java 7 que facilita la gestión de recursos que deben cerrarse explícitamente, como flujos de archivos o conexiones a bases de datos. Permite que los recursos sean automáticamente cerrados una vez que el bloque try termina, incluso si ocurre una excepción. Esto simplifica el código y reduce la posibilidad de fugas de recursos.</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">DataOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataOutputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datos.dat&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 3 "></span>
+</span><span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="o">-</span><span class="mi">34</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">FileNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//todas pueden derivar de IOException</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+Pero podemos seguir usando la versión con <code>finally</code> </p>
+<p>Vamos a ver un ejemplo para flujo de caracteres</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">try/catch resource</label><label for="__tabbed_1_2">try/catch/finally</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
