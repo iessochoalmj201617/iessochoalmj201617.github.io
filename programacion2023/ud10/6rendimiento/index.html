@@ -2999,6 +2999,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../3ejemplocrud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Ejemplo CRUD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4transactions/" class="md-nav__link">
         
   
@@ -3472,24 +3495,24 @@
 </thead>
 <tbody>
 <tr>
-<td>Statement is usually parsed and executed each time.</td>
-<td>PreparedStatement is parsed once and executed with different parameters repeatedly.</td>
+<td>Statement normalmente se analiza (parsea) y se ejecuta <strong>cada vez que se usa</strong>.</td>
+<td>PreparedStatement se <strong>analiza una sola vez</strong> y se ejecuta repetidamente con diferentes parámetros.</td>
 </tr>
 <tr>
-<td>A statement is a static Sql statement.It does not support parameters.</td>
-<td>A PreparedStatement is a dynamic Sql statement.It does supports parameters.</td>
+<td>Un Statement es una <strong>sentencia SQL estática</strong>. No soporta parámetros.</td>
+<td>Un PreparedStatement es una <strong>sentencia SQL dinámica</strong>. Sí soporta parámetros.</td>
 </tr>
 <tr>
-<td>It is slower because every time the statements get parsed and executed.</td>
-<td>This is faster because this is precompiled once and gets executed with different parameters.</td>
+<td>Es <strong>más lento</strong> porque cada vez la sentencia se analiza y se ejecuta de nuevo.</td>
+<td>Es <strong>más rápido</strong> porque se <strong>precompila una vez</strong> y se ejecuta con diferentes parámetros.</td>
 </tr>
 <tr>
-<td>Statement verifies metadata against database everytime.</td>
-<td>PreparedStatement verifies metadata against database only once.</td>
+<td>Statement verifica los <strong>metadatos contra la base de datos cada vez</strong>.</td>
+<td>PreparedStatement verifica los <strong>metadatos contra la base de datos solo una vez</strong>.</td>
 </tr>
 <tr>
-<td>If we want to execute sql statement once it is recommended to use statement.</td>
-<td>If we want to execute sql statements repeatedly it is recommended to use PreparedStatement.</td>
+<td>Si queremos ejecutar una sentencia SQL <strong>una sola vez</strong>, se recomienda usar Statement.</td>
+<td>Si queremos ejecutar sentencias SQL <strong>repetidamente</strong>, se recomienda usar PreparedStatement.</td>
 </tr>
 </tbody>
 </table>
@@ -3498,9 +3521,10 @@ Usando un objeto <code>Statement</code>, cada vez que hacemos una ejecución de 
 <p>En cambio, al <code>PreparedStament</code> la sentencia nunca varía y por lo tanto se puede compilar y almacenar dentro del mismo objeto, por lo que las siguientes veces que se ejecute no habrá que compilarla. Esto reducirá sensiblemente el tiempo de ejecución. La parametrización, además, ayuda a crear sentencias muy genéricas que se puedan reutilizar fácilmente.</p>
 <p>En algunos sistemas gestores, además, usar <code>PreparedStatement</code> puede llegar a suponer más ventajas, ya que utilizan la secuencia de bytes de la sentencia para detectar si se trata de una sentencia nueva o ya se ha servido con anterioridad. De esta manera se propicia que el sistema almacene las respuestas en la caché, de manera que se puedan entregar de forma más rápida.</p>
 <div class="admonition important">
-<p class="admonition-title">Important 🤔</p>
-<p>The use of a <code>Statement</code> in JDBC should be 100% localized to being used for DDL (ALTER, CREATE, GRANT, etc) as these are the only statement types that cannot accept BIND VARIABLES. <code>PreparedStatements</code> or <code>CallableStatements</code> should be used for EVERY OTHER type of statement (DML, Queries). As these are the statement types that accept bind variables.</p>
-<p>This is a fact, a rule, a law -- <strong>use prepared statements EVERYWHERE. Use STATEMENTS almost no where</strong>.</p>
+<p class="admonition-title">Importante 🤔</p>
+<p>El uso de Statement en JDBC debería limitarse exclusivamente a sentencias DDL (ALTER, CREATE, GRANT, etc.), ya que estos son los únicos tipos de sentencias que no pueden aceptar variables enlazadas (bind variables).</p>
+<p>Para todos los demás tipos de sentencias (DML y consultas), se deberían utilizar PreparedStatement, porque son los tipos de sentencias que sí aceptan variables enlazadas.</p>
+<p>Esto es un hecho, una regla, una ley: usa PreparedStatement en todas partes. Usa Statement casi en ningún sitio.</p>
 </div>
 <h3 id="ejemplos-de-problemas-con-statement">📝 Ejemplos de problemas con Statement<a class="headerlink" href="#ejemplos-de-problemas-con-statement" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
