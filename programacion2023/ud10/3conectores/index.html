@@ -3243,6 +3243,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8projectstructure2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Estructura de los proyectos 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4042,6 +4065,181 @@ En las sentencia SQL de agregados donde contamos, hacemos medias, sumas...tambi�
 <span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="18 "></span><span class="p">}</span>
 </code></pre></div></p>
+<h4 id="metodos-de-resultset">Métodos de ResultSet<a class="headerlink" href="#metodos-de-resultset" title="Permanent link">&para;</a></h4>
+<p>Los métodos principales de ResultSet son</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>next()</code></td>
+<td>Avanza al siguiente registro del resultado</td>
+<td><code>while(rs.next())</code></td>
+</tr>
+<tr>
+<td><code>previous()</code></td>
+<td>Va al registro anterior</td>
+<td><code>rs.previous()</code></td>
+</tr>
+<tr>
+<td><code>first()</code></td>
+<td>Va al primer registro</td>
+<td><code>rs.first()</code></td>
+</tr>
+<tr>
+<td><code>last()</code></td>
+<td>Va al último registro</td>
+<td><code>rs.last()</code></td>
+</tr>
+<tr>
+<td><code>beforeFirst()</code></td>
+<td>Posiciona antes del primer registro</td>
+<td><code>rs.beforeFirst()</code></td>
+</tr>
+<tr>
+<td><code>afterLast()</code></td>
+<td>Posiciona después del último registro</td>
+<td><code>rs.afterLast()</code></td>
+</tr>
+<tr>
+<td><code>absolute(int row)</code></td>
+<td>Va a una fila concreta</td>
+<td><code>rs.absolute(3)</code></td>
+</tr>
+<tr>
+<td><code>relative(int rows)</code></td>
+<td>Se mueve relativo a la posición actual</td>
+<td><code>rs.relative(2)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Los métodos para obtener valores</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Tipo devuelto</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getInt()</code></td>
+<td>entero</td>
+<td><code>rs.getInt("id")</code></td>
+</tr>
+<tr>
+<td><code>getString()</code></td>
+<td>String</td>
+<td><code>rs.getString("nombre")</code></td>
+</tr>
+<tr>
+<td><code>getDouble()</code></td>
+<td>double</td>
+<td><code>rs.getDouble("precio")</code></td>
+</tr>
+<tr>
+<td><code>getBoolean()</code></td>
+<td>boolean</td>
+<td><code>rs.getBoolean("activo")</code></td>
+</tr>
+<tr>
+<td><code>getDate()</code></td>
+<td>Date</td>
+<td><code>rs.getDate("fecha")</code></td>
+</tr>
+<tr>
+<td><code>getFloat()</code></td>
+<td>float</td>
+<td><code>rs.getFloat("nota")</code></td>
+</tr>
+<tr>
+<td><code>getLong()</code></td>
+<td>long</td>
+<td><code>rs.getLong("telefono")</code></td>
+</tr>
+<tr>
+<td><code>getObject()</code></td>
+<td>Object</td>
+<td><code>rs.getObject("campo")</code></td>
+</tr>
+</tbody>
+</table>
+<p>Métodos para comprobar estado</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isBeforeFirst()</code></td>
+<td>Indica si está antes del primer registro</td>
+</tr>
+<tr>
+<td><code>isAfterLast()</code></td>
+<td>Indica si está después del último</td>
+</tr>
+<tr>
+<td><code>isFirst()</code></td>
+<td>Indica si está en el primer registro</td>
+</tr>
+<tr>
+<td><code>isLast()</code></td>
+<td>Indica si está en el último registro</td>
+</tr>
+<tr>
+<td><code>wasNull()</code></td>
+<td>Comprueba si el último valor leído era <code>NULL</code></td>
+</tr>
+</tbody>
+</table>
+<p>Un ResultSet puede abrirse para poder modificar datos directamente. Los métodos que tenemos para poder modificar</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>updateString()</code></td>
+<td>Actualiza un valor String</td>
+</tr>
+<tr>
+<td><code>updateInt()</code></td>
+<td>Actualiza un entero</td>
+</tr>
+<tr>
+<td><code>updateDouble()</code></td>
+<td>Actualiza un double</td>
+</tr>
+<tr>
+<td><code>updateRow()</code></td>
+<td>Guarda los cambios</td>
+</tr>
+<tr>
+<td><code>deleteRow()</code></td>
+<td>Elimina la fila actual</td>
+</tr>
+<tr>
+<td><code>insertRow()</code></td>
+<td>Inserta una nueva fila</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo de actualización</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">rs</span><span class="p">.</span><span class="na">updateString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Juan&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">rs</span><span class="p">.</span><span class="na">updateRow</span><span class="p">();</span>
+</code></pre></div>
 <h3 id="sentencias-parametrizadas-preparedstatement">Sentencias parametrizadas: PreparedStatement<a class="headerlink" href="#sentencias-parametrizadas-preparedstatement" title="Permanent link">&para;</a></h3>
 <p><code>PreparedStatement</code> se utiliza para ejecutar consultas SQL precompiladas. En lugar de enviar una cadena de texto cruda a la base de datos, se envía una plantilla con parámetros identificados por <code>?</code>.
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;</span>
