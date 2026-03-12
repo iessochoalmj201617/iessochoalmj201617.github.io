@@ -3614,7 +3614,7 @@
 <h2 id="resultado-final">Resultado final<a class="headerlink" href="#resultado-final" title="Permanent link">&para;</a></h2>
 <p>Tenemos el código final en el repositorio</p>
 <p><a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola">Proyecto MVC_Consola</a></p>
-<p>La aplicación tiene dos mantenimientos principales que son los departamento y los trabajadores. Para ello, vamos a manejar un menú principal que nos permita acceder a dichos mantenimiento. </p>
+<p>La aplicación tiene dos mantenimientos principales que son los departamentos y los trabajadores. Para ello, la aplicación comienza en  un menú principal que nos permita acceder a dichos mantenimientos. </p>
 <p><img alt="alt text" src="../../img/ud10/mvc10.png" /></p>
 <h2 id="objetivos-de-la-aplicacion">Objetivos de la aplicación<a class="headerlink" href="#objetivos-de-la-aplicacion" title="Permanent link">&para;</a></h2>
 <p>Los objetivos principales del proyecto son:</p>
@@ -3686,14 +3686,18 @@ Cada uno de los menús nos permiten realizar el CRUD de cada tabla. Tenemos la p
 <span class="linenos" data-linenos="20 "></span>    └── EmpleadoView.java
 </code></pre></div>
 <h2 id="agregar-jdbc-de-mysql-al-proyecto">Agregar jdbc de MySql al proyecto<a class="headerlink" href="#agregar-jdbc-de-mysql-al-proyecto" title="Permanent link">&para;</a></h2>
-<p>Es necesario agregarlo el jdbc de MySql/MariaDB. Podemos hacerlo con Maven(no me a funcionado con esta versión de IntelliJ) o directamente. Vamos a usar la segunda opción.</p>
+<p>Es necesario agregarlo el jdbc de MySql/MariaDB. Podemos hacerlo con:
+- Maven(no me a funcionado con esta versión de IntelliJ).
+- Directamente. Vamos a usar la segunda opción.</p>
 <p>Descargamos el fichero de</p>
 <p><a href="https://dev.mysql.com/downloads/file/?id=547777">mysql-connector-j-x.x.x.zip</a></p>
+<p><a href="https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-9.6.0.zip">descarga directa mysql-connector-j-9.6.0.zip</a></p>
 <p>Lo descomprimimos y vamos a agregar el fichero <code>mysql-connector-j-9.6.0.jar</code> al proyecto.</p>
 <p>Copiar el fichero al proyecto:</p>
 <p><img alt="alt text" src="../../img/ud10/mvc12.png" /></p>
 <p>Agregamos la librería para su uso(buscar el fichero en la ruta del proyecto):</p>
 <p><img alt="alt text" src="../../img/ud10/mvc13.png" /></p>
+<p><img alt="alt text" src="../../img/ud10/mvc15.png" /></p>
 <h2 id="patron-mvc-aplicado-al-proyecto">Patrón MVC aplicado al proyecto<a class="headerlink" href="#patron-mvc-aplicado-al-proyecto" title="Permanent link">&para;</a></h2>
 <p>El patrón MVC divide la aplicación en tres partes:</p>
 <ul>
@@ -3716,25 +3720,27 @@ Recibe las acciones del usuario, llama a los DAO y envía los resultados a la vi
 <h2 id="implementacion-paso-a-paso">Implementación paso a paso<a class="headerlink" href="#implementacion-paso-a-paso" title="Permanent link">&para;</a></h2>
 <h3 id="1-base-de-datos-en-mariadbmysql">1-Base de datos en MariaDB/MySql<a class="headerlink" href="#1-base-de-datos-en-mariadbmysql" title="Permanent link">&para;</a></h3>
 <p>Es necesario crear la base de datos en el gestor seleccionado. Suponemos que está creada la base de datos y la llamamos <code>empresaDB</code>. </p>
-<p>Entrar en MySQL y crear la base de datos</p>
+<p>Para crear la base de datos, entrar en MySQL y crear la base de datos</p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">empresadb</span><span class="p">;</span>
 </code></pre></div>
 Lo normal es que el esquema de la base de datos se encuentre creada, pero en nuestro caso, lo creamos desde programa.</p>
 <h3 id="2-crear-la-conexion-a-la-base-de-datos">2-Crear la conexión a la base de datos<a class="headerlink" href="#2-crear-la-conexion-a-la-base-de-datos" title="Permanent link">&para;</a></h3>
-<p>Se implementó la clase <code>DBConnection</code> para gestionar la conexión con la base de datos mediante JDBC.</p>
-<p>Esta clase centraliza:
-- la URL de conexión
-- el usuario y contraseña
-- la apertura de la conexión
-- el cierre de la conexión
-- la creación inicial de tablas y datos de ejemplo</p>
+<p>La clase <code>DBConnection</code> permite gestionar la conexión con la base de datos mediante JDBC. Implementa el patrón <a href="https://es.wikipedia.org/wiki/Singleton">Singleton</a> para evitar más de una instancia de la clase.</p>
 <p><a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/master/src/db/DBConnection.java">DBConnection.java</a></p>
+<p>Esta clase centraliza:
+- <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/91effec74e1f1e9f4751149f3e7281dc7152ca26/src/db/DBConnection.java#L19-L29">la URL de conexión</a>
+- el usuario y contraseña
+- <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/91effec74e1f1e9f4751149f3e7281dc7152ca26/src/db/DBConnection.java#L51-L65">la apertura de la conexión</a>
+- el cierre de la conexión
+- <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/91effec74e1f1e9f4751149f3e7281dc7152ca26/src/db/DBConnection.java#L87-L91">la creación inicial de tablas y datos de ejemplo</a></p>
 <h3 id="3-crear-las-clases-del-modelo">3-Crear las clases del modelo<a class="headerlink" href="#3-crear-las-clases-del-modelo" title="Permanent link">&para;</a></h3>
-<p>A continuación se crearon las clases <code>Departamento</code> y <code>Empleado</code>, que representan las entidades principales del sistema. Por otro lado, vamos a mostrar un listado de departamentos con los totales de empleados, para ello hemos creado una clase <code>DepartamentoResumen</code> </p>
+<p>Las clases <code>Departamento</code> y <code>Empleado</code> representan las entidades principales del sistema. Estas clases permiten definir los objetos POJO que contienen la información extraída de la base de datos. </p>
+<p>Por otro lado, vamos a mostrar un listado de departamentos con los totales de empleados, para ello hemos creado una clase <code>DepartamentoResumen</code> que permite definir los objetos POJO con dicha información extraída de la base de datos para mostrarla</p>
+<p><img alt="alt text" src="../../img/ud10/mvc16.png" /></p>
 <p><a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/tree/master/src/model">Clases del Modelo</a></p>
 <p><img alt="alt text" src="../../img/ud10/mvc14.png" /></p>
 <p>Estas clases incluyen:
-- <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/2bed5099eb2c9d6cfc3ebb984eacd0d85db88032/src/model/Departamento.java#L15-L16">constantes para centralizar la impresión tabulada de listados</a>
+- <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/2bed5099eb2c9d6cfc3ebb984eacd0d85db88032/src/model/Departamento.java#L15-L16">constantes para centralizar el formato para la impresión tabulada de listados</a>
 - atributos privados
 - constructores
 - getters y setters
@@ -3777,11 +3783,11 @@ Lo normal es que el esquema de la base de datos se encuentre creada, pero en nue
 - tablas con resultados
 - mensajes de confirmación y error
 - pausas para volver al menú tras mostrar un listado</p>
-<p>Cada mantenimiento tiene su clase view y por otro lado tenemos la clase <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/master/src/view/Consola.java">Consola</a>  que contiene utilidades(leer número, borrar pantalla, leer si/no...)</p>
+<p>Cada mantenimiento tiene su clase <code>View</code> y por otro lado tenemos la clase <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/master/src/view/Consola.java">Consola</a>  que contiene utilidades(leer número, borrar pantalla, leer si/no...)</p>
 <h3 id="6-crear-los-controladores">6 Crear los controladores<a class="headerlink" href="#6-crear-los-controladores" title="Permanent link">&para;</a></h3>
 <p>Los <a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/tree/master/src/controller">controladores</a> gestionan el flujo de la aplicación y hacen de intermediario entre los datos y las acciones del usuario</p>
 <p><img alt="mvc" src="../../img/ud10/mvc.png" /></p>
-<p>Los controladores mantienen instancias de sus respectivos DAO y View para controlar la aplicación y tomarán las decisiones en función de la elección del menú de usuario.</p>
+<p>Los controladores mantienen instancias de sus respectivos <code>DAO</code> y <code>View</code> para controlar la aplicación y tomarán las decisiones en función de la elección del menú de usuario.</p>
 <ul>
 <li><a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/master/src/controller/AppController.java">AppController</a> controla el menú principal.</li>
 <li><a href="https://github.com/Programacion2023JoseAntonioLopez/ProyectoDBConsola/blob/master/src/controller/DepartamentoController.java">DepartamentoController</a> controla las acciones relacionadas con departamentos.</li>
