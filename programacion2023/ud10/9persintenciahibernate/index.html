@@ -12,7 +12,7 @@
         <link rel="prev" href="../8projectstructure2/">
       
       
-        <link rel="next" href="../../ud8/1javafx/">
+        <link rel="next" href="../9xejemplohibernate/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ut13-persistencia-de-datos" class="md-skip">
+        <a href="#ut13-persistencia-de-datos-hibernate" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -3295,11 +3295,11 @@
         <li class="md-nav__item">
   <a href="#jpql" class="md-nav__link">
     <span class="md-ellipsis">
-      JPQL.
+      JPQL
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="JPQL.">
+    <nav class="md-nav" aria-label="JPQL">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3338,15 +3338,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#ejemplo-final" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ejemplo final.
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -3356,6 +3347,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9xejemplohibernate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Ejemplo-Hibernate
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -3657,7 +3671,8 @@
 
 
 
-<h1 id="ut13-persistencia-de-datos">UT13. Persistencia de datos<a class="headerlink" href="#ut13-persistencia-de-datos" title="Permanent link">&para;</a></h1>
+<h1 id="ut13-persistencia-de-datos-hibernate">UT13. Persistencia de datos: Hibernate<a class="headerlink" href="#ut13-persistencia-de-datos-hibernate" title="Permanent link">&para;</a></h1>
+<p><img alt="alt text" src="../../img/ud10/hibernate1.png" /></p>
 <h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>Cuando una aplicación termina, todos sus objetos y datos desaparecen de la memoria, lo que hace que el trabajo realizado se pierda. Para evitar esto, debemos buscar una solución que permita salvaguardar de forma duradera, normalmente en disco, todos los datos. De esta manera, estarán disponibles la próxima vez que volvamos a ejecutar dicha aplicación.</p>
 <p>La técnica que permite guardar los datos y que perduren en el tiempo, a través de la terminación y nueva ejecución de una aplicación, se conoce como <strong>persistencia</strong>.</p>
@@ -4002,7 +4017,7 @@ El método de EntityManager que hace esto es:
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">void</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span>
 </code></pre></div>
 El método <code>remove()</code> solo puede ejecutarse durante una transacción.</p>
-<h2 id="jpql">JPQL.<a class="headerlink" href="#jpql" title="Permanent link">&para;</a></h2>
+<h2 id="jpql">JPQL<a class="headerlink" href="#jpql" title="Permanent link">&para;</a></h2>
 <p>JPQL son las siglas de Java Persistence Query Language, y es lenguaje de consulta de base de datos de JPA. Está inspirado en SQL y comparten una sintaxis parecida. A diferencia de éste, que devuelve una tabla con los resultados de una consulta, JPQL trabaja con objetos, siendo el resultado de una consulta una lista de objetos.</p>
 <h3 id="select">select<a class="headerlink" href="#select" title="Permanent link">&para;</a></h3>
 <p>A modo de ejemplo, veremos un ejemplo sencillo de una instrucción <strong>SELECT</strong>. La siguiente sentencia JPQL permite consultar todos los empleados que existen en la BD:
@@ -4060,97 +4075,89 @@ En la cláusula FROM se declara una variable e de tipo Empleado, y en el SELECT 
 </code></pre></div></p>
 <h3 id="parametrizacion">Parametrización<a class="headerlink" href="#parametrizacion" title="Permanent link">&para;</a></h3>
 <p>Se pueden parametrizar las consultas mediante parámetros posicionales o nominales. Los parámetros posicionales se denotan con el símbolo <strong>?</strong>, seguido del número del parámetro. Los parámetros por nombre se denotan con el nombre asignado precedido de dos puntos <strong>:</strong>
-Ejemplo. Muestra el listado de todos los empleados que desempeñan cierto puesto y tienen un sueldo superior a uno fijado.
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityManager</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityManagerFactory</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Persistence</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Query</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="w">      </span><span class="c1">// Declaración de objetos necesarios para trabajar con JPA</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">      </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="p">;</span><span class="w">   </span><span class="c1">// Fábrica de EntityManager</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">      </span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="p">;</span><span class="w">           </span><span class="c1">// Gestor de entidades (interacción con BD)</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">      </span><span class="n">EntityTransaction</span><span class="w"> </span><span class="n">tx</span><span class="p">;</span><span class="w">       </span><span class="c1">// Para gestionar transacciones (no se usa aquí)</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">jpql</span><span class="p">;</span><span class="w">                </span><span class="c1">// Consulta en lenguaje JPQL</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">      </span><span class="n">Query</span><span class="w"> </span><span class="n">query</span><span class="p">;</span><span class="w">                </span><span class="c1">// Objeto que ejecuta la consulta</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="p">;</span><span class="w">              </span><span class="c1">// Variable no usada en este código</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">      </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w"> </span><span class="c1">// Para leer datos por teclado</span>
+Ejemplo. Muestra el listado de todos los empleados que desempeñan cierto puesto y tienen un sueldo superior a uno fijado.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">      </span><span class="c1">// Declaración de objetos necesarios para trabajar con JPA</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">      </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="p">;</span><span class="w">   </span><span class="c1">// Fábrica de EntityManager</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="p">;</span><span class="w">           </span><span class="c1">// Gestor de entidades (interacción con BD)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="n">EntityTransaction</span><span class="w"> </span><span class="n">tx</span><span class="p">;</span><span class="w">       </span><span class="c1">// Para gestionar transacciones (no se usa aquí)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">jpql</span><span class="p">;</span><span class="w">                </span><span class="c1">// Consulta en lenguaje JPQL</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">      </span><span class="n">Query</span><span class="w"> </span><span class="n">query</span><span class="p">;</span><span class="w">                </span><span class="c1">// Objeto que ejecuta la consulta</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">resultado</span><span class="p">;</span><span class="w">              </span><span class="c1">// Variable no usada en este código</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">      </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w"> </span><span class="c1">// Para leer datos por teclado</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">      </span><span class="c1">// Solicitar datos al usuario</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Introduce el tipo de puesto del empleado: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">tipoPuesto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Introduce el mínimo de sueldo del empleado: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">sueldo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">());</span>
 <span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span><span class="w">      </span><span class="c1">// Solicitar datos al usuario</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Introduce el tipo de puesto del empleado: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">tipoPuesto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos="24 "></span>
-<span class="linenos" data-linenos="25 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Introduce el mínimo de sueldo del empleado: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">sueldo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">());</span>
-<span class="linenos" data-linenos="27 "></span>
-<span class="linenos" data-linenos="28 "></span><span class="w">      </span><span class="c1">// Crear la conexión con la unidad de persistencia</span>
-<span class="linenos" data-linenos="29 "></span><span class="w">      </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="30 "></span><span class="w">      </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>
-<span class="linenos" data-linenos="31 "></span>
-<span class="linenos" data-linenos="32 "></span><span class="w">      </span><span class="c1">// =========================</span>
-<span class="linenos" data-linenos="33 "></span><span class="w">      </span><span class="c1">// 1ª FORMA: Parámetros posicionales (?1, ?2)</span>
-<span class="linenos" data-linenos="34 "></span><span class="w">      </span><span class="c1">// =========================</span>
-<span class="linenos" data-linenos="35 "></span>
-<span class="linenos" data-linenos="36 "></span><span class="w">      </span><span class="c1">// Consulta JPQL con parámetros por posición</span>
-<span class="linenos" data-linenos="37 "></span><span class="w">      </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT e FROM Empleado e WHERE e.puesto = ?1 AND e.sueldo &gt;= ?2&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="38 "></span>
-<span class="linenos" data-linenos="39 "></span>
-<span class="linenos" data-linenos="40 "></span><span class="w">      </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
-<span class="linenos" data-linenos="41 "></span>
-<span class="linenos" data-linenos="42 "></span><span class="w">      </span><span class="c1">// Asignación de valores a los parámetros</span>
-<span class="linenos" data-linenos="43 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">tipoPuesto</span><span class="p">);</span>
-<span class="linenos" data-linenos="44 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">sueldo</span><span class="p">);</span>
-<span class="linenos" data-linenos="45 "></span>
-<span class="linenos" data-linenos="46 "></span><span class="w">      </span><span class="c1">// Ejecución de la consulta</span>
-<span class="linenos" data-linenos="47 "></span><span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
-<span class="linenos" data-linenos="48 "></span>
-<span class="linenos" data-linenos="49 "></span><span class="w">      </span><span class="c1">// Mostrar resultados</span>
-<span class="linenos" data-linenos="50 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- Resultados (parámetros posicionales) ---&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="51 "></span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">lista1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="52 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Dni: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getDni</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;\tSueldo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getSueldo</span><span class="p">());</span>
-<span class="linenos" data-linenos="53 "></span><span class="w">      </span><span class="p">}</span>
-<span class="linenos" data-linenos="54 "></span>
-<span class="linenos" data-linenos="55 "></span>
-<span class="linenos" data-linenos="56 "></span><span class="w">      </span><span class="cm">/*</span>
-<span class="linenos" data-linenos="57 "></span><span class="cm">         =========================</span>
-<span class="linenos" data-linenos="58 "></span><span class="cm">         2ª FORMA: Parámetros con nombre (:parametro)</span>
-<span class="linenos" data-linenos="59 "></span><span class="cm">         =========================</span>
-<span class="linenos" data-linenos="60 "></span>
-<span class="linenos" data-linenos="61 "></span><span class="cm">         El nombre del parámetro NO tiene por qué coincidir</span>
-<span class="linenos" data-linenos="62 "></span><span class="cm">         con el nombre de la variable Java.</span>
-<span class="linenos" data-linenos="63 "></span><span class="cm">      */</span>
-<span class="linenos" data-linenos="64 "></span>
-<span class="linenos" data-linenos="65 "></span><span class="w">      </span><span class="c1">// Consulta con parámetros nombrados</span>
-<span class="linenos" data-linenos="66 "></span><span class="w">      </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT e FROM Empleado e WHERE e.puesto = :puesto AND e.sueldo &gt;= :cantidad&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="67 "></span>
-<span class="linenos" data-linenos="68 "></span><span class="w">      </span><span class="c1">// Crear la consulta</span>
-<span class="linenos" data-linenos="69 "></span><span class="w">      </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
-<span class="linenos" data-linenos="70 "></span>
-<span class="linenos" data-linenos="71 "></span><span class="w">      </span><span class="c1">// Asignar valores a los parámetros</span>
-<span class="linenos" data-linenos="72 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;puesto&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tipoPuesto</span><span class="p">);</span>
-<span class="linenos" data-linenos="73 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;cantidad&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sueldo</span><span class="p">);</span>
-<span class="linenos" data-linenos="74 "></span>
-<span class="linenos" data-linenos="75 "></span><span class="w">      </span><span class="c1">// Ejecutar consulta</span>
-<span class="linenos" data-linenos="76 "></span><span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
-<span class="linenos" data-linenos="77 "></span>
-<span class="linenos" data-linenos="78 "></span><span class="w">      </span><span class="c1">// Mostrar resultados</span>
-<span class="linenos" data-linenos="79 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- Resultados (parámetros con nombre) ---&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="80 "></span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">lista2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="81 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Dni: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getDni</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;\tSueldo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getSueldo</span><span class="p">());</span>
-<span class="linenos" data-linenos="82 "></span><span class="w">      </span><span class="p">}</span>
-<span class="linenos" data-linenos="83 "></span>
-<span class="linenos" data-linenos="84 "></span><span class="w">      </span><span class="c1">// Cerrar recursos</span>
-<span class="linenos" data-linenos="85 "></span><span class="w">      </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="86 "></span><span class="w">      </span><span class="n">emf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="87 "></span><span class="w">      </span><span class="n">sc</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="88 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="89 "></span><span class="p">}</span>
-</code></pre></div></p>
+<span class="linenos" data-linenos="21 "></span><span class="w">      </span><span class="c1">// Crear la conexión con la unidad de persistencia</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">      </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">      </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Parámetros posicionales</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">      </span><span class="c1">// =========================</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">      </span><span class="c1">// 1ª FORMA: Parámetros posicionales (?1, ?2)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">      </span><span class="c1">// =========================</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">      </span><span class="c1">// Consulta JPQL con parámetros por posición</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">      </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT e FROM Empleado e WHERE e.puesto = ?1 AND e.sueldo &gt;= ?2&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">      </span><span class="c1">// Asignación de valores a los parámetros</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">tipoPuesto</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">sueldo</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">      </span><span class="c1">// Ejecución de la consulta</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">      </span><span class="c1">// Mostrar resultados</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- Resultados (parámetros posicionales) ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">lista1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Dni: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getDni</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;\tSueldo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getSueldo</span><span class="p">());</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">      </span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Parámetros por nombre</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">      </span><span class="cm">/*</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">         =========================</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">         2ª FORMA: Parámetros con nombre (:parametro)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">         =========================</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="cm">         El nombre del parámetro NO tiene por qué coincidir</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="cm">         con el nombre de la variable Java.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="cm">      */</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">      </span><span class="c1">// Consulta con parámetros nombrados</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">      </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT e FROM Empleado e WHERE e.puesto = :puesto AND e.sueldo &gt;= :cantidad&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">      </span><span class="c1">// Crear la consulta</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">      </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">      </span><span class="c1">// Asignar valores a los parámetros</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;puesto&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tipoPuesto</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">      </span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;cantidad&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sueldo</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">      </span><span class="c1">// Ejecutar consulta</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
+<span class="linenos" data-linenos="22 "></span>
+<span class="linenos" data-linenos="23 "></span><span class="w">      </span><span class="c1">// Mostrar resultados</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- Resultados (parámetros con nombre) ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Empleado</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">lista2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Dni: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getDni</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;\tSueldo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="na">getSueldo</span><span class="p">());</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">      </span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">      </span><span class="c1">// Cerrar recursos</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">      </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">      </span><span class="n">emf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">      </span><span class="n">sc</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">   </span><span class="p">}</span>
+<span class="linenos" data-linenos="34 "></span><span class="p">}</span>
+</code></pre></div>
 <h3 id="update-y-delete">Update y Delete<a class="headerlink" href="#update-y-delete" title="Permanent link">&para;</a></h3>
 <p>JPQL permite realizar sentencias de actualización o de borrado de objetos. Las consultas de UPDATE y DELETE utilizan el método <code>executeUpdate()</code>. </p>
 <p>Este método devuelve el número de filas a las que la consulta ha afectado. Estas sentencias implican un cambio en la BD, por lo que necesitan ejecutarse dentro de una transacción.</p>
@@ -4199,37 +4206,76 @@ Ejemplo. Muestra el listado de todos los empleados que desempeñan cierto puesto
 <span class="linenos" data-linenos="42 "></span>
 <span class="linenos" data-linenos="43 "></span><span class="w">      </span><span class="c1">// Mostrar número de empleados modificados</span>
 <span class="linenos" data-linenos="44 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se ha modificado el sueldo de &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; empleados&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="45 "></span>
-<span class="linenos" data-linenos="46 "></span>
-<span class="linenos" data-linenos="47 "></span><span class="w">      </span><span class="c1">// =========================</span>
-<span class="linenos" data-linenos="48 "></span><span class="w">      </span><span class="c1">// DELETE: eliminar empleados</span>
-<span class="linenos" data-linenos="49 "></span><span class="w">      </span><span class="c1">// =========================</span>
-<span class="linenos" data-linenos="50 "></span>
-<span class="linenos" data-linenos="51 "></span><span class="w">      </span><span class="c1">// ⚠️ CORRECCIÓN: faltaba cerrar comillas</span>
-<span class="linenos" data-linenos="52 "></span><span class="w">      </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DELETE FROM Empleado e WHERE e.sueldo &lt; 0&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="53 "></span>
-<span class="linenos" data-linenos="54 "></span><span class="w">      </span><span class="c1">// Crear la consulta</span>
-<span class="linenos" data-linenos="55 "></span><span class="w">      </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
-<span class="linenos" data-linenos="56 "></span>
-<span class="linenos" data-linenos="57 "></span><span class="w">      </span><span class="c1">// Iniciar nueva transacción</span>
-<span class="linenos" data-linenos="58 "></span><span class="w">      </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos="59 "></span><span class="w">      </span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
-<span class="linenos" data-linenos="60 "></span>
-<span class="linenos" data-linenos="61 "></span><span class="w">      </span><span class="c1">// Ejecutar borrado</span>
-<span class="linenos" data-linenos="62 "></span><span class="w">      </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
-<span class="linenos" data-linenos="63 "></span>
-<span class="linenos" data-linenos="64 "></span><span class="w">      </span><span class="c1">// Confirmar cambios</span>
-<span class="linenos" data-linenos="65 "></span><span class="w">      </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="66 "></span>
-<span class="linenos" data-linenos="67 "></span><span class="w">      </span><span class="c1">// Mostrar número de empleados eliminados</span>
-<span class="linenos" data-linenos="68 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se han eliminado &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; empleados&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="69 "></span>
-<span class="linenos" data-linenos="70 "></span><span class="w">      </span><span class="c1">// Cerrar recursos</span>
-<span class="linenos" data-linenos="71 "></span><span class="w">      </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="72 "></span><span class="w">      </span><span class="n">emf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="73 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="74 "></span><span class="p">}</span>
 </code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">      </span><span class="c1">// =========================</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">      </span><span class="c1">// DELETE: eliminar empleados</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">      </span><span class="c1">// =========================</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">      </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DELETE FROM Empleado e WHERE e.sueldo &lt; 0&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="c1">// Crear la consulta</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">      </span><span class="c1">// Iniciar nueva transacción</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">      </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">      </span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">      </span><span class="c1">// Ejecutar borrado</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">      </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">      </span><span class="c1">// Confirmar cambios</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">      </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">      </span><span class="c1">// Mostrar número de empleados eliminados</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se han eliminado &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; empleados&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">      </span><span class="c1">// Cerrar recursos</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">      </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">      </span><span class="n">emf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">   </span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span><span class="p">}</span>
+</code></pre></div>
+Los mismos ejemplo con sentencias SQL parametrizadas.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// UPDATE parametrizado</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;UPDATE Empleado e SET e.sueldo = :nuevoSueldo WHERE e.puesto = :puesto&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">// Crear consulta</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1">// Asignar valores a los parámetros</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;nuevoSueldo&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1500</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;puesto&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Comercial&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="c1">// Transacción</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="c1">// Ejecutar</span>
+<span class="linenos" data-linenos="16 "></span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="c1">// Confirmar</span>
+<span class="linenos" data-linenos="19 "></span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se ha modificado el sueldo de &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; empleados&quot;</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// =========================</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">// DELETE parametrizado por DNI</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">// =========================</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DELETE FROM Empleado e WHERE e.dni = :dni&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">query</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;dni&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;12345678A&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// DNI a eliminar</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Se han eliminado &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; empleados&quot;</span><span class="p">);</span>
+</code></pre></div>
 <h3 id="consultas-con-nombre-namedquery">Consultas con nombre: @NamedQuery<a class="headerlink" href="#consultas-con-nombre-namedquery" title="Permanent link">&para;</a></h3>
 <p>Es posible asignar un nombre a una consulta, lo que facilita su reutilización, ya que no es necesario escribir el código JPQL una y otra vez. Las consultas con nombre se crean en la propia entidad y se declaran mediante anotaciones.</p>
 <p>La anotación <code>@NamedQuery</code> define mediante los parámetros name y query una consulta con nombre en una entidad.</p>
@@ -4336,427 +4382,6 @@ Ejemplo. Muestra el listado de todos los empleados que desempeñan cierto puesto
 <span class="linenos" data-linenos="71 "></span><span class="w">   </span><span class="p">}</span>
 <span class="linenos" data-linenos="72 "></span><span class="p">}</span>
 </code></pre></div></p>
-<h3 id="ejemplo-final">Ejemplo final.<a class="headerlink" href="#ejemplo-final" title="Permanent link">&para;</a></h3>
-<p>El siguiente es un ejemplo completo de cada uno de los apartados anteriores de la unidad.</p>
-<p>Aplicación que crea la entidad <code>Coche</code> (matrícula, marca, modelo, número de plazas) y la persiste en una BD llamada <code>Taller</code>.
-Archivo <code>Coche.java</code>
-<div class="highlight"><span class="filename">Coche.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">package</span><span class="w"> </span><span class="nn">taller</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Entity</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Id</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Serializable</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="nd">@Entity</span><span class="w"> </span><span class="c1">// Indica que esta clase es una entidad JPA (tabla en la BD)</span>
-<span class="linenos" data-linenos="11 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Coche</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="w">   </span><span class="nd">@Id</span><span class="w"> </span><span class="c1">// Clave primaria de la entidad</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">matricula</span><span class="p">;</span>
-<span class="linenos" data-linenos="15 "></span>
-<span class="linenos" data-linenos="16 "></span><span class="w">   </span><span class="c1">// Atributos de la entidad</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">marca</span><span class="p">,</span><span class="w"> </span><span class="n">modelo</span><span class="p">;</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num_plazas</span><span class="p">;</span>
-<span class="linenos" data-linenos="19 "></span>
-<span class="linenos" data-linenos="20 "></span><span class="w">   </span><span class="c1">// Constructor vacío (OBLIGATORIO en JPA)</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="nf">Coche</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-<span class="linenos" data-linenos="22 "></span>
-<span class="linenos" data-linenos="23 "></span><span class="w">   </span><span class="c1">// Constructor con parámetros</span>
-<span class="linenos" data-linenos="24 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="nf">Coche</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">matricula</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">marca</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">modelo</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num_plazas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">matricula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matricula</span><span class="p">;</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">marca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">marca</span><span class="p">;</span>
-<span class="linenos" data-linenos="27 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">modelo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modelo</span><span class="p">;</span>
-<span class="linenos" data-linenos="28 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">num_plazas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num_plazas</span><span class="p">;</span>
-<span class="linenos" data-linenos="29 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="30 "></span>
-<span class="linenos" data-linenos="31 "></span><span class="w">   </span><span class="c1">// =========================</span>
-<span class="linenos" data-linenos="32 "></span><span class="w">   </span><span class="c1">// GETTERS Y SETTERS</span>
-<span class="linenos" data-linenos="33 "></span><span class="w">   </span><span class="c1">// =========================</span>
-<span class="linenos" data-linenos="34 "></span>
-<span class="linenos" data-linenos="35 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setMatricula</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">matricula</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="36 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">matricula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matricula</span><span class="p">;</span>
-<span class="linenos" data-linenos="37 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="38 "></span>
-<span class="linenos" data-linenos="39 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getMatricula</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="40 "></span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">matricula</span><span class="p">;</span>
-<span class="linenos" data-linenos="41 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="42 "></span>
-<span class="linenos" data-linenos="43 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getMarca</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="44 "></span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">marca</span><span class="p">;</span>
-<span class="linenos" data-linenos="45 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="46 "></span>
-<span class="linenos" data-linenos="47 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setMarca</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">marca</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="48 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">marca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">marca</span><span class="p">;</span>
-<span class="linenos" data-linenos="49 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="50 "></span>
-<span class="linenos" data-linenos="51 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getModelo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="52 "></span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">modelo</span><span class="p">;</span>
-<span class="linenos" data-linenos="53 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="54 "></span>
-<span class="linenos" data-linenos="55 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setModelo</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">modelo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="56 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">modelo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modelo</span><span class="p">;</span>
-<span class="linenos" data-linenos="57 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="58 "></span>
-<span class="linenos" data-linenos="59 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNum_plazas</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="60 "></span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">num_plazas</span><span class="p">;</span>
-<span class="linenos" data-linenos="61 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="62 "></span>
-<span class="linenos" data-linenos="63 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setNum_plazas</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num_plazas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="64 "></span><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="na">num_plazas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num_plazas</span><span class="p">;</span>
-<span class="linenos" data-linenos="65 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="66 "></span>
-<span class="linenos" data-linenos="67 "></span><span class="w">   </span><span class="c1">// Método toString para mostrar la información del objeto</span>
-<span class="linenos" data-linenos="68 "></span><span class="w">   </span><span class="nd">@Override</span>
-<span class="linenos" data-linenos="69 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="70 "></span>
-<span class="linenos" data-linenos="71 "></span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Coche{matricula: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matricula</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos="72 "></span><span class="w">             </span><span class="s">&quot;, marca: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">marca</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos="73 "></span><span class="w">             </span><span class="s">&quot;, modelo: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">modelo</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos="74 "></span><span class="w">             </span><span class="s">&quot;, num_plazas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">num_plazas</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="75 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="76 "></span><span class="p">}</span>
-</code></pre></div></p>
-<div class="highlight"><span class="filename">persistence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="cm">&lt;!-- Configuración de JPA (Jakarta Persistence) --&gt;</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="nt">&lt;persistence</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://jakarta.ee/xml/ns/persistence&quot;</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">             </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">             </span><span class="err">&lt;!--</span><span class="w"> </span><span class="err">Ubicación</span><span class="w"> </span><span class="err">del</span><span class="w"> </span><span class="err">esquema</span><span class="w"> </span><span class="err">XML</span><span class="w"> </span><span class="err">--</span><span class="nt">&gt;</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">             </span>xsi:schemaLocation=&quot;https://jakarta.ee/xml/ns/persistence
-<span class="linenos" data-linenos=" 9 "></span><span class="w">             </span>https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd&quot;
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="w">             </span>version=&quot;3.0&quot;&gt;
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="w">   </span><span class="cm">&lt;!-- Unidad de persistencia --&gt;</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">   </span><span class="nt">&lt;persistence-unit</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;default&quot;</span><span class="nt">&gt;</span>
-<span class="linenos" data-linenos="15 "></span>
-<span class="linenos" data-linenos="16 "></span><span class="w">      </span><span class="cm">&lt;!-- Proveedor JPA (Hibernate en este caso) --&gt;</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">      </span><span class="nt">&lt;provider&gt;</span>org.hibernate.jpa.HibernatePersistenceProvider<span class="nt">&lt;/provider&gt;</span>
-<span class="linenos" data-linenos="18 "></span>
-<span class="linenos" data-linenos="19 "></span><span class="w">      </span><span class="cm">&lt;!-- Clase entidad que se va a mapear --&gt;</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">      </span><span class="nt">&lt;class&gt;</span>taller.Coche<span class="nt">&lt;/class&gt;</span>
-<span class="linenos" data-linenos="21 "></span>
-<span class="linenos" data-linenos="22 "></span><span class="w">      </span><span class="nt">&lt;properties&gt;</span>
-<span class="linenos" data-linenos="23 "></span>
-<span class="linenos" data-linenos="24 "></span><span class="w">         </span><span class="cm">&lt;!-- Driver JDBC de MariaDB --&gt;</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">         </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.driver&quot;</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">                   </span><span class="na">value=</span><span class="s">&quot;org.mariadb.jdbc.Driver&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos" data-linenos="27 "></span>
-<span class="linenos" data-linenos="28 "></span><span class="w">         </span><span class="cm">&lt;!-- URL de conexión a la base de datos --&gt;</span>
-<span class="linenos" data-linenos="29 "></span><span class="w">         </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.url&quot;</span>
-<span class="linenos" data-linenos="30 "></span><span class="w">                   </span><span class="na">value=</span><span class="s">&quot;jdbc:mariadb://localhost:3306/taller&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos" data-linenos="31 "></span>
-<span class="linenos" data-linenos="32 "></span><span class="w">         </span><span class="cm">&lt;!-- Usuario de la base de datos --&gt;</span>
-<span class="linenos" data-linenos="33 "></span><span class="w">         </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.user&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos" data-linenos="34 "></span>
-<span class="linenos" data-linenos="35 "></span><span class="w">         </span><span class="cm">&lt;!-- Contraseña --&gt;</span>
-<span class="linenos" data-linenos="36 "></span><span class="w">         </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.password&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos" data-linenos="37 "></span>
-<span class="linenos" data-linenos="38 "></span><span class="w">         </span><span class="cm">&lt;!-- Acción sobre la base de datos al iniciar --&gt;</span>
-<span class="linenos" data-linenos="39 "></span><span class="w">         </span><span class="cm">&lt;!-- create: borra y crea las tablas cada vez --&gt;</span>
-<span class="linenos" data-linenos="40 "></span><span class="w">         </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.schema-generation.database.action&quot;</span>
-<span class="linenos" data-linenos="41 "></span><span class="w">                   </span><span class="na">value=</span><span class="s">&quot;create&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos" data-linenos="42 "></span>
-<span class="linenos" data-linenos="43 "></span><span class="w">      </span><span class="nt">&lt;/properties&gt;</span>
-<span class="linenos" data-linenos="44 "></span><span class="w">   </span><span class="nt">&lt;/persistence-unit&gt;</span>
-<span class="linenos" data-linenos="45 "></span><span class="nt">&lt;/persistence&gt;</span>
-</code></pre></div>
-<div class="highlight"><span class="filename">Main.java</span><pre><span></span><code><span class="linenos" data-linenos="  1 "></span><span class="kn">package</span><span class="w"> </span><span class="nn">taller</span><span class="p">;</span>
-<span class="linenos" data-linenos="  2 "></span>
-<span class="linenos" data-linenos="  3 "></span>
-<span class="linenos" data-linenos="  4 "></span>
-<span class="linenos" data-linenos="  5 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityManager</span><span class="p">;</span>
-<span class="linenos" data-linenos="  6 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityManagerFactory</span><span class="p">;</span>
-<span class="linenos" data-linenos="  7 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Persistence</span><span class="p">;</span>
-<span class="linenos" data-linenos="  8 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityTransaction</span><span class="p">;</span>
-<span class="linenos" data-linenos="  9 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Query</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 10 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 11 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 12 "></span>
-<span class="linenos" data-linenos=" 13 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityManager</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 14 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityManagerFactory</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 15 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.EntityTransaction</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 16 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Persistence</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 17 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Query</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 18 "></span>
-<span class="linenos" data-linenos=" 19 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 20 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 21 "></span>
-<span class="linenos" data-linenos=" 22 "></span><span class="cm">/**</span>
-<span class="linenos" data-linenos=" 23 "></span><span class="cm"> * Aplicación principal para gestionar coches en un taller.</span>
-<span class="linenos" data-linenos=" 24 "></span><span class="cm"> *</span>
-<span class="linenos" data-linenos=" 25 "></span><span class="cm"> * Este programa permite realizar un CRUD completo sobre la entidad Coche:</span>
-<span class="linenos" data-linenos=" 26 "></span><span class="cm"> * - Crear un coche</span>
-<span class="linenos" data-linenos=" 27 "></span><span class="cm"> * - Consultar un coche</span>
-<span class="linenos" data-linenos=" 28 "></span><span class="cm"> * - Modificar un coche</span>
-<span class="linenos" data-linenos=" 29 "></span><span class="cm"> * - Borrar un coche</span>
-<span class="linenos" data-linenos=" 30 "></span><span class="cm"> * - Mostrar todos los coches</span>
-<span class="linenos" data-linenos=" 31 "></span><span class="cm"> *</span>
-<span class="linenos" data-linenos=" 32 "></span><span class="cm"> * Se utiliza JPA para acceder a la base de datos.</span>
-<span class="linenos" data-linenos=" 33 "></span><span class="cm"> */</span>
-<span class="linenos" data-linenos=" 34 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 35 "></span>
-<span class="linenos" data-linenos=" 36 "></span><span class="w">   </span><span class="cm">/** Fábrica de EntityManager. */</span>
-<span class="linenos" data-linenos=" 37 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 38 "></span>
-<span class="linenos" data-linenos=" 39 "></span><span class="w">   </span><span class="cm">/** EntityManager para operar con la base de datos. */</span>
-<span class="linenos" data-linenos=" 40 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 41 "></span>
-<span class="linenos" data-linenos=" 42 "></span><span class="w">   </span><span class="cm">/** Scanner único para toda la aplicación. */</span>
-<span class="linenos" data-linenos=" 43 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 44 "></span>
-<span class="linenos" data-linenos=" 45 "></span><span class="w">   </span><span class="cm">/**</span>
-<span class="linenos" data-linenos=" 46 "></span><span class="cm">    * Da de alta un nuevo coche en la base de datos.</span>
-<span class="linenos" data-linenos=" 47 "></span><span class="cm">    *</span>
-<span class="linenos" data-linenos=" 48 "></span><span class="cm">    * Esta operación corresponde al CREATE del CRUD.</span>
-<span class="linenos" data-linenos=" 49 "></span><span class="cm">    * Se solicitan los datos al usuario, se crea un objeto Coche</span>
-<span class="linenos" data-linenos=" 50 "></span><span class="cm">    * y se guarda en la base de datos usando persist().</span>
-<span class="linenos" data-linenos=" 51 "></span><span class="cm">    */</span>
-<span class="linenos" data-linenos=" 52 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">crearCoche</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 53 "></span>
-<span class="linenos" data-linenos=" 54 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">matricula</span><span class="p">,</span><span class="w"> </span><span class="n">marca</span><span class="p">,</span><span class="w"> </span><span class="n">modelo</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 55 "></span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">numPlazas</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 56 "></span><span class="w">      </span><span class="n">Coche</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 57 "></span><span class="w">      </span><span class="n">EntityTransaction</span><span class="w"> </span><span class="n">tx</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 58 "></span>
-<span class="linenos" data-linenos=" 59 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 60 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;ALTA DE NUEVO COCHE&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 61 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 62 "></span>
-<span class="linenos" data-linenos=" 63 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Matrícula: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 64 "></span><span class="w">      </span><span class="n">matricula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 65 "></span>
-<span class="linenos" data-linenos=" 66 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Marca: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 67 "></span><span class="w">      </span><span class="n">marca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 68 "></span>
-<span class="linenos" data-linenos=" 69 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Modelo: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 70 "></span><span class="w">      </span><span class="n">modelo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 71 "></span>
-<span class="linenos" data-linenos=" 72 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Número de plazas: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 73 "></span><span class="w">      </span><span class="n">numPlazas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">());</span>
-<span class="linenos" data-linenos=" 74 "></span>
-<span class="linenos" data-linenos=" 75 "></span><span class="w">      </span><span class="c1">// Crear el objeto con los datos introducidos</span>
-<span class="linenos" data-linenos=" 76 "></span><span class="w">      </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Coche</span><span class="p">(</span><span class="n">matricula</span><span class="p">,</span><span class="w"> </span><span class="n">marca</span><span class="p">,</span><span class="w"> </span><span class="n">modelo</span><span class="p">,</span><span class="w"> </span><span class="n">numPlazas</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 77 "></span>
-<span class="linenos" data-linenos=" 78 "></span><span class="w">      </span><span class="c1">// Iniciar transacción para guardar el coche</span>
-<span class="linenos" data-linenos=" 79 "></span><span class="w">      </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 80 "></span><span class="w">      </span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 81 "></span><span class="w">      </span><span class="n">em</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 82 "></span><span class="w">      </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 83 "></span>
-<span class="linenos" data-linenos=" 84 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Coche dado de alta correctamente.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 85 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos=" 86 "></span>
-<span class="linenos" data-linenos=" 87 "></span><span class="w">   </span><span class="cm">/**</span>
-<span class="linenos" data-linenos=" 88 "></span><span class="cm">    * Busca y muestra un coche a partir de su matrícula.</span>
-<span class="linenos" data-linenos=" 89 "></span><span class="cm">    *</span>
-<span class="linenos" data-linenos=" 90 "></span><span class="cm">    * Esta operación corresponde al READ del CRUD.</span>
-<span class="linenos" data-linenos=" 91 "></span><span class="cm">    * Se utiliza em.find() para localizar el coche por su clave primaria.</span>
-<span class="linenos" data-linenos=" 92 "></span><span class="cm">    */</span>
-<span class="linenos" data-linenos=" 93 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">leerCoche</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 94 "></span>
-<span class="linenos" data-linenos=" 95 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">matricula</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 96 "></span><span class="w">      </span><span class="n">Coche</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 97 "></span>
-<span class="linenos" data-linenos=" 98 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 99 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;CONSULTA DE COCHE&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="100 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="101 "></span>
-<span class="linenos" data-linenos="102 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Matrícula: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="103 "></span><span class="w">      </span><span class="n">matricula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos="104 "></span>
-<span class="linenos" data-linenos="105 "></span><span class="w">      </span><span class="c1">// Buscar el coche por su clave primaria</span>
-<span class="linenos" data-linenos="106 "></span><span class="w">      </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Coche</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">matricula</span><span class="p">);</span>
-<span class="linenos" data-linenos="107 "></span>
-<span class="linenos" data-linenos="108 "></span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="109 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Coche encontrado:&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="110 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-<span class="linenos" data-linenos="111 "></span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="112 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No existe un coche con esa matrícula.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="113 "></span><span class="w">      </span><span class="p">}</span>
-<span class="linenos" data-linenos="114 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="115 "></span>
-<span class="linenos" data-linenos="116 "></span><span class="w">   </span><span class="cm">/**</span>
-<span class="linenos" data-linenos="117 "></span><span class="cm">    * Modifica los datos de un coche existente.</span>
-<span class="linenos" data-linenos="118 "></span><span class="cm">    *</span>
-<span class="linenos" data-linenos="119 "></span><span class="cm">    * Esta operación corresponde al UPDATE del CRUD.</span>
-<span class="linenos" data-linenos="120 "></span><span class="cm">    * Primero se busca el coche por matrícula y, si existe,</span>
-<span class="linenos" data-linenos="121 "></span><span class="cm">    * se cambian sus atributos y se confirma la transacción.</span>
-<span class="linenos" data-linenos="122 "></span><span class="cm">    */</span>
-<span class="linenos" data-linenos="123 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">modificarCoche</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="124 "></span>
-<span class="linenos" data-linenos="125 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">matricula</span><span class="p">,</span><span class="w"> </span><span class="n">marca</span><span class="p">,</span><span class="w"> </span><span class="n">modelo</span><span class="p">;</span>
-<span class="linenos" data-linenos="126 "></span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">numPlazas</span><span class="p">;</span>
-<span class="linenos" data-linenos="127 "></span><span class="w">      </span><span class="n">Coche</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="linenos" data-linenos="128 "></span><span class="w">      </span><span class="n">EntityTransaction</span><span class="w"> </span><span class="n">tx</span><span class="p">;</span>
-<span class="linenos" data-linenos="129 "></span>
-<span class="linenos" data-linenos="130 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="131 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;MODIFICACIÓN DE COCHE&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="132 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="133 "></span>
-<span class="linenos" data-linenos="134 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Matrícula del coche a modificar: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="135 "></span><span class="w">      </span><span class="n">matricula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos="136 "></span>
-<span class="linenos" data-linenos="137 "></span><span class="w">      </span><span class="c1">// Buscar el coche en la base de datos</span>
-<span class="linenos" data-linenos="138 "></span><span class="w">      </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Coche</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">matricula</span><span class="p">);</span>
-<span class="linenos" data-linenos="139 "></span>
-<span class="linenos" data-linenos="140 "></span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="141 "></span>
-<span class="linenos" data-linenos="142 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Datos actuales del coche:&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="143 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-<span class="linenos" data-linenos="144 "></span>
-<span class="linenos" data-linenos="145 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Nueva marca: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="146 "></span><span class="w">         </span><span class="n">marca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos="147 "></span>
-<span class="linenos" data-linenos="148 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Nuevo modelo: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="149 "></span><span class="w">         </span><span class="n">modelo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos="150 "></span>
-<span class="linenos" data-linenos="151 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Nuevo número de plazas: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="152 "></span><span class="w">         </span><span class="n">numPlazas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">());</span>
-<span class="linenos" data-linenos="153 "></span>
-<span class="linenos" data-linenos="154 "></span><span class="w">         </span><span class="c1">// Cambiar datos del objeto gestionado por JPA</span>
-<span class="linenos" data-linenos="155 "></span><span class="w">         </span><span class="n">c</span><span class="p">.</span><span class="na">setMarca</span><span class="p">(</span><span class="n">marca</span><span class="p">);</span>
-<span class="linenos" data-linenos="156 "></span><span class="w">         </span><span class="n">c</span><span class="p">.</span><span class="na">setModelo</span><span class="p">(</span><span class="n">modelo</span><span class="p">);</span>
-<span class="linenos" data-linenos="157 "></span><span class="w">         </span><span class="n">c</span><span class="p">.</span><span class="na">setNum_plazas</span><span class="p">(</span><span class="n">numPlazas</span><span class="p">);</span>
-<span class="linenos" data-linenos="158 "></span>
-<span class="linenos" data-linenos="159 "></span><span class="w">         </span><span class="c1">// Confirmar cambios en la base de datos</span>
-<span class="linenos" data-linenos="160 "></span><span class="w">         </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos="161 "></span><span class="w">         </span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
-<span class="linenos" data-linenos="162 "></span><span class="w">         </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="163 "></span>
-<span class="linenos" data-linenos="164 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Coche modificado correctamente.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="165 "></span>
-<span class="linenos" data-linenos="166 "></span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="167 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No existe un coche con esa matrícula.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="168 "></span><span class="w">      </span><span class="p">}</span>
-<span class="linenos" data-linenos="169 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="170 "></span>
-<span class="linenos" data-linenos="171 "></span><span class="w">   </span><span class="cm">/**</span>
-<span class="linenos" data-linenos="172 "></span><span class="cm">    * Elimina un coche de la base de datos.</span>
-<span class="linenos" data-linenos="173 "></span><span class="cm">    *</span>
-<span class="linenos" data-linenos="174 "></span><span class="cm">    * Esta operación corresponde al DELETE del CRUD.</span>
-<span class="linenos" data-linenos="175 "></span><span class="cm">    * Se busca el coche por matrícula y, si existe, se elimina con remove().</span>
-<span class="linenos" data-linenos="176 "></span><span class="cm">    */</span>
-<span class="linenos" data-linenos="177 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">borrarCoche</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="178 "></span>
-<span class="linenos" data-linenos="179 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">matricula</span><span class="p">;</span>
-<span class="linenos" data-linenos="180 "></span><span class="w">      </span><span class="n">Coche</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="linenos" data-linenos="181 "></span><span class="w">      </span><span class="n">EntityTransaction</span><span class="w"> </span><span class="n">tx</span><span class="p">;</span>
-<span class="linenos" data-linenos="182 "></span>
-<span class="linenos" data-linenos="183 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="184 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;BORRADO DE COCHE&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="185 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="186 "></span>
-<span class="linenos" data-linenos="187 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Matrícula del coche a borrar: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="188 "></span><span class="w">      </span><span class="n">matricula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-<span class="linenos" data-linenos="189 "></span>
-<span class="linenos" data-linenos="190 "></span><span class="w">      </span><span class="c1">// Buscar el coche antes de borrarlo</span>
-<span class="linenos" data-linenos="191 "></span><span class="w">      </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Coche</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">matricula</span><span class="p">);</span>
-<span class="linenos" data-linenos="192 "></span>
-<span class="linenos" data-linenos="193 "></span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="194 "></span>
-<span class="linenos" data-linenos="195 "></span><span class="w">         </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos="196 "></span><span class="w">         </span><span class="n">tx</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
-<span class="linenos" data-linenos="197 "></span><span class="w">         </span><span class="n">em</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-<span class="linenos" data-linenos="198 "></span><span class="w">         </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="199 "></span>
-<span class="linenos" data-linenos="200 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Coche borrado correctamente.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="201 "></span>
-<span class="linenos" data-linenos="202 "></span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="203 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No existe un coche con esa matrícula.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="204 "></span><span class="w">      </span><span class="p">}</span>
-<span class="linenos" data-linenos="205 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="206 "></span>
-<span class="linenos" data-linenos="207 "></span><span class="w">   </span><span class="cm">/**</span>
-<span class="linenos" data-linenos="208 "></span><span class="cm">    * Muestra todos los coches almacenados en la base de datos.</span>
-<span class="linenos" data-linenos="209 "></span><span class="cm">    *</span>
-<span class="linenos" data-linenos="210 "></span><span class="cm">    * Esta operación es una consulta JPQL.</span>
-<span class="linenos" data-linenos="211 "></span><span class="cm">    * Se recuperan todos los objetos Coche mediante:</span>
-<span class="linenos" data-linenos="212 "></span><span class="cm">    * SELECT c FROM Coche c</span>
-<span class="linenos" data-linenos="213 "></span><span class="cm">    */</span>
-<span class="linenos" data-linenos="214 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mostrarCoches</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="215 "></span>
-<span class="linenos" data-linenos="216 "></span><span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">jpql</span><span class="p">;</span>
-<span class="linenos" data-linenos="217 "></span><span class="w">      </span><span class="n">Query</span><span class="w"> </span><span class="n">query</span><span class="p">;</span>
-<span class="linenos" data-linenos="218 "></span><span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Coche</span><span class="o">&gt;</span><span class="w"> </span><span class="n">coches</span><span class="p">;</span>
-<span class="linenos" data-linenos="219 "></span>
-<span class="linenos" data-linenos="220 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="221 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;LISTADO DE COCHES&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="222 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;==============================&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="223 "></span>
-<span class="linenos" data-linenos="224 "></span><span class="w">      </span><span class="c1">// Consulta JPQL sobre la entidad Coche</span>
-<span class="linenos" data-linenos="225 "></span><span class="w">      </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT c FROM Coche c&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="226 "></span><span class="w">      </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">jpql</span><span class="p">);</span>
-<span class="linenos" data-linenos="227 "></span>
-<span class="linenos" data-linenos="228 "></span><span class="w">      </span><span class="c1">// Obtener resultados</span>
-<span class="linenos" data-linenos="229 "></span><span class="w">      </span><span class="n">coches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
-<span class="linenos" data-linenos="230 "></span>
-<span class="linenos" data-linenos="231 "></span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">coches</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="232 "></span><span class="w">         </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No hay coches registrados.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="233 "></span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="234 "></span><span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Coche</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">coches</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="235 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-<span class="linenos" data-linenos="236 "></span><span class="w">         </span><span class="p">}</span>
-<span class="linenos" data-linenos="237 "></span><span class="w">      </span><span class="p">}</span>
-<span class="linenos" data-linenos="238 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="239 "></span>
-<span class="linenos" data-linenos="240 "></span><span class="w">   </span><span class="cm">/**</span>
-<span class="linenos" data-linenos="241 "></span><span class="cm">    * Muestra el menú principal de la aplicación.</span>
-<span class="linenos" data-linenos="242 "></span><span class="cm">    */</span>
-<span class="linenos" data-linenos="243 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mostrarMenu</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="244 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n========== MENÚ ==========&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="245 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;1. Alta de coche&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="246 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;2. Datos de coche&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="247 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;3. Modificación de coche&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="248 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;4. Borrado de coche&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="249 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;5. Mostrar todos los coches&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="250 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;6. Salir&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="251 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Opción: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="252 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="253 "></span>
-<span class="linenos" data-linenos="254 "></span><span class="w">   </span><span class="cm">/**</span>
-<span class="linenos" data-linenos="255 "></span><span class="cm">    * Método principal del programa.</span>
-<span class="linenos" data-linenos="256 "></span><span class="cm">    *</span>
-<span class="linenos" data-linenos="257 "></span><span class="cm">    * Inicializa JPA, muestra el menú y ejecuta la opción elegida</span>
-<span class="linenos" data-linenos="258 "></span><span class="cm">    * por el usuario hasta que decide salir.</span>
-<span class="linenos" data-linenos="259 "></span><span class="cm">    *</span>
-<span class="linenos" data-linenos="260 "></span><span class="cm">    * @param args argumentos de línea de comandos</span>
-<span class="linenos" data-linenos="261 "></span><span class="cm">    */</span>
-<span class="linenos" data-linenos="262 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="263 "></span>
-<span class="linenos" data-linenos="264 "></span><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">opcion</span><span class="p">;</span>
-<span class="linenos" data-linenos="265 "></span>
-<span class="linenos" data-linenos="266 "></span><span class="w">      </span><span class="c1">// Crear la conexión con la unidad de persistencia</span>
-<span class="linenos" data-linenos="267 "></span><span class="w">      </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="268 "></span><span class="w">      </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>
-<span class="linenos" data-linenos="269 "></span>
-<span class="linenos" data-linenos="270 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Bienvenido al programa de coches de Talleres Severo&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="271 "></span>
-<span class="linenos" data-linenos="272 "></span><span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="273 "></span><span class="w">         </span><span class="n">mostrarMenu</span><span class="p">();</span>
-<span class="linenos" data-linenos="274 "></span><span class="w">         </span><span class="n">opcion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">());</span>
-<span class="linenos" data-linenos="275 "></span>
-<span class="linenos" data-linenos="276 "></span><span class="w">         </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">opcion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="277 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">crearCoche</span><span class="p">();</span>
-<span class="linenos" data-linenos="278 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">leerCoche</span><span class="p">();</span>
-<span class="linenos" data-linenos="279 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">modificarCoche</span><span class="p">();</span>
-<span class="linenos" data-linenos="280 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">borrarCoche</span><span class="p">();</span>
-<span class="linenos" data-linenos="281 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mostrarCoches</span><span class="p">();</span>
-<span class="linenos" data-linenos="282 "></span><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Saliendo del programa...&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="283 "></span><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Opción incorrecta.&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="284 "></span><span class="w">         </span><span class="p">}</span>
-<span class="linenos" data-linenos="285 "></span>
-<span class="linenos" data-linenos="286 "></span><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">opcion</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
-<span class="linenos" data-linenos="287 "></span>
-<span class="linenos" data-linenos="288 "></span><span class="w">      </span><span class="c1">// Cerrar recursos</span>
-<span class="linenos" data-linenos="289 "></span><span class="w">      </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="290 "></span><span class="w">      </span><span class="n">emf</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="291 "></span><span class="w">      </span><span class="n">sc</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="292 "></span><span class="w">   </span><span class="p">}</span>
-<span class="linenos" data-linenos="293 "></span><span class="p">}</span>
-</code></pre></div>
 
 
 
