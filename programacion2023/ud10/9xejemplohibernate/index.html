@@ -3568,6 +3568,30 @@
 <h2 id="crear-proyecto-intellij">Crear proyecto IntelliJ<a class="headerlink" href="#crear-proyecto-intellij" title="Permanent link">&para;</a></h2>
 <p>Es necesario trabajar con Maven, por lo que creamos el proyecto eligiendo <strong>Maven</strong></p>
 <p><img alt="alt text" src="../../img/ud10/hiber03.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Maven</p>
+<p><img alt="alt text" src="../../img/ud10/hiber07.png" /></p>
+<p>Maven es una herramienta que ayuda a organizar y gestionar proyectos Java.
+Si  quieres usar Hibernate o cualquier librería tienes que:</p>
+<p><strong>Sin Maven</strong></p>
+<ul>
+<li>buscar el .jar en internet</li>
+<li>descargarlo</li>
+<li>añadirlo manualmente al proyecto</li>
+</ul>
+<p><strong>Con Maven</strong></p>
+<ul>
+<li>Solo escribes el nombre de la librería</li>
+<li>Maven la descarga automáticamente</li>
+<li>También descarga lo que esa librería necesita</li>
+</ul>
+<p>El archivo más importante es <strong>pom.xml</strong> en el que se define:</p>
+<ul>
+<li>las librerías</li>
+<li>la versión de Java</li>
+<li>el nombre del proyecto</li>
+</ul>
+</div>
 <p>Necesitamos incluir las dependencias para trabajar con <strong>Hibernate</strong> conectando con <strong>MariaDB</strong> en el fichero <strong>pom.xml</strong></p>
 <p><img alt="alt text" src="../../img/ud10/hiber04.png" /></p>
 <p>El fichero quedará como sigue:</p>
