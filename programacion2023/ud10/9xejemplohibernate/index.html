@@ -3559,6 +3559,27 @@
 <h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>Vamos a ver un ejemplo creando un proyecto en IntelliJ para trabajar con Hibernate en el que persistiremos una clase Coche.</p>
 <p>La Aplicación  crea la entidad <code>Coche</code> (matrícula, marca, modelo, número de plazas) y la persiste en una BD llamada <code>Taller</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>┌───────────────────────────────┐
+<span class="linenos" data-linenos=" 2 "></span>│            Coche              │
+<span class="linenos" data-linenos=" 3 "></span>├───────────────────────────────┤
+<span class="linenos" data-linenos=" 4 "></span>│ - matricula : String          │
+<span class="linenos" data-linenos=" 5 "></span>│ - marca : String              │
+<span class="linenos" data-linenos=" 6 "></span>│ - modelo : String             │
+<span class="linenos" data-linenos=" 7 "></span>│ - numPlazas : int             │
+<span class="linenos" data-linenos=" 8 "></span>├───────────────────────────────┤
+<span class="linenos" data-linenos=" 9 "></span>│ + Coche()                     │
+<span class="linenos" data-linenos="10 "></span>│ + Coche(m, ma, mo, n)         │
+<span class="linenos" data-linenos="11 "></span>│ + getMatricula() : String     │
+<span class="linenos" data-linenos="12 "></span>│ + setMatricula(String)        │
+<span class="linenos" data-linenos="13 "></span>│ + getMarca() : String         │
+<span class="linenos" data-linenos="14 "></span>│ + setMarca(String)            │
+<span class="linenos" data-linenos="15 "></span>│ + getModelo() : String        │
+<span class="linenos" data-linenos="16 "></span>│ + setModelo(String)           │
+<span class="linenos" data-linenos="17 "></span>│ + getNumPlazas() : int        │
+<span class="linenos" data-linenos="18 "></span>│ + setNumPlazas(int)           │
+<span class="linenos" data-linenos="19 "></span>│ + toString() : String         │
+<span class="linenos" data-linenos="20 "></span>└───────────────────────────────┘
+</code></pre></div>
 <p>Podéis descargar el ejemplo y probarlo</p>
 <p><a href="https://github.com/Programacion2023JoseAntonioLopez/EjemploHibernate">Código Ejemplo Hibernate</a></p>
 <h2 id="crear-la-base-de-datos">Crear la base de datos<a class="headerlink" href="#crear-la-base-de-datos" title="Permanent link">&para;</a></h2>

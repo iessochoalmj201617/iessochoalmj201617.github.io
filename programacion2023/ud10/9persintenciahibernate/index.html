@@ -3712,7 +3712,7 @@ En Java para aplicar la persistencia a un objeto, éste debe ser  <a href="../..
 <p><img alt="mapeo" src="../../img/ud10/3persistence.png" /></p>
 <h3 id="mapeo-objeto-relacional">Mapeo objeto-relacional.<a class="headerlink" href="#mapeo-objeto-relacional" title="Permanent link">&para;</a></h3>
 <p>El mapeo objeto-relacional consiste en mapear o vincular cada atributo de una clase con un campo de una tabla en la base de datos. Es decir, convertimos los datos como objeto en un registro de una tabla relacional, y viceversa.</p>
-<p>La siguiente imagen muestra cómo la clase User se mapea en una tabla, cada atributo de la clase se almacena en un campo de la tabla. Los tipos deben coincidir o, al menos, ser compatibles. Cada objeto se almacena en un registro. Aquí los datos son los mismos, sólo varía su representación: como objeto en el ámbito de la aplicación y como registro en el ámbito de la base de datos.</p>
+<p>La siguiente imagen muestra cómo la clase <code>User</code> se mapea en una tabla, cada atributo de la clase se almacena en un campo de la tabla. Los tipos deben coincidir o, al menos, ser compatibles. Cada objeto se almacena en un registro. Aquí los datos son los mismos, solo varía su representación: como objeto en el ámbito de la aplicación y como registro en el ámbito de la base de datos.</p>
 <p><img alt="alt text" src="../../img/ud10/hiber01.png" /></p>
 <h2 id="java-persistence-api-jpa">Java Persistence API: <a href="https://es.wikipedia.org/wiki/Java_Persistence_API">JPA</a><a class="headerlink" href="#java-persistence-api-jpa" title="Permanent link">&para;</a></h2>
 <h3 id="introduccion_1">Introducción<a class="headerlink" href="#introduccion_1" title="Permanent link">&para;</a></h3>
@@ -3782,25 +3782,25 @@ En Java para aplicar la persistencia a un objeto, éste debe ser  <a href="../..
 <p>Cualquier clase que necesitemos persistir tendrá que convertirse en una entidad. Para ello hay que anotarla con <code>@Entity</code>.</p>
 <h3 id="id">@id<a class="headerlink" href="#id" title="Permanent link">&para;</a></h3>
 <p>Toda entidad necesita un único atributo que actúe como identificador (que será utilizado en la BD como clave en la tabla). El atributo identificador se anota con <code>@Id</code>.</p>
-<div class="highlight"><span class="filename">Ejemplo 2. Conversión de la clase Empleado en una entidad</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Entity</span><span class="p">;</span>
+<div class="highlight"><span class="filename">Conversión de la clase Empleado en una entidad</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Entity</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Id</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Serializable</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="nd">@Entity</span><span class="w"> </span><span class="c1">//anotación de entidad</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Empleado</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">   </span><span class="nd">@Id</span><span class="w"> </span><span class="c1">//anotación de identificador único</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">dni</span><span class="p">;</span><span class="w"> </span><span class="c1">// el dni identificará cada empleado</span>
+<span class="hll"><span class="linenos" data-linenos=" 5 "></span><span class="nd">@Entity</span><span class="w"> </span><span class="c1">//anotación de entidad</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 6 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Empleado</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span><span class="c1">//tiene implementar Serializable</span>
+</span><span class="linenos" data-linenos=" 7 "></span>
+<span class="hll"><span class="linenos" data-linenos=" 8 "></span><span class="w">   </span><span class="nd">@Id</span><span class="w"> </span><span class="c1">//anotación de identificador único</span>
+</span><span class="linenos" data-linenos=" 9 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">dni</span><span class="p">;</span><span class="w"> </span><span class="c1">// el dni identificará cada empleado</span>
 <span class="linenos" data-linenos="10 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
 <span class="linenos" data-linenos="11 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sueldo</span><span class="p">;</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">oficina</span><span class="p">;</span><span class="w"> </span><span class="c1">// número de la oficina en la que trabaja</span>
 <span class="linenos" data-linenos="13 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">puesto</span><span class="p">;</span><span class="w"> </span><span class="c1">// qué ocupa: Gerente, Informático, etc.</span>
 <span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span><span class="w">   </span><span class="c1">// Constructor sin parámetros. Es habitual que esté vacío.</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">   </span><span class="c1">// Constructor sin parámetros.</span>
 <span class="linenos" data-linenos="16 "></span>
-<span class="linenos" data-linenos="17 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="nf">Empleado</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos" data-linenos="18 "></span>
-<span class="linenos" data-linenos="19 "></span>
+<span class="hll"><span class="linenos" data-linenos="17 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="nf">Empleado</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="p">}</span>
+</span><span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">   </span><span class="c1">//pueden haber otros constructores</span>
 <span class="linenos" data-linenos="20 "></span><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="nf">Empleado</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">dni</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sueldo</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">oficina</span><span class="p">,</span>
 <span class="linenos" data-linenos="21 "></span>
 <span class="linenos" data-linenos="22 "></span><span class="w">                   </span><span class="n">String</span><span class="w"> </span><span class="n">puesto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -3822,7 +3822,7 @@ En Java para aplicar la persistencia a un objeto, éste debe ser  <a href="../..
 </code></pre></div>
 <h3 id="generatedvalue">@GeneratedValue<a class="headerlink" href="#generatedvalue" title="Permanent link">&para;</a></h3>
 <p>Si queremos que el id se genere automáticamente, JPA puede encargarse de generar y asignar valores distintos al atributo identificador, para ello añadiremos a la anotación <code>@Id</code> la anotación <code>@GeneratedValue</code>.</p>
-<div class="highlight"><span class="filename">Ejemplo 3: Clase Alumno como entidad y número de alumno autogestionado</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Entity</span><span class="p">;</span>
+<div class="highlight"><span class="filename">Clase Alumno como entidad y número de alumno autogestionado</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Entity</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.Id</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.GeneratedValue</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 4 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Serializable</span><span class="p">;</span>
@@ -3830,9 +3830,9 @@ En Java para aplicar la persistencia a un objeto, éste debe ser  <a href="../..
 <span class="linenos" data-linenos=" 6 "></span><span class="nd">@Entity</span><span class="w"> </span><span class="c1">//anotación de entidad</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Alumno</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">   </span><span class="nd">@Id</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">   </span><span class="nd">@GeneratedValue</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">numero</span><span class="p">;</span>
+<span class="hll"><span class="linenos" data-linenos=" 9 "></span><span class="w">   </span><span class="nd">@Id</span>
+</span><span class="hll"><span class="linenos" data-linenos="10 "></span><span class="w">   </span><span class="nd">@GeneratedValue</span>
+</span><span class="linenos" data-linenos="11 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">numero</span><span class="p">;</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
 <span class="linenos" data-linenos="13 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">direccion</span><span class="p">;</span>
 <span class="linenos" data-linenos="14 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">notaMedia</span><span class="p">;</span>
@@ -3869,14 +3869,26 @@ En Java para aplicar la persistencia a un objeto, éste debe ser  <a href="../..
 <span class="linenos" data-linenos="3 "></span><span class="w">   </span><span class="nd">@GeneratedValue</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cod</span><span class="p">;</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="c1">// el dni único</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">   </span><span class="nd">@Column</span><span class="p">(</span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">dni</span><span class="p">;</span><span class="w">  </span>
+<span class="hll"><span class="linenos" data-linenos="6 "></span><span class="w">   </span><span class="nd">@Column</span><span class="p">(</span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+</span><span class="linenos" data-linenos="7 "></span><span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">dni</span><span class="p">;</span><span class="w">  </span>
 </code></pre></div>
 <h3 id="persistencexml">persistence.xml.<a class="headerlink" href="#persistencexml" title="Permanent link">&para;</a></h3>
 <p>La unidad de persistencia es el elemento fundamental para configurar el mapeo <strong>objeto-relacional</strong>, ya que vincula una serie de entidades con una base de datos, lo que permite persistir los objetos de estas entidades en la base de datos especificada.</p>
 <p>En un mismo proyecto pueden existir tantas unidades de persistencia como necesitemos y cada una de ellas se identifica mediante un nombre único.
-Las unidades de persistencia se definen en un fichero <strong>XML</strong> llamado <strong>persistence.xml</strong> y que se ubica en el paquete <strong><code>META-INF</code></strong>. Este fichero tiene una estructura similar a:
-<div class="highlight"><span class="filename">persintence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+Las unidades de persistencia se definen en un fichero <strong>XML</strong> llamado <strong>persistence.xml</strong> y que se ubica en el paquete <strong><code>META-INF</code></strong>. </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>Taller/
+<span class="linenos" data-linenos=" 2 "></span> ├─ src/
+<span class="linenos" data-linenos=" 3 "></span> │   ├─ main/
+<span class="linenos" data-linenos=" 4 "></span> │   │   ├─ java/
+<span class="linenos" data-linenos=" 5 "></span> │   │   │   └──
+<span class="linenos" data-linenos=" 6 "></span> │   │   │      ├─ Main.java
+<span class="linenos" data-linenos=" 7 "></span> │   │   │      └─ Alumno.java
+<span class="linenos" data-linenos=" 8 "></span> │   │   └─ resources/
+<span class="linenos" data-linenos=" 9 "></span> │   │      └─ META-INF/
+<span class="linenos" data-linenos="10 "></span> │   │         └─ persistence.xml
+</code></pre></div>
+<p>Este fichero tiene una estructura similar a:</p>
+<p><div class="highlight"><span class="filename">persintence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;persistence</span><span class="w"> </span><span class="err">...</span><span class="nt">&gt;</span>
 <span class="linenos" data-linenos=" 3 "></span>
 <span class="linenos" data-linenos=" 4 "></span><span class="w">   </span><span class="nt">&lt;persistence-unit</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;NombreUnidadPersistencia&quot;</span><span class="w"> </span><span class="err">...</span><span class="nt">&gt;</span>
