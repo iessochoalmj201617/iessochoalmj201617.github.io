@@ -430,9 +430,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-java-17-y-intellij-en-windows" class="md-nav__link">
+  <a href="#jdk" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup Java 17 y IntelliJ en Windows
+      JDK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openjdkopen-java-development-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenJDK(Open Java Development Kit)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distribuciones-del-jdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribuciones del JDK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion-java-21-e-intellij-en-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación Java 21 e IntelliJ en Windows
     </span>
   </a>
   
@@ -3503,40 +3530,59 @@
 
 
 <h1 id="que-se-necesita-para-programar-en-java">💾 ¿Qué se necesita para programar en Java?<a class="headerlink" href="#que-se-necesita-para-programar-en-java" title="Permanent link">&para;</a></h1>
-<ul>
-<li>
-<p>Instalar el JDK versión 17. Lo podemos descarga desde la página oficial de Oracle.</p>
-</li>
-<li>
-<p>Instalar un IDE (Integrated Development Environment), es un programa que te ayudar a desarrollar aplicaciones. Hay muchas opciones disponibles de IDEs.</p>
-</li>
-</ul>
-<p><img alt="IntelliJ" src="../../img/intellij1.jpg" /></p>
-<h2 id="setup-java-17-y-intellij-en-windows">Setup Java 17 y IntelliJ en Windows<a class="headerlink" href="#setup-java-17-y-intellij-en-windows" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>Vamos a descargar la versión de Eclipse Temurin y descargamos JDK 17.</p>
-<p><a href="https://adoptium.net/es/temurin/releases/">https://adoptium.net/es/temurin/releases/</a></p>
-</li>
-</ol>
+<h2 id="jdk">JDK<a class="headerlink" href="#jdk" title="Permanent link">&para;</a></h2>
+<p>Ya hemos comentado que que el JDK contiene las herramienta para desarrollar programas en JAVA. Tenemos varias versiones de JDK. Debemos utilizar una versión LTS. La última versión es la versión 25. En esta versión han habido grandes cambios, <strong>nosotros usaremos la 21</strong>.</p>
+<h2 id="openjdkopen-java-development-kit">OpenJDK(Open Java Development Kit)<a class="headerlink" href="#openjdkopen-java-development-kit" title="Permanent link">&para;</a></h2>
+<p>Originalmente, Java era software propietario desarrollado por Sun Microsystems. En 2006, Sun inició el proceso de liberación del código fuente bajo la licencia GPLv2 (con Classpath Exception), dando origen al proyecto OpenJDK. Hoy en día, Oracle lidera su desarrollo junto con la colaboración activa de empresas como Red Hat, IBM, Microsoft, Google y Amazon.</p>
+<p>OpenJDK (Open Java Development Kit) es la implementación oficial, gratuita y de código abierto de la plataforma Java Standard Edition (Java SE). Es el núcleo sobre el cual se construyen prácticamente todas las distribuciones de Java que existen en la actualidad. </p>
+<h2 id="distribuciones-del-jdk">Distribuciones del JDK<a class="headerlink" href="#distribuciones-del-jdk" title="Permanent link">&para;</a></h2>
+<p>Tenemos diferentes distribuciones creadas a partir del OpenJDK y obtimizadas para diferentes propositos. Las más conocidas son:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Distribución</th>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Caso de uso principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Eclipse Temurin</strong></td>
+<td style="text-align: left;">Eclipse Foundation (Adoptium)</td>
+<td style="text-align: left;">Opción neutral comunitaria más popular</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Amazon Corretto</strong></td>
+<td style="text-align: left;">Amazon Web Services</td>
+<td style="text-align: left;">Optimizado para la nube y despliegues en AWS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Azul Zulu</strong></td>
+<td style="text-align: left;">Azul Systems</td>
+<td style="text-align: left;">Entornos corporativos y soporte multiplataforma extenso</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Microsoft Build of OpenJDK</strong></td>
+<td style="text-align: left;">Microsoft</td>
+<td style="text-align: left;">Optimizado para Azure y servicios de Microsoft</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Oracle JDK</strong></td>
+<td style="text-align: left;">Oracle</td>
+<td style="text-align: left;">Distribución oficial de Oracle (comercial con licencias específicas)</td>
+</tr>
+</tbody>
+</table>
 <p>En el siguiente vídeo podéis conocer las diferencias entre las  versiones de jdk</p>
 <p><a href="https://youtu.be/aYWZvbUWwjo">https://youtu.be/aYWZvbUWwjo</a></p>
+<h2 id="instalacion-java-21-e-intellij-en-windows">Instalación Java 21 e IntelliJ en Windows<a class="headerlink" href="#instalacion-java-21-e-intellij-en-windows" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
+<p>Vamos a descargar la versión de Eclipse Temurin y descargamos JDK 21.</p>
+<p><a href="https://adoptium.net/es/temurin/releases?version=21&amp;os=any&amp;arch=any">Descargar Temurin JDK</a></p>
+</li>
+<li>
 <p>Instalamos el JDK.</p>
-<blockquote>
-<p>En linux usamos el siguiente comando para instalar el jdk: sudo apt-get install openjdk-17-jdk</p>
-</blockquote>
-</li>
-<li>
-<p>Windows: Añadimos en las variables de entorno del sistema dentro de la variable Path, la ruta donde se ha instalado java en nuestra máquina (C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin)</p>
-</li>
-</ol>
-<p>Tenéis un tutorial en </p>
-<p><a href="https://youtu.be/oAin-q1oTDw">https://youtu.be/oAin-q1oTDw</a></p>
-<ol start="4">
-<li>
-<p>Windows: Agregamos también una nueva variable llamada JAVA_HOME &rarr; C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin (Ruta de nuestra máquina).Depende de la versión jdk que habéis instalado.</p>
 </li>
 <li>
 <p>Verificamos que se ha instalado java, ejecutando desde línea de comandos:</p>
@@ -3544,18 +3590,14 @@
 </code></pre></div>
 </li>
 <li>
-<p>Descargamos e instalamos. <strong>No descargues la versión Ultimate</strong></p>
-<p><a href="https://www.jetbrains.com/idea/download/#section=windows">IntelliJ Community</a></p>
+<p>Descargamos e instalamos IntelliJ</p>
+</li>
+<li>
+<p>En File -&gt; Settings, modificamos las siguientes opciones:</p>
 </li>
 </ol>
-<p><img alt="IntelliJ" src="../../img/ud1/intellij.png" /></p>
-<ol start="7">
-<li>En File -&gt; Settings, modificamos las siguientes opciones:</li>
-</ol>
 <p><img alt="IntelliJ" src="../../img/settings.png" />
-<img alt="IntelliJ" src="../../img/imports.png" />
-<img alt="IntelliJ" src="../../img/codefolding.png" />
-<img alt="IntelliJ" src="../../img/scroll.png" /></p>
+<img alt="IntelliJ" src="../../img/imports.png" /></p>
 
 
 

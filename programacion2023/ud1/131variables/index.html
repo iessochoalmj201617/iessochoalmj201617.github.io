@@ -3613,15 +3613,93 @@ Existen 61 <a href="https://en.wikipedia.org/wiki/List_of_Java_keywords">keyword
 <p><img alt="Variable" src="../../img/ud1/variable3.png" /></p>
 <h2 id="vida-de-las-variables">Vida de las variables<a class="headerlink" href="#vida-de-las-variables" title="Permanent link">&para;</a></h2>
 <p>Las variables son memorias reservadas para almacenar valores en RAM. Estas posiciones de memoria se liberan tan pronto como termina la vida de la variable. Según la vida de las variables, hay tres tipos de Variables.</p>
+<p><img alt="Variable" src="../../img/ud1/diferencia_variables.png" /></p>
 <p><strong>1. Variables locales</strong>: La vida permanece dentro de un bloque donde se ha declarado.</p>
 <p><strong>2. Variables de instancia</strong>: Declaradas dentro de la clase pero fuera de los métodos. No debería ser estático.</p>
 <p><strong>3. Variables estáticas</strong>: es como una variable global. Declarado como estático en la clase pero fuera de los métodos.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    static int pi = 3.14;
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="visibilidad">Visibilidad<a class="headerlink" href="#visibilidad" title="Permanent link">&para;</a></h2>
 <p>En las variables locales, su ámbito y uso se encuentra dentro del método o bloque en el que se definió y se destruyen después de la ejecución del método. Es decir, no se puede usar una variable local fuera del método actual.</p>
 <p>A las variables de instancia se puede acceder solo a través de objetos de la clase para la que se definió.</p>
 <p>Un campo / variable estático pertenece a la clase y se cargará en la memoria junto con la clase. Se invocan sin crear un objeto. (Usando el nombre de la clase como referencia). Solo hay una copia de la variable estática disponible en toda la clase, es decir, el valor de la variable estática será el mismo en todos los objetos. Puede definir una variable estática utilizando la palabra clave <strong>static</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EjemploVariables</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="c1">// 1. VARIABLE ESTÁTICA (Static Field)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="c1">// Pertenece a la clase. Existe una sola copia compartida por todas las instancias.</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="c1">// Se carga en memoria junto con la clase.</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombreEmpresa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TechCorp&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="c1">// 2. VARIABLE DE INSTANCIA (Instance Variable / Field)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Cada objeto (instancia) creado tendrá su propia copia independiente de este valor.</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombreEmpleado</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">salarioBase</span><span class="p">;</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="c1">// Constructor de la clase</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">EjemploVariables</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nombreEmpleado</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">salarioBase</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nombreEmpleado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nombreEmpleado</span><span class="p">;</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">salarioBase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">salarioBase</span><span class="p">;</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="c1">// Método que demuestra el uso de VARIABLES LOCALES</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">calcularBono</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="c1">// 3. VARIABLE LOCAL</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">// Definida dentro del método. Su ámbito existe SOLO mientras se ejecuta este método.</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">porcentajeBono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.15</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable local 1</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">bonoFinal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">salarioBase</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">porcentajeBono</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable local 2</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Bono calculado para &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombreEmpleado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bonoFinal</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="c1">// Al finalizar el método &#39;calcularBono&#39;, las variables &#39;porcentajeBono&#39; y &#39;bonoFinal&#39;</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="c1">// se destruyen y son liberadas de la memoria Stack.</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="31 "></span>
+<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="33 "></span>
+<span class="linenos" data-linenos="34 "></span><span class="w">        </span><span class="c1">// =========================================================================</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">        </span><span class="c1">// USO DE VARIABLE ESTÁTICA</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">        </span><span class="c1">// =========================================================================</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="c1">// Se accede directamente mediante el NOMBRE DE LA CLASE, sin instanciar nada.</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--- VARIABLE ESTÁTICA ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Empresa (acceso vía clase): &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">EjemploVariables</span><span class="p">.</span><span class="na">nombreEmpresa</span><span class="p">);</span>
+<span class="linenos" data-linenos="40 "></span>
+<span class="linenos" data-linenos="41 "></span><span class="w">        </span><span class="c1">// Si modificamos la variable estática, el cambio se refleja globalmente:</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">        </span><span class="n">EjemploVariables</span><span class="p">.</span><span class="na">nombreEmpresa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Global Tech Corp&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="43 "></span>
+<span class="linenos" data-linenos="44 "></span>
+<span class="linenos" data-linenos="45 "></span><span class="w">        </span><span class="c1">// =========================================================================</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">        </span><span class="c1">// USO DE VARIABLES DE INSTANCIA</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">        </span><span class="c1">// =========================================================================</span>
+<span class="linenos" data-linenos="48 "></span><span class="w">        </span><span class="c1">// Solo se puede acceder a ellas creando un OBJETOS (instancias de la clase).</span>
+<span class="linenos" data-linenos="49 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- VARIABLES DE INSTANCIA ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="50 "></span>
+<span class="linenos" data-linenos="51 "></span><span class="w">        </span><span class="n">EjemploVariables</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">EjemploVariables</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">3000.0</span><span class="p">);</span>
+<span class="linenos" data-linenos="52 "></span><span class="w">        </span><span class="n">EjemploVariables</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">EjemploVariables</span><span class="p">(</span><span class="s">&quot;Carlos&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">4500.0</span><span class="p">);</span>
+<span class="linenos" data-linenos="53 "></span>
+<span class="linenos" data-linenos="54 "></span><span class="w">        </span><span class="c1">// Cada objeto mantiene su propia copia de &#39;nombreEmpleado&#39; y &#39;salarioBase&#39;:</span>
+<span class="linenos" data-linenos="55 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Empleado 1: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp1</span><span class="p">.</span><span class="na">nombreEmpleado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - Salario: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp1</span><span class="p">.</span><span class="na">salarioBase</span><span class="p">);</span>
+<span class="linenos" data-linenos="56 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Empleado 2: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp2</span><span class="p">.</span><span class="na">nombreEmpleado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - Salario: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp2</span><span class="p">.</span><span class="na">salarioBase</span><span class="p">);</span>
+<span class="linenos" data-linenos="57 "></span>
+<span class="linenos" data-linenos="58 "></span><span class="w">        </span><span class="c1">// Ambos objetos ven el MISMO valor para la variable estática:</span>
+<span class="linenos" data-linenos="59 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Empresa de emp1: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp1</span><span class="p">.</span><span class="na">nombreEmpresa</span><span class="p">);</span>
+<span class="linenos" data-linenos="60 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Empresa de emp2: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp2</span><span class="p">.</span><span class="na">nombreEmpresa</span><span class="p">);</span>
+<span class="linenos" data-linenos="61 "></span>
+<span class="linenos" data-linenos="62 "></span>
+<span class="linenos" data-linenos="63 "></span><span class="w">        </span><span class="c1">// =========================================================================</span>
+<span class="linenos" data-linenos="64 "></span><span class="w">        </span><span class="c1">// USO DE VARIABLES LOCALES Y DEMOSTRACIÓN DE ÁMBITO</span>
+<span class="linenos" data-linenos="65 "></span><span class="w">        </span><span class="c1">// =========================================================================</span>
+<span class="linenos" data-linenos="66 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n--- VARIABLES LOCALES ---&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="67 "></span><span class="w">        </span><span class="n">emp1</span><span class="p">.</span><span class="na">calcularBono</span><span class="p">();</span><span class="w"> </span><span class="c1">// Llama al método donde se crean y destruyen las variables locales.</span>
+<span class="linenos" data-linenos="68 "></span>
+<span class="linenos" data-linenos="69 "></span><span class="w">        </span><span class="c1">// ¡INTENTO INVÁLIDO DE ACCESO A VARIABLE LOCAL!</span>
+<span class="linenos" data-linenos="70 "></span><span class="w">        </span><span class="c1">// Si descomentas las siguientes líneas, obtendrás un ERROR DE COMPILACIÓN:</span>
+<span class="linenos" data-linenos="71 "></span><span class="w">        </span><span class="c1">// &quot;Cannot resolve symbol &#39;porcentajeBono&#39;&quot;</span>
+<span class="linenos" data-linenos="72 "></span><span class="w">        </span><span class="c1">//</span>
+<span class="linenos" data-linenos="73 "></span><span class="w">        </span><span class="c1">// System.out.println(porcentajeBono); </span>
+<span class="linenos" data-linenos="74 "></span><span class="w">        </span><span class="c1">// System.out.println(emp1.porcentajeBono);</span>
+<span class="linenos" data-linenos="75 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="76 "></span><span class="p">}</span>
+</code></pre></div>
 <h2 id="mutacion-de-las-variables">Mutación de las variables<a class="headerlink" href="#mutacion-de-las-variables" title="Permanent link">&para;</a></h2>
 <p>Supongamos que hemos ejecutado la siguiente línea de código:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
@@ -3661,6 +3739,7 @@ Existen 61 <a href="https://en.wikipedia.org/wiki/List_of_Java_keywords">keyword
 <li>Las variables de bucle están dentro del alcance entre sus bucles <code>for</code> { }. Entonces, <code>i</code> está dentro del alcance entre las líneas 3 - 6.
 Nota: Dos variables con el mismo nombre no pueden existir dentro del mismo ámbito (scope).</li>
 </ul>
+<p><img alt="alt text" src="../../img/ud1/ambito.png" /></p>
 <h2 id="camelcase-nombrado-de-variables">CamelCase: Nombrado de variables<a class="headerlink" href="#camelcase-nombrado-de-variables" title="Permanent link">&para;</a></h2>
 <p><a href="https://es.wikipedia.org/wiki/Camel_case">CamelCase</a></p>
 <p>La nomenclatura camelCase es un estilo de escritura utilizado principalmente en programación para nombrar variables, funciones, métodos o propiedades. En este formato, las palabras se escriben juntas sin espacios, pero cada palabra (excepto la primera) comienza con una letra mayúscula, lo que facilita la lectura del nombre.</p>

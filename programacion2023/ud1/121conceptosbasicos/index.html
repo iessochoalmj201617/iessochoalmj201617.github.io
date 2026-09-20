@@ -3548,6 +3548,7 @@ También existen otros términos muy famosos relacionados con Java como JRE y JD
 <p><img alt="IntelliJ" src="../../img/ud1/compila.png" /></p>
 <h2 id="jre">JRE<a class="headerlink" href="#jre" title="Permanent link">&para;</a></h2>
 <p><strong>Java Runtime Environment</strong>. La máquina virtual de Java está incluida en el JRE. Se utiliza para ejecutar aplicaciones Java en el SO, por tanto si queremos desplegar una aplicación en Java, necesitamos tener instalado previamente el JRE para esa máquina y plataforma.</p>
+<p><img alt="alt text" src="../../img/ud2/funcion_jre.png" /></p>
 <h2 id="jdk">JDK<a class="headerlink" href="#jdk" title="Permanent link">&para;</a></h2>
 <p><strong>Java Development Kit</strong>. Es más pesado que el JRE, contiene todas las herramientas para programar y compilar las clases Java en bytecode, por tanto cuando desarrollamos clases Java necesitamos el JDK. El JDK incluye el JRE.</p>
 <p><img alt="IntelliJ" src="../../img/ud1/jdk_jre.png" /></p>
@@ -3557,9 +3558,167 @@ También existen otros términos muy famosos relacionados con Java como JRE y JD
 <p><img alt="IntelliJ" src="../../img/ud1/jdk_jre2.png" /></p>
 <h2 id="versiones-java">Versiones Java<a class="headerlink" href="#versiones-java" title="Permanent link">&para;</a></h2>
 <p>Aparece una versión de Java cada 6 meses, pero solamente las versiones LTS Release (Long Term Support) tienen un largo soporte en el tiempo. Cada versión tiene nuevas funcionalidades, pero si no vamos a probar nuevas funcionalidades, para nuestros proyectos debemos utilizar versiones LTS.</p>
-<p><img alt="IntelliJ" src="../../img/ud1/versiones.png" /></p>
-<p>La última versión de Java LTS Release (Long Term Support),  es JAVA 21 LTS.
-Nosotros para el propósito de este curso usaremos Java 17 aunque no hay problema en utilizar la 21 para nuestro propósito.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Versión de Java SE</th>
+<th style="text-align: left;">Fecha de lanzamiento</th>
+<th style="text-align: left;">Tipo de versión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Java SE 11 (LTS)</strong></td>
+<td style="text-align: left;">Septiembre 2018</td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 12</td>
+<td style="text-align: left;">Marzo 2019</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 13</td>
+<td style="text-align: left;">Septiembre 2019</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 14</td>
+<td style="text-align: left;">Marzo 2020</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 15</td>
+<td style="text-align: left;">Septiembre 2020</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 16</td>
+<td style="text-align: left;">Marzo 2021</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java SE 17 (LTS)</strong></td>
+<td style="text-align: left;">Septiembre 2021</td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 18</td>
+<td style="text-align: left;">Marzo 2022</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 19</td>
+<td style="text-align: left;">Septiembre 2022</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 20</td>
+<td style="text-align: left;">Marzo 2023</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java SE 21 (LTS)</strong></td>
+<td style="text-align: left;">Septiembre 2023</td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 22</td>
+<td style="text-align: left;">Marzo 2024</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 23</td>
+<td style="text-align: left;">Septiembre 2024</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 24</td>
+<td style="text-align: left;">Marzo 2025</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java SE 25 (LTS)</strong></td>
+<td style="text-align: left;">Septiembre 2025</td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 26</td>
+<td style="text-align: left;">Marzo 2026</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 27</td>
+<td style="text-align: left;">Septiembre 2026</td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java SE 28</td>
+<td style="text-align: left;">Marzo 2027 <em>(Planificada)</em></td>
+<td style="text-align: left;">Intermedia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java SE 29 (LTS)</strong></td>
+<td style="text-align: left;">Septiembre 2027 <em>(Planificada)</em></td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+</tr>
+</tbody>
+</table>
+<p>La última versión de Java LTS Release (Long Term Support),  es JAVA 25 LTS.
+En esta última versión se han incorporado grandes cambios respecto a las anteriores.</p>
+<p>Actualmente(2026), las empresas no han incorporado a sus proyecto la versión 25, como podemos ver en la tabla</p>
+<p><strong>Cuota de adopción global</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Versión de Java</th>
+<th style="text-align: left;">Tipo de versión</th>
+<th style="text-align: left;">Uso global estimado</th>
+<th style="text-align: left;">Estado en la industria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Java 21</strong></td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+<td style="text-align: left;"><strong>~40%</strong></td>
+<td style="text-align: left;"><strong>Líder actual:</strong> Estándar preferido para nuevos proyectos y migraciones modernas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java 17</strong></td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+<td style="text-align: left;"><strong>~39%</strong></td>
+<td style="text-align: left;"><strong>Consolidada:</strong> Versión muy estable, ampliamente usada en microservicios corporativos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java 8</strong></td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+<td style="text-align: left;"><strong>~31%</strong></td>
+<td style="text-align: left;"><strong>Legado resistente:</strong> Mantenida por empresas con grandes aplicaciones heredadas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java 11</strong></td>
+<td style="text-align: left;"><strong>LTS</strong></td>
+<td style="text-align: left;"><strong>~17%</strong></td>
+<td style="text-align: left;"><strong>En declive rápido:</strong> Las empresas migran directamente hacia Java 17 o 21.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java 22, 23, 24+</strong></td>
+<td style="text-align: left;">Non-LTS</td>
+<td style="text-align: left;"><strong>~7% - 14%</strong></td>
+<td style="text-align: left;"><strong>Fase de pruebas:</strong> Utilizadas en entornos de desarrollo y características <em>preview</em>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Java 7 o inferior</strong></td>
+<td style="text-align: left;">Obsoleta</td>
+<td style="text-align: left;"><strong>&lt; 2%</strong></td>
+<td style="text-align: left;"><strong>Residual:</strong> Presente únicamente en infraestructura antigua.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota:</strong> Los porcentajes suman más del 100% debido a que la gran mayoría de las organizaciones despliegan y mantienen múltiples versiones de Java de forma simultánea.</p>
+</blockquote>
 <h2 id="por-que-java">¿Por qué Java?<a class="headerlink" href="#por-que-java" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Nació en 1995 y todavía sigue siendo uno de los lenguajes más usados a nivel mundial.</li>

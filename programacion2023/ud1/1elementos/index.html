@@ -353,6 +353,51 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comparativa-lenguajes-compilados-interpretados-e-intermedios-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparativa: Lenguajes Compilados, Interpretados e Intermedios (Java)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lenguajes-compilados-ej-c-c-rust-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lenguajes Compilados (ej. C, C++, Rust, Go)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lenguajes-interpretados-ej-python-javascript-php-ruby" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lenguajes Interpretados (ej. Python, JavaScript, PHP, Ruby)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lenguajes-con-bytecode-o-codigo-intermedio-ej-java-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lenguajes con Bytecode o Código Intermedio (ej. Java, C#)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-comparativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen comparativo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#con-que-lenguaje-de-programacion-debo-empezar" class="md-nav__link">
     <span class="md-ellipsis">
       ¿Con qué lenguaje de programación debo empezar?
@@ -365,6 +410,15 @@
   <a href="#consejos-para-aprender-a-programar-con-exito" class="md-nav__link">
     <span class="md-ellipsis">
       Consejos para aprender a programar con éxito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-ia-para-aprender-a-programar-errores-comunes-que-te-llevan-al-fracaso" class="md-nav__link">
+    <span class="md-ellipsis">
+      La IA para aprender a programar: Errores comunes que te llevan al fracaso
     </span>
   </a>
   
@@ -3532,8 +3586,107 @@ Parece una idea bastante simple, pero para que el ordenador pueda hacer uso de l
 <li>Python &rarr; inteligencia artificial, big data, Web etc.</li>
 <li>Java &rarr; puntos de ventas, aplicaciones de escritorio, cajeros automáticos, dispositivos móviles, aplicaciones de servidor ...</li>
 </ol>
-<p><img alt="Lenguajes" src="../../img/tiposLenguaje.png" /></p>
+<p><img alt="Lenguajes" src="../../img/ud1/tipos_lenguajes.png" /></p>
+<h2 id="comparativa-lenguajes-compilados-interpretados-e-intermedios-java">Comparativa: Lenguajes Compilados, Interpretados e Intermedios (Java)<a class="headerlink" href="#comparativa-lenguajes-compilados-interpretados-e-intermedios-java" title="Permanent link">&para;</a></h2>
+<p>La diferencia entre estos tres enfoques radica principalmente en <strong>cuándo y quién traduce el código</strong> escrito por un desarrollador (legible por humanos) a lenguaje máquina (instrucciones binarias en ceros y unos que entiende directamente el procesador).</p>
+<hr />
+<h2 id="lenguajes-compilados-ej-c-c-rust-go">Lenguajes Compilados (ej. C, C++, Rust, Go)<a class="headerlink" href="#lenguajes-compilados-ej-c-c-rust-go" title="Permanent link">&para;</a></h2>
+<p>En un lenguaje compilado, un programa llamado <strong>compilador</strong> traduce todo el código fuente de una sola vez antes de que la aplicación se pueda ejecutar.</p>
+<ul>
+<li><strong>El proceso:</strong> <code>Código fuente (.c)</code> → <strong>Compilador</strong> → <code>Código máquina ejecutable (.exe / binario ELF)</code></li>
+</ul>
+<p><img alt="alt text" src="../../img/ud1/ejecutable.png" /></p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li><strong>Máximo rendimiento:</strong> El código resultante corre de forma nativa sobre el procesador.</li>
+<li><strong>Detección temprana de errores:</strong> El compilador analiza todo el código en busca de fallos de sintaxis o tipos antes de generar el archivo final.</li>
+</ul>
+<p><strong>Inconvenientes:</strong></p>
+<ul>
+<li><strong>Dependencia de la plataforma:</strong> El ejecutable generado solo funciona en el sistema operativo y arquitectura de procesador para el que se compiló. Para que funcione en otro sistema, es necesario recompilarlo.</li>
+<li>Tiempo de espera necesario durante la fase de compilación.</li>
+</ul>
+<hr />
+<h2 id="lenguajes-interpretados-ej-python-javascript-php-ruby">Lenguajes Interpretados (ej. Python, JavaScript, PHP, Ruby)<a class="headerlink" href="#lenguajes-interpretados-ej-python-javascript-php-ruby" title="Permanent link">&para;</a></h2>
+<p>En un lenguaje interpretado, no existe un paso de compilación previa. Un programa llamado <strong>interpretador</strong> lee el código fuente línea por línea y lo traduce e instruye directamente a la CPU en tiempo de ejecución.</p>
+<ul>
+<li><strong>El proceso:</strong> <code>Código fuente (.py)</code> → <strong>Interpretador</strong> (ejecuta línea por línea sobre la marcha)</li>
+</ul>
+<p><img alt="alt text" src="../../img/ud1/interpretado.png" /></p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li><strong>Multiplataforma por naturaleza:</strong> El mismo archivo fuente se puede ejecutar en cualquier sistema que tenga instalado el interpretador correspondiente.</li>
+<li><strong>Desarrollo rápido y flexible:</strong> No hay que esperar a que el código se compile para probar cambios.</li>
+</ul>
+<p><strong>Inconvenientes:</strong></p>
+<ul>
+<li><strong>Menor rendimiento:</strong> Leer, traducir e interpretar las instrucciones en tiempo real añade una carga de procesamiento adicional.</li>
+<li>Los errores de sintaxis o de ejecución se descubren durante la marcha (al llegar a la línea con el fallo).</li>
+</ul>
+<hr />
+<h2 id="lenguajes-con-bytecode-o-codigo-intermedio-ej-java-c">Lenguajes con Bytecode o Código Intermedio (ej. Java, C#)<a class="headerlink" href="#lenguajes-con-bytecode-o-codigo-intermedio-ej-java-c" title="Permanent link">&para;</a></h2>
+<p>Java y otras plataformas como .NET emplean un <strong>modelo híbrido</strong> que combina ambos enfoques para resolver la dependencia del sistema operativo sin perder rendimiento.</p>
+<ul>
+<li><strong>El proceso:</strong>
+  1. <strong>Fase de Compilación:</strong> El código fuente (<code>.java</code>) pasa por un compilador (<code>javac</code>), pero este <strong>no</strong> genera código máquina nativo para la CPU. En su lugar, genera <strong>Bytecode</strong> (archivos <code>.class</code>), que es una representación intermedia simplificada.
+  2. <strong>Fase de Ejecución (Interpretación + JIT):</strong> La <strong>Máquina Virtual de Java (JVM)</strong> toma ese Bytecode y lo ejecuta en la plataforma de destino. La JVM combina interpretación rápida con la tecnología <strong>JIT (Just-In-Time Compiler)</strong>, que detecta las partes de Bytecode que más se ejecutan y las traduce sobre la marcha a código máquina nativo.</li>
+</ul>
+<p><img alt="alt text" src="../../img/ud1/ejecucion_java.png" /></p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li><strong>Escribe una vez, ejecútalo en cualquier lugar (<em>Write Once, Run Anywhere</em>):</strong> El mismo archivo <code>.class</code> (Bytecode) funciona exactamente igual en Windows, Linux, macOS o un servidor ARM. Solo se requiere que esa plataforma tenga instalada su versión de la JVM.</li>
+<li><strong>Buen equilibrio de rendimiento:</strong> Con los optimizadores JIT actuales, la velocidad se acerca bastante a la de los lenguajes compilados puros.</li>
+</ul>
+<p><strong>Inconvenientes:</strong></p>
+<ul>
+<li><strong>Consumo de memoria inicial:</strong> Cargar la máquina virtual en memoria añade un consumo base (<em>overhead</em>) mayor que el de un binario compilado nativo.</li>
+</ul>
+<hr />
+<h2 id="resumen-comparativo">Resumen comparativo<a class="headerlink" href="#resumen-comparativo" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Aspecto</th>
+<th style="text-align: left;">Compilado (ej. C++)</th>
+<th style="text-align: left;">Interpretado (ej. Python)</th>
+<th style="text-align: left;">Código Intermedio / Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>¿Cuándo se traduce?</strong></td>
+<td style="text-align: left;">Antes de ejecutar (todo a la vez)</td>
+<td style="text-align: left;">Durante la ejecución (línea por línea)</td>
+<td style="text-align: left;">En 2 pasos: primero a Bytecode y luego a código máquina en la JVM</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Resultado de la traducción</strong></td>
+<td style="text-align: left;">Código máquina nativo</td>
+<td style="text-align: left;">Ejecución directa de comandos</td>
+<td style="text-align: left;">Archivo con Bytecode (<code>.class</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Portabilidad del ejecutable</strong></td>
+<td style="text-align: left;">Requiere recompilar por SO/Arquitectura</td>
+<td style="text-align: left;">El archivo fuente <code>.py</code> es portable</td>
+<td style="text-align: left;">El archivo <code>.class</code> es 100% portable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Rendimiento</strong></td>
+<td style="text-align: left;">Máximo</td>
+<td style="text-align: left;">El más lento</td>
+<td style="text-align: left;">Alto (gracias a la JVM y compilación JIT)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Requisito para ejecutar</strong></td>
+<td style="text-align: left;">Ninguno (solo el ejecutable)</td>
+<td style="text-align: left;">El interpretador del lenguaje</td>
+<td style="text-align: left;">La Máquina Virtual (JVM)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="con-que-lenguaje-de-programacion-debo-empezar">¿Con qué lenguaje de programación debo empezar?<a class="headerlink" href="#con-que-lenguaje-de-programacion-debo-empezar" title="Permanent link">&para;</a></h2>
+<p>En un lenguaje compilado, un programa llamado compilador traduce todo el código fuente de una sola vez antes de que la aplicación se pueda ejecutar.</p>
 <p>En realidad, no existe el mejor lenguaje de programación para empezar, y el lenguaje que elijas prácticamente no tendrá un efecto duradero en tu carrera.
 Los lenguajes de programación pueden verse muy diferentes en la superficie, pero la mayoría de los conceptos fundamentales se transferirán de un lenguaje a otro.
 Aprender un nuevo idioma también será más fácil con el tiempo; un principiante puede tardar meses antes de que se sienta cómodo con su primer lenguaje;
@@ -3554,6 +3707,80 @@ un programador experimentado puede familiarizarse con un nuevo idioma en cuesti�
 </ol>
 </div>
 <p>Fuente: <a href="https://www.fundaciontelefonica.com/noticias/consejos-aprender-programacion-facil/">Fundación Telefónica</a></p>
+<h2 id="la-ia-para-aprender-a-programar-errores-comunes-que-te-llevan-al-fracaso">La IA para aprender a programar: Errores comunes que te llevan al fracaso<a class="headerlink" href="#la-ia-para-aprender-a-programar-errores-comunes-que-te-llevan-al-fracaso" title="Permanent link">&para;</a></h2>
+<p>Guía práctica para alumnos de primer curso sobre el uso inteligente de herramientas de Inteligencia Artificial en el aprendizaje de la programación.</p>
+<p><img alt="alt text" src="../../img/ud1/ia_aprendizaje.png" /></p>
+<p><a href="https://www.youtube.com/watch?v=JzI04oGNcVw">Ver vídeo sobre IA y aprender a programar</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JzI04oGNcVw" frameborder="0" allowfullscreen></iframe>
+<hr />
+<p><strong>1. El error de la "Copia Ciega" (Copiar y pegar sin entender)</strong></p>
+<ul>
+<li><strong>El fallo:</strong> Pedirle a la IA el código del ejercicio completo, hacer <em>Ctrl+C / Ctrl+V</em> en el IDE y dar por hecha la tarea si funciona.</li>
+<li><strong>Por qué te lleva al fracaso:</strong> Tu cerebro no procesa la sintaxis ni la lógica. Cuando te enfrentes a un examen en papel, a un entorno de evaluación sin conexión o a una prueba técnica, te quedarás completamente bloqueado.</li>
+<li><strong>El consejo:</strong> Usa la IA como un <strong>tutor privado</strong>, no como un generador de deberes. Si le pides ayuda, exige que no te dé la solución directa. <blockquote>
+<p><strong>Prompt sugerido:</strong> <em>"No me des la solución en código. Explícame la lógica paso a paso o dame una pista para encontrar el error por mí mismo."</em></p>
+</blockquote>
+</li>
+</ul>
+<hr />
+<p><strong>2. Confiar ciegamente en la IA (Las "alucinaciones")</strong></p>
+<ul>
+<li><strong>El fallo:</strong> Asumir que lo que devuelve el modelo de lenguaje es un estándar de oro o un código libre de errores.</li>
+<li><strong>Por qué te lleva al fracaso:</strong> Las IA cometen errores, inventan métodos que no existen en las librerías o usan sintaxis obsoleta/en fase de vista previa sin avisar. Si no sabes depurar (<em>debuggear</em>), perderás horas intentando arreglar un fallo generado por la propia IA.</li>
+<li><strong>El consejo:</strong> Comprueba siempre la documentación oficial o la consola de tu entorno de desarrollo. Si el compilador da un error, aprende a <strong>leer la traza de la excepción</strong> tú mismo antes de pegársela de inmediato a la IA.</li>
+</ul>
+<hr />
+<p><strong>3. Saltar el "Músculo de la Frustración"</strong></p>
+<ul>
+<li><strong>El fallo:</strong> Acudir a la IA tras llevar solo 30 segundos atascado en un bucle o en un error de compilación.</li>
+<li><strong>Por qué te lleva al fracaso:</strong> Programar consiste en aprender a resolver problemas. La satisfacción y el aprendizaje real ocurren durante el proceso de pensar, probar hipótesis y fallar. Si externalizas ese esfuerzo mental, tu "músculo" de resolución de problemas no se desarrollará.</li>
+<li><strong>El consejo:</strong> Aplica la <strong>Regla de los 15 minutos</strong>: si te encallas con un <em>bug</em>, pasa al menos 15 minutos intentando aislar el problema, usando trazas por consola (<code>print</code>) o el depurador (<em>debugger</em>), y revisando tus apuntes. Solo si sigues bloqueado tras ese tiempo, consulta a la IA.</li>
+</ul>
+<hr />
+<p><strong>4. Usar soluciones avanzadas que no corresponden a tu nivel</strong></p>
+<ul>
+<li><strong>El fallo:</strong> Pedir un algoritmo simple (como ordenar un array) y entregar código que utiliza características avanzadas que aún no se han visto en clase (por ejemplo, <em>Streams</em>, expresiones <em>Lambda</em> o librerías externas complejas cuando se están estudiando bucles básicos).</li>
+<li><strong>Por qué te lleva al fracaso:</strong> El profesor detectará de inmediato que el código no es tuyo y perderás la oportunidad de dominar las estructuras de control fundamentales (<em>if</em>, <em>while</em>, matrices) sobre las que se construye todo el software.</li>
+<li><strong>El consejo:</strong> Pide a la IA que adapte sus respuestas a tu nivel de formación.<blockquote>
+<p><strong>Prompt sugerido:</strong> <em>"Explícame cómo resolver esto usando únicamente estructuras condicionales y bucles básicos, sin usar librerías ni características avanzadas."</em></p>
+</blockquote>
+</li>
+</ul>
+<hr />
+<p><strong>5. No ejercitar el "Pensamiento Algorítmico"</strong></p>
+<ul>
+<li><strong>El fallo:</strong> Pedirle a la IA directamente: <em>"Escribe un programa que haga X"</em>, en lugar de diseñar primero la solución en tu cabeza o en papel.</li>
+<li><strong>Por qué te lleva al fracaso:</strong> La programación es 80% pensar la lógica y 20% escribir código. La IA se encarga de la sintaxis, pero tú debes ser el arquitecto. Si no sabes descomponer un problema grande en pasos pequeños (pseudocódigo), nunca sabrás qué pedirle a la IA ni cómo integrar diferentes partes.</li>
+<li><strong>El consejo:</strong> Escribe siempre el <strong>pseudocódigo o diagrama en papel</strong> antes de tocar el teclado. Usa la IA al final únicamente para verificar tu planteamiento o para ayudarte a traducir tu idea a la sintaxis del lenguaje.</li>
+</ul>
+<hr />
+<p><strong>Resumen de buenas prácticas</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mala práctica (Camino al fracaso)</th>
+<th style="text-align: left;">Buena práctica (Uso inteligente)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Pedir el código directamente para resolver el ejercicio.</td>
+<td style="text-align: left;">Pedir la explicación de un concepto o de un mensaje de error.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Copiar y pegar el código directamente al IDE.</td>
+<td style="text-align: left;">Leer la sugerencia de la IA, cerrarla y escribir el código tú mismo.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Consultar a la IA a los 10 segundos de ver un error.</td>
+<td style="text-align: left;">Intentar depurar con el <em>debugger</em> durante 15 minutos antes de preguntar.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Aceptar el código generado sin probarlo ni entenderlo.</td>
+<td style="text-align: left;">Comentar línea por línea el código para demostrar su comprensión.</td>
+</tr>
+</tbody>
+</table>
 
 
 
