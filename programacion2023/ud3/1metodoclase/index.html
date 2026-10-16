@@ -3869,7 +3869,10 @@ Significa que la representación del objeto se ocultará a la vista, es decir, e
 <p>Por eso, cuando creamos un objeto, viene ya definido con ciertos métodos que se han heredado de la clase <code>Object</code>.</p>
 <p><img alt="Java" src="../../img/ud3/object.png" /></p>
 <h2 id="javadoc-documentacion-de-la-clase">JavaDoc: Documentación de la clase<a class="headerlink" href="#javadoc-documentacion-de-la-clase" title="Permanent link">&para;</a></h2>
-<p>Como ya indicamos en el tema de programación modular, tenemos la siguientes tags para documentar con JavaDoc</p>
+<p><img alt="alt text" src="../../img/ud3/javadoc.png" /></p>
+<p>La documentación de código es fundamental. Tanto las clases como sus métodos tienes que estar documentados como parte imprescindible de los programas. </p>
+<p>Javadoc es la herramienta estándar del lenguaje Java que permite generar documentación técnica en formato HTML directamente a partir de los comentarios escritos en el propio código fuente.</p>
+<p>A diferencia de los comentarios normales de una sola línea (//) o de varias líneas (/<em> ... </em>/), los comentarios Javadoc comienzan siempre con /*<em> y finalizan con </em>/.</p>
 <p>Las etiquetas que podemos utilizar</p>
 <table>
 <thead>
@@ -3922,6 +3925,13 @@ Significa que la representación del objeto se ocultará a la vista, es decir, e
 <span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
 <span class="linenos" data-linenos="15 "></span><span class="p">}</span>
 </code></pre></div>
+<p><strong>¿Por qué es fundamental utilizar Javadoc?</strong></p>
+<p><img alt="alt text" src="../../img/ud3/javadoc2.png" /></p>
+<ul>
+<li><strong>Integración con el IDE</strong> (Eclipse, NetBeans, IntelliJ, VS Code):Al pasar el ratón por encima de cualquier método en tu editor de código, el IDE mostrará una ventana flotante con la documentación que escribiste en Javadoc, indicando qué parámetros recibe y qué devuelve sin necesidad de abrir la clase original.</li>
+<li><strong>Mantenimiento y Trabajo en Equipo</strong>:Permite que otros programadores (o tú mismo en el futuro) entiendan rápidamente la finalidad de un método sin tener que leer toda su implementación interna.   </li>
+<li><strong>Generación Autómata de HTML</strong>:Mediante la terminal o la opción integrada del entorno de desarrollo (Generate JavaDoc), Java genera una web con el mismo formato que la API oficial de Oracle/Java.</li>
+</ul>
 
 
 
