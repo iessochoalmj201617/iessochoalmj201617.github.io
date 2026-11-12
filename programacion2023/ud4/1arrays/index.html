@@ -1724,9 +1724,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#longitud-del-array" class="md-nav__link">
+  <a href="#mostrar-el-array-en-pantalla" class="md-nav__link">
     <span class="md-ellipsis">
-      Longitud del array
+      Mostrar el array en pantalla
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valores-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valores por defecto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longitud-del-array-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longitud del array. length
     </span>
   </a>
   
@@ -3546,7 +3564,7 @@
 
 
 <h1 id="arrays-de-datos-primitivos">Arrays de datos primitivos<a class="headerlink" href="#arrays-de-datos-primitivos" title="Permanent link">&para;</a></h1>
-<p><img alt="Arrays" src="../../img/ud4/4arrays.png" /></p>
+<p><img alt="alt text" src="../../img/ud4/arrays80.png" /></p>
 <p>Los arrays  es una estructura de datos que te permite almacenar una secuencia de valores todos del mismo tipo.</p>
 <p>Un array  está hecho de bloques contiguos de memoria que se divide en varias celdas. Cada celda tiene un valor y todos los valores son del mismo tipo. A veces, las celdas de un array se denominan slots. En el array de la imagen cada celda contiene un int.</p>
 <p>En el ejemplo de la imagen hemos 
@@ -3593,60 +3611,90 @@ La variable miArray va a ser un array con espacio para 10 elementos de tipo ente
 <span class="linenos" data-linenos="4 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">notas</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="inicializacion-del-array">Inicialización del array<a class="headerlink" href="#inicializacion-del-array" title="Permanent link">&para;</a></h2>
-<p>Hay varias formas de inicializar un array.
-Por ejemplo, si quisiéramos darle valor a todas las posiciones del array podríamos hacerlo de la forma:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">....</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<p>Hay varias formas de inicializar un array.</p>
+<ul>
+<li>Iniciar elemento a elemento:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">notas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">notas</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">....</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="mi">9</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
 </code></pre></div>
-<p>Lo cual es una forma muy pesada y tediosa. Java nos ofrece otras formas de inicializar los arrays en una sola línea de código que solo es aplicable a la vez que definimos la variable:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">notas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span><span class="c1">//correcto</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">//no puedo inicializar el array después de haberlo creado</span>
-<span class="hll"><span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="c1">//esto da ERROR</span>
-</span><span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">notas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+<ul>
+<li>Iniciar directamente:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span><span class="w"> </span><span class="c1">// array de 5 int</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">nombres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Luis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pedro&quot;</span><span class="p">};</span><span class="c1">//array de 3 String</span>
 </code></pre></div>
-<p>De esa forma, también le indicamos indirectamente el tamaño del array. Java cuenta el número de elementos que hay entre {} y crea un array de ese tamaño y además los asigna en posiciones consecutivas dentro del array.</p>
-<p><img alt="Arrays" src="../../img/ud4/array4.png" /></p>
-<blockquote>
-<p>Los índices en un array son enteros que especifican la posición que ocupa el elemento dentro del array. Por tanto podemos manejar los índices con variables enteras.</p>
-</blockquote>
-<p>Una tercera forma sería utilizando la estructura de bucle <em>for</em>, para esto, debemos saber con antelación el valor de los elementos del array:</p>
+<ul>
+<li>Creación posterior</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">numeros</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+</code></pre></div>
+<ul>
+<li>Mediante <em>fill</em> de la clase <em>Array</em></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Arrays</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">//asigna a cada elemento el entero 10</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">Arrays</span><span class="p">.</span><span class="na">fill</span><span class="p">(</span><span class="n">numeros</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>Mediante un bucle:</li>
+</ul>
+<p>Lo que hacemos es inicializar cada posición del array utilizando el bucle. Estamos almacenando dentro del array el valor del índice multiplicado por 10, de forma que tendremos, {0, 10, 20, ...., 90}.</p>
+<p><img alt="Arrays" src="../../img/ud4/array5.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">multiplosDe10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
 <span class="linenos" data-linenos="2 "></span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">multiplosDe10</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>Lo que hacemos es inicializar cada posición del array utilizando el bucle. Estamos almacenando dentro del array el valor del índice multiplicado por 10, de forma que tendremos, {0, 10, 20, ...., 90}.</p>
-<p><img alt="Arrays" src="../../img/ud4/array5.png" /></p>
+<ul>
+<li>Petición de datos al usuario para rellenar el array</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">teclado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">notas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduce la nota &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="n">notas</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teclado</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="mostrar-el-array-en-pantalla">Mostrar el array en pantalla<a class="headerlink" href="#mostrar-el-array-en-pantalla" title="Permanent link">&para;</a></h2>
 <p>La estructura for también es de gran ayuda si queremos imprimir los valores que están guardados en cada posición del array:</p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Elemento &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; valor &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">miArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-Otro ejemplo</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduzca la nota  &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">notas</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="n">sc</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
-</code></pre></div>
+<h2 id="valores-por-defecto">Valores por defecto<a class="headerlink" href="#valores-por-defecto" title="Permanent link">&para;</a></h2>
 <p>A falta de cualquier otra información, las celdas de un array se inicializan con el valor predeterminado para su tipo. Cada celda de un array de tipo numérico se inicializa a cero.</p>
 <p><img alt="Arrays" src="../../img/ud4/array2.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Inicio de arrays de objetos</p>
-<p>Y cada celda de un array de referencias a objetos se inicializa en <strong>nulo (null)</strong>.</p>
+<p>Un array de referencias a objetos se inicializa en <strong>nulo (null)</strong>.</p>
 <p><img alt="Arrays" src="../../img/ud4/array6.png" /></p>
 </div>
-<h2 id="longitud-del-array">Longitud del array<a class="headerlink" href="#longitud-del-array" title="Permanent link">&para;</a></h2>
-<p>Una buena práctica, es utilizar una propiedad integrada dentro de array, en vez de <a href="https://es.wikipedia.org/wiki/Codificaci%C3%B3n_r%C3%ADgida"><em>hardcodear</em></a> literales de tamaño dentro del bucle. Esta propiedad es <strong>length</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
-<span class="hll"><span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">notas</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduzca la nota  &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">notas</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="n">sc</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
+<h2 id="longitud-del-array-length">Longitud del array. <strong>length</strong><a class="headerlink" href="#longitud-del-array-length" title="Permanent link">&para;</a></h2>
+<p>Un objeto array tiene la propiedad <strong>length</strong> que permite saber el tamaño que tiene, por lo que cuando recorremos un array, debemos usar esta propiedad en vez de usar literales como en los ejemplos anteriores:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;¿Cuántas notas desea introducir?&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="kt">int</span><span class="w"> </span><span class="n">cantidad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">notas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">cantidad</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="hll"><span class="linenos" data-linenos=" 8 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">notas</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduzca la nota &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">notas</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Si ahora cambiamos la longitud del array en su definición, no se vería afectado ningún bucle o lugar donde se utilizara <strong>notas.length</strong></p>
 <h2 id="pasar-un-array-como-argumento-en-un-metodo">Pasar un array como argumento en un método<a class="headerlink" href="#pasar-un-array-como-argumento-en-un-metodo" title="Permanent link">&para;</a></h2>
@@ -3669,18 +3717,44 @@ Otro ejemplo</p>
 </div>
 <h2 id="devolver-un-array-en-un-metodo">Devolver un array en un método<a class="headerlink" href="#devolver-un-array-en-un-metodo" title="Permanent link">&para;</a></h2>
 <p>Para devolver un objeto de tipo array en un método simplemente añadiremos []:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="nf">calcular</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="c1">//crea un array</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">miArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="c1">//....realizo calculos con el array</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">miArray</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="p">}</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">//me devuelve el array creado en el método</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">resultados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calcular</span><span class="p">();</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="c1">//...  </span>
-<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// Método que recibe el número de alumnos como parámetro</span>
+<span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="c1">// y devuelve un array de enteros</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="nf">pedirNotas</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">numeroAlumnos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="c1">//creamos el array</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">notas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">numeroAlumnos</span><span class="o">]</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="c1">//los rellenamos</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">notas</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduce la nota del alumno &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">notas</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="c1">//devolvemos el array creado</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">notas</span><span class="p">;</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="c1">//Método que muestra las notas</span>
+<span class="linenos" data-linenos="18 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">mostrarNotas</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">notas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">notas</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">notas</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="c1">// Llamamos al método y guardamos el array devuelto</span>
+<span class="hll"><span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">notas1Eso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pedirNotas</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">notas2Daw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pedirNotas</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+</span><span class="linenos" data-linenos="31 "></span>
+<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="c1">// Mostramos las notas</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Las notas introducidas son:&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="34 "></span>
+<span class="linenos" data-linenos="35 "></span><span class="w">    </span><span class="n">mostrarNotas</span><span class="p">(</span><span class="n">notas1Eso</span><span class="p">);</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="n">mostrarNotas</span><span class="p">(</span><span class="n">notas2Daw</span><span class="p">);</span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span><span class="p">}</span>
 </code></pre></div>
 
 
