@@ -1814,6 +1814,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Argumentos de línea de comandos: String[] args">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pasar-argumentos-al-programa-en-intellij" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pasar argumentos al programa en IntelliJ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3555,7 +3570,7 @@
 </code></pre></div>
 <p><img alt="Arrays" src="../../img/ud4/4referencearray.png" /></p>
 <h2 id="array-de-strings">Array de Strings<a class="headerlink" href="#array-de-strings" title="Permanent link">&para;</a></h2>
-<p>Para declarar un array de Strings ser realizaría de la siguiente forma:</p>
+<p>Para declarar un array de Strings se realizaría de la siguiente forma:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span><span class="p">;</span>
 <span class="linenos" data-linenos="2 "></span>
 <span class="linenos" data-linenos="3 "></span><span class="n">array</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="p">;</span>
@@ -3596,6 +3611,7 @@ Si declaramos un array de Alumnos, hay que crear las instancias para cada posici
 <span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 Vemos en la última línea marcada como se intenta acceder a una instancia de la posición 2 pero no se ha creado una instancia, esto  producirá un error en tiempo de ejecución <strong>NullPointerException</strong></p>
+<p><img alt="alt text" src="../../img/ud4/array78.png" /></p>
 <p><img alt="Arrays" src="../../img/ud4/array10.png" /></p>
 <h3 id="otras-formas-de-inicio-de-los-arrays-de-objetos">Otras formas de inicio de los arrays de objetos<a class="headerlink" href="#otras-formas-de-inicio-de-los-arrays-de-objetos" title="Permanent link">&para;</a></h3>
 <p><strong>Inicializar todos los objetos directamente</strong></p>
@@ -3655,7 +3671,7 @@ Vemos en la última línea marcada como se intenta acceder a una instancia de la
 <span class="linenos" data-linenos=" 8 "></span><span class="w">       </span><span class="c1">//comprobamos que tenemos los argumento necesarios</span>
 <span class="linenos" data-linenos=" 9 "></span><span class="w">       </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
 <span class="linenos" data-linenos="10 "></span><span class="w">       </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">legth</span><span class="o">==</span><span class="mi">2</span><span class="p">){</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="o">==</span><span class="mi">2</span><span class="p">){</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Guardando datos...&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">nombre</span><span class="o">=</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
 <span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">edad</span><span class="o">=</span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
@@ -3675,6 +3691,10 @@ Vemos en la última línea marcada como se intenta acceder a una instancia de la
 <span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">numeroDouble</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Double</span><span class="p">.</span><span class="na">parseDouble</span><span class="p">(</span><span class="n">strDecimal</span><span class="p">);</span><span class="w">        </span>
 </code></pre></div></p>
 </div>
+<h3 id="pasar-argumentos-al-programa-en-intellij">Pasar argumentos al programa en IntelliJ<a class="headerlink" href="#pasar-argumentos-al-programa-en-intellij" title="Permanent link">&para;</a></h3>
+<p>Podemos enviar parametros al programa en tiempo de compilación en IntelliJ</p>
+<p><img alt="alt text" src="../../img/ud4/array79.png" /></p>
+<p><img alt="alt text" src="../../img/ud4/array80.png" /></p>
 
 
 
