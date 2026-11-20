@@ -3657,7 +3657,7 @@
 
 
 <h1 id="excepciones">Excepciones<a class="headerlink" href="#excepciones" title="Permanent link">&para;</a></h1>
-<p><img alt="alt text" src="../../img/ud5/excep35.png" /></p>
+<p><img alt="alt text" src="../../img/ud5/exc77.png" /></p>
 <h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
 <p>En el proceso de ejecución de un programa, pueden surgir errores que como programadores pueden ser difíciles de controlar. Por ejemplo</p>
 <ul>
@@ -3682,6 +3682,7 @@
 <span class="linenos" data-linenos="13 "></span><span class="c1">//provocará error nullPointerException, el objeto no existe</span>
 <span class="hll"><span class="linenos" data-linenos="14 "></span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="w"> </span><span class="n">lista</span><span class="p">.</span><span class="na">length</span>
 </span></code></pre></div>
+<p><img alt="alt text" src="../../img/ud5/exc78.png" /></p>
 <p>Los programas tienes que ser robustos y recuperarse ante errores. Para manejar los errores y que los programas no se queden “colgados” y sigan su funcionamiento  tenemos el <strong>manejo de excepciones</strong>. </p>
 <p>Si el error no se trata, el manejador de excepciones realiza lo siguiente:</p>
 <ul>
@@ -3702,6 +3703,7 @@ ejemplo, <code>OutOfMemoryError</code>, <code>StackOverflowError</code>, errores
 <p>Las excepciones son diferentes de los errores porque se pueden escribir programas para recuperarse de excepciones, pero no se pueden escribir programas para recuperarse de errores.</p>
 <p>Las excepciones pueden ser detectadas por una parte del programa que intenta recuperarse del problema.</p>
 <h2 id="que-ocurre-cuando-se-produce-una-excepcion">Qué ocurre cuando se produce una excepción<a class="headerlink" href="#que-ocurre-cuando-se-produce-una-excepcion" title="Permanent link">&para;</a></h2>
+<p><img alt="alt text" src="../../img/ud5/exc80.png" /></p>
 <ul>
 <li>La Máquina Virtual Java crea un objeto excepción y lo lanza. El objeto excepción creado contiene información sobre el error. La ejecución normal del programa se detiene.</li>
 <li>El sistema busca en el método donde se ha producido la excepción un manejador de excepciones que capture(catch) ese objeto y trate la excepción.</li>
@@ -3786,24 +3788,28 @@ siempre, independientemente si se ha producido una excepción o no</p>
 introduce un número de otro tipo o un carácter, se lanza una excepción <strong>InputMismatchException</strong>
 que es capturada por el bloque <code>catch</code>. En este bloque se realizan las instrucciones necesarias para
 resolver la situación y que el programa pueda continuar.</p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">esCorrecto</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="k">do</span><span class="p">{</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="k">try</span><span class="p">{</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduce un número entero &quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="c1">//si no introduce un entero salta la excepción</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">esCorrecto</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">catch</span><span class="p">(</span><span class="n">InputMismatchException</span><span class="w"> </span><span class="n">e</span><span class="p">){</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span><span class="c1">//vacia el buffer</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Debe introducir un número entero &quot;</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">esCorrecto</span><span class="p">);</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número introducido: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-<span class="linenos" data-linenos="18 "></span><span class="p">}</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cm">/*</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="cm">Programa que controla la entrada de datos de usuario mediante</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="cm">excepciones. Mientras no se introduzca un entero no sale del bucle</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="cm">*/</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">esCorrecto</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="k">do</span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">try</span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Introduce un número entero &quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="c1">//si no introduce un entero salta la excepción</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">esCorrecto</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="k">catch</span><span class="p">(</span><span class="n">InputMismatchException</span><span class="w"> </span><span class="n">e</span><span class="p">){</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span><span class="c1">//vacia el buffer</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Debe introducir un número entero &quot;</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">esCorrecto</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número introducido: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="linenos" data-linenos="22 "></span><span class="p">}</span>
 </code></pre></div>
 Conseguimos controlar mediante las excepciones la entrada del usuario</p>
 <p><img alt="alt text" src="../../img/ud5/excep20.png" /></p>
@@ -3842,6 +3848,7 @@ Conseguimos controlar mediante las excepciones la entrada del usuario</p>
 <img alt="alt text" src="../../img/ud5/excep21.png" /></p>
 <div class="admonition importante">
 <p class="admonition-title">Importante</p>
+<p><img alt="alt text" src="../../img/ud5/exc81.png" /></p>
 <p>Cuando se lanza una excepción se captura por el primer bloque catch cuyo parámetro sea de la
 misma clase que el objeto excepción o de una clase base directa o indirecta. Por este motivo, es importante el orden en que se coloquen los bloques catch.</p>
 <p>Las excepciones más genéricas se deben capturar al final. </p>
@@ -3990,6 +3997,7 @@ Nos va a permitir que las clases sean independientes de la interfaz de usuario y
 <p>Los métodos y los setter de una clase pueden necesitar ciertas características que se deben cumplir debido a las especificaciones del problema. Por ejemplo, al introducir una nota de un alumno tiene que estar en el rango de 0..10</p>
 <p>Enviar un mensaje desde la propia clase al usuario puede que no sea procedente ya que la clase tiene que ocuparse de que los datos sean correctos pero no de interactuar con el usuario. Piensa en un entorno gráfico.</p>
 <p>Podemos lanzar excepciones cuando se trate de introducir un valor ilegal y que se trate el error más arriba, es decir, quien use la clase, por ejemplo main</p>
+<p><img alt="alt text" src="../../img/ud5/exc83.png" /></p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Nota</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">asignatura</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nota</span><span class="p">;</span>
@@ -4003,9 +4011,9 @@ Nos va a permitir que las clases sean independientes de la interfaz de usuario y
 <span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="12 "></span>
 <span class="hll"><span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setNota</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">nota</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">{</span>
-</span><span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="c1">//si la nota no cumple las especificaciones, lanzamos una excepción</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">nota</span><span class="o">&lt;</span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">10</span><span class="p">)</span>
-<span class="hll"><span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;La nota tiene que estar en el rango 0..10&quot;</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="c1">//si la nota no cumple las especificaciones, lanzamos una excepción</span>
+</span><span class="hll"><span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">nota</span><span class="o">&lt;</span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">10</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;La nota tiene que estar en el rango 0..10&quot;</span><span class="p">);</span>
 </span><span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nota</span><span class="p">;</span>
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="19 "></span>
